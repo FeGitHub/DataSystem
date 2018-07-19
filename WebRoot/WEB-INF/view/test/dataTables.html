@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>DataTables表格</title>
+<link type="text/css" rel="styleSheet"  href="/css/jquery.dataTables.min.css" /><!--引进dataTables的样式 -->
+<script src="/js/jquery-3.3.1.min.js"></script><!--引进jquery的最小支持 -->
+<script src="/js/jquery.dataTables.min.js"></script><!--引进dataTables的js支持-->
+</head>
+<body>
+	<table id="table_id_example" class="display"><!--填充数据的表格，用id来标识这个表格 -->
+    <thead>
+        <tr>
+            <th>第一列</th>
+            <th>第二列</th>
+            <th>第三列</th>
+           
+        </tr>
+    </thead>
+    <tbody>      
+    </tbody>
+</table>
+<a href="/index.html">返回主测试页面</a>
+</body>
+<script type="text/javascript">
+$(document).ready( function () {	 
+       $('#table_id_example').DataTable({//利用id来找到对应的表格，并将数据填充进去
+    	language: {//语言国际化
+            "url": "/json/datatables_language.json"//国际化文件的文件资源
+        },
+        ajax: {//利用ajax请求资源文件
+            url: '/test/getTable',//请求资源的位置,加"/"表示服务器根目录，不加"/"表示当前请求页面的位置
+        },
+        columns: [
+                  { data: 'id' },//表格每一行的对应json数据的key,以此进行数据的填充
+                  { data: 'title'},
+                  { data: 'content'}
+                 
+              ]
+    });
+} );
+</script>
+</html>
