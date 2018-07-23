@@ -4,6 +4,7 @@ import com.DS.Model.TestModel;
 import com.jfinal.config.*;
 import com.jfinal.plugin.activerecord.ActiveRecordPlugin;
 import com.jfinal.plugin.c3p0.C3p0Plugin;
+import com.jfinal.render.ViewType;
 import com.jfinal.template.Engine;
 /***
  * @Author jeff qiu
@@ -16,6 +17,7 @@ public class DSConfig extends JFinalConfig {
      */
     public void configConstant(Constants me) {
         me.setDevMode(true);//设置为开发者模式
+        //me.setViewType(ViewType.FREE_MARKER);
     }
     /***
      * @Description 配置访问路由
@@ -35,7 +37,7 @@ public class DSConfig extends JFinalConfig {
      */
     public void configPlugin(Plugins me) {
     	 //mysql数据库插件配置
-        C3p0Plugin cp = new C3p0Plugin("jdbc:mysql://localhost/jfinal_demo", "root", "root");
+        C3p0Plugin cp = new C3p0Plugin("jdbc:mysql://localhost/jfinal_demo?useSSL=true", "root", "root");
         me.add(cp);
         //记录映射配置
         ActiveRecordPlugin arp = new ActiveRecordPlugin(cp);

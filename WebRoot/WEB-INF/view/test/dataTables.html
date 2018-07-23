@@ -1,6 +1,9 @@
 <!DOCTYPE html>
 <html>
 <head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1">
 <meta charset="UTF-8">
 <title>DataTables表格</title>
 <link type="text/css" rel="styleSheet"  href="/css/jquery.dataTables.min.css" /><!--引进dataTables的样式 -->
@@ -14,7 +17,7 @@
             <th>第一列</th>
             <th>第二列</th>
             <th>第三列</th>
-           
+            <th>第四列</th>          
         </tr>
     </thead>
     <tbody>      
@@ -32,10 +35,24 @@ $(document).ready( function () {
             url: '/test/getTable',//请求资源的位置,加"/"表示服务器根目录，不加"/"表示当前请求页面的位置
         },
         columns: [
-                  { data: 'id' },//表格每一行的对应json数据的key,以此进行数据的填充
-                  { data: 'title'},
-                  { data: 'content'}
-                 
+                  { data: 'id' },//第一列
+                  { data: 'title'},//第二列                  
+                  { data: 'content',//第三列
+                   "className":"content",//赋予这个td的类
+                   "render": function ( data, type, full, meta ) {//此方法可以对返回的json数据进行加工            
+                     		 var str = data;                                  
+                     		 return '加工:'+str;
+                     	}
+                  },
+                  { data: null, //第四列
+                	"render": function(data, type, full, meta){
+                		 var str ="<nobr>";
+                		 str += "<a class='btn table_btn btn-success btn-sm' href='javascript:void(0);' target='_blank'>"+
+                         "<i class='fa fa-edit fa-fw'></i>"+
+                         "编辑"+"</a> ";
+                		 return str +="</nobr>";
+                	}  
+                  }
               ]
     });
 } );

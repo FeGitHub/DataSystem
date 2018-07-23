@@ -4,9 +4,17 @@ import com.jfinal.core.Controller;
 import com.jfinal.plugin.activerecord.Db;
 import com.jfinal.plugin.activerecord.Record;
 
+
+
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+/***
+ * 
+ * @author jeff qiu
+ * 用于测试
+ *
+ */
 public class TestController extends Controller {
     /***
      *   默认的执行方式
@@ -99,7 +107,7 @@ public class TestController extends Controller {
         Db.update("blog",record);
         render("finsh.jsp");
     }
-    //==================================================
+   
     /***
      * 测试dataTables
      */
@@ -115,6 +123,17 @@ public class TestController extends Controller {
         Map map = new HashMap();
         map.put("data", blogs);//这个data属性名很重要，填充的数据默认寻找data
         renderJson(map);
-
     }
+    /***
+     * 测试传值
+     */
+    public void renderData(){
+    	 String id = getPara("id");
+    	 System.out.println("id:"+id);
+    	 TestModel carinfo = TestModel.dao.findById(id);
+    	 System.out.println("carinfo:"+ carinfo.getStr("title"));
+         setAttr("test", carinfo);
+         render("dataHandle/edit.html");
+    }
+    
 }

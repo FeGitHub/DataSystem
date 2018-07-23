@@ -6,6 +6,6 @@ import com.jfinal.core.JFinal;
  */
 public class StartDSConfig {
     public static void main(String[] args) {
-    	JFinal.start("WebRoot", 82, "/");
+    	JFinal.start("WebRoot", 82, "/",5);
     }
 }

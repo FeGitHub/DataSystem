@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>信息提示处理</title>
+<link href="/css/bootstrap.min.css" rel="stylesheet"><!--引进bootstrap的样式 -->
+<link href="/css/Sco/sco.message.min.css" rel="stylesheet">
+<script src="/js/jquery-3.3.1.min.js"></script><!--引进jquery的最小支持 -->
+<script src="/js/Sco/sco.message.min.js"></script><!--引进dataTables的js支持-->
+</head>
+<body>
+	    <h2 align="center">测试</h2>
+	    <div align="center">
+	    	 <a id="message_trigger_ok" href="#">成功</a>
+             <a id="message_trigger_err" href="#">失败</a>
+             <hr>
+                                       测试:<input type="text" class="form-control" id="teacherName" value="${(test.title)!}" style="border:none;font-size:22px;">  
+             <a href="/index.html">返回主测试页面</a>
+	    </div>
+	    
+	   
+</body>
+<script>
+  $('#message_trigger_ok').on('click', function(e) {
+    e.preventDefault();
+    $.scojs_message('提供错误提示信息', $.scojs_message.TYPE_OK);
+  });
+  $('#message_trigger_err').on('click', function(e) {
+    e.preventDefault();
+    $.scojs_message('提供正确提示信息', $.scojs_message.TYPE_ERROR);
+    });
+</script>
+</html>
