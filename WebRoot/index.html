@@ -2,7 +2,10 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>主测试页面</title>
+<link href="/css/bootstrap.min.css" rel="stylesheet">
+<script src="/js/jquery-3.3.1.min.js"></script>
+<script src="/js/bootstrap.min.js"></script>
 </head>
 <body>
 		
@@ -10,7 +13,246 @@
 	<h2>主测试页面</h2><hr>
 		<a href="/test/goDataTables" style=" text-decoration: none;">1.点我--测试dataTables</a><br>
 	    <a href="/test/renderData?id=2" style=" text-decoration: none;">2.点我--测试信息提示框</a><br>
-	    <a href="/go/goMenu" style=" text-decoration: none;">2.点我--测试菜单</a><br>
+	    <a href="/go/goMenu" style=" text-decoration: none;">3.点我--测试菜单</a><br>
 	</div>	
+	<nav id="left_side_bar" class="navbar-default navbar-static-side" role="navigation">       	
+        	
+            <div class="sidebar-collapse">
+                <ul class="nav in" id="side-menu">
+                            <li id="443">
+
+                                    <a href="#">
+                                                <i class="fa fa-file-text fa-fw"></i>
+                                        <span style="padding-left: 5px;">管理看板</span>
+                                            <span class="fa arrow"></span>
+                                    </a>
+                                        <ul class="nav nav-second-level collapse">
+                                                <li id="">
+                                                    <a href="/dashBoard">管理看板</a>
+                                                </li>
+                                                <li id="">
+                                                    <a href="/msgBoard">公告信息</a>
+                                                </li>
+                                        </ul>
+                            </li>
+                            <li id="446">
+
+                                    <a href="#">
+                                                <i class="fa fa-file-text fa-fw"></i>
+                                        <span style="padding-left: 5px;">客户</span>
+                                            <span class="fa arrow"></span>
+                                    </a>
+                                        <ul class="nav nav-second-level collapse">
+                                                <li id="">
+                                                    <a href="/customer">客户</a>
+                                                </li>
+                                                <li id="">
+                                                    <a href="/customerContract">客户合同</a>
+                                                </li>
+                                        </ul>
+                            </li>
+                            <li id="445">
+
+                                    <a href="#">
+                                                <i class="fa fa-file-text fa-fw"></i>
+                                        <span style="padding-left: 5px;">供应商</span>
+                                            <span class="fa arrow"></span>
+                                    </a>
+                                        <ul class="nav nav-second-level collapse">
+                                                <li id="">
+                                                    <a href="/serviceProvider">供应商</a>
+                                                </li>
+                                                <li id="">
+                                                    <a href="/supplierRating">供应商评分</a>
+                                                </li>
+                                                <li id="">
+                                                    <a href="/supplierContract">供应商合同</a>
+                                                </li>
+                                                <li id="">
+                                                    <a href="/costComparison">供应商成本评比单</a>
+                                                </li>
+                                        </ul>
+                            </li>
+                            <li id="434">
+
+                                    <a href="#">
+                                                <i class="fa fa-file-text fa-fw"></i>
+                                        <span style="padding-left: 5px;">业务管理</span>
+                                            <span class="fa arrow"></span>
+                                    </a>
+                                        <ul class="nav nav-second-level in collapse">
+                                                <li id="">
+                                                    <a href="/planOrder">计划单</a>
+                                                </li>
+                                                <li id="">
+                                                    <a href="/jobOrder" class="active">工作单</a>
+                                                </li>
+                                                <li id="">
+                                                    <a href="/jobOrder?type=lock">工作单锁单</a>
+                                                </li>
+                                                <li id="">
+                                                    <a href="/lclOrder">拼箱单</a>
+                                                </li>
+                                                <li id="">
+                                                    <a href="/customerRemind">重点客户提醒</a>
+                                                </li>
+                                                <li id="">
+                                                    <a href="/profitReport">运营报表</a>
+                                                </li>
+                                                <li id="">
+                                                    <a href="/oceanRouteReport">海运路线运营报表</a>
+                                                </li>
+                                                <li id="">
+                                                    <a href="/airRouteReport">空运路线运营报表</a>
+                                                </li>
+                                                <li id="">
+                                                    <a href="/arapReport">费用明细查询</a>
+                                                </li>
+                                                <li id="">
+                                                    <a href="/orderStatus">单据流转查询</a>
+                                                </li>
+                                                <li id="">
+                                                    <a href="/billProfitAndPayment">单票利润率查询</a>
+                                                </li>
+                                        </ul>
+                            </li>
+                            <li id="439">
+
+                                    <a href="#">
+                                                <i class="fa fa-file-text fa-fw"></i>
+                                        <span style="padding-left: 5px;">结算管理</span>
+                                            <span class="fa arrow"></span>
+                                    </a>
+                                        <ul class="nav nav-second-level collapse">
+                                                <li id="">
+                                                    <a href="/chargeCheckOrder">应收对账单</a>
+                                                </li>
+                                                <li id="">
+                                                    <a href="/costConfirmList">应付明细确认</a>
+                                                </li>
+                                                <li id="">
+                                                    <a href="/costCheckOrder">应付对账单</a>
+                                                </li>
+                                                <li id="">
+                                                    <a href="/invoiceApply">开票单</a>
+                                                </li>
+                                                <li id="">
+                                                    <a href="/chargeRequest">收款申请单</a>
+                                                </li>
+                                                <li id="">
+                                                    <a href="/costRequest">付款申请单</a>
+                                                </li>
+                                                <li id="">
+                                                    <a href="/currencyRate">汇率</a>
+                                                </li>
+                                                <li id="">
+                                                    <a href="/salesBillReport">业务员票报表</a>
+                                                </li>
+                                                <li id="">
+                                                    <a href="/accountAuditLog">出纳日记账</a>
+                                                </li>
+                                        </ul>
+                            </li>
+                            <li id="440">
+
+                                    <a href="#">
+                                                <i class="fa fa-file-text fa-fw"></i>
+                                        <span style="padding-left: 5px;">财务报表</span>
+                                            <span class="fa arrow"></span>
+                                    </a>
+                                        <ul class="nav nav-second-level collapse">
+                                                <li id="">
+                                                    <a href="/profit">利润表</a>
+                                                </li>
+                                                <li id="">
+                                                    <a href="/accountAging">账龄分析表</a>
+                                                </li>
+                                                <li id="">
+                                                    <a href="/balanceReport">客户财务环比表</a>
+                                                </li>
+                                                <li id="">
+                                                    <a href="/chargeBalanceReport">应收余额汇总表</a>
+                                                </li>
+                                                <li id="">
+                                                    <a href="/costBalanceReport">应付余额汇总表</a>
+                                                </li>
+                                                <li id="">
+                                                    <a href="/profitAndPaymentRate">应收应付统计报表</a>
+                                                </li>
+                                                <li id="">
+                                                    <a href="/totalProfit">财务分析表</a>
+                                                </li>
+                                                <li id="">
+                                                    <a href="/manualReport">自定义报表</a>
+                                                </li>
+                                        </ul>
+                            </li>
+                            <li id="441">
+
+                                    <a href="#">
+                                                <i class="fa fa-file-text fa-fw"></i>
+                                        <span style="padding-left: 5px;">基础数据</span>
+                                            <span class="fa arrow"></span>
+                                    </a>
+                                        <ul class="nav nav-second-level collapse">
+                                                <li id="">
+                                                    <a href="/unit">计量单位</a>
+                                                </li>
+                                                <li id="">
+                                                    <a href="/containerType">箱型</a>
+                                                </li>
+                                                <li id="">
+                                                    <a href="/account">本公司银行账户</a>
+                                                </li>
+                                                <li id="">
+                                                    <a href="/currency">币制</a>
+                                                </li>
+                                                <li id="">
+                                                    <a href="/finItem">费用单位</a>
+                                                </li>
+                                                <li id="">
+                                                    <a href="/dockInfo">陆运地点</a>
+                                                </li>
+                                        </ul>
+                            </li>
+                            <li id="442">
+
+                                    <a href="#">
+                                                <i class="fa fa-file-text fa-fw"></i>
+                                        <span style="padding-left: 5px;">系统配置</span>
+                                            <span class="fa arrow"></span>
+                                    </a>
+                                        <ul class="nav nav-second-level collapse">
+                                                <li id="">
+                                                    <a href="/loginUser">登录用户</a>
+                                                </li>
+                                                <li id="">
+                                                    <a href="/role">岗位</a>
+                                                </li>
+                                                <li id="">
+                                                    <a href="/userRole">用户岗位</a>
+                                                </li>
+                                                <li id="">
+                                                    <a href="/employeeFiling">员工建档</a>
+                                                </li>
+                                                <li id="">
+                                                    <a href="/loginLog">登录日志</a>
+                                                </li>
+                                        </ul>
+                            </li>
+                            <li id="444">
+
+                                    <a href="http://fms_doc.esimplev.com">
+                                        <i class="fa fa-file-text fa-fw"></i>
+                                        帮助文档
+                                    </a>
+                            </li>
+                </ul>
+                <!--  /#side-menu -->
+
+            </div>            
+            <div class="version">版本号: <span id="version_no">180223.1714</span></div>
+            <!-- /.sidebar-collapse -->
+        </nav>
 </body>
 </html>

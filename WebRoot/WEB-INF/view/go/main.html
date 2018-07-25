@@ -2,10 +2,11 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>管理页面</title>
 <link href="/css/bootstrap.min.css" rel="stylesheet">
-<script src="http://cdn.bootcss.com/jquery/2.1.1/jquery.min.js"></script>
-<script src="http://cdn.bootcss.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
+<script src="/js/jquery-3.3.1.min.js"></script>
+<script src="/js/bootstrap.min.js"></script>
+
 <link type="text/css" rel="styleSheet"  href="/css/main.css" />
 </head>
 <body>
@@ -13,26 +14,27 @@
 	<div class="navbar navbar-duomi navbar-static-top" role="navigation">
     	<div class="container-fluid">
      		<div class="navbar-header">
-           	<a class="navbar-brand" href="/Admin/index.html" id="logo">配置管理系统（流量包月）</a>
+           	<a class="navbar-brand" href="/index.html" id="logo">数据管理系统</a>
 			</div>
 		</div>
     </div>
     <!--头部导航结束 -->
     
+   <!--中间主体部分开始 --> 
 <div class="container-fluid">
 			<div class="row">
-			<div class="col-md-2">
+			<div class="col-md-2" id="menu">
 			<!-- 左部菜单开始 -->
 			<ul id="main-nav" class="nav nav-tabs nav-stacked" style="">
 						<!--第一行 -->
 						<li class="active">
-							<a href="#"><i class="glyphicon glyphicon-th-large"></i>首页 </a>
+							<a href="/index.html"><i class="glyphicon glyphicon-th-large"></i>首页 </a>
 						</li>
 						<!--第二行 -->
 						<li>
-							<a href="#systemSetting" class="nav-header collapsed" data-toggle="collapse"><i class="glyphicon glyphicon-cog"></i>系统管理<span class="pull-right glyphicon glyphicon-chevron-down"></span> </a>
+							<a href="#to" class="nav-header collapsed" data-toggle="collapse"><i class="glyphicon glyphicon-cog"></i>系统管理<span class="pull-right glyphicon glyphicon-chevron-down"></span> </a>
 							<!--第二行的子菜单 -->
-							<ul id="systemSetting" class="nav nav-list collapse secondmenu" style="height: 0px;">
+							<ul id="to" class="nav nav-list collapse secondmenu" style="height: 0px;">
 								<li><a href="#"><i class="glyphicon glyphicon-user"></i>用户管理</a></li>
 								<li><a href="#"><i class="glyphicon glyphicon-th-list"></i>菜单管理</a></li>
 								<li><a href="#"><i class="glyphicon glyphicon-asterisk"></i>角色管理</a></li>
@@ -48,13 +50,27 @@
 					<li><a href="./charts.html"><i class="glyphicon glyphicon-calendar"></i>图表统计</a></li>
 					 <!-- 第六行 -->
 					<li><a href="#"><i class="glyphicon glyphicon-fire"></i>关于系统</a></li>
+					<li ><a href="/go/goData" class="loadData"><i class="glyphicon glyphicon-fire"></i>测试主体页面--可用</a></li>
+					<li ><a href="/go/goHello"  class="loadData"><i class="glyphicon glyphicon-fire"></i>测试欢迎页面--可用</a></li>
+					<li id="hideMenu"><a href="#"><i class="glyphicon glyphicon-fire"></i>隐藏菜单</a></li>
 			</ul>
 			</div>
 				<!--主体内容 -->
-				<div class="col-md-10">
-					主窗口
+				<div class="col-md-10" id="mainBody">
+					<h1 align="center">默认初始界面</h1>
 				</div>
 	     </div>
 </div> 
+<!--中间主体结束 -->
+
+<!--底部开始 -->
+<div class="row">
+		<div class="col-md-12" >
+		       <div id="bottomBody">
+		      </div>
+      </div>
+</div>
+<!--底部结束 -->
 </body>
+<script src="/js/main.js"></script>
 </html>

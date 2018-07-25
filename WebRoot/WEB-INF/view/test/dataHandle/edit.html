@@ -12,12 +12,13 @@
 	    <h2 align="center">测试</h2>
 	    <div align="center">
 	    	 <a id="message_trigger_ok" href="#">成功</a>
-             <a id="message_trigger_err" href="#">失败</a>
-          
-               <input type="text" class="form-control" name="title" value="${test.title}" style="border:none;font-size:22px;"> <br>
-               <input type="text" class="form-control" name="aa" value="${'aa'}!" style="border:none;font-size:22px;">  
-               <input id="dock_id" name=""dock_id""  value="${dock.id!''}">                           
-             <a href="/index.html">返回主测试页面</a>
+             <a id="message_trigger_err" href="#">失败</a><br>
+          	<#list testlist as info>
+			<a>${info}</a> 
+			</#list>
+             <br>
+           <a>${abc.data[0].title}</a>                  
+             <br><a href="/index.html">返回主测试页面</a>
 	    </div>
 	    
 	   

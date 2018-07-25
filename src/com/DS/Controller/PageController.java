@@ -6,4 +6,10 @@ public class PageController extends Controller{
 	 public void goMenu(){
 	 	   render("main.html");
 	 }
+	 public void goHello(){
+	 	   render("hello.html");
+	 }
+	 public void goData(){
+	 	   render("data.html");
+	 }
 }

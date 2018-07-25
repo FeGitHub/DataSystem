@@ -4,8 +4,7 @@ import com.jfinal.core.Controller;
 import com.jfinal.plugin.activerecord.Db;
 import com.jfinal.plugin.activerecord.Record;
 
-
-
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -128,12 +127,18 @@ public class TestController extends Controller {
      * 测试传值
      */
     public void renderData(){
-    	 String id = getPara("id");
-    	 System.out.println("id:"+id);
-    	 TestModel carinfo = TestModel.dao.findById(id);
-    	 System.out.println("carinfo:"+ carinfo.getStr("title"));
-         setAttr("dock", carinfo);
-      
+    	List<String>  list = new ArrayList<String>();
+    	List<TestModel> blogs=TestModel.dao.find("select * from blog");
+        Map map = new HashMap();
+        map.put("data", blogs);//这个data属性名很重要，填充的数据默认寻找data
+        list.add("列表1");
+        list.add("列表2");
+        list.add("列表3");
+        list.add("列表4");
+        list.add("列表5");
+        setAttr("testlist",list );
+        setAttr("abc",map );
+       
          render("dataHandle/edit.html");
     }
    
