@@ -1,4 +1,5 @@
 package com.DS.Config;
+import com.DS.Controller.PageController;
 import com.DS.Controller.TestController;
 import com.DS.Model.TestModel;
 import com.jfinal.config.*;
@@ -26,6 +27,7 @@ public class DSConfig extends JFinalConfig {
     public void configRoute(Routes me) {
         me.setBaseViewPath("/WEB-INF/view/");
         me.add("/test", TestController.class);//用于测试
+        me.add("/go", PageController.class);//用于跳转页面
 
     }
     @Override

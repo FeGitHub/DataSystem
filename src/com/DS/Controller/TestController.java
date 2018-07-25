@@ -132,8 +132,9 @@ public class TestController extends Controller {
     	 System.out.println("id:"+id);
     	 TestModel carinfo = TestModel.dao.findById(id);
     	 System.out.println("carinfo:"+ carinfo.getStr("title"));
-         setAttr("test", carinfo);
+         setAttr("dock", carinfo);
+      
          render("dataHandle/edit.html");
     }
-    
+   
 }

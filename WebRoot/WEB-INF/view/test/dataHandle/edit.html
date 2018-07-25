@@ -13,8 +13,10 @@
 	    <div align="center">
 	    	 <a id="message_trigger_ok" href="#">成功</a>
              <a id="message_trigger_err" href="#">失败</a>
-             <hr>
-                                       测试:<input type="text" class="form-control" id="teacherName" value="${(test.title)!}" style="border:none;font-size:22px;">  
+          
+               <input type="text" class="form-control" name="title" value="${test.title}" style="border:none;font-size:22px;"> <br>
+               <input type="text" class="form-control" name="aa" value="${'aa'}!" style="border:none;font-size:22px;">  
+               <input id="dock_id" name=""dock_id""  value="${dock.id!''}">                           
              <a href="/index.html">返回主测试页面</a>
 	    </div>
 	    
@@ -23,11 +25,11 @@
 <script>
   $('#message_trigger_ok').on('click', function(e) {
     e.preventDefault();
-    $.scojs_message('提供错误提示信息', $.scojs_message.TYPE_OK);
+    $.scojs_message('提供正确的提示信息', $.scojs_message.TYPE_OK);
   });
   $('#message_trigger_err').on('click', function(e) {
     e.preventDefault();
-    $.scojs_message('提供正确提示信息', $.scojs_message.TYPE_ERROR);
+    $.scojs_message('提供错误的提示信息', $.scojs_message.TYPE_ERROR);
     });
 </script>
 </html>
