@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>vue案例</title>
+	<meta charset="UTF-8">
+	<script src="/js/vue.js"></script>
+	<script src="/js/jquery-3.3.1.min.js"></script><!--引进jquery的最小支持 -->
+	<script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+</head>
+<body>
+
+	<div id="first">
+		<h1>姓名：{{name}}</h1><!-- 直接从data中取值 -->
+		<h1>工作：{{work}}</h1><!-- 直接从data中取值 -->
+		<p>打招呼:{{sayhello()}}</p><!-- 从函数中取返回值 -->
+		<p>{{sayAxiosData()}}</p><!-- 执行函数 -->
+		<p>{{sayAjaxData()}}</p><!-- 执行函数 -->
+		
+
+	</div>
+	<script src="/js/vueTest.js"></script>
+</body>
+</html>

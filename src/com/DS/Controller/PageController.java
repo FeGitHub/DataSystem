@@ -12,4 +12,7 @@ public class PageController extends Controller{
 	 public void goData(){
 	 	   render("data.html");
 	 }
+	 public void goVue(){
+	 	   render("vueDemo.html");
+	 }
 }

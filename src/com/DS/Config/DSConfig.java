@@ -39,7 +39,7 @@ public class DSConfig extends JFinalConfig {
      * @param me
      */
     public void configPlugin(Plugins me) {
-    	 //mysql数据库插件配置
+    	//mysql数据库插件配置
         C3p0Plugin cp = new C3p0Plugin("jdbc:mysql://localhost/jfinal_demo?useSSL=true", "root", "root");
         me.add(cp);
         //记录映射配置
