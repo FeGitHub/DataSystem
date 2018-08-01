@@ -15,4 +15,7 @@ public class PageController extends Controller{
 	 public void goVue(){
 	 	   render("vueDemo.html");
 	 }
+	 public void goLogin(){
+	 	   render("login.html");
+	 }
 }

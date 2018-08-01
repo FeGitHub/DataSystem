@@ -1,6 +1,7 @@
 package com.DS.Config;
 import com.DS.Controller.PageController;
 import com.DS.Controller.TestController;
+import com.DS.Controller.indexController;
 import com.DS.Model.TestModel;
 import com.jfinal.config.*;
 import com.jfinal.plugin.activerecord.ActiveRecordPlugin;
@@ -26,7 +27,8 @@ public class DSConfig extends JFinalConfig {
      * @param me
      */
     public void configRoute(Routes me) {
-        me.setBaseViewPath("/WEB-INF/view/");
+        me.setBaseViewPath("/WEB-INF/view/"); 
+        me.add("/", indexController.class);
         me.add("/test", TestController.class);//用于测试
         me.add("/go", PageController.class);//用于跳转页面
 

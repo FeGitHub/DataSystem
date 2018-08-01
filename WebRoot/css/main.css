@@ -1,4 +1,12 @@
-#main-nav {
+         /*导航条*/
+        .navbar-static-top {
+            background-color: #212121;
+        
+            margin-bottom: 5px;
+        }
+      
+      
+      #main-nav {
             margin-left: 1px;
         }
 
@@ -47,10 +55,6 @@
             }
 
        
-        .navbar-static-top {
-            background-color: #212121;
-            margin-bottom: 5px;
-        }
 
        
         /*主体内容*/

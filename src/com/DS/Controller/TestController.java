@@ -1,5 +1,6 @@
 package com.DS.Controller;
 import com.DS.Model.TestModel;
+import com.jfinal.core.ActionKey;
 import com.jfinal.core.Controller;
 import com.jfinal.plugin.activerecord.Db;
 import com.jfinal.plugin.activerecord.Record;
@@ -15,6 +16,7 @@ import java.util.Map;
  *
  */
 public class TestController extends Controller {
+	
     /***
      *   默认的执行方式
      *   http://localhost:82/test
@@ -137,8 +139,7 @@ public class TestController extends Controller {
         list.add("列表4");
         list.add("列表5");
         setAttr("testlist",list );
-        setAttr("abc",map );
-       
+        setAttr("abc",map );     
          render("dataHandle/edit.html");
     }
    
