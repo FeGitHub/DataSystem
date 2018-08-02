@@ -1,4 +1,5 @@
 package com.DS.Config;
+import com.DS.Controller.LoginController;
 import com.DS.Controller.PageController;
 import com.DS.Controller.TestController;
 import com.DS.Controller.indexController;
@@ -31,6 +32,7 @@ public class DSConfig extends JFinalConfig {
         me.add("/", indexController.class);
         me.add("/test", TestController.class);//用于测试
         me.add("/go", PageController.class);//用于跳转页面
+        me.add("/login", LoginController.class);
 
     }
     @Override
