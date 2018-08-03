@@ -12,10 +12,11 @@ public class LoginController extends Controller{
        String sql="select * from blog where title='"+username+"'";
        List<TestModel> blogs=TestModel.dao.find(sql);  
      
-      if((blogs.size()!=0)&&(blogs.get(0).getStr("content").equals(password))){
-    	   render("../go/main.html");	   
+     // if((blogs.size()!=0)&&(blogs.get(0).getStr("content").equals(password))){
+    	  if(1==1){
+    	  redirect("/go/goMenu");//重定向	   
        }else{
-    	   render("../go/hello.html");	
+    	   redirect("/go/goHello");	
        }
      
    }
