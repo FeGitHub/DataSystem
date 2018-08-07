@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>管理页面</title>
+<link href="/css/bootstrap.min.css" rel="stylesheet">
+<script src="/js/jquery-3.3.1.min.js"></script>
+<script src="/js/bootstrap.min.js"></script>
+<script src="/js/Sco/sco.message.min.js"></script><!--引进信息提示框的js支持-->
+<link type="text/css" rel="styleSheet"  href="/css/main.css" />
+<link href="/css/Sco/sco.message.min.css" rel="stylesheet">
+<style type="text/css">
+	.input-group-addon{
+	   width:70px;
+	}
+	.input-group{
+	  width:380px;
+	}
+</style>
+</head>
+<body>
+	<!--头部导航开始开始 -->
+	<div class="navbar navbar-duomi navbar-static-top" role="navigation">
+    	<div class="container-fluid">
+     		<div class="navbar-header">
+           	<a class="navbar-brand" href="/index.html" id="logo">数据管理系统</a>
+			</div>
+		</div>
+    </div>
+    <!--头部导航结束 -->
+    <h2 align="center">博客数据编辑</h2>
+    <div style="padding: 100px 100px 10px;" align="center">
+	<form class="bs-example bs-example-form" role="form" style="width:450px;" >
+		<div class="input-group">
+			<span class="input-group-addon">id</span>
+			<input type="text" class="form-control" value="${record.id}">
+		</div>
+		<br>
+		<div class="input-group">
+			<span class="input-group-addon">title</span>
+			<input type="text" class="form-control" value="${record.title}">
+		</div>
+		<br>
+		<div class="input-group">
+			<span class="input-group-addon">content</span>
+			<input type="text" class="form-control" value="${record.content}">
+		</div><br>
+		<button type="button" class="btn btn-default ">保存</button>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+		<button type="button" class="btn btn-default ">返回</button>
+	</form>
+</div>
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+	
+	
+</body>
+<script>
+  $('#message_trigger_ok').on('click', function(e) {
+    e.preventDefault();
+    $.scojs_message('提供正确的提示信息', $.scojs_message.TYPE_OK);
+  });
+  $('#message_trigger_err').on('click', function(e) {
+    e.preventDefault();
+    $.scojs_message('提供错误的提示信息', $.scojs_message.TYPE_ERROR);
+    });
+</script>
+</html>

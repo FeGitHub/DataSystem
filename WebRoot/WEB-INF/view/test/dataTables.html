@@ -48,7 +48,7 @@ $(document).ready( function () {
                   { data: null, //第四列
                 	"render": function(data, type, full, meta){
                 		 var str ="<nobr>";
-                		 str += "<a class='btn table_btn btn-success btn-sm' href='/BlogData?id=' target='_blank'>"+
+                		 str += "<a class='btn table_btn btn-success btn-sm' href='/BlogData/editBlog?id="+full.id+"' target='_blank'>"+
                          "<i class='fa fa-edit fa-fw'></i>"+
                          "编辑"+"</a> ";
                 		 return str +="</nobr>";

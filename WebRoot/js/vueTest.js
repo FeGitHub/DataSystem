@@ -12,8 +12,7 @@ var vue = new Vue({
 			var url="/json/data.json";
 			axios.get(url)
 			.then(function(result){				
-			vue.name = result.data.name;
-			console.log("sayAxiosData:"+result);
+			vue.name = result.data.name;		
 			});
 		},
 		sayAjaxData: function(){
@@ -21,7 +20,7 @@ var vue = new Vue({
 			_this=this;
 			$.getJSON(url,function(data){			
 		     _this.work=data.job;
-		     console.log("data:"+data);
+		   
 		});
 		}
 	}

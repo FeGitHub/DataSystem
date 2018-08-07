@@ -19,5 +19,13 @@
 
 	</div>
 	<script src="/js/vueTest.js"></script>
+	<script type="text/javascript">
+	$(function(){
+		var url="/json/data3.json";
+		$.post(url,function(data){	
+			alert(data.c[0].name);		
+		},"json");
+	});
+	</script>
 </body>
 </html>

@@ -36,7 +36,7 @@ CREATE TABLE `blog` (
 
 LOCK TABLES `blog` WRITE;
 /*!40000 ALTER TABLE `blog` DISABLE KEYS */;
-INSERT INTO `blog` VALUES (2,'test 1','test 1'),(3,'test 2','test 2'),(4,'test 3','test 3'),(5,'test 4','test 4'),(6,'rrr','rrrr');
+INSERT INTO `blog` VALUES (2,'test1','test1'),(3,'test2','test2'),(4,'test3','test3'),(5,'test4','test4'),(6,'rrr','rrrr');
 /*!40000 ALTER TABLE `blog` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;

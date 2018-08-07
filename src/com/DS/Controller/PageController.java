@@ -16,4 +16,7 @@ public class PageController extends Controller{
 	 public void goLogin(){
 	 	   render("login.html");
 	 }
+	 public void goEditBlog(){
+		   render("editBlog.html");
+	 }
 }
