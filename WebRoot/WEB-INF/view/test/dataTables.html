@@ -18,7 +18,7 @@
             <th>第一列</th>
             <th>第二列</th>
             <th>第三列</th>
-            <th>第四列</th>          
+            <th>第四列</th>                 
         </tr>
     </thead>
     <tbody>      
@@ -48,12 +48,17 @@ $(document).ready( function () {
                   { data: null, //第四列
                 	"render": function(data, type, full, meta){
                 		 var str ="<nobr>";
+                		 //编辑按钮
                 		 str += "<a class='btn table_btn btn-success btn-sm' href='/BlogData/editBlog?id="+full.id+"' target='_blank'>"+
                          "<i class='fa fa-edit fa-fw'></i>"+
                          "编辑"+"</a> ";
+                         //删除按钮
+                          str += "<a class='btn table_btn btn-danger btn-sm' href='/BlogData/delBlog?id="+full.id+"' target='_blank'>"+
+                         "<i class='fa fa-edit fa-fw'></i>"+
+                         "删除"+"</a> ";
                 		 return str +="</nobr>";
                 	}  
-                  }
+                  }                 
               ]
     });
 } );

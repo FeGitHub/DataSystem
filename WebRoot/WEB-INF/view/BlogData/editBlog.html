@@ -23,55 +23,33 @@
 	<div class="navbar navbar-duomi navbar-static-top" role="navigation">
     	<div class="container-fluid">
      		<div class="navbar-header">
-           	<a class="navbar-brand" href="/index.html" id="logo">数据管理系统</a>
+           	<a class="navbar-brand" href="/go/goMenu" id="logo">数据管理系统</a>
 			</div>
 		</div>
     </div>
     <!--头部导航结束 -->
     <h2 align="center">博客数据编辑</h2>
     <div style="padding: 100px 100px 10px;" align="center">
-	<form class="bs-example bs-example-form" role="form" style="width:450px;" >
+	<form class="bs-example bs-example-form" role="form" style="width:450px;"  id="editform" >
 		<div class="input-group">
 			<span class="input-group-addon">id</span>
-			<input type="text" class="form-control" value="${record.id}">
+			<input type="text" class="form-control" value="${record.id}" name="id" disabled="disabled">
 		</div>
 		<br>
 		<div class="input-group">
 			<span class="input-group-addon">title</span>
-			<input type="text" class="form-control" value="${record.title}">
+			<input type="text" class="form-control" value="${record.title}" name="title">
 		</div>
 		<br>
 		<div class="input-group">
 			<span class="input-group-addon">content</span>
-			<input type="text" class="form-control" value="${record.content}">
+			<input type="text" class="form-control" value="${record.content}" name="content">
 		</div><br>
-		<button type="button" class="btn btn-default ">保存</button>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-		<button type="button" class="btn btn-default ">返回</button>
+		<button id="submitBtn" type="button" class="btn btn-default ">保存</button>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+		<a href="/go/goMenu" class="btn btn-default ">返回</a>
 	</form>
 </div>
     
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-	
-	
 </body>
-<script>
-  $('#message_trigger_ok').on('click', function(e) {
-    e.preventDefault();
-    $.scojs_message('提供正确的提示信息', $.scojs_message.TYPE_OK);
-  });
-  $('#message_trigger_err').on('click', function(e) {
-    e.preventDefault();
-    $.scojs_message('提供错误的提示信息', $.scojs_message.TYPE_ERROR);
-    });
-</script>
+<script type="text/javascript" src="/js/editBlog.js"></script>
 </html>

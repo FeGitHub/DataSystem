@@ -3,8 +3,10 @@ import com.DS.Controller.BlogController;
 import com.DS.Controller.LoginController;
 import com.DS.Controller.PageController;
 import com.DS.Controller.TestController;
+import com.DS.Controller.UserController;
 import com.DS.Controller.indexController;
 import com.DS.Model.TestModel;
+import com.DS.Model.UserModel;
 import com.jfinal.config.*;
 import com.jfinal.plugin.activerecord.ActiveRecordPlugin;
 import com.jfinal.plugin.c3p0.C3p0Plugin;
@@ -35,6 +37,7 @@ public class DSConfig extends JFinalConfig {
         me.add("/go", PageController.class);//用于跳转页面
         me.add("/login", LoginController.class);
         me.add("/BlogData", BlogController.class);
+        me.add("/user",UserController.class);
 
     }
     @Override
@@ -51,8 +54,15 @@ public class DSConfig extends JFinalConfig {
         //记录映射配置
         ActiveRecordPlugin arp = new ActiveRecordPlugin(cp);
         me.add(arp);
-        arp.addMapping("blog", TestModel.class);//用于测试
+        this.setDBMapping(arp);
+       
     }
     public void configInterceptor(Interceptors me) {}
     public void configHandler(Handlers me) {}
+    
+    public void setDBMapping(ActiveRecordPlugin arp){
+    	 arp.addMapping("blog", TestModel.class);//用于测试
+    	 arp.addMapping("user", UserModel.class);//用户信息
+    }
+    
 }

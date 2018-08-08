@@ -6,7 +6,8 @@
 <link href="/css/bootstrap.min.css" rel="stylesheet">
 <script src="/js/jquery-3.3.1.min.js"></script>
 <script src="/js/bootstrap.min.js"></script>
-
+<link type="text/css" rel="styleSheet"  href="/css/jquery.dataTables.min.css" /><!--引进dataTables的样式 -->
+<script src="/js/jquery.dataTables.min.js"></script><!--引进dataTables的js支持-->
 <link type="text/css" rel="styleSheet"  href="/css/main.css" />
 </head>
 <body>
@@ -14,7 +15,7 @@
 	<div class="navbar navbar-duomi navbar-static-top" role="navigation">
     	<div class="container-fluid">
      		<div class="navbar-header">
-           	<a class="navbar-brand" href="/index.html" id="logo">数据管理系统</a>
+           	<a class="navbar-brand" href="/go/goMenu" id="logo">数据管理系统</a>
 			</div>
 		</div>
     </div>
@@ -43,11 +44,11 @@
 							</ul>
 					     </li>
 					    <!--第三行 -->
-					<li><a href="./plans.html"><i class="glyphicon glyphicon-credit-card"></i>物料管理 </a></li>
+					<li><a href="#"><i class="glyphicon glyphicon-credit-card"></i>物料管理 </a></li>
 						 <!--第四行 -->
-					<li><a href="./grid.html"><i class="glyphicon glyphicon-globe"></i>分发配置<span class="label label-warning pull-right">5</span></a></li>
+					<li><a href="javascript:void(0);" id="info"><i class="glyphicon glyphicon-globe"></i>信息提示<span class="label label-warning pull-right">5</span></a></li>
 					   <!-- 第五行 -->
-					<li><a href="./charts.html"><i class="glyphicon glyphicon-calendar"></i>图表统计</a></li>
+					<li><a href="#"><i class="glyphicon glyphicon-calendar"></i>图表统计</a></li>
 					 <!-- 第六行 -->
 					<li><a href="/test/goDataTables"><i class="glyphicon glyphicon-fire"></i>测试表格</a></li>
 					<li ><a href="/go/goData" class="loadData"><i class="glyphicon glyphicon-fire"></i>测试主体页面--可用</a></li>
@@ -57,9 +58,6 @@
 			</div>
 				<!--主体内容 -->
 				<iframe  name="iframe_a" class="col-md-10" id="mainBody" src="/go/goHello">
-				<!-- <div class="col-md-10" >	
-					
-				</div> -->
 				</iframe>
 	     </div>
 </div> 
@@ -68,7 +66,35 @@
 <!--底部开始 -->
 <div class="row">
 		<div class="col-md-12" >
-		       <div id="bottomBody">
+		       <div id="bottomBody">		                
+			  <!-- 弹出框开始 -->
+				 <a id='cost_editBtn' data-toggle="modal" data-target="#myModal" style="display:none;"></a>
+					<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+					<div class="modal-dialog modal-lg">
+			        <div class="modal-content">
+			            <div class="modal-body">   
+			                             <div class="modal-body">
+													<table id="table_id_example" class="display" style="width:100%;">
+															    <thead style="background:#3f712763;">
+															        <tr>
+															            <th>第一列</th>
+															            <th>第二列</th>
+															            <th>第三列</th>
+															            <th>第四列</th>          
+															        </tr>
+															    </thead>
+															    <tbody>      
+															    </tbody>
+													</table>
+											</div>
+			                     <div class="modal-footer">					     
+					            	 <button type="button" class="btn  btn_white" data-dismiss="modal">返回</button>
+				            	 </div>
+			            	</div>
+			        	</div>                  
+			    	</div>                    
+				</div>
+            <!--弹出框结束 -->
 		      </div>
       </div>
 </div>

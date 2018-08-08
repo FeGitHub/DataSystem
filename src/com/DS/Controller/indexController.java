@@ -8,6 +8,6 @@ public class indexController extends Controller{
 	 	  
 	 }
 	public void list(){
-		 render("index.jsp");
+		 render("list.jsp");
 	 }
 }
