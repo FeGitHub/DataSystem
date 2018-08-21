@@ -16,4 +16,18 @@
         <filter-name>jfinal</filter-name>
         <url-pattern>/*</url-pattern>
     </filter-mapping>
+    <!--配置hessian(Reply)开始-->
+    <servlet>
+	<servlet-name>check</servlet-name>
+	<servlet-class>com.caucho.hessian.server.HessianServlet</servlet-class>
+		<init-param>
+		<param-name>service-class</param-name>
+		<param-value>com.DS.Api.Impl.ReplyAPI_impl</param-value>
+		</init-param>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>check</servlet-name>
+		<url-pattern>/api.reply</url-pattern>
+	</servlet-mapping>
+    <!--配合hessian(Reply)结束-->
 </web-app>
