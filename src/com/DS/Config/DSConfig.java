@@ -2,6 +2,7 @@ package com.DS.Config;
 import com.DS.Controller.BlogController;
 import com.DS.Controller.LoginController;
 import com.DS.Controller.PageController;
+import com.DS.Controller.RemoteHTTPAction;
 import com.DS.Controller.TestController;
 import com.DS.Controller.UserController;
 import com.DS.Controller.indexController;
@@ -14,7 +15,7 @@ import com.jfinal.plugin.c3p0.C3p0Plugin;
 import com.jfinal.render.ViewType;
 import com.jfinal.template.Engine;
 /***
- * @Author jeff qiu
+ * @Author jeff
  * @Description 基于Jfinal的项目的配置文件
  */
 public class DSConfig extends JFinalConfig {
@@ -23,8 +24,8 @@ public class DSConfig extends JFinalConfig {
      * @param me
      */
     public void configConstant(Constants me) {
-        me.setDevMode(true);//设置为开发者模式
-       me.setViewType(ViewType.FREE_MARKER);
+      // me.setDevMode(true);//设置为开发者模式
+       me.setViewType(ViewType.FREE_MARKER);//启动FREE_MARKER
        
     }
     /***
@@ -39,6 +40,7 @@ public class DSConfig extends JFinalConfig {
         me.add("/login", LoginController.class);
         me.add("/BlogData", BlogController.class);
         me.add("/user",UserController.class);
+        me.add("/RemoteAction",RemoteHTTPAction.class);//提供给远程调用的action
 
     }
     @Override

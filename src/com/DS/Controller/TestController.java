@@ -5,10 +5,19 @@ import com.jfinal.core.Controller;
 import com.jfinal.plugin.activerecord.Db;
 import com.jfinal.plugin.activerecord.Record;
 
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.PrintWriter;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
+
 /***
  * 
  * @author jeff qiu
@@ -121,7 +130,7 @@ public class TestController extends Controller {
      */
     public void getTable(){
         List<TestModel> blogs=TestModel.dao.find("select * from blog");
-        Map map = new HashMap();
+        Map<String, List<TestModel>> map = new HashMap<String, List<TestModel>>();
         map.put("data", blogs);//这个data属性名很重要，填充的数据默认寻找data
         renderJson(map);
     }
@@ -131,7 +140,7 @@ public class TestController extends Controller {
     public void renderData(){
     	List<String>  list = new ArrayList<String>();
     	List<TestModel> blogs=TestModel.dao.find("select * from blog");
-        Map map = new HashMap();
+        Map<String, List<TestModel>> map = new HashMap<String, List<TestModel>>();
         map.put("data", blogs);//这个data属性名很重要，填充的数据默认寻找data
         list.add("列表1");
         list.add("列表2");
@@ -142,5 +151,7 @@ public class TestController extends Controller {
         setAttr("abc",map );     
          render("dataHandle/edit.html");
     }
+  
+    
    
 }

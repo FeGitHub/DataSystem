@@ -1,7 +1,9 @@
-	$(document).ready( function () {	
+	$(function () {	
 		//链接打开的页面在主体frame表格显示
-		$("a").each(function(){		 			
-				 $(this).attr("target",'iframe_a');	
+		$("a").each(function(){	
+				if( $(this).attr("href")!=""){
+					 $(this).attr("target",'iframe_a');	
+				}			
 			  });
 		
 		//弹出框数据表格填充
