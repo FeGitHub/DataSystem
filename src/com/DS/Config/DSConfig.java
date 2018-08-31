@@ -24,7 +24,7 @@ public class DSConfig extends JFinalConfig {
      * @param me
      */
     public void configConstant(Constants me) {
-      // me.setDevMode(true);//设置为开发者模式
+       me.setDevMode(true);//设置为开发者模式
        me.setViewType(ViewType.FREE_MARKER);//启动FREE_MARKER
        
     }

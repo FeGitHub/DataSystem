@@ -122,7 +122,7 @@ public class TestController extends Controller {
      * 测试dataTables
      */
     public void goDataTables(){
-    	   render("dataTables.html");
+    	   render("blogTable.html");
     }
     
     /***

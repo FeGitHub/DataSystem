@@ -39,12 +39,12 @@ public class BlogController extends Controller {
 	public void delBlog(){
 		 Map<String, String> data=new HashMap<String, String>();
 		  String  id=getPara("id");
-		  Db.deleteById("blog",Integer.parseInt(id));
-	       /*if( Db.deleteById("blog",Integer.parseInt(id))){
+		 // Db.deleteById("blog",Integer.parseInt(id));
+	      if( Db.deleteById("blog",Integer.parseInt(id))){
 	    	   data.put("info", "ok");
 	       }else{
 	    	   data.put("info", "no");
 	       }
-	       renderJson(data);*/
+	       renderJson(data);
 	}
 }
