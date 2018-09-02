@@ -1,8 +1,8 @@
-package com.DS.utils.test;
+package com.DS.utils.test.quartz;
 
 import com.DS.utils.quartz.QuartzManager;
 
-public class Test_startQuartzDemo {
+public class TestMain_startQuartzDemo {
 /***
  * 用于新增一个测试的调度器任务，以此测试效果
  */

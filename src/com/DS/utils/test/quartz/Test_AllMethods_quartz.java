@@ -1,4 +1,4 @@
-package com.DS.utils.test;
+package com.DS.utils.test.quartz;
 import java.util.Date;
 import com.DS.utils.quartz.QuartzManager;
 /***

@@ -15,8 +15,7 @@ public class LoginController extends Controller{
     	  redirect("/go/goMenu");//重定向	   
        }else{
     	   redirect("/go/goHello");	
-       }
-     
+       } 
    }
    public void signOut(){
 	   forwardAction("/");	
