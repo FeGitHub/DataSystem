@@ -18,4 +18,7 @@ public class LoginController extends Controller{
        }
      
    }
+   public void signOut(){
+	   forwardAction("/");	
+   }
 }

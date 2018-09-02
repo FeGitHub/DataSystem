@@ -1,6 +1,6 @@
 	$(function () {	
 		//链接打开的页面在主体frame表格显示
-		$("a").each(function(){	
+		$("#menu a").each(function(){	
 				if( $(this).attr("href")!=""){
 					 $(this).attr("target",'iframe_a');	
 				}			
