@@ -21,7 +21,7 @@ public class DBBackupJob implements Job{
 	private static String userName="root";//userName 进入数据库所要的用户
 	private static String password="root";//password 进入数据库所要的密码
 	private static String savePath="F:/MysqlBackup";//数据库导出文件保存路径
-	private static String fileName="new.sql";//数据库导出文件文件名
+	private static String fileName="";//数据库导出文件文件名
 	private static String databaseName="jfinal_demo";//要备份的数据库名称
 	public void execute(JobExecutionContext arg0) throws JobExecutionException {
 		    Date d = new Date();   
@@ -29,9 +29,9 @@ public class DBBackupJob implements Job{
 	        fileName= sdf.format(d)+".sql";  
 		try {
 			if (exportDatabaseTool()) {
-				System.out.println("success");
+				System.out.println(fileName+"：数据库备份成功！");
 			} else {
-				System.out.println("fail");
+				System.out.println(fileName+"：数据库备份失败！");
 			}
 		} catch (InterruptedException e) {
 			e.printStackTrace();
@@ -84,10 +84,8 @@ public class DBBackupJob implements Job{
 		}
 		return false;
 	}
-	/***
-	 * 测试备份数据库
-	 */
-	public static void main(String[] args){
+	
+	/*public static void main(String[] args){
 		    Date d = new Date();   
 	        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");  
 	        fileName= sdf.format(d)+".sql";  
@@ -101,5 +99,5 @@ public class DBBackupJob implements Job{
 			e.printStackTrace();
 		}
 
-	}
+	}*/
 }

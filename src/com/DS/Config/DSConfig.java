@@ -2,10 +2,12 @@ package com.DS.Config;
 import com.DS.Controller.BlogController;
 import com.DS.Controller.LoginController;
 import com.DS.Controller.PageController;
+import com.DS.Controller.QrtzController;
 import com.DS.Controller.RemoteHTTPAction;
 import com.DS.Controller.TestController;
 import com.DS.Controller.UserController;
 import com.DS.Controller.indexController;
+import com.DS.Model.QrtzJobDetailsModel;
 import com.DS.Model.TestModel;
 import com.DS.Model.UserModel;
 import com.jfinal.config.*;
@@ -41,6 +43,7 @@ public class DSConfig extends JFinalConfig {
         me.add("/BlogData", BlogController.class);
         me.add("/user",UserController.class);
         me.add("/RemoteAction",RemoteHTTPAction.class);//提供给远程调用的action
+        me.add("/qrtz",QrtzController.class);//提供给远程调用的action
 
     }
     @Override
@@ -65,9 +68,14 @@ public class DSConfig extends JFinalConfig {
     	  me.add(new UrlSkipHandler("/api.*", false));//除去对hessian的影响
     }
     
+    /**
+     * 添加数据库表的映射
+     */
     public void setDBMapping(ActiveRecordPlugin arp){
     	 arp.addMapping("blog", TestModel.class);//用于测试
     	 arp.addMapping("user", UserModel.class);//用户信息
+    	 arp.addMapping("qrtz_job_details", QrtzJobDetailsModel.class);//调度器任务信息
+    	    
     }
     
 }

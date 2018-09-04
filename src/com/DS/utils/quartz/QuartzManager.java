@@ -22,11 +22,11 @@ public class QuartzManager {
      * @param cron 时间表达式
      */
     public static void addJob(String jobName, String jobGroupName,   
-            String triggerName, String triggerGroupName, Class jobClass, String cron) {    
+ String triggerName, String triggerGroupName, Class jobClass, String cron,String Description) { 
         try {    
             Scheduler sched = schedulerFactory.getScheduler();    
-            JobDetail jobDetail= JobBuilder.newJob(jobClass).withIdentity(jobName, jobGroupName).build();  
-            TriggerBuilder<Trigger> triggerBuilder = TriggerBuilder.newTrigger();    
+            JobDetail jobDetail= JobBuilder.newJob(jobClass).withIdentity(jobName, jobGroupName).withDescription(Description).build(); 
+            TriggerBuilder<Trigger> triggerBuilder = TriggerBuilder.newTrigger(); 
             triggerBuilder.withIdentity(triggerName, triggerGroupName);  
             triggerBuilder.startNow();          
             triggerBuilder.withSchedule(CronScheduleBuilder.cronSchedule(cron));          

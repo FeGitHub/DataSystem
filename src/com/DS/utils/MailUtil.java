@@ -8,7 +8,7 @@ import java.util.Properties;
 /***
  * 
  * @author jeff
- * 用于发送邮件的工具类
+ * 发送邮件的工具类
  *
  */
 public class MailUtil {
