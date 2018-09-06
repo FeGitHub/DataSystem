@@ -7,6 +7,7 @@ import com.DS.Controller.RemoteHTTPAction;
 import com.DS.Controller.TestController;
 import com.DS.Controller.UserController;
 import com.DS.Controller.indexController;
+import com.DS.Interceptor.LoginInterceptor;
 import com.DS.Model.QrtzJobDetailsModel;
 import com.DS.Model.TestModel;
 import com.DS.Model.UserModel;
@@ -35,13 +36,13 @@ public class DSConfig extends JFinalConfig {
      * @param me
      */
     public void configRoute(Routes me) {
-        me.setBaseViewPath("/WEB-INF/view/"); 
-        me.add("/", indexController.class);
+        me.setBaseViewPath("/WEB-INF/view/"); //默认视图
+        me.add("/", indexController.class);//默认处理
         me.add("/test", TestController.class);//用于测试
         me.add("/go", PageController.class);//用于跳转页面
-        me.add("/login", LoginController.class);
-        me.add("/BlogData", BlogController.class);
-        me.add("/user",UserController.class);
+        me.add("/login", LoginController.class);//登录处理
+        me.add("/BlogData", BlogController.class);//博客数据
+        me.add("/user",UserController.class);//用户
         me.add("/RemoteAction",RemoteHTTPAction.class);//提供给远程调用的action
         me.add("/qrtz",QrtzController.class);//提供给远程调用的action
 
@@ -60,10 +61,17 @@ public class DSConfig extends JFinalConfig {
         //记录映射配置
         ActiveRecordPlugin arp = new ActiveRecordPlugin(cp);
         me.add(arp);
-        this.setDBMapping(arp);
+        this.setDBMapping(arp);//数据库映射
        
     }
-    public void configInterceptor(Interceptors me) {}
+    /***
+     * 拦截器配置
+     */
+    public void configInterceptor(Interceptors me) {
+    	 // 添加控制层全局拦截器
+        me.addGlobalActionInterceptor(new LoginInterceptor());
+    }
+    
     public void configHandler(Handlers me) {
     	  me.add(new UrlSkipHandler("/api.*", false));//除去对hessian的影响
     }
