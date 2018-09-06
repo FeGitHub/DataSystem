@@ -4,6 +4,8 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
+
+import org.apache.log4j.Logger;
 import org.quartz.Job;
 import org.quartz.JobExecutionContext;
 import org.quartz.JobExecutionException;
@@ -18,6 +20,7 @@ import com.DS.utils.FileUtil;
  * 2.数据库备份文件名是备份时间
  */
 public class DeleteSqlFileJob implements Job{
+	 private static Logger logger = Logger.getLogger(DeleteSqlFileJob.class);
 	@Override
 	public void execute(JobExecutionContext arg0) throws JobExecutionException {
 		delSqlFile();
@@ -32,7 +35,7 @@ public class DeleteSqlFileJob implements Job{
 		long fileTime;//从sql文件名知道此备份文件产生的时间
 		long diff;//备份sql与今天的时间差
 		if(pathlist.size()<10){
-			System.out.println("数据库备份文件少于10份，不进行删除动作");
+			logger.info("数据库备份文件少于10份，不进行删除动作"); 
 			return;
 		}
 		for(String tempPath:pathlist){//遍历备份的sql文件
@@ -45,18 +48,17 @@ public class DeleteSqlFileJob implements Job{
 				diff=diff/(1000 * 60 * 60 * 24);//距离今天的天数
 				if(diff>=10){
 					if(FileUtil.deleteFile(tempPath)){
-						System.out.println(tempPath+"判定为不需要的数据库备份文件，成功删除");
+						logger.info(tempPath+"判定为不需要的数据库备份文件，成功删除");
 					}else{
-						System.out.println(tempPath+"判定为不需要的数据库备份文件，删除失败");
+						logger.info(tempPath+"判定为不需要的数据库备份文件，删除失败");
 					}
 				}
 			} catch (ParseException e) {
 				e.printStackTrace();
 			}
 		}			
-	}
-		
-	 /*public static void main(String[] args){
+	}	
+	/* public static void main(String[] args){
 		  delSqlFile();
 	  }*/
 }

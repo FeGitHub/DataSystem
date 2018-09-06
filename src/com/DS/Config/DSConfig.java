@@ -45,7 +45,6 @@ public class DSConfig extends JFinalConfig {
         me.add("/user",UserController.class);//用户
         me.add("/RemoteAction",RemoteHTTPAction.class);//提供给远程调用的action
         me.add("/qrtz",QrtzController.class);//提供给远程调用的action
-
     }
     @Override
     public void configEngine(Engine engine) {

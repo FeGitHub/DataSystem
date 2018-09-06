@@ -8,15 +8,20 @@ import java.io.OutputStreamWriter;
 import java.io.PrintWriter;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+
+import org.apache.log4j.Logger;
 import org.quartz.Job;
 import org.quartz.JobExecutionContext;
 import org.quartz.JobExecutionException;
+
+import com.DS.test.Test;
 /***
  * 备份数据库的任务类
  * @author jeff 
  *
  */
 public class DBBackupJob implements Job{
+	private static Logger logger = Logger.getLogger(DBBackupJob.class); 
 	private static String hostIP="127.0.0.1";//hostIP MySQL数据库所在服务器地址IP
 	private static String userName="root";//userName 进入数据库所要的用户
 	private static String password="root";//password 进入数据库所要的密码
@@ -29,9 +34,9 @@ public class DBBackupJob implements Job{
 	        fileName= sdf.format(d)+".sql";  
 		try {
 			if (exportDatabaseTool()) {
-				System.out.println(fileName+"：数据库备份成功！");
+				logger.info("数据库备份成功！");
 			} else {
-				System.out.println(fileName+"：数据库备份失败！");
+				logger.info("数据库备份失败！");
 			}
 		} catch (InterruptedException e) {
 			e.printStackTrace();
@@ -55,7 +60,6 @@ public class DBBackupJob implements Job{
 		try {
 			printWriter = new PrintWriter(new OutputStreamWriter(new FileOutputStream(savePath + fileName), "utf8"));
 			String str="mysqldump -h "+hostIP+" -u"+userName+" -p"+password+" "+databaseName;
-			System.out.println("check:"+str);
 			Process process = Runtime.getRuntime().exec(str);
 			InputStreamReader inputStreamReader = new InputStreamReader(process.getInputStream(), "utf8");
 			bufferedReader = new BufferedReader(inputStreamReader);
@@ -85,7 +89,7 @@ public class DBBackupJob implements Job{
 		return false;
 	}
 	
-	/*public static void main(String[] args){
+	public static void main(String[] args){
 		    Date d = new Date();   
 	        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");  
 	        fileName= sdf.format(d)+".sql";  
@@ -99,5 +103,5 @@ public class DBBackupJob implements Job{
 			e.printStackTrace();
 		}
 
-	}*/
+	}
 }
