@@ -3,7 +3,7 @@ import javax.servlet.ServletContextEvent;
 import javax.servlet.ServletContextListener;
 import com.DS.utils.quartz.QuartzManager;
 /**
- * 启动所有quartz的调度任务
+ * 随web启动而启动所有quartz任务
  * @author jeff
  */
 public class QuartzInitListener implements ServletContextListener {   
@@ -19,6 +19,6 @@ public class QuartzInitListener implements ServletContextListener {
     
     public void contextDestroyed(ServletContextEvent sce)  { 
     	QuartzManager.shutdownJobs();
-    	System.out.println("----------quartz停止-----------");
+    	System.out.println("----------quartz停止-------------");
     }
 }

@@ -8,13 +8,10 @@ import java.io.OutputStreamWriter;
 import java.io.PrintWriter;
 import java.text.SimpleDateFormat;
 import java.util.Date;
-
 import org.apache.log4j.Logger;
 import org.quartz.Job;
 import org.quartz.JobExecutionContext;
 import org.quartz.JobExecutionException;
-
-import com.DS.test.Test;
 /***
  * 备份数据库的任务类
  * @author jeff 

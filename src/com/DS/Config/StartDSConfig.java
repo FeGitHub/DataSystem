@@ -1,7 +1,7 @@
 package com.DS.Config;
 import com.jfinal.core.JFinal;
 /***
- * @Author jeff qiu
+ * @Author jeff
  * @Description 用于启动jetty服务
  */
 public class StartDSConfig {

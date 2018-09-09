@@ -1,9 +1,11 @@
 package com.DS.Controller;
+import com.jfinal.aop.Clear;
 import com.jfinal.core.Controller;
 public class PageController extends Controller{
 	 public void goMenu(){
 	 	   render("main.html");
 	 }
+	 @Clear
 	 public void goHello(){
 	 	   render("hello.html");
 	 }
