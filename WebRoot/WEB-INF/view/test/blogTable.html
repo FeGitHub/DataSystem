@@ -6,12 +6,12 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta charset="UTF-8">
 <title>博客数据</title>
-<link type="text/css" rel="styleSheet"  href="/css/jquery.dataTables.min.css" /><!--引进dataTables的样式 -->
-<link type="text/css" rel="styleSheet"  href="/css/bootstrap.min.css" /><!--引进bootstrap的样式 -->
-<link href="/css/Sco/sco.message.min.css" rel="stylesheet">
-<script src="/js/jquery-3.3.1.min.js"></script><!--引进jquery的最小支持 -->
-<script src="/js/jquery.dataTables.min.js"></script><!--引进dataTables的js支持-->
-<script src="/js/Sco/sco.message.min.js"></script><!--引进信息提示框的js支持-->
+<link type="text/css" rel="styleSheet"  href="${BASE_PATH}/css/jquery.dataTables.min.css" /><!--引进dataTables的样式 -->
+<link type="text/css" rel="styleSheet"  href="${BASE_PATH}/css/bootstrap.min.css" /><!--引进bootstrap的样式 -->
+<link href="${BASE_PATH}/css/Sco/sco.message.min.css" rel="stylesheet">
+<script src="${BASE_PATH}/js/jquery-3.3.1.min.js"></script><!--引进jquery的最小支持 -->
+<script src="${BASE_PATH}/js/jquery.dataTables.min.js"></script><!--引进dataTables的js支持-->
+<script src="${BASE_PATH}/js/Sco/sco.message.min.js"></script><!--引进信息提示框的js支持-->
 </head>
 <body>
 	<table id="table_id_example" class="display"><!--填充数据的表格，用id来标识这个表格 -->
@@ -27,6 +27,9 @@
     </tbody>
 </table>
 </body>
-<script src="/js/bootstrap.min.js"></script><!-- bootstrap的最小js支持 -->
-<script src="/js/blogTable.js"></script>
+<script src="${BASE_PATH}/js/bootstrap.min.js"></script><!-- bootstrap的最小js支持 -->
+<script src="${BASE_PATH}/js/blogTable.js"></script>
+<script type="text/javascript">
+var basepath= '${BASE_PATH}';
+</script>
 </html>

@@ -3,23 +3,23 @@
 <head>
 <meta charset="UTF-8">
 <title>管理页面</title>
-<link href="/css/bootstrap.min.css" rel="stylesheet">
-<script src="/js/jquery-3.3.1.min.js"></script>
-<script src="/js/bootstrap.min.js"></script>
-<link type="text/css" rel="styleSheet"  href="/css/jquery.dataTables.min.css" /><!--引进dataTables的样式 -->
-<script src="/js/jquery.dataTables.min.js"></script><!--引进dataTables的js支持-->
-<link type="text/css" rel="styleSheet"  href="/css/main.css" />
+<link href="${BASE_PATH}/css/bootstrap.min.css" rel="stylesheet">
+<script src="${BASE_PATH}/js/jquery-3.3.1.min.js"></script>
+<script src="${BASE_PATH}/js/bootstrap.min.js"></script>
+<link type="text/css" rel="styleSheet"  href="${BASE_PATH}/css/jquery.dataTables.min.css" /><!--引进dataTables的样式 -->
+<script src="${BASE_PATH}/js/jquery.dataTables.min.js"></script><!--引进dataTables的js支持-->
+<link type="text/css" rel="styleSheet"  href="${BASE_PATH}/css/main.css" />
 </head>
 <body>
 	<!--头部导航开始开始 -->
 	<div class="navbar navbar-duomi navbar-static-top" role="navigation">
     	<div class="container-fluid">
      		<div class="navbar-header">
-           		<a class="navbar-brand logo" href="/go/goMenu">数据管理系统</a>
+           		<a class="navbar-brand logo" href="${BASE_PATH}/go/goMenu">数据管理系统</a>
 			</div>
 			<ul class="nav navbar-nav navbar-right">
       <li><a href="#"  class="logo"><span class="glyphicon glyphicon-user"></span>账号</a></li>
-      <li><a href="/login/signOut"  class="logo"><span class="glyphicon glyphicon-log-out"></span>退出</a></li>
+      <li><a href="${BASE_PATH}/login/signOut"  class="logo"><span class="glyphicon glyphicon-log-out"></span>退出</a></li>
     </ul>
 		</div>
     </div>
@@ -44,7 +44,7 @@
 								<li><a href=""><i class="glyphicon glyphicon-th-list"></i>菜单管理</a></li>
 								<li><a href=""><i class="glyphicon glyphicon-asterisk"></i>角色管理</a></li>
 								<li><a href=""><i class="glyphicon glyphicon-edit"></i>修改密码</a></li>
-								<li><a href="/go/goHello"><i class="glyphicon glyphicon-eye-open"></i>日志查看</a></li>
+								<li><a href="${BASE_PATH}/go/goHello"><i class="glyphicon glyphicon-eye-open"></i>日志查看</a></li>
 							</ul>
 					     </li>
 					    <!--第三行 -->
@@ -52,16 +52,16 @@
 						 <!--第四行 -->
 					<li><a href="javascript:void(0);" id="info"><i class="glyphicon glyphicon-globe"></i>信息提示<span class="label label-warning pull-right">5</span></a></li>
 					   <!-- 第五行 -->
-					<li><a href="/qrtz/goQuartzJob"><i class="glyphicon glyphicon-calendar"></i>定时任务</a></li>
+					<li><a href="${BASE_PATH}/qrtz/goQuartzJob"><i class="glyphicon glyphicon-calendar"></i>定时任务</a></li>
 					 <!-- 第六行 -->
-					<li><a href="/test/goDataTables"><i class="glyphicon glyphicon-fire"></i>测试表格</a></li>
-					<li ><a href="/go/goData" class="loadData"><i class="glyphicon glyphicon-fire"></i>测试主体页面--可用</a></li>
-					<li ><a href="/go/goHello"  class="loadData"><i class="glyphicon glyphicon-fire"></i>测试欢迎页面--可用</a></li>
+					<li><a href="${BASE_PATH}/test/goDataTables"><i class="glyphicon glyphicon-fire"></i>测试表格</a></li>
+					<li ><a href="${BASE_PATH}/go/goData" class="loadData"><i class="glyphicon glyphicon-fire"></i>测试主体页面--可用</a></li>
+					<li ><a href="${BASE_PATH}/go/goHello"  class="loadData"><i class="glyphicon glyphicon-fire"></i>测试欢迎页面--可用</a></li>
 					
 			</ul>
 			</div>
 				<!--主体内容 -->
-				<iframe  name="iframe_a" class="col-md-10" id="mainBody" src="/go/goHello">
+				<iframe  name="iframe_a" class="col-md-10" id="mainBody" src="${BASE_PATH}/go/goHello">
 				</iframe>
 	     </div>
 </div> 
@@ -72,7 +72,7 @@
 		<div class="col-md-12" >
 		       <div id="bottomBody">		                
 			  <!-- 弹出框开始 -->
-				 <a id='cost_editBtn' data-toggle="modal" data-target="#myModal" style="display:none;"></a>
+				  <a id='cost_editBtn' data-toggle="modal" data-target="#myModal" style="display:none;"></a>
 					<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
 					<div class="modal-dialog modal-lg">
 			        <div class="modal-content">
@@ -104,5 +104,8 @@
 </div>
 <!--底部结束 -->
 </body>
-<script src="/js/main.js"></script>
+<script src="${BASE_PATH}/js/main.js"></script>
+<script type="text/javascript">
+var basepath= '${BASE_PATH}';
+</script>
 </html>

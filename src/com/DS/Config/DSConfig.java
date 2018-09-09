@@ -12,6 +12,7 @@ import com.DS.Model.QrtzJobDetailsModel;
 import com.DS.Model.TestModel;
 import com.DS.Model.UserModel;
 import com.jfinal.config.*;
+import com.jfinal.ext.handler.ContextPathHandler;
 import com.jfinal.ext.handler.UrlSkipHandler;
 import com.jfinal.plugin.activerecord.ActiveRecordPlugin;
 import com.jfinal.plugin.c3p0.C3p0Plugin;
@@ -73,6 +74,7 @@ public class DSConfig extends JFinalConfig {
     
     public void configHandler(Handlers me) {
     	  me.add(new UrlSkipHandler("/api.*", false));//除去对hessian的影响
+    	  me.add(new ContextPathHandler("BASE_PATH"));
     }
     
     /**

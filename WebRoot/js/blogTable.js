@@ -4,10 +4,10 @@
 $(function(){	 
        $('#table_id_example').DataTable({//利用id来找到对应的表格，并将数据填充进去
     	language: {//语言国际化
-            "url": "/json/datatables_language.json"//国际化文件的文件资源
+            "url": basepath+"/json/datatables_language.json"//国际化文件的文件资源
         },
         ajax: {//利用ajax请求资源文件
-            url: '/test/getTable',//请求资源的位置,加"/"表示服务器根目录，不加"/"表示当前请求页面的位置
+            url: basepath+'/test/getTable',//请求资源的位置,加"/"表示服务器根目录，不加"/"表示当前请求页面的位置
         },
         columns: [
                   { data: 'id' },//第一列
@@ -23,7 +23,7 @@ $(function(){
                 	"render": function(data, type, full, meta){
                 		 var str ="";
                 		 //编辑按钮
-                		 str += "<a class='btn table_btn btn-success btn-sm' href='/BlogData/editBlog?id="+full.id+"' target='_blank'>"+
+                		 str += "<a class='btn table_btn btn-success btn-sm' href='"+basepath+"/BlogData/editBlog?id="+full.id+"' target='_blank'>"+
                          "<i class='fa fa-edit fa-fw'></i>"+
                          "编辑"+"</a> ";
                          //删除按钮
@@ -67,7 +67,7 @@ function confirm(id) {
     $("body").append(html);
     $("#myConfirm").modal("show");
     $("#confirmOk").on("click", function() {
-    	var url="/BlogData/delBlog";
+    	var url=basepath+"/BlogData/delBlog";
     	var args={"id":id};
     	$.post(url,args,function(data){
     		$("#"+id).parent().parent().remove();//页面消除已删除的数据

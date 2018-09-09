@@ -4,10 +4,10 @@
 $(function(){	 
        $('#table_id_example').DataTable({//利用id来找到对应的表格，并将数据填充进去
     	language: {
-            "url": "/json/datatables_language.json"//国际化文件的文件资源
+            "url": basepath+"/json/datatables_language.json"//国际化文件的文件资源
         },
         ajax: {//利用ajax请求资源文件
-            url: '/qrtz/getJobDetails',
+            url: basepath+'/qrtz/getJobDetails',
         },
         columns: [
                   { data: 'JOB_NAME' },//任务名

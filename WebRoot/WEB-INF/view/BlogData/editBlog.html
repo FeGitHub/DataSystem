@@ -3,12 +3,12 @@
 <head>
 <meta charset="UTF-8">
 <title>管理页面</title>
-<link href="/css/bootstrap.min.css" rel="stylesheet">
-<script src="/js/jquery-3.3.1.min.js"></script>
-<script src="/js/bootstrap.min.js"></script>
-<script src="/js/Sco/sco.message.min.js"></script><!--引进信息提示框的js支持-->
-<link type="text/css" rel="styleSheet"  href="/css/main.css" />
-<link href="/css/Sco/sco.message.min.css" rel="stylesheet">
+<link href="${BASE_PATH}/css/bootstrap.min.css" rel="stylesheet">
+<script src="${BASE_PATH}/js/jquery-3.3.1.min.js"></script>
+<script src="${BASE_PATH}/js/bootstrap.min.js"></script>
+<script src="${BASE_PATH}/js/Sco/sco.message.min.js"></script><!--引进信息提示框的js支持-->
+<link type="text/css" rel="styleSheet"  href="${BASE_PATH}/css/main.css" />
+<link href="${BASE_PATH}/css/Sco/sco.message.min.css" rel="stylesheet">
 <style type="text/css">
 	.input-group-addon{
 	   width:70px;
@@ -23,7 +23,7 @@
 	<div class="navbar navbar-duomi navbar-static-top" role="navigation">
     	<div class="container-fluid">
      		<div class="navbar-header">
-           	<a class="navbar-brand" href="/go/goMenu" id="logo">数据管理系统</a>
+           	<a class="navbar-brand" href="${BASE_PATH}/go/goMenu" id="logo">数据管理系统</a>
 			</div>
 		</div>
     </div>
@@ -46,10 +46,13 @@
 			<input type="text" class="form-control" value="${record.content}" name="content">
 		</div><br>
 		<button id="submitBtn" type="button" class="btn btn-default ">保存</button>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-		<a href="/go/goMenu" class="btn btn-default ">返回</a>
+		<a href="${BASE_PATH}/go/goMenu" class="btn btn-default ">返回</a>
 	</form>
 </div>
     
 </body>
-<script type="text/javascript" src="/js/editBlog.js"></script>
+<script type="text/javascript" src="${BASE_PATH}/js/editBlog.js"></script>
+<script type="text/javascript">
+var basepath= '${BASE_PATH}';
+</script>
 </html>
