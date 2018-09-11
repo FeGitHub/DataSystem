@@ -18,5 +18,9 @@ public class PageController extends Controller{
 	 public void goEditBlog(){
 		   render("editBlog.html");
 	 }
+	 @Clear
+	 public void goTree(){
+		   render("tree.html");
+	 }
 }
 
