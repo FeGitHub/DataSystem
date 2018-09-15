@@ -18,13 +18,19 @@
 	预警处理人:<input type="checkbox"><br>
 	<input type="checkbox">向文红&nbsp;<input type="checkbox">谢天顺&nbsp;<input type="checkbox">陈东山
     <ul id="tree" class="ztree" style="width:230px; overflow:auto;"></ul>
+    <ul id="tree1" class="ztree" style="width:230px; overflow:auto;"></ul>
+    <hr>
+    
+   
+    
 </body>
 <script>
 $(function(){
     var setting={
         check: {
             enable: true,
-            chkStyle: "checkbox"//显示 checkbox 选择框，默认checkbox可选择值radio
+            chkStyle: "radio",//显示 checkbox 选择框，默认checkbox可选择值radio
+            radioType: "level"
         }
     };
 var zTreeNodes=[
@@ -41,7 +47,8 @@ var zTreeNodes=[
                                     ]}
 ]}
 ];
-var city = $.fn.zTree.init($("#tree"), setting, zTreeNodes);    
+var  earlyWarning= $.fn.zTree.init($("#tree"), setting, zTreeNodes);   
+var  copy = $.fn.zTree.init($("#tree1"), setting, zTreeNodes); 
 //第一个参数为zTree的DOM容器，第二个为zTree设置详情可见官网api,第三个为zTree的节点数据 
 });
 

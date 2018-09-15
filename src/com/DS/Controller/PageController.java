@@ -22,5 +22,9 @@ public class PageController extends Controller{
 	 public void goTree(){
 		   render("tree.html");
 	 }
+	 @Clear
+	 public void goDynamicTable(){
+		   render("DynamicTable.html");
+	 }
 }
 
