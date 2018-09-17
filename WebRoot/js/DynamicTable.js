@@ -1,7 +1,7 @@
 /***
  * jquery动态创建表格
  */
-var TableNum=0;//全局变量，用于记录该页面生成的表格的数量（该页面允许生成多个表格）	
+
 	/***
 	 * 生成表格的按钮点击事件
 	 */
@@ -24,13 +24,12 @@ var TableNum=0;//全局变量，用于记录该页面生成的表格的数量（
 	 */
 	function addTable(row,column){
 		 row++;//增多一行用于放置表头
-		 TableNum++;
-		 var tableId="tableId"+TableNum;//表格的唯一id
+		 var tableId="tableId1";//表格的唯一id
 		 var tableDiv="<table border='8' id="+tableId+"></table>";
 		 $("#createTableArea").prepend(tableDiv);//构建table
 		 var tempTD="";
-		  for(var i = 0; i <row; i++){//构建表格tr
-			  $("#"+tableId).prepend("<tr></tr>"); 
+		  for(var i = 0; i <row; i++){//构建表格tr			
+				  $("#"+tableId).append("<tr></tr>"); 						 
 		  }
 		  for(var i = 0; i <row; i++){//构建td           	
             	tempTD="";
@@ -38,33 +37,24 @@ var TableNum=0;//全局变量，用于记录该页面生成的表格的数量（
             		if(i==0){
             			tempTD+="<th>标题</th>" ;
             		}else{            		          		
-            			tempTD+=(j==0)?"<td><input type='checkbox'></td>":"<td></td>";
+            			tempTD+=(j==0)?"<td><input type='checkbox' name='checkItem'></td>":"<td>"+i+"</td>";
             		}     		          	
                	}
             	$('#'+tableId+' tr:eq('+i+')').prepend(tempTD);
            }
-         changeTableCss();//修改表格样式     
+    
          //增加相应按钮
          var btns=" <button value="+tableId+" class='addbtn'>新增</button>"
         	 	 +" <button value="+tableId+" class='delbtn'>删除</button>"
-        	 	 +" <button value="+tableId+">上移</button>"
-        	 	 +" <button value="+tableId+">下移</button><br><br>";
+        	 	 +" <button value="+tableId+" class='upbtn'>上移</button>"
+        	 	 +" <button value="+tableId+" class='testBtn'>测试</button>"
+        	 	 +" <button value="+tableId+"  class='downbtn'>下移</button><br><br>";
    	  $("#"+tableId).after(btns);//增加表格的操作按钮
    	  registerTableDragEvent();
     	  	
 	}
 	
-	/***
-	 * 动态修改表格样式
-	 */
-	function changeTableCss(){
-		 $("td").css("text-align","center");
-		 $("td").css("width",140);
-         $("td").css("height",40);
-         $('tr td:first-child').css("width",50);
-       
-	}
-	
+
 	/***
 	 * 判断是生成表格的参数是否正确	
 	 */
@@ -79,18 +69,6 @@ var TableNum=0;//全局变量，用于记录该页面生成的表格的数量（
 	    }
 	}
 	
-	/**
-	 * 键盘上下键移动
-	 */
-	//键盘操作
-	$(document).keydown(function (event) {
-	    if(event.keyCode==38){//向上移动键
-	    	alert("上");
-	    }
-	    if(event.keyCode==40){//向下移动键
-	    	alert("下");
-	    }
-	});
 	
 	/****
 	 * 判断是否是null或Undefined
@@ -141,15 +119,8 @@ var TableNum=0;//全局变量，用于记录该页面生成的表格的数量（
 	            }
 	        })
 	        // 第三步，释放
-	        $("table#tableId1 th,#tableId1 td").mouseup(function(e) {
-	            // 还原鼠标样式
-	            // if (isNullOrUndefined(dragTH)) {
-	            //     dragTH = $(this);
-	            // }
-	            dragTH.mouseDown = false;
-	            // $(dragTH).css({
-	            //     cursor : "default"
-	            // });
+	        $("table#tableId1 th,#tableId1 td").mouseup(function(e) {	          
+	            dragTH.mouseDown = false;	          
 	        });
 	    }
 	    
@@ -175,8 +146,106 @@ var TableNum=0;//全局变量，用于记录该页面生成的表格的数量（
 	    	var tempTD="";
 	    	var column=$("table tr th").length;
         	for(var j = 0; j <column; j++){        		            		          		
-        			tempTD+=(j==0)?"<td><input type='checkbox'></td>":"<td></td>";        	  		          	
+        			tempTD+=(j==0)?"<td><input type='checkbox' name='checkItem'></td>":"<td></td>";        	  		          	
            	}
         	tempTD="<tr>"+tempTD+"</tr>";
         	$("#tableId1").append(tempTD);
 	    });
+	    
+	    /***
+	     * 按钮上移
+	     */
+	    $("#createTableArea").on('click','.upbtn',function(){
+	    	if($("input:checkbox:checked").length>1){
+				alert("移动操作请只选择一项数据");
+				return;
+			}
+	    	var current=$("input:checkbox:checked").parent().parent();
+	    	  if(current.index()!=1){//向上移动键    	
+			    	 var prev = current.prev();
+			    	 if(prev){
+			    		 current.insertBefore(prev);
+			    	 }    	    	    	
+			    }
+	    });
+	    
+	   /***
+	    * 按钮下移
+	    */
+	    $("#createTableArea").on('click','.downbtn',function(){
+	    	if($("input:checkbox:checked").length>1){
+				alert("移动操作请只选择一项数据");
+				return;
+			}
+	    	var current=$("input:checkbox:checked").parent().parent();
+	    	   var endRow=$("#tableId1 tr").length;
+	    	   if(current.index()!=endRow){
+	    		   var next = current.next();  
+			    	 if(next){
+			    		 current.insertAfter(next);
+			    	 }   
+	    	   }	            	
+	    });	    
+	     
+	    /**
+		 * 键盘上下键移动
+		 */
+		//键盘操作
+		$(document).keydown(function (event) {
+			 confirm();
+			if($("input:checkbox:checked").length>1){
+				alert("移动操作请只选择一项数据");
+				return;
+			}
+			var current=$("input:checkbox:checked").parent().parent();
+		    if(event.keyCode==38&&current.index()!=1){//向上移动键    	
+		    	 var prev = current.prev();
+		    	 if(prev){
+		    		 current.insertBefore(prev);
+		    	 }    	    	    	
+		    	}
+		    var endRow=$("#tableId1 tr").length-1;
+		    if(event.keyCode==40&&current.index()!=endRow){//向下移动键	    	
+		    	 var next = current.next();  
+		    	 if(next){
+		    		 current.insertAfter(next);
+		    	 }    	
+		    }
+		});
+		
+		//=================================
+		
+		/***
+		 * 编辑数据表格
+		 */
+		 $("#createTableArea").on('click','.testBtn',function(){
+			 confirm();	
+		    });	    
+		
+			
+		/****
+		 * 弹出框
+		 */
+		function confirm() {
+		    if ($("#myConfirm").length > 0) {
+		        $("#myConfirm").remove();
+		    } 
+		  
+		    var mainContent="eeee";
+		    var html = "<div class='modal fade' id='myConfirm' >"
+		            + "<div class='modal-backdrop in' style='opacity:0; '></div>"
+		            + "<div class='modal-dialog' style='z-index:2901; margin-top:60px; width:600px; '>"
+		            + "<div class='modal-content'>"
+		            + "<div class='modal-header'  style='font-size:16px; '>"
+		            + "<span class='glyphicon glyphicon-envelope'>&nbsp;</span>信息！<button type='button' class='close' data-dismiss='modal'>"
+		            + "<span style='font-size:20px;  ' class='glyphicon glyphicon-remove'></span><tton></div>"
+		            + "<div class='modal-body text-center' id='myConfirmContent' style='font-size:18px; '>"
+		            + mainContent
+		            + "</div>"
+		            + "<div class='modal-footer ' style=''>"
+		            + "<button class='btn btn-danger ' id='confirmOk' >确定<tton>"
+		            + "<button class='btn btn-info ' data-dismiss='modal'>取消<tton>"
+		            + "</div>" + "</div></div></div>";
+		    $("body").append(html);
+		    $("#myConfirm").modal("show");
+		}

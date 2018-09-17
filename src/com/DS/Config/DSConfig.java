@@ -1,5 +1,6 @@
 package com.DS.Config;
 import com.DS.Controller.BlogController;
+import com.DS.Controller.Early_warningController;
 import com.DS.Controller.LoginController;
 import com.DS.Controller.PageController;
 import com.DS.Controller.QrtzController;
@@ -46,6 +47,7 @@ public class DSConfig extends JFinalConfig {
         me.add("/user",UserController.class);//用户
         me.add("/RemoteAction",RemoteHTTPAction.class);//提供给远程调用的action
         me.add("/qrtz",QrtzController.class);//提供给远程调用的action
+        me.add("/warn",Early_warningController.class);//预警信息
     }
     @Override
     public void configEngine(Engine engine) {
