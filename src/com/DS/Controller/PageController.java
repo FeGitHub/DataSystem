@@ -26,5 +26,9 @@ public class PageController extends Controller{
 	 public void goDynamicTable(){
 		   render("DynamicTable.html");
 	 }
+	 @Clear
+	 public void goPopup(){
+		   render("popup.html");
+	 }
 }
 

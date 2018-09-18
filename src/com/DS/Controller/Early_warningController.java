@@ -6,6 +6,7 @@ import java.util.Map;
 import com.DS.utils.JsonUtil;
 import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONArray;
+import com.alibaba.fastjson.JSONObject;
 import com.jfinal.core.Controller;
 import com.jfinal.plugin.activerecord.Db;
 import com.jfinal.plugin.activerecord.Record;
@@ -44,7 +45,8 @@ public class Early_warningController extends Controller {
 	 * 订单预警判定
 	 */
 	public void judgeOrder(){
-		JSONArray result=getTree();//得到物料的树形结构关系
+		
+		
 	}
 	
 	/***
@@ -62,9 +64,9 @@ public class Early_warningController extends Controller {
 			 map.put("name",c.get("material_name"));
 			 data.add(map);
 		}	
-		// System.out.println("原始："+JSON.toJSONString(data));
+		 //System.out.println("原始："+JSON.toJSONString(data));
 		 JSONArray result = JsonUtil.listToTree(JSONArray.parseArray(JSON.toJSONString(data)),"id","pid","children");
-		 //System.out.println(JSON.toJSONString(result));
+		// System.out.println(JSON.toJSONString(result));
 		 renderJson(result);
 		 return result;
 	}

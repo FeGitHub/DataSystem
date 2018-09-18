@@ -156,7 +156,7 @@
 	     * 按钮上移
 	     */
 	    $("#createTableArea").on('click','.upbtn',function(){
-	    	if($("input:checkbox:checked").length>1){
+	    	if($("input:checkbox:checked").length>1||$("input:checkbox:checked").length==0){
 				alert("移动操作请只选择一项数据");
 				return;
 			}
@@ -173,7 +173,7 @@
 	    * 按钮下移
 	    */
 	    $("#createTableArea").on('click','.downbtn',function(){
-	    	if($("input:checkbox:checked").length>1){
+	    	if($("input:checkbox:checked").length>1||$("input:checkbox:checked").length==0){
 				alert("移动操作请只选择一项数据");
 				return;
 			}
@@ -193,7 +193,7 @@
 		//键盘操作
 		$(document).keydown(function (event) {
 			 confirm();
-			if($("input:checkbox:checked").length>1){
+			if($("input:checkbox:checked").length>1||$("input:checkbox:checked").length==0){
 				alert("移动操作请只选择一项数据");
 				return;
 			}
@@ -219,14 +219,15 @@
 		 * 编辑数据表格
 		 */
 		 $("#createTableArea").on('click','.testBtn',function(){
-			 confirm();	
-		    });	    
+			 var str = window.prompt("请输入密码","password");
+			
+		    });	  
 		
 			
 		/****
 		 * 弹出框
 		 */
-		function confirm() {
+	/*	function confirm() {
 		    if ($("#myConfirm").length > 0) {
 		        $("#myConfirm").remove();
 		    } 
@@ -248,4 +249,4 @@
 		            + "</div>" + "</div></div></div>";
 		    $("body").append(html);
 		    $("#myConfirm").modal("show");
-		}
+		}*/
