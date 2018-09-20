@@ -24,3 +24,13 @@ function treeMenu(){
     $.fn.zTree.init($("#tree"), setting, zTreeNodes); 
 	  },"json");
 }
+
+/***
+ * 测试
+ */
+$("#testBtn").click(function(){	
+	var url=basepath+"/warn/test";
+	$.post(url,function(){
+		alert("dd");
+	});
+});

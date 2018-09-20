@@ -1,11 +1,13 @@
+	/***
+	 * 主管理页面的js
+	 */
 	$(function () {	
 		//链接打开的页面在主体frame表格显示
-		$("#menu a").each(function(){	
-				if( $(this).attr("href")!=""){
+		$("#menu a").each(function(){
+				if($(this).attr("href")!=""&&$(this).attr("class")!="inMyPlace"){
 					 $(this).attr("target",'iframe_a');	
 				}			
-			  });
-		
+	});		
 		//弹出框数据表格填充
 	    $('#table_id_example').DataTable({//利用id来找到对应的表格，并将数据填充进去	    	
 	 	language: {//语言国际化
@@ -15,11 +17,11 @@
 	         url: basepath+'/test/getTable',//请求资源的位置,加"/"表示服务器根目录，不加"/"表示当前请求页面的位置
 	     },
 	     columns: [
-	               { data: 'id' },//第一列
-	               { data: 'title'},//第二列                  
-	               { data: 'content',//第三列
-	                "className":"content",//赋予这个td的类
-	                "render": function ( data, type, full, meta ) {//此方法可以对返回的json数据进行加工            
+	               { data: 'id' },
+	               { data: 'title'},              
+	               { data: 'content',
+	                "className":"content",
+	                "render": function ( data, type, full, meta ) {          
 	                  		 var str = data;                                  
 	                  		 return '加工:'+str;
 	                  	}

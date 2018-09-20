@@ -1,11 +1,8 @@
 package com.DS.utils;
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Iterator;
-import java.util.List;
 import java.util.Map;
 import java.util.Set;
-import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
 /****
@@ -24,9 +21,6 @@ public class JsonUtil {
 	 * @return
 	 */
 	public static JSONArray listToTree(JSONArray arr,String id,String pid,String child){
-		//==============
-		   teeMap(arr,id,pid);
-		 //==============
 		   JSONArray r = new JSONArray();//存放重组的的数据
 		   JSONObject hash = new JSONObject();
 		   for(int i=0;i<arr.size();i++){//将数组转换成键值对，自身节点为key,自身为value
@@ -53,17 +47,16 @@ public class JsonUtil {
 		      }else{//不存在父节点，为最高节点
 		         r.add(aVal);//只添加顶级节点
 		      }
-		   }
-		
+		   }	
 		   return r;
 		}
 	
 	
 	/***
 	 * 树形结构映射
-	 * 所有父节点映射的
+	 * 所有父节点映射的所有叶子
 	 */
-	public static Map teeMap(JSONArray arr,String id,String pid){	
+	public static Map<String, String> teeMap(JSONArray arr,String id,String pid){	
 			JSONObject hashList = new JSONObject();//存放键值对
 			Map<String, String> treemap=new HashMap<String, String>();//存放映射集
 			String tempValue="";
@@ -108,11 +101,11 @@ public class JsonUtil {
 			   treemap.put(s, tempOne);
 		  }
 		   //==============打印查看	   
-		   Set<String> key1 = treemap.keySet();
+		  /* Set<String> key1 = treemap.keySet();
 		   for (Iterator<String> it = key1.iterator(); it.hasNext();) {
 			   String s = it.next();
 			   System.out.println(s+":"+treemap.get(s));
-		   }
+		   }*/
 		   return treemap;
 	}
 	
@@ -123,7 +116,7 @@ public class JsonUtil {
 	 * 得到一个节点对应的所有叶子
 	 * return 叶子拼接而成的字符串
 	 */
-	public static String getTreeLeaf(Map treemap,String node){
+	public static String getTreeLeaf(Map<String, String> treemap,String node){
 			String tempSum="";
 			if(treemap.get(node)!=null){//此节点不是叶子
 				   String[] temp=((String) treemap.get(node)).split(",");
@@ -139,57 +132,5 @@ public class JsonUtil {
 				 tempSum=node;
 			}	
 			return tempSum;
-	}
-	
-	/***
-	 * 得带树形结构的非父亲的节点
-	 * 测试中------------------------------------------
-	 * @return
-	 */
-	public static Map getBasicData(JSONArray arr,String id,String pid,String child){
-		Map map=new HashMap();
-		String temp="";
-		JSONObject hash = new JSONObject();
-		   for(int i=0;i<arr.size();i++){//将数组转换成键值对，自身节点为key,自身为value
-		      JSONObject json = (JSONObject) arr.get(i);
-		      hash.put(json.getString(id), json);
-		   }	   
-		   for(int i=0;i<arr.size();i++){//遍历键值对
-			   JSONObject aVal = (JSONObject) arr.get(i);//从中取一条数据
-			   JSONObject aval = (JSONObject) hash.get(aVal.get(id).toString());		   
-			   String node=aval.getString(id);//基础节点的id
-			   System.out.println(node);
-			   map.put(node, "");
-			   map=haveChild(aval,child,node,map,id);			  			  
-		   }		 
-		   Set<String> key = map.keySet();
-		   for (Iterator<String> it = key.iterator(); it.hasNext();) {
-			   String s = it.next();
-			   System.out.println(s+":"+map.get(s));
-		   }
-		  return map;
-	}
-	
- 
-	
-	/***
-	 * 测试中------------------------------------
-	 */
-	public static Map haveChild(JSONObject aval,String child,String node,Map map,String id){
-		String temp="";
-		JSONObject tempObject;
-		if(aval.get(child)!=null){//有孩子节点
-		  JSONArray childlist=(JSONArray) aval.get(child);//基础节点的孩子节点集合
-		  	 for(int i=0;i<childlist.size();i++){
-		  		tempObject=(JSONObject) childlist.get(i);
-		  		if(tempObject.get(child)!=null){		  			
-		  			map=haveChild(tempObject,child,node,map,id);
-		  		}else{
-		  			temp=(String) map.get(node)+","+tempObject.getString(id);
-		  			map.put(node, temp);
-		  		}
-		  	 }	
-		}
-		  return map;
 	}
 }
