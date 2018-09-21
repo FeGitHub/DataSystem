@@ -35,7 +35,8 @@
             	tempTD="";
             	for(var j = 0; j <column; j++){
             		if(i==0){
-            			tempTD+="<th>标题</th>" ;
+            			//tempTD+="<th>标题"+j+"</th>" ;
+            			tempTD+=(j==0)?"<th><input type='checkbox' name='checkItem'></th>":"<th>标题"+j+"</th>" ;
             		}else{            		          		
             			tempTD+=(j==0)?"<td><input type='checkbox' name='checkItem'></td>":"<td>"+i+"</td>";
             		}     		          	
@@ -46,9 +47,10 @@
          //增加相应按钮
          var btns=" <button value="+tableId+" class='addbtn'>新增</button>"
         	 	 +" <button value="+tableId+" class='delbtn'>删除</button>"
-        	 	 +" <button value="+tableId+" class='upbtn'>上移</button>"
-        	 	 +" <button value="+tableId+" class='testBtn'>测试</button>"
-        	 	 +" <button value="+tableId+"  class='downbtn'>下移</button><br><br>";
+        	 	 +" <button value="+tableId+" class='upbtn'>上移</button>"       	 	
+        	 	 +" <button value="+tableId+"  class='downbtn'>下移</button>" 
+        	 	 +" <button value="+tableId+" class='editBtn'>编辑</button>"
+        	 	 +"<br><br>";
    	  $("#"+tableId).after(btns);//增加表格的操作按钮
    	  registerTableDragEvent();
     	  	
@@ -191,8 +193,7 @@
 		 * 键盘上下键移动
 		 */
 		//键盘操作
-		$(document).keydown(function (event) {
-			 confirm();
+		$(document).keydown(function (event) {			
 			if($("input:checkbox:checked").length>1||$("input:checkbox:checked").length==0){
 				alert("移动操作请只选择一项数据");
 				return;
@@ -213,40 +214,72 @@
 		    }
 		});
 		
-		//=================================
 		
 		/***
 		 * 编辑数据表格
 		 */
-		 $("#createTableArea").on('click','.testBtn',function(){
-			 var str = window.prompt("请输入密码","password");
-			
-		    });	  
-		
-			
-		/****
-		 * 弹出框
-		 */
-	/*	function confirm() {
-		    if ($("#myConfirm").length > 0) {
-		        $("#myConfirm").remove();
-		    } 
+		 $("#createTableArea").on('click','.editBtn',function(){
+			 if($("input:checkbox:checked").length>1||$("input:checkbox:checked").length==0){
+					alert("请选择一行数据操作");
+					return;
+				}			   
+			    var $temp=$("input:checkbox:checked").eq(0).parent().parent();
+			    var length=$temp.find("td").length-1;//每一个tr的有效td的个数
+			    var myArray=new Array(length);
+			   	var $list=$($temp).find("td");//有效的编辑的td集合
+			   	for(var i=1;i<$list.length;i++){		   				   		
+			   		var index=i-1;
+			   		myArray[index]=$list.eq(i).text();
+			   	}
+			    popup(myArray);
+		  });	  
+		 
+		 /***
+		  * 打开弹出框
+		  */
+		  function popup(myArray){
+			   var tempData;
+			   var temp="<div id='pop'>";
+               for(var i=1;i<=myArray.length;i++){
+            	   tempData=myArray[i-1];
+            	   temp+="标题"+i+"：<input type='text' id=popup"+i+" class='popData' value="+tempData+" />"
+            	  if(i%3==0){
+            		  temp+="<br>"; 
+            	  }
+               }
+               temp+="</div>";
+               $("#popupTable").prepend(temp);//编辑数据的输入框
+			   $("#light").css("display","block");
+			   $("#fade").css("display","block"); 
+		   }
 		  
-		    var mainContent="eeee";
-		    var html = "<div class='modal fade' id='myConfirm' >"
-		            + "<div class='modal-backdrop in' style='opacity:0; '></div>"
-		            + "<div class='modal-dialog' style='z-index:2901; margin-top:60px; width:600px; '>"
-		            + "<div class='modal-content'>"
-		            + "<div class='modal-header'  style='font-size:16px; '>"
-		            + "<span class='glyphicon glyphicon-envelope'>&nbsp;</span>信息！<button type='button' class='close' data-dismiss='modal'>"
-		            + "<span style='font-size:20px;  ' class='glyphicon glyphicon-remove'></span><tton></div>"
-		            + "<div class='modal-body text-center' id='myConfirmContent' style='font-size:18px; '>"
-		            + mainContent
-		            + "</div>"
-		            + "<div class='modal-footer ' style=''>"
-		            + "<button class='btn btn-danger ' id='confirmOk' >确定<tton>"
-		            + "<button class='btn btn-info ' data-dismiss='modal'>取消<tton>"
-		            + "</div>" + "</div></div></div>";
-		    $("body").append(html);
-		    $("#myConfirm").modal("show");
-		}*/
+		  /***
+		   * 关闭弹出框
+		   */
+		   	function closePopup(){
+		   
+		   	   $("#pop").remove();
+			   $("#light").css("display","none");
+			   $("#fade").css("display","none");
+		    }
+		   	
+		      /***
+			   * 保存
+			   */
+			   	function savePopup(){
+			   	 var $temp=$("input:checkbox:checked").eq(0).parent().parent();
+			 	 var $editlist=$($temp).find("td");//有效的编辑的td集合			 				 
+			   	 var myArray=new Array(10);
+				 var $list=$(".popData");
+				 for(var i=0;i<$list.length;i++){					
+					 myArray[i]= $list.eq(i).val();
+				 }
+				 for(var i=1;i<=$list.length;i++){
+					 var index=i-1;
+					 $editlist.eq(i).text(myArray[index]);	
+				 }
+			   	   $("#pop").remove();
+				   $("#light").css("display","none");
+				   $("#fade").css("display","none");
+			    }
+		   	

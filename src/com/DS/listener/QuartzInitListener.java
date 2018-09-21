@@ -14,11 +14,11 @@ public class QuartzInitListener implements ServletContextListener {
 	 */
     public void contextInitialized(ServletContextEvent sce)  { 
     	QuartzManager.startJobs();
-    	System.out.println("----------quartz初始化-----------");
+    	//System.out.println("----------quartz初始化-----------");
     }
     
     public void contextDestroyed(ServletContextEvent sce)  { 
     	QuartzManager.shutdownJobs();
-    	System.out.println("----------quartz停止-------------");
+    	//System.out.println("----------quartz停止-------------");
     }
 }

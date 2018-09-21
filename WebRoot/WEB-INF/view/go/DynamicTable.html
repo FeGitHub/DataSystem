@@ -5,6 +5,7 @@
 <title>jquery动态创建表格</title>
 <script src="${BASE_PATH}/js/jquery-3.3.1.min.js"></script>
 <link type="text/css" rel="styleSheet"  href="${BASE_PATH}/css/bootstrap.min.css" />
+<link type="text/css" rel="styleSheet"  href="${BASE_PATH}/css/popup.css" />
 <style>
 td,th{
 	text-align:center;
@@ -14,6 +15,12 @@ td,th{
  tr td,th:first-child{
  	width:50px;
  }
+
+ #popupTable td{
+	text-align:center;
+	width:240px;
+	height:40px;
+}
 </style>
 </head>
 <body>
@@ -21,7 +28,17 @@ td,th{
 		<button id="createTableBtn">生成动态表格</button>
 		<div id="createTableArea"></div>
 	</div>
+	<div id="light" class="white_content"><!--弹出框-->
+	 <div align="center">
+    	<div id='popupTable'></div>	      
+        	<button onclick="closePopup()">关闭</button>
+            <button onclick="savePopup()">保存</button>
+        </div>
+    </div>
+  
+  <div id="fade" class="black_overlay"><!--黑布-->
+  </div>
 </body>
-<script src="${BASE_PATH}/js/bootstrap.min.js"></script>
-<script src="${BASE_PATH}/js/DynamicTable.js"></script>
+   <script src="${BASE_PATH}/js/bootstrap.min.js"></script>
+    <script src="${BASE_PATH}/js/DynamicTable.js"></script>
 </html>
