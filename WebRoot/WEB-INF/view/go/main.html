@@ -47,16 +47,32 @@
 								<li><a href="${BASE_PATH}/go/goHello"><i class="glyphicon glyphicon-eye-open"></i>日志查看</a></li>
 							</ul>
 					     </li>
+					     
 					    <!--第三行 -->
 					<li><a href="${BASE_PATH}/warn/goWarnRule"><i class="glyphicon glyphicon-credit-card"></i>预警规则 </a></li>
 						 <!--第四行 -->
-					<li><a href="javascript:void(0);" id="info"><i class="glyphicon glyphicon-globe"></i>信息提示<span class="label label-warning pull-right">5</span></a></li>
+						
+					<li>
+							<a href="#goinfo" class="nav-header collapsed" data-toggle="collapse"><i class="glyphicon glyphicon-cog"></i>待处理事项<span class="pull-right glyphicon glyphicon-chevron-down"></span> </a>
+							<!--第二行的子菜单 -->
+							<ul id="goinfo" class="nav nav-list collapse secondmenu" style="height: 0px;">
+								<li> <a href="javascript:void(0);" id="info"><i class="glyphicon glyphicon-globe"></i>信息提示<span class="label label-warning pull-right">5</span></a></li>
+								<li><a href="${BASE_PATH}/remind/goRemindList"><i class="glyphicon glyphicon-edit"></i>备忘提醒</a></li>							
+							</ul>
+					</li>
 					   <!-- 第五行 -->
 					<li><a href="${BASE_PATH}/qrtz/goQuartzJob"><i class="glyphicon glyphicon-calendar"></i>定时任务</a></li>
 					 <!-- 第六行 -->
-					<li><a href="${BASE_PATH}/test/goDataTables"><i class="glyphicon glyphicon-fire"></i>测试表格</a></li>
-					<li ><a href="${BASE_PATH}/warn/goOrderCheck" class="inMyPlace"><i class="glyphicon glyphicon-fire"></i>订单预警判定</a></li>
-					<li ><a href="${BASE_PATH}/go/goHello"><i class="glyphicon glyphicon-fire"></i>测试欢迎页面--可用</a></li>				
+					<li><a href="${BASE_PATH}/test/goDataTables"><i class="glyphicon glyphicon-fire"></i>测试表格</a></li>				
+					<li ><a href="${BASE_PATH}/go/goHello"><i class="glyphicon glyphicon-fire"></i>测试欢迎页面--可用</a></li>
+					
+					<li >
+						<a href="#gowarn" class="nav-header collapsed" data-toggle="collapse"><i class="glyphicon glyphicon-cog"></i>预警判定<span class="pull-right glyphicon glyphicon-chevron-down"></span> </a>
+							<!--第二行的子菜单 -->
+							<ul id="gowarn" class="nav nav-list collapse secondmenu" style="height: 0px;">
+								<li><a href="${BASE_PATH}/warn/goOrderCheck" class="inMyPlace"><i class="glyphicon glyphicon-fire"></i>测试预警</a></li>								
+							</ul>
+					</li>				
 				</ul>
 			</div>
 				<!--主体内容 -->

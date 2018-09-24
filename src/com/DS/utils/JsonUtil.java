@@ -50,8 +50,7 @@ public class JsonUtil {
 		   }	
 		   return r;
 		}
-	
-	
+		
 	/***
 	 * 树形结构映射
 	 * 所有父节点映射的所有叶子
@@ -81,8 +80,7 @@ public class JsonUtil {
 					   treemap.put(pidMap, tempValue);
 				   }
 			   }
-		   }
-		   String tempOne="";
+		   }		
 		   Set<String> key = treemap.keySet();
 		   for (Iterator<String> it = key.iterator(); it.hasNext();) {
 			   String s = it.next();
@@ -93,12 +91,12 @@ public class JsonUtil {
 			   //把数组中的叶子再次拼接成字符串
 			   for(int i=0;i<temp.length;i++){
 				   if(i==0){
-					   tempOne=temp[i];
+					   tempValue=temp[i];
 				   }else{
-					   tempOne+=","+temp[i]; 
+					   tempValue+=","+temp[i]; 
 				   }
 			   }
-			   treemap.put(s, tempOne);
+			   treemap.put(s, tempValue);
 		  }
 		   //==============打印查看	   
 		  /* Set<String> key1 = treemap.keySet();

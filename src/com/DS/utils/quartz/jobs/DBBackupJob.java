@@ -12,6 +12,7 @@ import org.apache.log4j.Logger;
 import org.quartz.Job;
 import org.quartz.JobExecutionContext;
 import org.quartz.JobExecutionException;
+import com.DS.Config.CommonConfig;
 /***
  * 备份数据库的任务类
  * @author jeff 
@@ -22,7 +23,7 @@ public class DBBackupJob implements Job{
 	private static String hostIP="127.0.0.1";//hostIP MySQL数据库所在服务器地址IP
 	private static String userName="root";//userName 进入数据库所要的用户
 	private static String password="root";//password 进入数据库所要的密码
-	private static String savePath="F:/MysqlBackup";//数据库导出文件保存路径
+	private static String savePath=CommonConfig.DBPath;//数据库导出文件保存路径
 	private static String fileName="";//数据库导出文件文件名
 	private static String databaseName="jfinal_demo";//要备份的数据库名称
 	public void execute(JobExecutionContext arg0) throws JobExecutionException {

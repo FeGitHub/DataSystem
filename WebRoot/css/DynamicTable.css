@@ -1,0 +1,47 @@
+ 
+    /*  黑布 */
+  .black_overlay{ 
+	    display: none;
+	    position: absolute; 
+	    top: 0%; 
+	    left: 0%; 
+	    width: 100%; 
+	    height: 100%; 
+	    background-color: black; 
+	    z-index:1001;	   
+	    opacity:0.6;  
+	   /*  filter: alpha(opacity=60); */ 
+	    /*  -moz-opacity: 0.6; */  
+    }
+    
+
+     /*  弹出框 */
+ .white_content { 
+	  	 display: none;
+	     position: absolute; 
+	     top: 25%; 
+	     left: 25%; 
+	     width: 50%; 
+	     height: 50%;
+	     padding: 16px; 
+	     border: 16px solid orange; 
+	     background-color: white;
+	     z-index:1002;
+	     overflow: auto; 
+ }
+       
+       
+td,th{
+	text-align:center;
+	width:140px;
+	height:40px;
+}
+ tr td,th:first-child{
+ 	width:50px;
+ }
+
+#popupTable td{
+	text-align:center;
+	width:240px;
+	height:40px;
+}

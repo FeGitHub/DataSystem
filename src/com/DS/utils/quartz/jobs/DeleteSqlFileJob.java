@@ -4,12 +4,11 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
-
 import org.apache.log4j.Logger;
 import org.quartz.Job;
 import org.quartz.JobExecutionContext;
 import org.quartz.JobExecutionException;
-import com.DS.utils.CommonData;
+import com.DS.Config.CommonConfig;
 import com.DS.utils.FileUtil;
 /***
  * 
@@ -26,7 +25,7 @@ public class DeleteSqlFileJob implements Job{
 		delSqlFile();
 	}
 	public static void delSqlFile(){
-		String path=CommonData.DBPath;//数据库备份存放的位置		
+		String path=CommonConfig.DBPath;//数据库备份存放的位置		
 		ArrayList<String> pathlist=FileUtil.getFilePaths(path);//备份数据库文件夹下的所有备份sql文件
 		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
 		Date now = new Date();

@@ -2,8 +2,10 @@ package com.DS.Config;
 import com.DS.Controller.BlogController;
 import com.DS.Controller.Early_warningController;
 import com.DS.Controller.LoginController;
+import com.DS.Controller.OrderController;
 import com.DS.Controller.PageController;
 import com.DS.Controller.QrtzController;
+import com.DS.Controller.RemindController;
 import com.DS.Controller.RemoteHTTPAction;
 import com.DS.Controller.TestController;
 import com.DS.Controller.UserController;
@@ -38,7 +40,7 @@ public class DSConfig extends JFinalConfig {
      * @param me
      */
     public void configRoute(Routes me) {
-        me.setBaseViewPath("/WEB-INF/view/"); //默认视图
+        me.setBaseViewPath("/WEB-INF/view/"); //默认视图路径
         me.add("/", indexController.class);//默认处理
         me.add("/test", TestController.class);//用于测试
         me.add("/go", PageController.class);//用于跳转页面
@@ -48,6 +50,8 @@ public class DSConfig extends JFinalConfig {
         me.add("/RemoteAction",RemoteHTTPAction.class);//提供给远程调用的action
         me.add("/qrtz",QrtzController.class);//提供给远程调用的action
         me.add("/warn",Early_warningController.class);//预警信息
+        me.add("/order",OrderController.class);//订单的相关处理
+        me.add("/remind",RemindController.class);//备忘提醒的相关处理
     }
     @Override
     public void configEngine(Engine engine) {
@@ -85,8 +89,7 @@ public class DSConfig extends JFinalConfig {
     public void setDBMapping(ActiveRecordPlugin arp){
     	 arp.addMapping("blog", TestModel.class);//用于测试
     	 arp.addMapping("user", UserModel.class);//用户信息
-    	 arp.addMapping("qrtz_job_details", QrtzJobDetailsModel.class);//调度器任务信息
-    	    
+    	 arp.addMapping("qrtz_job_details", QrtzJobDetailsModel.class);//调度器任务信息   	    
     }
     
 }

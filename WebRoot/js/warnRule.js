@@ -12,7 +12,8 @@ $(function(){
         columns: [
                   { data: 'early_warning_name' },
                   { data: 'early_warning_type'},
-                  { data: 'early_warning_type'},//修改
+                  { data: 'min'},
+                  { data: 'max'},
                   { data: 'early_warning_transactor'},
                   { data: 'material_type'},
                   { data: null,//操作

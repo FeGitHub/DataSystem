@@ -20,8 +20,10 @@ public class Early_warningController extends Controller {
 	 * 测试数据的准备
 	 */
 	public void test(){
+		  List<Record> ruleList=new ArrayList<Record>();//存放预警规则
+		  ruleList=getAllWarnRules();
 		   int  orderID=233;//订单ID
-		   Record r1=new Record();
+		  /* Record r1=new Record();
 		   r1.set("id", 345);
 		   r1.set("early_warning_name", "规则1：数量预警");
 		   r1.set("early_warning_type", "数量预警");//预警类型
@@ -44,7 +46,11 @@ public class Early_warningController extends Controller {
 		   r3.set("min", 30);//最小值
 		   r3.set("max", 60);//最大值
 		   r3.set("material_type","1");//影响物料的类型
-		   
+		   	 
+		   ruleList.add(r1);
+		   ruleList.add(r2);
+		   ruleList.add(r3);
+		   */
 		   
 		   
 		   MaterialBean bean1=new MaterialBean();//测试物料1
@@ -71,10 +77,7 @@ public class Early_warningController extends Controller {
 		   materialMap.put(bean2.getNode(), bean2);
 		   materialMap.put(bean3.getNode(), bean3);
 		   
-		   List<Record> ruleList=new ArrayList<Record>();//存放预警规则
-		   ruleList.add(r1);
-		   ruleList.add(r2);
-		   ruleList.add(r3);
+		  
 		   //========开始测试=======
 		    String warnStr="";//预警项集合
 		    boolean flag=true;//true表示没有触发预警
@@ -286,6 +289,15 @@ public class Early_warningController extends Controller {
 		 System.out.println("***********************");
 		 System.out.println("");
 		 return flag;
+	}
+	
+	/***
+	 * 获取全部预警规则
+	 */
+	public List<Record> getAllWarnRules(){
+		String sql="SELECT * FROM  early_warning_rule";
+		List<Record> WarnRuleDetails=Db.find(sql);
+		return WarnRuleDetails;
 	}
 	
 	/***

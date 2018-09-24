@@ -55,3 +55,13 @@ function onCheck(e, treeId, treeNode) {
 	  treeObj.updateNode(nodes[i]);
  }*/	
 }
+
+/***
+ * 测试
+ */
+$("#testBtn").click(function(){	
+	var url=basepath+"/warn/test";
+	$.post(url,function(){
+		alert("dd");
+	});
+});
