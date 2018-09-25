@@ -34,9 +34,8 @@
 		  for(var i = 0; i <row; i++){//构建td           	
             	tempTD="";
             	for(var j = 0; j <column; j++){
-            		if(i==0){
-            			//tempTD+="<th>标题"+j+"</th>" ;
-            			tempTD+=(j==0)?"<th><input type='checkbox' name='checkItem'></th>":"<th>标题"+j+"</th>" ;
+            		if(i==0){           
+            			tempTD+=(j==0)?"<th><input type='checkbox' id='all'></th>":"<th>标题"+j+"</th>" ;
             		}else{            		          		
             			tempTD+=(j==0)?"<td><input type='checkbox' name='checkItem'></td>":"<td>"+i+"</td>";
             		}     		          	
@@ -121,7 +120,7 @@
 	            }
 	        })
 	        // 第三步，释放
-	        $("table#tableId1 th,#tableId1 td").mouseup(function(e) {	          
+	        $("#tableId1 th,#tableId1 td").mouseup(function(e) {	          
 	            dragTH.mouseDown = false;	          
 	        });
 	    }
@@ -134,11 +133,15 @@
 	    		alert("您未选中任何数据！！");
 	    		return;    		
 	    	}
+	    	if( $("input[id='all']:checked").length==1){
+	    		$("#createTableArea").empty();
+	    		 return;
+	    	}
 	    	 $.each($('input:checkbox'),function(){
 	                if(this.checked){
 	                	$(this).parent().parent().remove();
 	                }
-	            });
+	         });
 	    });
 	    
 	    /**
@@ -228,7 +231,7 @@
 			    var myArray=new Array(length);
 			   	var $list=$($temp).find("td");//有效的编辑的td集合
 			   	for(var i=1;i<$list.length;i++){		   				   		
-			   		var index=i-1;
+			   		var index=i-1;		   		
 			   		myArray[index]=$list.eq(i).text();
 			   	}
 			    popup(myArray);
@@ -239,11 +242,15 @@
 		  */
 		  function popup(myArray){
 			   var tempData;
+			   var num=2;//num是编辑表格中一行有的输入框数
+			   if(myArray.length%3==0){
+				   num=3;
+			   }
 			   var temp="<div id='pop'>";
                for(var i=1;i<=myArray.length;i++){
             	   tempData=myArray[i-1];
-            	   temp+="标题"+i+"：<input type='text' id=popup"+i+" class='popData' value="+tempData+" />"
-            	  if(i%3==0){
+            	   temp+="标题"+i+"：<input type='text' id=popup"+i+" class='popData' value="+tempData+">";
+            	  if(i%num==0){
             		  temp+="<br>"; 
             	  }
                }
@@ -256,8 +263,7 @@
 		  /***
 		   * 关闭弹出框
 		   */
-		   	function closePopup(){
-		   
+		   	function closePopup(){		   
 		   	   $("#pop").remove();
 			   $("#light").css("display","none");
 			   $("#fade").css("display","none");
@@ -282,4 +288,16 @@
 				   $("#light").css("display","none");
 				   $("#fade").css("display","none");
 			    }
-		   	
+		   				
+			   /****
+			    * 全选事件
+			    */
+			  $("#createTableArea").on('click','#all',function(){			
+			       $("input[name='checkItem']").prop("checked", this.checked); 
+			  });  
+			      
+			  $("#createTableArea").on('click',"input[name='checkItem']",function(){
+			        var $subs = $("input[name='checkItem']");  
+			        $("#all").prop("checked" , $subs.length == $subs.filter(":checked").length ? true :false);  
+			  }); 
+	   	
