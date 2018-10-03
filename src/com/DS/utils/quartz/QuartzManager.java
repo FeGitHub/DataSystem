@@ -1,4 +1,6 @@
 package com.DS.utils.quartz;
+import java.util.Map;
+
 import org.quartz.*;
 import org.quartz.JobDetail;
 import org.quartz.Scheduler;
@@ -34,13 +36,46 @@ public class QuartzManager {
             sched.scheduleJob(jobDetail, trigger);        
             if (!sched.isShutdown()) {    
                 sched.start();    
-            }    
+            }   
+            System.out.println("add success");
         } catch (Exception e) {    
             throw new RuntimeException(e);    
         }    
     }    
   
-  
+    /***
+     * 重载
+     * @param jobName
+     * @param jobGroupName
+     * @param triggerName
+     * @param triggerGroupName
+     * @param jobClass
+     * @param cron
+     * @param Description
+     * @param mapData
+     */
+    public static void addJob(String jobName, String jobGroupName,   
+    		 String triggerName, String triggerGroupName, Class jobClass, String cron,String Description,Map<String,String> mapData) { 
+    		        try {    
+    		            Scheduler sched = schedulerFactory.getScheduler();    
+    		            JobDetail jobDetail= JobBuilder.newJob(jobClass).withIdentity(jobName, jobGroupName).withDescription(Description).build();    		           
+    		            for (String in:mapData.keySet()){
+    		            	jobDetail.getJobDataMap().put(in, mapData.get(in)); 		            	
+    		            }   		    
+    		            TriggerBuilder<Trigger> triggerBuilder = TriggerBuilder.newTrigger(); 
+    		            triggerBuilder.withIdentity(triggerName, triggerGroupName);  
+    		            triggerBuilder.startNow();          
+    		            triggerBuilder.withSchedule(CronScheduleBuilder.cronSchedule(cron));          
+    		            CronTrigger trigger = (CronTrigger) triggerBuilder.build();      
+    		            sched.scheduleJob(jobDetail, trigger);        
+    		            if (!sched.isShutdown()) {    
+    		                sched.start();    
+    		            }    
+    		            System.out.println("add success");
+    		        } catch (Exception e) {    
+    		            throw new RuntimeException(e);    
+    		        }    
+     }    
    
     /***
      * 修改调度器时间
@@ -68,6 +103,7 @@ public class QuartzManager {
                 trigger = (CronTrigger) triggerBuilder.build();               
                 sched.rescheduleJob(triggerKey, trigger);              
             }    
+            System.out.println("modifyJobTime success");
         } catch (Exception e) {    
             throw new RuntimeException(e);    
         }    
@@ -85,6 +121,7 @@ public class QuartzManager {
             sched.pauseTrigger(triggerKey);
             sched.unscheduleJob(triggerKey);   
             sched.deleteJob(JobKey.jobKey(jobName, jobGroupName));
+            System.out.println("removeJob success");
         } catch (Exception e) {    
             throw new RuntimeException(e);    
         }    
@@ -98,6 +135,7 @@ public class QuartzManager {
         try {    
             Scheduler sched = schedulerFactory.getScheduler();    
             sched.start();    
+            System.out.println("startJobs success");
         } catch (Exception e) {    
             throw new RuntimeException(e);    
         }    

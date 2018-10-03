@@ -327,4 +327,11 @@ public class Early_warningController extends Controller {
 	public void goOrderCheck(){
 		render("orderCheck.html");
 	}
+	
+	/***
+	 * 跳转到TH的订单预警判定界面
+	 */
+	public void goTh_OrderCheck(){
+		render("th_orderCheck.html");
+	}
 }
