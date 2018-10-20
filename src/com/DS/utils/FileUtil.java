@@ -22,7 +22,7 @@ public class FileUtil {
         ArrayList<String> FileNameList = new ArrayList<String>();//存放读取路径的所有文件名
         String tempFilePath="";
         if (!file.exists()){
-        	System.out.println("文件路径不存在！");
+        	System.out.println("文件路径不存在！"+path);
         	return FileNameList;
         }
         // 如果这个路径是文件夹
@@ -55,7 +55,6 @@ public class FileUtil {
      */
     public static boolean deleteFile(String fileName){
     	 File file = new File(fileName);
-    	 boolean delFlag;
          if (!file.exists()) {       
              System.out.println("删除文件失败:" + fileName + "不存在！");
              return false;

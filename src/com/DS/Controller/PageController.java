@@ -30,5 +30,14 @@ public class PageController extends Controller{
 	 public void goPopup(){
 		   render("popup.html");
 	 }
+	 @Clear
+	 public void goValidate(){
+		   render("validationEngine.html");
+	 }
+	 
+	 @Clear
+	 public void goMoreSelect(){
+		   render("moreSelect.html");
+	 }
 }
 

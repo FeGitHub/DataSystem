@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>下拉多选框</title>
+<script src="${BASE_PATH}/js/jquery-3.3.1.min.js"></script><!--引进jquery的最小支持 -->
+<script src="${BASE_PATH}/js/jquery-mah-UI.js"></script><!--引进jquery的最小支持 -->
+<script language="javascript"> 
+$(document).ready(function(){ 
+var options = { 
+1: "第一个", 
+2: "第二个", 
+3: "第三个", 
+4: "第四个", 
+5: "第五个", 
+6: "第六个" 
+}; 
+$("#test_div").checks_select(options); 
+}); 
+</script> 
+<style> 
+.checks_div_select { 
+width: 170px; 
+/* background-color: #e9fbfb;  */
+border: 1px solid #18cbcd; 
+font-family: 'Verdana', '宋体'; 
+font-size: 12px; 
+/* position:absolute;  */
+/* left:2px; */ 
+top:25px; 
+} 
+</style>
+</head>
+<body>
+	<h1 align="center">欢迎界面</h1>
+	
+	<div style="position:relative;"> 
+        <input type="text" id="test_div"/> 
+   </div>
+  
+</body>
+<script type="text/javascript">
+
+</script>
+</html>

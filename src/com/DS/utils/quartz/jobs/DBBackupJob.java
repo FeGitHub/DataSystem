@@ -32,9 +32,9 @@ public class DBBackupJob implements Job{
 	        fileName= sdf.format(d)+".sql";  
 		try {
 			if (exportDatabaseTool()) {
-				logger.info("数据库备份成功！");
+				logger.info("数据库备份成功！--"+savePath);
 			} else {
-				logger.info("数据库备份失败！");
+				logger.info("数据库备份失败！--"+savePath);
 			}
 		} catch (InterruptedException e) {
 			e.printStackTrace();

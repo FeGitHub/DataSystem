@@ -9,7 +9,9 @@ import com.jfinal.plugin.activerecord.Record;
 /****
  * 
  * @author jeff
- * 用于邮件提醒的job
+ * 离截止时间3天内的任务将会被
+ * 以邮件的方式
+ * 提醒
  *
  */
 public class RemindJob implements Job{
@@ -17,14 +19,13 @@ public class RemindJob implements Job{
 	public void execute(JobExecutionContext arg0) throws JobExecutionException {
 		/*JobDataMap map = arg0.getJobDetail().getJobDataMap();
 		String str = map.getString("Test");
-		System.out.println("测试："+str);*/
-		
+		System.out.println("测试："+str);*/		
 		//以今天为标准，后三天内的数据
 		String sql="select * from ds_remind where remindTime>=DATE_SUB(NOW(),INTERVAL 3 DAY)";
 		List<Record> remindList=Db.find(sql);
 		String text="";//邮件内容
 		String mail="";//邮件地址
-		mail=remindList.get(0).getStr("mail");
+		mail=remindList.get(0).getStr("mail");//目前统一用一个邮件接收，方便测试
 		for(int i=0;i<remindList.size();i++){
 			if(i==0){
 				text="(时间="+remindList.get(i).getStr("remindTime")+",条目="+remindList.get(i).getStr("remindText")+")";
