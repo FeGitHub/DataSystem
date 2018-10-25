@@ -26,6 +26,6 @@ public class QrtzController extends Controller{
 	}
 	
 	public void goQuartzJob(){
-		render("qrtzTable.html");
+		render("qrtzTable.jsp");
 	}
 }

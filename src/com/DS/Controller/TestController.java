@@ -122,7 +122,7 @@ public class TestController extends Controller {
      * 测试dataTables
      */
     public void goDataTables(){
-    	   render("blogTable.html");
+    	   render("blogTable.jsp");
     }
     
     /***
@@ -134,23 +134,7 @@ public class TestController extends Controller {
         map.put("data", blogs);//这个data属性名很重要，填充的数据默认寻找data
         renderJson(map);
     }
-    /***
-     * 测试传值
-     */
-    public void renderData(){
-    	List<String>  list = new ArrayList<String>();
-    	List<TestModel> blogs=TestModel.dao.find("select * from blog");
-        Map<String, List<TestModel>> map = new HashMap<String, List<TestModel>>();
-        map.put("data", blogs);//这个data属性名很重要，填充的数据默认寻找data
-        list.add("列表1");
-        list.add("列表2");
-        list.add("列表3");
-        list.add("列表4");
-        list.add("列表5");
-        setAttr("testlist",list );
-        setAttr("abc",map );     
-         render("dataHandle/edit.html");
-    }
+   
   
     
    

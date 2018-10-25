@@ -3,41 +3,34 @@ import com.jfinal.aop.Clear;
 import com.jfinal.core.Controller;
 public class PageController extends Controller{
 	 public void goMenu(){
-	 	   render("main.html");
+	 	   render("main.jsp");
 	 }
 	 @Clear
 	 public void goHello(){
-	 	   render("hello.html");
+	 	   render("hello.jsp");
 	 }
 	 public void goData(){
 	 	   render("data.html");
 	 }
 	 public void goVue(){
-	 	   render("vueDemo.html");
-	 }
-	 public void goEditBlog(){
-		   render("editBlog.html");
+	 	   render("vueDemo.jsp");
 	 }
 	 @Clear
 	 public void goTree(){
-		   render("tree.html");
+		   render("tree.jsp");
 	 }
 	 @Clear
 	 public void goDynamicTable(){
-		   render("DynamicTable.html");
+		   render("DynamicTable.jsp");
 	 }
 	 @Clear
 	 public void goPopup(){
-		   render("popup.html");
+		   render("popup.jsp");
 	 }
 	 @Clear
 	 public void goValidate(){
-		   render("validationEngine.html");
+		   render("validationEngine.jsp");
 	 }
 	 
-	 @Clear
-	 public void goMoreSelect(){
-		   render("moreSelect.html");
-	 }
 }
 

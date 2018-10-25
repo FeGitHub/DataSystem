@@ -312,26 +312,26 @@ public class Early_warningController extends Controller {
 	 * 跳转预警规则编辑页面
 	 */
 	public void goWarnRule(){
-		render("warnRule.html");
+		render("warnRule.jsp");
 	}
 	/***
 	 * 跳转预警规则编辑页面
 	 */
 	public void goWarnRuleAdd(){
-		render("warnRuleAdd.html");
+		render("warnRuleAdd.jsp");
 	}
 	
 	/***
 	 * 跳转到订单预警判定界面
 	 */
 	public void goOrderCheck(){
-		render("orderCheck.html");
+		render("orderCheck.jsp");
 	}
 	
 	/***
 	 * 跳转到TH的订单预警判定界面
 	 */
 	public void goTh_OrderCheck(){
-		render("th_orderCheck.html");
+		render("th_orderCheck.jsp");
 	}
 }

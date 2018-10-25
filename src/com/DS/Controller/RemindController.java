@@ -20,7 +20,7 @@ public class RemindController extends Controller {
 	 */
 	public void goRemindList(){
 		
-		render("remindList.html");
+		render("remindList.jsp");
 	}
 	
 	/****

@@ -6,10 +6,6 @@ import com.jfinal.core.Controller;
 public class indexController extends Controller{
 	@Clear
 	public void index(){
-		 render("login.html");
-	 	  
-	 }
-	public void list(){
-		 render("list.jsp");
+		 render("login.jsp");	 	  
 	 }
 }

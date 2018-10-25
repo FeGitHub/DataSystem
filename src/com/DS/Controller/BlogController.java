@@ -17,7 +17,7 @@ public class BlogController extends Controller {
 		Record record = new Record();
 		record=Db.findById("blog",Integer.parseInt(id));
 		setAttr("record",record);
-		render("editBlog.html");
+		render("editBlog.jsp");
 		//redirect("/go/goEditBlog");	
 	}
 	
@@ -33,7 +33,7 @@ public class BlogController extends Controller {
 	        }else{
 	        	 data.put("info", "no");
 	        }	      
-		   data.put("info", "ok");
+		    data.put("info", "ok");
 	        renderJson(data);
 	}
 	public void delBlog(){

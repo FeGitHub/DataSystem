@@ -1,3 +1,4 @@
+<%@ page language="java" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -22,7 +23,7 @@
                 <br>
                 <button type="button" id="submitBtn">提交</button>
 		</form>  	
-		
+		<hr>
 			
 </body>
 <script type="text/javascript">
