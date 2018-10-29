@@ -1,12 +1,11 @@
 <%@ page language="java" pageEncoding="UTF-8"%>
+<%@ include file="/WEB-INF/view/component/headResource.jsp" %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
     <meta charset="utf-8" />
     <title>用户登录</title>  
-     <link type="text/css" rel="styleSheet"  href="${BASE_PATH}/css/bootstrap.min.css" /><!--引进bootstrap的样式 -->
      <link type="text/css" rel="stylesheet" href="${BASE_PATH}/css/login.css" />
-     <script src="${BASE_PATH}/js/jquery-3.3.1.min.js"></script><!--引进jquery的最小支持 -->
 </head>
 <body>
     <form id="from" action="${BASE_PATH}/login" method="post">
@@ -40,6 +39,8 @@
     </div>
     </form>
 </body>
-<script src="${BASE_PATH}/js/bootstrap.min.js"></script><!-- bootstrap的最小js支持 -->
 <script src="${BASE_PATH}/js/login.js"></script>
+<script>
+	
+</script>
 </html>

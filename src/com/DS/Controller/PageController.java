@@ -1,6 +1,12 @@
 package com.DS.Controller;
 import com.jfinal.aop.Clear;
 import com.jfinal.core.Controller;
+/***
+ * 
+ * @author jeff
+ * 为了方便跳转用于测试页面的控制器
+ *
+ */
 public class PageController extends Controller{
 	 public void goMenu(){
 	 	   render("main.jsp");
@@ -32,5 +38,25 @@ public class PageController extends Controller{
 		   render("validationEngine.jsp");
 	 }
 	 
+	 /****
+	  * 测试新的主管理页面
+	  */
+	 @Clear
+	 public void goTest(){
+		   render("page-main.jsp");
+	 }
+	 
+	 @Clear
+	 public void goBc(){
+		   render("bootstrap-components.jsp");
+	 }
+	 
+	 /****
+	  * 测试新的登陆页面
+	  */
+	 @Clear
+	 public void goLogin(){
+		   render("page-login.jsp");
+	 }
 }
 

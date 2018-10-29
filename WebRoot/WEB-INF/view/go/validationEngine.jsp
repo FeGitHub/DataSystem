@@ -9,6 +9,9 @@
 <link type="text/css" rel="styleSheet"  href="${BASE_PATH}/css/validation/validationEngine.jquery.css" />
 <script src="${BASE_PATH}/js/validation/lang/jquery.validationEngine-zh_CN.js"></script>
 <script src="${BASE_PATH}/js/validation/jquery.validationEngine.min.js"></script>
+
+
+
 </head>
 <body>
  <h1 align="center">表单验证框架</h1>		
@@ -57,5 +60,6 @@
          }                               
      }
 
+	
 </script>
 </html>

@@ -7,10 +7,8 @@
 <link href="${BASE_PATH}/css/bootstrap.min.css" rel="stylesheet">
 <script src="${BASE_PATH}/js/jquery-3.3.1.min.js"></script>
 <script src="${BASE_PATH}/js/bootstrap.min.js"></script>
-
 <script src="${BASE_PATH}/js/toastr.min.js"></script>
 <link href="${BASE_PATH}/css/toastr.min.css" type="text/css" rel="stylesheet">
-
 <link href="${BASE_PATH}/css/buttons.css" type="text/css" rel="stylesheet">
 <link href="${BASE_PATH}/css/zTreeStyle/zTreeStyle.css" type="text/css" rel="stylesheet">
 <link href="${BASE_PATH}/css/orderCheck.css" type="text/css" rel="stylesheet">

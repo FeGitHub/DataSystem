@@ -1,15 +1,11 @@
 <%@ page language="java" pageEncoding="UTF-8"%>
+<%@ include file="/WEB-INF/view/component/headResource.jsp" %>
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
 <title>管理页面</title>
-<link href="${BASE_PATH}/css/bootstrap.min.css" rel="stylesheet">
-<script src="${BASE_PATH}/js/jquery-3.3.1.min.js"></script>
-<script src="${BASE_PATH}/js/bootstrap.min.js"></script>
-<script src="${BASE_PATH}/js/Sco/sco.message.min.js"></script>
 <link type="text/css" rel="styleSheet"  href="${BASE_PATH}/css/main.css" />
-<link href="${BASE_PATH}/css/Sco/sco.message.min.css" rel="stylesheet">
 <link href="${BASE_PATH}/css/zTreeStyle/zTreeStyle.css" type="text/css" rel="stylesheet">
  <script src="${BASE_PATH}/js/jquery.ztree.all.min.js"></script>
 <style type="text/css">

@@ -1,14 +1,10 @@
 <%@ page language="java" pageEncoding="UTF-8"%>
+<%@ include file="/WEB-INF/view/component/headResource.jsp" %>
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
 <title>管理页面</title>
-<link href="${BASE_PATH}/css/bootstrap.min.css" rel="stylesheet">
-<script src="${BASE_PATH}/js/jquery-3.3.1.min.js"></script>
-<script src="${BASE_PATH}/js/bootstrap.min.js"></script>
-<link type="text/css" rel="styleSheet"  href="${BASE_PATH}/css/jquery.dataTables.min.css" /><!--引进dataTables的样式 -->
-<script src="${BASE_PATH}/js/jquery.dataTables.min.js"></script><!--引进dataTables的js支持-->
 <link type="text/css" rel="styleSheet"  href="${BASE_PATH}/css/main.css" />
 </head>
 <body>

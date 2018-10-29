@@ -1,4 +1,5 @@
 <%@ page language="java" pageEncoding="UTF-8"%>
+<%@ include file="/WEB-INF/view/component/headResource.jsp" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -7,12 +8,6 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta charset="UTF-8">
 <title>调度任务</title>
-<link type="text/css" rel="styleSheet"  href="${BASE_PATH}/css/jquery.dataTables.min.css" /><!--引进dataTables的样式 -->
-<link type="text/css" rel="styleSheet"  href="${BASE_PATH}/css/bootstrap.min.css" /><!--引进bootstrap的样式 -->
-<link href="${BASE_PATH}/css/Sco/sco.message.min.css" rel="stylesheet">
-<script src="${BASE_PATH}/js/jquery-3.3.1.min.js"></script><!--引进jquery的最小支持 -->
-<script src="${BASE_PATH}/js/jquery.dataTables.min.js"></script><!--引进dataTables的js支持-->
-<script src="${BASE_PATH}/js/Sco/sco.message.min.js"></script><!--引进信息提示框的js支持-->
 </head>
 <body>
 <h2 align="center">调度任务</h2>
