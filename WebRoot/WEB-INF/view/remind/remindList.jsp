@@ -7,8 +7,9 @@
 <title>备忘提醒</title>
 </head>
 <body>
-	<h2 align="center">备忘提醒</h2>
-	<hr><a href="${BASE_PATH}/warn/goWarnRuleAdd" class='btn table_btn btn-danger btn-sm'  target='_blank'>新增</a><hr>
+<%-- 	<h2 align="center">备忘提醒</h2>
+	<hr><a href="${BASE_PATH}/warn/goWarnRuleAdd" class='btn table_btn btn-danger btn-sm'  target='_blank'>新增</a><hr> --%>
+	<div class="panel-body">
 	<table id="table_id_example" class="display"><!--填充数据的表格，用id来标识这个表格 -->
     <thead>
         <tr>
@@ -21,9 +22,7 @@
     <tbody>      
     </tbody>
 </table>
-</body>
+</div>
 <script src="${BASE_PATH}/js/remindList.js"></script>
-<script type="text/javascript">
-var basepath= '${BASE_PATH}';//用于单独js文件的路径定位
-</script>
+</body>
 </html>

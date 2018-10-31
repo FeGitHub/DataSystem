@@ -7,7 +7,9 @@
 <title>默认欢迎界面</title>
 </head>
 <body>
-	<h1 align="center">欢迎界面</h1>
+   <div class="panel-body">
+	   <h1 align="center">欢迎界面</h1>
+	</div>
 </body>
 <script type="text/javascript">
 

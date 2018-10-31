@@ -4,14 +4,6 @@
 <head>
 <meta charset="UTF-8">
 <title>表单验证框架</title>
-<!-- jquery.validationEngine.min.js有改动要和特定版本的jquery搭配使用 -->
-<script src="${BASE_PATH}/js/validation/lang/jquery-1.11.1.min.js"></script>
-<link type="text/css" rel="styleSheet"  href="${BASE_PATH}/css/validation/validationEngine.jquery.css" />
-<script src="${BASE_PATH}/js/validation/lang/jquery.validationEngine-zh_CN.js"></script>
-<script src="${BASE_PATH}/js/validation/jquery.validationEngine.min.js"></script>
-
-
-
 </head>
 <body>
  <h1 align="center">表单验证框架</h1>		
@@ -26,9 +18,11 @@
                 <br>
                 <button type="button" id="submitBtn">提交</button>
 		</form>  	
-		<hr>
-			
-</body>
+		<hr>		
+<!-- jquery.validationEngine.min.js有改动要和特定版本的jquery搭配使用 -->
+<script src="${BASE_PATH}/js/validation/lang/jquery-1.11.1.min.js"></script>
+<script src="${BASE_PATH}/js/validation/lang/jquery.validationEngine-zh_CN.js"></script>
+<script src="${BASE_PATH}/js/validation/jquery.validationEngine.min.js"></script>		
 <script type="text/javascript">
 	  $(function(){
 		$('form').validationEngine({   
@@ -40,8 +34,7 @@
 					alert("通过");
 				}
 			}); 		
-	}); 
-	
+	}); 	
 	  //自定义检验方法
       function rangeInputIsRight(field, rules, i, options){              
      	 var range_min =$("#range_min").val(); 
@@ -62,4 +55,6 @@
 
 	
 </script>
+</body>
+
 </html>

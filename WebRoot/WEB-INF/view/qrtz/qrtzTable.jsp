@@ -10,8 +10,7 @@
 <title>调度任务</title>
 </head>
 <body>
-<h2 align="center">调度任务</h2>
-	<hr><a href="" class='btn table_btn btn-danger btn-sm'  target='_blank'>新增</a><hr>
+<div class="panel-body">
 	<table id="table_id_example" class="display"><!--填充数据的表格，用id来标识这个表格 -->
     <thead>
         <tr>
@@ -26,10 +25,13 @@
     <tbody>      
     </tbody>
 </table>
-</body>
+</div>
 <script src="${BASE_PATH}/js/bootstrap.min.js"></script><!-- bootstrap的最小js支持 -->
 <script src="${BASE_PATH}/js/qrtzTable.js"></script>
+<script src="${BASE_PATH}/js/jquery.dataTables.min.js"></script><!--引进dataTables的js支持--> 
 <script type="text/javascript">
 var basepath= '${BASE_PATH}';//用于单独js文件的路径定位
 </script>
+</body>
+
 </html>

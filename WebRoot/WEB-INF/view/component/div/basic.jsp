@@ -61,7 +61,7 @@
     
     
      <aside class="app-sidebar">
-      <div class="app-sidebar__user"> <img class="app-sidebar__user-avatar" src="https://s3.amazonaws.com/uifaces/faces/twitter/jsa/48.jpg" alt="User Image"> 
+      <div class="app-sidebar__user"> <!-- <img class="app-sidebar__user-avatar" src="https://s3.amazonaws.com/uifaces/faces/twitter/jsa/48.jpg" alt="User Image"> --> 
         <div>
           <p class="app-sidebar__user-name">铁矾土</p>
           <p class="app-sidebar__user-designation"></p>
@@ -107,5 +107,8 @@
           </ul>
         </li>
       </ul>
-    </aside>
+    </aside>    
+    <script type="text/javascript">
+	var basepath= '${BASE_PATH}';//用于单独js文件的路径定位
+    </script>
     

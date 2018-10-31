@@ -1,6 +1,6 @@
          /*导航条*/
         .navbar-static-top {
-            background-color:#96b97d;      
+            background-color:#009688;      
             margin-bottom: 5px;
         }   
             #main-nav.nav-tabs.nav-stacked > li > a {
@@ -18,9 +18,10 @@
 
       
         /*主体内容*/
-        #mainBody{    		
+        .mainBody{    		
       		height:1000px;
-      		border:1px solid #96b97d;
+      		/* border:1px solid #009688; */
+      		background-color: #E5E5E5;
         }
         
          /*定义二级菜单样式*/
@@ -34,14 +35,35 @@
 		/*重写bootstrap的部分样式*/
 		
 		.nav>li>a:hover, .nav>li>a:focus{/*左侧菜单的鼠标上浮颜色*/
-			background-color:#96b97d;
+			background-color:#009688;
 		}
 		
 		.nav-tabs>li.active>a, .nav-tabs>li.active>a:hover, .nav-tabs>li.active>a:focus{
-			background-color: #96b97d;
+			background-color: #009688;
 		}
 		
 		.logo{
 		 color:white;
 		}
+		
+		/*白板*/
+   .panel-body {
+    position: relative;
+    background: #fff;
+    padding: 15px 20px;
+     margin:20px;
+
+   }
      
+     /*白板表头*/
+     .panel-title{
+     position: relative;
+     background: #fff;
+     padding: 15px 20px;        
+     }
+     
+     
+     #content.col-md-10{
+     padding-right:0px;
+     padding-left:0px;
+     }
