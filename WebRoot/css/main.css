@@ -57,6 +57,7 @@
      
      /*白板表头*/
      .panel-title{
+     margin-top:20px;
      position: relative;
      background: #fff;
      padding: 15px 20px;        
@@ -66,4 +67,34 @@
      #content.col-md-10{
      padding-right:0px;
      padding-left:0px;
+     margin-left:260px;
      }
+     
+     /***************************/
+     .app-header {
+    position: fixed;
+    top: 0;
+    width: 100%;
+
+}
+     .app-sidebar {
+     margin-top:60px;
+    position: fixed;
+    top: 0;
+    bottom: 0;
+  
+  
+    width: 260px;
+  /*   overflow: auto; */
+    z-index: 10;
+  /*   background-color: #222d32;
+    -webkit-box-shadow: 0px 8px 17px rgba(0, 0, 0, 0.2);
+    box-shadow: 0px 8px 17px rgba(0, 0, 0, 0.2);
+    -webkit-transition: left 0.3s ease,
+ width 0.3s ease;
+    -o-transition: left 0.3s ease,
+ width 0.3s ease;
+    transition: left 0.3s ease,
+ width 0.3s ease; */
+}
+     

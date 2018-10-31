@@ -1,4 +1,3 @@
-
 <%@ page contentType="text/html;charset=UTF-8"%>  
 <%@ taglib prefix="sitemesh" uri="http://www.opensymphony.com/sitemesh/decorator" %>    
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>  
@@ -15,10 +14,10 @@
 </head>
 <body>
 	<!--头部导航开始开始 -->
-	<div class="navbar navbar-duomi navbar-static-top" role="navigation">
-    	<div class="container-fluid">
+	<div class="navbar navbar-duomi navbar-static-top app-header" role="navigation">
+    	<div class="container-fluid app-header">
      		<div class="navbar-header">
-           		<a class="navbar-brand logo" href="${BASE_PATH}/go/goMenu">数据管理系统</a>
+           		<span class="navbar-brand logo">数据管理系统</span>
 			</div>
 			<ul class="nav navbar-nav navbar-right">
       <li><a href="#"  class="logo"><span class="glyphicon glyphicon-user"></span>账号</a></li>
@@ -31,7 +30,7 @@
    <!--中间主体部分开始 --> 
 <div class="container-fluid">
 			<div class="row">
-			<div class="col-md-2" id="menu">
+			<div class="col-md-2 app-sidebar app-sidebar" id="menu">
 			<!-- 左部菜单开始 -->
 			<ul id="main-nav" class="nav nav-tabs nav-stacked" style="">
 						<!--第一行 -->
@@ -65,13 +64,13 @@
 					   <!-- 第五行 -->
 					<li><a href="${BASE_PATH}/qrtz/goQuartzJob"><i class="glyphicon glyphicon-calendar"></i>定时任务</a></li>
 					 <!-- 第六行 -->
-					<li><a href="${BASE_PATH}/test/goDataTables"><i class="glyphicon glyphicon-fire"></i>测试表格</a></li>				
-					<li ><a href="${BASE_PATH}/go/goHello"><i class="glyphicon glyphicon-fire"></i>测试欢迎页面--可用</a></li>
+					<li><a href="${BASE_PATH}/go/goDataTables"><i class="glyphicon glyphicon-fire"></i>表格案例</a></li>				
+					<li ><a href="${BASE_PATH}/go/goHello"><i class="glyphicon glyphicon-fire"></i>欢迎界面</a></li>
 					
 					<li >
 						<a href="#gowarn" class="nav-header collapsed" data-toggle="collapse"><i class="glyphicon glyphicon-cog"></i>预警判定<span class="pull-right glyphicon glyphicon-chevron-down"></span> </a>						
 							<ul id="gowarn" class="nav nav-list collapse secondmenu" style="height: 0px;">
-								<li><a href="${BASE_PATH}/warn/goOrderCheck" class="inMyPlace"><i class="glyphicon glyphicon-fire"></i>测试预警ztree</a></li>	
+								<li><a href="${BASE_PATH}/warn/goOrderCheck" class="inMyPlace"><i class="glyphicon glyphicon-fire"></i>测试预警树</a></li>	
 								<li><a href="${BASE_PATH}/warn/goTh_OrderCheck" class="inMyPlace"><i class="glyphicon glyphicon-fire"></i>物料预警</a></li>							
 							</ul>
 					</li>
@@ -80,7 +79,8 @@
 					<li >
 						<a href="#goTestPage" class="nav-header collapsed" data-toggle="collapse"><i class="glyphicon glyphicon-cog"></i>页面测试<span class="pull-right glyphicon glyphicon-chevron-down"></span> </a>
 							<ul id="goTestPage" class="nav nav-list collapse secondmenu" style="height: 0px;">
-								<li><a href="${BASE_PATH}/go/goValidate" class="inMyPlace"><i class="glyphicon glyphicon-fire"></i>测试表单验证</a></li>															
+								<li><a href="${BASE_PATH}/go/goValidate" class="inMyPlace"><i class="glyphicon glyphicon-fire"></i>测试表单验证</a></li>
+								<li><a href="${BASE_PATH}/test/gotoForm" class="inMyPlace"><i class="glyphicon glyphicon-fire"></i>zujian</a></li>																
 							</ul>
 					</li>					
 				</ul>

@@ -24,3 +24,4 @@ $RECYCLE.BIN/
 
 #忽略.class文件
 *.class
+src/com/DS/utils/MailUtil.java

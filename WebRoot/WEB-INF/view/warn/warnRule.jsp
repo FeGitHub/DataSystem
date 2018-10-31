@@ -1,5 +1,4 @@
 <%@ page language="java" pageEncoding="UTF-8"%>
-<%-- <%@ include file="/WEB-INF/view/component/headResource.jsp" %> --%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -13,10 +12,8 @@
 <script src="${BASE_PATH}/js/Sco/sco.message.min.js"></script> 
 </head>
 <body>
-	<%-- <h2 align="center">预警规则</h2>
-	<hr><a href="${BASE_PATH}/warn/goWarnRuleAdd" class='btn table_btn btn-danger btn-sm'  target='_blank'>新增</a><hr> --%>
 	<div class="panel-body">
-	<table id="table_id_warnRule" class="display"><!--填充数据的表格，用id来标识这个表格 -->
+	<table id="table_id_warnRule" class="display">
     <thead>
         <tr>
             <th>预警名称</th>
@@ -33,8 +30,5 @@
 </table>
 </div>
 <script src="${BASE_PATH}/js/warnRule.js"></script>
-<script type="text/javascript">
-var basepath= '${BASE_PATH}';//用于单独js文件的路径定位
-</script>
 </body>
 </html>

@@ -118,12 +118,7 @@ public class TestController extends Controller {
         render("finsh.jsp");
     }
    
-    /***
-     * 测试dataTables
-     */
-    public void goDataTables(){
-    	   render("blogTable.jsp");
-    }
+
     
     /***
      * dataTables表格数据的填充
@@ -136,6 +131,12 @@ public class TestController extends Controller {
     }
    
   
+    //========================================
+    public void gotoForm(){
+    	render("page-custom.jsp");
+    }
     
+    
+    //==========================================
    
 }

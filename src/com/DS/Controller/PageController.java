@@ -58,5 +58,12 @@ public class PageController extends Controller{
 	 public void goLogin(){
 		   render("page-login.jsp");
 	 }
+	 
+	    /***
+	     * 测试dataTables
+	     */
+	    public void goDataTables(){
+	    	   render("blogTable.jsp");
+	    }
 }
 
