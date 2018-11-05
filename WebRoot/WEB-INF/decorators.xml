@@ -6,7 +6,7 @@
   <pattern>/login/*</pattern> 
  </excludes>  
  <!-- 定义装饰器要过滤的页面 -->  
- <decorator name="default" page="default.jsp">  
+ <decorator name="template" page="template.jsp">  
        <pattern>/go/*</pattern> 
        <pattern>/login/*</pattern> 
        <pattern>/user/*</pattern> 

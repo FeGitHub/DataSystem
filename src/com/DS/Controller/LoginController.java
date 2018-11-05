@@ -16,7 +16,7 @@ public class LoginController extends Controller{
     	   setSessionAttr("user", user);
     	  redirect("/go/goMenu");//重定向	   
        }else{
-    	   redirect("/go/goHello");	
+    	   redirect("/test/goHello");	
        } 
    }
    /***

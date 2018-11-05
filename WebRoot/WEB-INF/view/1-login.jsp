@@ -5,7 +5,7 @@
 <head>
     <meta charset="utf-8" />
     <title>用户登录</title>  
-     <link type="text/css" rel="stylesheet" href="${BASE_PATH}/css/login.css" />
+     <link type="text/css" rel="stylesheet" href="${BASE_PATH}/css/loginTest.css" />
 </head>
 <body>
     <form id="from" action="${BASE_PATH}/login" method="post">

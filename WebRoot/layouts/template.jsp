@@ -10,7 +10,7 @@
 </title>
 <%@ include file="/WEB-INF/view/component/headResource.jsp" %>
   <sitemesh:head/> 
-   <link type="text/css" rel="styleSheet"  href="${BASE_PATH}/css/main.css" />
+   <link type="text/css" rel="styleSheet"  href="${BASE_PATH}/css/template.css" />
 </head>
 <body>
 	<!--头部导航开始开始 -->
@@ -79,8 +79,10 @@
 					<li >
 						<a href="#goTestPage" class="nav-header collapsed" data-toggle="collapse"><i class="glyphicon glyphicon-cog"></i>页面测试<span class="pull-right glyphicon glyphicon-chevron-down"></span> </a>
 							<ul id="goTestPage" class="nav nav-list collapse secondmenu" style="height: 0px;">
-								<li><a href="${BASE_PATH}/go/goValidate" class="inMyPlace"><i class="glyphicon glyphicon-fire"></i>测试表单验证</a></li>
-								<li><a href="${BASE_PATH}/test/gotoForm" class="inMyPlace"><i class="glyphicon glyphicon-fire"></i>zujian</a></li>																
+								<li><a href="${BASE_PATH}/go/goValidate"><i class="glyphicon glyphicon-fire"></i>测试表单验证</a></li>
+								<li><a href="${BASE_PATH}/test/gotoForm"><i class="glyphicon glyphicon-fire"></i>vail</a></li>
+								<li><a href="${BASE_PATH}/go/goComponent"><i class="glyphicon glyphicon-fire"></i>组件测试</a></li>
+								<li><a href="${BASE_PATH}/test/goRegister"><i class="glyphicon glyphicon-fire"></i>注册测试</a></li>																
 							</ul>
 					</li>					
 				</ul>

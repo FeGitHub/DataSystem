@@ -4,7 +4,7 @@
 	$.validationEngineLanguage = {
 		newLang:function(){
 			$.validationEngineLanguage.allRules = {
-				"required":{ // Add your regex rules here, you can take telephone as an example
+				"required":{ 
 					"regex":"none",
 					"alertText":"* 此处不可空白",
 					"alertTextCheckboxMultiple":"* 请选择一个项目",
@@ -103,12 +103,10 @@
                     "alertText": "* 无效的信用卡号码"
                 },
 				"phone":{
-					// credit:jquery.h5validate.js / orefalo
 					"regex":/^(([0\+]\d{2,3}-)?(0\d{2,3})-)?(\d{7,8})(-(\d{3,}))?$/,
 					"alertText":"* 无效的电话号码,示例：010-6754783"
 				},
 				"faxNbr":{
-					// credit:jquery.h5validate.js / orefalo
 					"regex":/^(([0\+]\d{2,3}-)?(0\d{2,3})-)?(\d{7,8})(-(\d{3,}))?$/,
 					"alertText":"* 无效的传真号码"
 				},
@@ -129,7 +127,6 @@
 					"alertText":"* 无效的整数"
 				},
 				"number":{
-					// Number, including positive, negative, and floating decimal. credit:orefalo
                     "regex": /^[\-\+]?((([0-9]{1,3})([,][0-9]{3})*)|([0-9]+))?([\.]([0-9]+))?$/,
 					"alertText":"* 无效的数值"
 				},
@@ -189,12 +186,10 @@
 					"regex":/^[^\u4e00-\u9fa5]{0,}$/,
 					"alertText":"* 不能输入中文"
 				},
-				//tls warning:homegrown not fielded 
 				"dateFormat":{
 					"regex":/^\d{4}[\/\-](0?[1-9]|1[012])[\/\-](0?[1-9]|[12][0-9]|3[01])$|^(?:(?:(?:0?[13578]|1[02])(\/|-)31)|(?:(?:0?[1,3-9]|1[0-2])(\/|-)(?:29|30)))(\/|-)(?:[1-9]\d\d\d|\d[1-9]\d\d|\d\d[1-9]\d|\d\d\d[1-9])$|^(?:(?:0?[1-9]|1[0-2])(\/|-)(?:0?[1-9]|1\d|2[0-8]))(\/|-)(?:[1-9]\d\d\d|\d[1-9]\d\d|\d\d[1-9]\d|\d\d\d[1-9])$|^(0?2(\/|-)29)(\/|-)(?:(?:0[48]00|[13579][26]00|[2468][048]00)|(?:\d\d)?(?:0[48]|[2468][048]|[13579][26]))$/,
 					"alertText":"* 无效的日期格式"
 				},
-				//tls warning:homegrown not fielded 
 				"dateTimeFormat":{
 					"regex":/^\d{4}[\/\-](0?[1-9]|1[012])[\/\-](0?[1-9]|[12][0-9]|3[01])\s+(1[012]|0?[1-9]){1}:(0?[1-5]|[0-6][0-9]){1}:(0?[0-6]|[0-6][0-9]){1}\s+(am|pm|AM|PM){1}$|^(?:(?:(?:0?[13578]|1[02])(\/|-)31)|(?:(?:0?[1,3-9]|1[0-2])(\/|-)(?:29|30)))(\/|-)(?:[1-9]\d\d\d|\d[1-9]\d\d|\d\d[1-9]\d|\d\d\d[1-9])$|^((1[012]|0?[1-9]){1}\/(0?[1-9]|[12][0-9]|3[01]){1}\/\d{2,4}\s+(1[012]|0?[1-9]){1}:(0?[1-5]|[0-6][0-9]){1}:(0?[0-6]|[0-6][0-9]){1}\s+(am|pm|AM|PM){1})$/,
 					"alertText":"* 无效的日期或时间格式",
@@ -202,43 +197,16 @@
 					"alertText3":"mm/dd/yyyy hh:mm:ss AM|PM 或 ", 
 					"alertText4":"yyyy-mm-dd hh:mm:ss AM|PM"
 				},
-				
-				/**
-				 * 正则验证规则补充
-				 * Author: ciaoca@gmail.com
-				 * Date: 2013-10-12
-				 */
+							
 				"chinese":{
 					"regex":/^[\u4E00-\u9FA5]+$/,
 					"alertText":"* 只能填写中文汉字"
-				},
-				
-				/**
-				 * 正则验证规则补充
-				 * Author: wangqiao@finscm.com
-				 * Date: 2017-07-14
-				 */
+				},								
 				"onlyLetterUnderline":{
 					"regex":/^[a-zA-z_]+$/,
 					"alertText":"填字母或下划线"
 				},
-				"chinaId":{
-					/**
-					 * 2013年1月1日起第一代身份证已停用，此处仅验证 18 位的身份证号码
-					 * 如需兼容 15 位的身份证号码，请使用宽松的 chinaIdLoose 规则
-					 * /^[1-9]\d{5}[1-9]\d{3}(
-					 * 	(
-					 * 		(0[13578]|1[02])
-					 * 		(0[1-9]|[12]\d|3[01])
-					 * 	)|(
-					 * 		(0[469]|11)
-					 * 		(0[1-9]|[12]\d|30)
-					 * 	)|(
-					 * 		02
-					 * 		(0[1-9]|[12]\d)
-					 * 	)
-					 * )(\d{4}|\d{3}[xX])$/i
-					 */
+				"chinaId":{					
 					"regex":/^[1-9]\d{5}\d{2}((0[1-9])|(10|11|12))(([0-2][1-9])|10|20|30|31)\d{3}$|^[1-9]\d{5}(18|19|([23]\d))\d{2}((0[1-9])|(10|11|12))(([0-2][1-9])|10|20|30|31)\d{3}[0-9Xx]$/,
 					"alertText":"* 无效的身份证号码"
 				},
@@ -267,17 +235,14 @@
                 	"alertText": "*6-20位数字及字母组成 区分大小写"
                 },
                 "phone-left":{
-					// credit:jquery.h5validate.js / orefalo
 					"regex":/^[0\+]\d{2,3}$/,
 					"alertText":"* 无效的电话号码"
 				},
 				"phone-middle":{
-					// credit:jquery.h5validate.js / orefalo
 					"regex":/^(\d{7,8})$/,
 					"alertText":"* 无效的电话号码"
 				},
 				"phone-right":{
-					// credit:jquery.h5validate.js / orefalo
 					"regex":/^\d{3,5}$/,
 					"alertText":"* 无效的电话号码"
 				},

@@ -1,5 +1,6 @@
 package com.DS.Controller;
 import com.DS.Model.TestModel;
+import com.jfinal.aop.Clear;
 import com.jfinal.core.ActionKey;
 import com.jfinal.core.Controller;
 import com.jfinal.plugin.activerecord.Db;
@@ -136,7 +137,17 @@ public class TestController extends Controller {
     	render("page-custom.jsp");
     }
     
-    
+	 @Clear
+	 public void goHello(){
+	 	   render("hello.jsp");
+	 }
+	 
+	 /****
+	  * 跳转到注册页面
+	  */
+	 public void goRegister(){
+	    	render("register.jsp");
+	    }
     //==========================================
    
 }

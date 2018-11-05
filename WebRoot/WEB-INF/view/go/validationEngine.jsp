@@ -18,8 +18,10 @@
 				 <input  maxlength="30"  name="range_min" id="range_min" type="text" class="validate[funcCall[rangeInputIsRight],custom[onlyNumberSp]] form-control input-sm" style="width:200px;">	
 				  <input  maxlength="20"  name="range_max" id="range_max" type="text" class="validate[funcCall[rangeInputIsRight],custom[onlyNumberSp]] form-control input-sm" style="width:200px;" > 						            
                 <button type="button" id="submitBtn">提交</button>
-		</form>  
-		</div>			
+		</form> 
+		</div>	
+<hr>
+				
 <!-- jquery.validationEngine.min.js有改动要和特定版本的jquery搭配使用 -->
 <script src="${BASE_PATH}/js/validation/lang/jquery-1.11.1.min.js"></script>
 <script src="${BASE_PATH}/js/validation/lang/jquery.validationEngine-zh_CN.js"></script>
@@ -52,9 +54,7 @@
          	 return "* 合法范围大小设置出错";
          	}
          }                               
-     }
-
-	
+     }	
 </script>
 </body>
 

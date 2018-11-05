@@ -11,10 +11,6 @@ public class PageController extends Controller{
 	 public void goMenu(){
 	 	   render("main.jsp");
 	 }
-	 @Clear
-	 public void goHello(){
-	 	   render("hello.jsp");
-	 }
 	 public void goData(){
 	 	   render("data.html");
 	 }
@@ -65,5 +61,13 @@ public class PageController extends Controller{
 	    public void goDataTables(){
 	    	   render("blogTable.jsp");
 	    }
+	    
+	    /***
+	     * 测试弹出框
+	     */
+	    public void goComponent(){
+	    	   render("component.jsp");
+	    }
+	    
 }
 

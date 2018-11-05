@@ -32,8 +32,7 @@
           
         }
       
-		/*重写bootstrap的部分样式*/
-		
+		/*重写bootstrap的部分样式*/		
 		.nav>li>a:hover, .nav>li>a:focus{/*左侧菜单的鼠标上浮颜色*/
 			background-color:#009688;
 		}
@@ -46,7 +45,7 @@
 		 color:white;
 		}
 		
-		/*白板*/
+	/*白板*/
    .panel-body {
     position: relative;
     background: #fff;
@@ -72,29 +71,16 @@
      
      /***************************/
      .app-header {
-    position: fixed;
-    top: 0;
-    width: 100%;
-
-}
+	    position: fixed;
+	    top: 0;
+	    width: 100%;
+      }
      .app-sidebar {
-     margin-top:60px;
-    position: fixed;
-    top: 0;
-    bottom: 0;
-  
-  
-    width: 260px;
-  /*   overflow: auto; */
-    z-index: 10;
-  /*   background-color: #222d32;
-    -webkit-box-shadow: 0px 8px 17px rgba(0, 0, 0, 0.2);
-    box-shadow: 0px 8px 17px rgba(0, 0, 0, 0.2);
-    -webkit-transition: left 0.3s ease,
- width 0.3s ease;
-    -o-transition: left 0.3s ease,
- width 0.3s ease;
-    transition: left 0.3s ease,
- width 0.3s ease; */
-}
+	     margin-top:60px;
+	    position: fixed;
+	    top: 0;
+	    bottom: 0;  
+	    width: 260px;
+	    z-index: 10;
+	}
      

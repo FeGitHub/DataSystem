@@ -4,11 +4,14 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>管理页面</title>
+<title>默认欢迎界面</title>
 </head>
 <body>
-<div class="panel-body">
-    <h2 align="center">欢迎界面</h2>
-    </div>
+   <div class="panel-body">
+	   <h1 align="center">欢迎界面</h1>
+	</div>
 </body>
+<script type="text/javascript">
+
+</script>
 </html>
