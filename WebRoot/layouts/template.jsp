@@ -82,7 +82,9 @@
 								<li><a href="${BASE_PATH}/go/goValidate"><i class="glyphicon glyphicon-fire"></i>测试表单验证</a></li>
 								<li><a href="${BASE_PATH}/test/gotoForm"><i class="glyphicon glyphicon-fire"></i>vail</a></li>
 								<li><a href="${BASE_PATH}/go/goComponent"><i class="glyphicon glyphicon-fire"></i>组件测试</a></li>
-								<li><a href="${BASE_PATH}/test/goRegister"><i class="glyphicon glyphicon-fire"></i>注册测试</a></li>																
+								<li><a href="${BASE_PATH}/test/goRegister"><i class="glyphicon glyphicon-fire"></i>注册测试</a></li>
+								<li><a href="${BASE_PATH}/test/goLayer"><i class="glyphicon glyphicon-fire"></i>layer测试</a></li>
+								<li><a href="${BASE_PATH}/test/goLcalStorage"><i class="glyphicon glyphicon-fire"></i>goLcalStorage测试</a></li>																	
 							</ul>
 					</li>					
 				</ul>

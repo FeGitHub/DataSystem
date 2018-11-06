@@ -148,6 +148,20 @@ public class TestController extends Controller {
 	 public void goRegister(){
 	    	render("register.jsp");
 	    }
+	 
+	 /****
+	  * 跳转到layer页面
+	  */
+	 public void goLayer(){
+	    	render("layer.jsp");
+	    }
+	 
+	 /****
+	  * 跳转到lcalStorage页面
+	  */
+	 public void goLcalStorage(){
+	    	render("localStorage.jsp");
+	    }
     //==========================================
    
 }

@@ -23,7 +23,8 @@
   
   <div id="fade" class="black_overlay"><!--黑布-->
   </div>
-</body>
-   <script src="${BASE_PATH}/js/bootstrap.min.js"></script>
+     <script src="${BASE_PATH}/js/bootstrap.min.js"></script>
     <script src="${BASE_PATH}/js/DynamicTable.js"></script>
+</body>
+
 </html>

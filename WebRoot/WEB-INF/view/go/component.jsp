@@ -12,13 +12,13 @@
 			<a class='testMethod'>自定义弹出框测试2</a>
 			<!--弹出框基本框架开始-->
 				<div class="modal" id="seeMethodModal">
-						<div class="modal-dialog modal-lg ptn" >
+						<div class="modal-dialog modal-lg ptn" style="width:700px;"><!--修改这个width可以改变整个模态框的宽度-->
 						    <div class="modal-content" >
 						      <div class="modal-header">
 						        <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">×</span><span class="sr-only">Close</span></button>
 						        <h4 class="modal-title">预警规则</h4>
 						      </div>
-						      <div class="modal-body">
+						      <div class="modal-body" style="height:200px;overflow:hidden;"><!--改变这个高度可以改变整个模态框的高度，但是内部元素可能撑破-->
 						      </div>	     
 					    </div>
 					  </div>
@@ -109,22 +109,32 @@
 	                  	<div class="col-sm-3">
 	                    	<div class="form-group mbn lh20 border-none"></div>
 	                  	</div>
+	                  	
+	                 </div>	                
+              	</td>
+              	<td>
+	              	<div class="row">
 	                  	<div class="col-sm-3">
 	                    	<div class="form-group mbn lh20 border-none"></div>
 	                  	</div>
-	                 </div>
+	                  	
+	                 </div>	                
               	</td>
             </tr>
 			 <tr>
 				<td class="va-m" width="30%"><span>预警编号</span></td>
               	<td>
-	              	<div class="row">
-	                  	<div class="col-sm-3">
-	                    	<div class="form-group mbn lh20 border-none"></div>	                    	
-	                  	</div>
+	              	<div class="row">	                  
 	                  	<div class="col-sm-3">
 	                    	<div class="form-group mbn lh20 border-none"></div>
 	                    	
+	                  	</div>
+	                 </div>
+              	</td>
+              	<td>
+	              	<div class="row">	                  
+	                  	<div class="col-sm-3">
+	                    	<div class="form-group mbn lh20 border-none"></div>	                    	
 	                  	</div>
 	                 </div>
               	</td>
