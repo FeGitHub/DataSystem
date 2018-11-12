@@ -8,8 +8,8 @@
   <link href="${BASE_PATH}/css/Sco/sco.message.min.css" rel="stylesheet">
   <link type="text/css" rel="styleSheet"  href="${BASE_PATH}/css/validation/validationEngine.jquery.css" />	
   <script type="text/javascript">
-var basepath= '${BASE_PATH}';//用于单独js文件的路径定位
-</script>
+    var basepath= '${BASE_PATH}';//用于单独js文件的路径定位
+  </script>
 
 
   

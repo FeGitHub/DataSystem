@@ -137,10 +137,7 @@ public class TestController extends Controller {
     	render("page-custom.jsp");
     }
     
-	 @Clear
-	 public void goHello(){
-	 	   render("hello.jsp");
-	 }
+	
 	 
 	 /****
 	  * 跳转到注册页面
@@ -161,6 +158,13 @@ public class TestController extends Controller {
 	  */
 	 public void goLcalStorage(){
 	    	render("localStorage.jsp");
+	    }
+	 
+	 /****
+	  * 跳转到时间控件
+	  */
+	 public void goDate(){
+	    	render("datetimepicker.jsp");
 	    }
     //==========================================
    

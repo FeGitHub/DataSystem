@@ -21,7 +21,7 @@
 			</div>
 			<ul class="nav navbar-nav navbar-right">
       <li><a href="#"  class="logo"><span class="glyphicon glyphicon-user"></span>账号</a></li>
-      <li><a href="${BASE_PATH}/login/signOut"  class="logo"><span class="glyphicon glyphicon-log-out"></span>退出</a></li>
+      <li><a  class="logo" id="loginOut"><span class="glyphicon glyphicon-log-out"></span>退出</a></li>
     </ul>
 		</div>
     </div>
@@ -84,7 +84,8 @@
 								<li><a href="${BASE_PATH}/go/goComponent"><i class="glyphicon glyphicon-fire"></i>组件测试</a></li>
 								<li><a href="${BASE_PATH}/test/goRegister"><i class="glyphicon glyphicon-fire"></i>注册测试</a></li>
 								<li><a href="${BASE_PATH}/test/goLayer"><i class="glyphicon glyphicon-fire"></i>layer测试</a></li>
-								<li><a href="${BASE_PATH}/test/goLcalStorage"><i class="glyphicon glyphicon-fire"></i>goLcalStorage测试</a></li>																	
+								<li><a href="${BASE_PATH}/test/goLcalStorage"><i class="glyphicon glyphicon-fire"></i>goLcalStorage测试</a></li>	
+								<li><a href="${BASE_PATH}/test/goDate"><i class="glyphicon glyphicon-fire"></i>时间控件</a></li>																
 							</ul>
 					</li>					
 				</ul>
@@ -97,5 +98,20 @@
   					 <!--主体内容-->				
 	     </div>
 </div> 
+<script type="text/javascript" src="${BASE_PATH}/js/layer/layer.js"></script>
+<script type="text/javascript">
+$("#loginOut").click(function(){
+		layer.confirm('您确定要退出吗？', {
+    btn: ['确定', '取消'], //按钮
+    skin: 'btnClass',
+    icon: 2,
+    title: "提示",
+}, function () {
+    layer.closeAll('dialog');       
+    var url="${BASE_PATH}/login/signOut";
+    $(location).attr("href",url );
+});
+});
+</script>
 </body>
 </html>

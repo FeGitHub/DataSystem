@@ -46,7 +46,10 @@ public class PageController extends Controller{
 	 public void goBc(){
 		   render("bootstrap-components.jsp");
 	 }
-	 
+	 @Clear
+	 public void goHello(){
+	 	   render("hello.jsp");
+	 }
 	 /****
 	  * 测试新的登陆页面
 	  */

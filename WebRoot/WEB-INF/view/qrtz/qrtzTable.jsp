@@ -29,9 +29,6 @@
 <script src="${BASE_PATH}/js/bootstrap.min.js"></script><!-- bootstrap的最小js支持 -->
 <script src="${BASE_PATH}/js/qrtzTable.js"></script>
 <script src="${BASE_PATH}/js/jquery.dataTables.min.js"></script><!--引进dataTables的js支持--> 
-<script type="text/javascript">
-var basepath= '${BASE_PATH}';//用于单独js文件的路径定位
-</script>
 </body>
 
 </html>

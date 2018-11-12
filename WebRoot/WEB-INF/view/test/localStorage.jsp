@@ -114,8 +114,10 @@
 					    </div>
 					  </div>
 				</div>
-			<!--弹出框主体框架结束-->
-			<template id="testTemp">
+<!--弹出框主体框架结束-->
+
+<!--弹出框内容模板-->
+<template id="testTemp">
     <div class="panel mbn" style="height:450px;overflow-y:auto;">
        <div class="panel-body" >
        <form id="testFrom">
@@ -157,7 +159,7 @@
       </div>
     </div>
 </template>
-<!--弹出框模板-->
+<!--弹出框内容模板-->
 
 <script src="${BASE_PATH}/js/validation/lang/jquery.validationEngine-zh_CN.js"></script>
 <script src="${BASE_PATH}/js/validation/jquery.validationEngine.min.js"></script>	

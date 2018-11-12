@@ -45,14 +45,14 @@ public class QuartzManager {
   
     /***
      * 重载
-     * @param jobName
-     * @param jobGroupName
-     * @param triggerName
-     * @param triggerGroupName
-     * @param jobClass
-     * @param cron
-     * @param Description
-     * @param mapData
+     * @param jobName 任务名
+     * @param jobGroupName 任务组
+     * @param triggerName  触发器名
+     * @param triggerGroupName 触发器组名
+     * @param jobClass 任务类
+     * @param cron 表达式
+     * @param Description 描述
+     * @param mapData 参数
      */
     public static void addJob(String jobName, String jobGroupName,   
     		 String triggerName, String triggerGroupName, Class jobClass, String cron,String Description,Map<String,String> mapData) { 
@@ -79,11 +79,11 @@ public class QuartzManager {
    
     /***
      * 修改调度器时间
-     * @param jobName
-     * @param jobGroupName
-     * @param triggerName
-     * @param triggerGroupName
-     * @param cron
+     * @param jobName 任务名
+     * @param jobGroupName 任务组
+     * @param triggerName 触发器名
+     * @param triggerGroupName 触发器组名
+     * @param cron  表达式
      */
     public static void modifyJobTime(String jobName,   
             String jobGroupName, String triggerName, String triggerGroupName, String cron) {    
@@ -110,8 +110,12 @@ public class QuartzManager {
     }    
   
   
-    /***
-     * 删除任务
+    /****
+     * 
+     * @param jobName 
+     * @param jobGroupName
+     * @param triggerName
+     * @param triggerGroupName
      */
     public static void removeJob(String jobName, String jobGroupName,    
             String triggerName, String triggerGroupName) {    

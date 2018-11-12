@@ -2,7 +2,7 @@
  * 备忘提醒页面的js
  */
 $(function(){
-	var table=$('#table_id_example').DataTable({
+	var table=$('#remindTable').DataTable({
 			language: {
 		     "url": basepath+"/json/datatables_language.json"//国际化文件的文件资源
 		 },
@@ -13,9 +13,9 @@ $(function(){
 		 },
 		 columns: [
 		           { data: 'remindName' },//事项简称	     
-		           { data: null,//备注
+		           { data: null,//详情
 		         	  "render": function ( data, type, full, meta ) {//此方法可以对返回的json数据进行加工            
-		           		 var str = setPopverStyle(full.remindName,full.remindText,"备注");  	           		
+		           		 var str = setPopverStyle(full.remindName,full.remindText,"详情");  	           		
 		           		 return str;
 		           	}
 		           },
