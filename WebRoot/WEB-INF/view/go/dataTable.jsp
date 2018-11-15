@@ -23,11 +23,6 @@
     </tbody>
 </table>
 </div >
-<script src="${BASE_PATH}/js/bootstrap.min.js"></script><!-- bootstrap的最小js支持 -->
-<script src="${BASE_PATH}/js/blogTable.js"></script>
-<script type="text/javascript">
-var basepath= '${BASE_PATH}';
-</script>
+<script src="${BASE_PATH}/js/dataTable.js"></script>
 </body>
-
 </html>

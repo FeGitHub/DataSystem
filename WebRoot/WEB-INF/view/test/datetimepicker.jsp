@@ -8,7 +8,7 @@
     <script src="${BASE_PATH}/js/jquery-3.3.1.min.js" type="text/javascript"></script>
     <script src="${BASE_PATH}/js/bootstrap.min.js" type="text/javascript"></script>
     <script src="${BASE_PATH}/js/bootstrap-datetimepicker.js" type="text/javascript"></script>
-     <script src="${BASE_PATH}/js/locales/bootstrap-datetimepicker.zh-CN.js" type="text/javascript"></script>
+    <script src="${BASE_PATH}/js/locales/bootstrap-datetimepicker.zh-CN.js" type="text/javascript"></script>
     <title>时间控件</title>
     <script>
         $(function(){

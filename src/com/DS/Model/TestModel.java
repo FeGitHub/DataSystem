@@ -4,7 +4,8 @@ package com.DS.Model;
  * @Description
  */
 import com.jfinal.plugin.activerecord.Model;
+@SuppressWarnings("serial")
 public class TestModel extends Model<TestModel> {
-    public static final TestModel dao = new TestModel();
+	public static final TestModel dao = new TestModel();
 
 }

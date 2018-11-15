@@ -131,13 +131,11 @@ public class TestController extends Controller {
         renderJson(map);
     }
    
-  
-    //========================================
+
     public void gotoForm(){
     	render("page-custom.jsp");
     }
     
-	
 	 
 	 /****
 	  * 跳转到注册页面
@@ -163,9 +161,7 @@ public class TestController extends Controller {
 	 /****
 	  * 跳转到时间控件
 	  */
-	 public void goDate(){
+	 public void goDatetimepicker(){
 	    	render("datetimepicker.jsp");
-	    }
-    //==========================================
-   
+	 }
 }

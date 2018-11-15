@@ -4,22 +4,13 @@
 <head>
 <meta charset="UTF-8">
 <title>备忘提醒</title>
-<style type="text/css">
-	a{
-	text-decoration:none;
-	}
-	a:hover{
-		text-decoration:none;
-	}
-</style>
 </head>
 <body>
 	<div class="panel-body">
-	 <h2 align="center" id="h2text">备忘提醒</h2>	
-	
+	 <h2 align="center" id="h2text">备忘提醒</h2>		
     <a tabindex="0"   data-toggle="popover" data-trigger="focus" title="页面介绍" data-content="用于邮件提醒备忘事务的功能页面">页面介绍</a>
-    <button type="button" class="btn btn-info testBtn" style="float:right;margin-right:20px;margin-bottom:40px;">测试</button>
-	<button type="button" class="btn btn-info addBtn" style="float:right;margin-right:20px;margin-bottom:40px;">新增</button>
+    <button type="button" id="myFilter" class="btn btn-info testBtn" style="float:right;margin-right:20px;margin-bottom:40px;">测试</button>
+	<button type="button"  class="btn btn-info addBtn" style="float:right;margin-right:20px;margin-bottom:40px;">新增</button>
 	<table id="remindTable" class="display">
     <thead>
         <tr>
@@ -40,7 +31,7 @@
 						    <div class="modal-content" >
 						      <div class="modal-header">
 						        <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">×</span><span class="sr-only">Close</span></button>
-						        <h4 class="modal-title">备忘修改</h4>
+						        <h4 class="modal-title"></h4>
 						      </div>
 						      <div class="modal-body" style="height:350px;overflow:hidden;"><!--改变这个高度可以改变整个模态框的高度，但是内部元素可能撑破-->
 						      </div>	
@@ -62,11 +53,11 @@
           <tbody>
           <!--第0行-->
             <tr>
-				<td class="va-m" width="30%"><span>事项简称</span></td>
+				<td class="va-m" width="30%"><span>事项简称</span><input id="recordId" type="text" value="" style="display:none;" name="record.id" ></td>
               	<td>
 	              	<div class="row">
 	                  	<div class="col-sm-12">	                                     
-                             <input id="username" class="form-control validate[required]" placeholder="" maxlength="20" type="text">      
+                             <input name="record.remindName" id="remindName" class="form-control validate[required]" placeholder="" maxlength="20" type="text">      
 	                  	</div>	                  	
 	                 </div>	                
               	</td>             
@@ -76,21 +67,24 @@
 				<td class="va-m" width="30%"><span>具体事项</span></td>
               	<td>
 	              	<div class="row">
-	              	<div class="col-sm-12">
-	              		  <textarea class="form-control" rows="3"></textarea>    
-	              	</div>
-                      	
+		              	<div class="col-sm-12">
+		              		  <textarea class="form-control validate[required]" rows="3" name="record.remindText" id="remindText"></textarea>    
+		              	</div>                    	
 	                 </div>	  
               	</td>              	
             </tr>
             <!--第2行-->
             <tr>
-				<td class="va-m" width="30%"><span>截止时间</span></td>
+				<td class="va-m" width="30%"><span>提醒时间</span></td>
               	<td>
 	              	<div class="row">
-	                  	<div class="col-sm-12">	                                     
-                             <input  id="prePad" class="form-control validate[funcCall[rangeInputIsRight]]" placeholder="" maxlength="20" type="text">      
-	                  	</div>	                  	
+	                  	<div class="col-sm-12">	                                                              
+			                  		<div class="input-group date form_date col-md-4" data-date="" data-date-format="dd MM yyyy" data-link-field="dtp_input2" data-link-format="yyyy-mm-dd">
+				                    		<input name="record.remindTime" id="remindTime" class="form-control validate[required]" size="16" type="text" value="" readonly style="width:300px;">
+				                    		<span class="input-group-addon"><span class="glyphicon glyphicon-remove"></span></span>
+											<span class="input-group-addon"><span class="glyphicon glyphicon-calendar"></span></span>
+                					</div>
+	                  	 </div>	                  	
 	                 </div>	  
               	</td>              	
             </tr>
@@ -100,7 +94,7 @@
               	<td>
 	              	<div class="row">
 	                  	<div class="col-sm-12">	                                     
-                             <input  id="repad" class="form-control validate[funcCall[rangeInputIsRight]]" placeholder="" maxlength="20" type="text">      
+                             <input  name="record.mail" id="mail" class="form-control validate[required]" placeholder="" maxlength="20" type="text">      
 	                  	</div>	                  	
 	                 </div>	  
               	</td>              	
@@ -113,5 +107,7 @@
 </template>
 <!--弹出框内容模板-->
 <script src="${BASE_PATH}/js/pagejs/remindList.js"></script>
+<script src="${BASE_PATH}/js/validation/lang/jquery.validationEngine-zh_CN.js"></script>
+<script src="${BASE_PATH}/js/validation/jquery.validationEngine.min.js"></script>	
 </body>
 </html>

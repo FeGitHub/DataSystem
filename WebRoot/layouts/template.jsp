@@ -85,7 +85,9 @@
 								<li><a href="${BASE_PATH}/test/goRegister"><i class="glyphicon glyphicon-fire"></i>注册测试</a></li>
 								<li><a href="${BASE_PATH}/test/goLayer"><i class="glyphicon glyphicon-fire"></i>layer测试</a></li>
 								<li><a href="${BASE_PATH}/test/goLcalStorage"><i class="glyphicon glyphicon-fire"></i>goLcalStorage测试</a></li>	
-								<li><a href="${BASE_PATH}/test/goDate"><i class="glyphicon glyphicon-fire"></i>时间控件</a></li>																
+								<li><a href="${BASE_PATH}/test/goDatetimepicker"><i class="glyphicon glyphicon-fire"></i>时间控件</a></li>	
+								<li><a href="${BASE_PATH}/go/goRemindTest"><i class="glyphicon glyphicon-fire"></i>测试</a></li>	
+																							
 							</ul>
 					</li>					
 				</ul>

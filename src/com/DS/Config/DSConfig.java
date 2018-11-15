@@ -3,7 +3,7 @@ import com.DS.Controller.BlogController;
 import com.DS.Controller.Early_warningController;
 import com.DS.Controller.LoginController;
 import com.DS.Controller.OrderController;
-import com.DS.Controller.PageController;
+import com.DS.Controller.GoController;
 import com.DS.Controller.QrtzController;
 import com.DS.Controller.RemindController;
 import com.DS.Controller.RemoteHTTPAction;
@@ -12,6 +12,7 @@ import com.DS.Controller.UserController;
 import com.DS.Controller.indexController;
 import com.DS.Interceptor.LoginInterceptor;
 import com.DS.Model.QrtzJobDetailsModel;
+import com.DS.Model.RemindModel;
 import com.DS.Model.TestModel;
 import com.DS.Model.UserModel;
 import com.jfinal.config.*;
@@ -44,7 +45,7 @@ public class DSConfig extends JFinalConfig {
         me.setBaseViewPath("/WEB-INF/view/"); //默认视图路径
         me.add("/", indexController.class);//默认处理
         me.add("/test", TestController.class);//用于测试
-        me.add("/go", PageController.class);//用于跳转页面
+        me.add("/go", GoController.class);//用于跳转页面
         me.add("/login", LoginController.class);//登录处理
         me.add("/BlogData", BlogController.class);//博客数据
         me.add("/user",UserController.class);//用户
@@ -90,7 +91,8 @@ public class DSConfig extends JFinalConfig {
     public void setDBMapping(ActiveRecordPlugin arp){
     	 arp.addMapping("blog", TestModel.class);//用于测试
     	 arp.addMapping("user", UserModel.class);//用户信息
-    	 arp.addMapping("qrtz_job_details", QrtzJobDetailsModel.class);//调度器任务信息   	    
+    	 arp.addMapping("qrtz_job_details", QrtzJobDetailsModel.class);//调度器任务信息   	  
+    	 arp.addMapping("ds_remind", RemindModel.class);//备忘信息
     }
     
 }
