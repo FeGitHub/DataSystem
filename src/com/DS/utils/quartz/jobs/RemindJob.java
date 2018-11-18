@@ -1,5 +1,6 @@
 package com.DS.utils.quartz.jobs;
 import java.util.List;
+import org.apache.log4j.Logger;
 import org.quartz.Job;
 import org.quartz.JobExecutionContext;
 import org.quartz.JobExecutionException;
@@ -15,8 +16,9 @@ import com.jfinal.plugin.activerecord.Record;
  *
  */
 public class RemindJob implements Job{
+	private static Logger logger = Logger.getLogger(RemindJob.class); 
 	@Override
-	public void execute(JobExecutionContext arg0) throws JobExecutionException {
+	public void execute(JobExecutionContext arg0) throws JobExecutionException {	
 		/*JobDataMap map = arg0.getJobDetail().getJobDataMap();
 		String str = map.getString("Test");
 		System.out.println("测试："+str);*/		
@@ -24,20 +26,27 @@ public class RemindJob implements Job{
 		String sql="select * from ds_remind where remindTime>=DATE_SUB(NOW(),INTERVAL 3 DAY)";
 		List<Record> remindList=Db.find(sql);
 		String text="";//邮件内容
-		String mail="";//邮件地址
-		mail=remindList.get(0).getStr("mail");//目前统一用一个邮件接收，方便测试
+		String mail="";//邮件地址	
+		//======
+		logger.info("暂时没有要提醒的事项");
+		return;
+		//=========
+		/*if(remindList.size()==0){
+			logger.info("暂时没有要提醒的事项");
+		}
 		for(int i=0;i<remindList.size();i++){
+			mail=remindList.get(0).getStr("mail");//目前统一用一个邮件接收，方便测试
 			if(i==0){
 				text="(时间="+remindList.get(i).getStr("remindTime")+",条目="+remindList.get(i).getStr("remindText")+")";
 			}else{
 				text+="<br>"+"(时间="+remindList.get(i).getStr("remindTime")+",条目="+remindList.get(i).getStr("remindText")+")";
 			}		
 		}
-		try {
-			System.out.println("发送邮件...");
+		try {			
 			MailUtil.sendMail(text,mail);
+			logger.info("提醒邮件发送");
 		} catch (Exception e) {
 			e.printStackTrace();
-		}
+		}*/
 	}
 }

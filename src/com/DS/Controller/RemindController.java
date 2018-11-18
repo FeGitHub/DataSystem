@@ -15,7 +15,6 @@ import com.jfinal.plugin.activerecord.Record;
  *
  */
 public class RemindController extends Controller {
-	
 	/***
 	 * 备忘提醒的管理页面
 	 */

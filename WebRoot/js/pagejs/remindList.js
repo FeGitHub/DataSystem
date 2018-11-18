@@ -25,9 +25,10 @@ $(function(){
 		           { data: 'mail'},//提醒邮箱
 		           { data: null,//操作部分
 		         	  "render": function ( data, type, full, meta ) {            
-		           		 var str = "";  
-		           		 str+="<button class='btn table_btn btn-primary btn-sm edtiBtn'  target='_blank' id="+full.id+">修改</button>";
-		           		 str+="&nbsp;<button class='btn table_btn btn-danger btn-sm delBtn'  target='_blank' id="+full.id+">删除</button>";
+		           		 var str = "<span id="+full.id+">";  
+		           		 str+="<button class='btn table_btn btn-primary btn-sm edtiBtn'  target='_blank' >修改</button>";
+		           		 str+="&nbsp;<button class='btn table_btn btn-danger btn-sm delBtn'  target='_blank'>删除</button>";
+		           		 str+="</span>";
 		           		 return str;
 		           	}
 		           }
@@ -45,13 +46,14 @@ $(function(){
 	     * function 编辑表格行数据
 	     */
 		$("body").on("click",".edtiBtn",function(){
-			var id=$(this).attr("id");			
+			var $operatingArea=$(this).parent();
+			var id=$operatingArea.attr("id");				
 			$(".modal-title").text("备忘编辑");
 		    var htm = $($('#testTemp').html());
 			var _html='<div>'+htm[0].outerHTML+'</div>';			
 			$("#seeMethodModal .modal-body").html(_html);	
 			$("#recordId").val(id);
-			showEditData($(this).parent().parent());
+			showEditData($operatingArea.parent().parent());
 			activateDatetimepicker($('.form_date'));
 			$("#seeMethodModal").modal("show");
 		
@@ -132,7 +134,7 @@ $(function(){
 	     * function 删除备忘事务
 	     */
 		$("body").on("click",".delBtn",function(){
-			var id=$(this).attr("id");
+			var id=$(this).parent().attr("id");
 			var info={"id":id}
 			layer.confirm('确定删除？', {
 				  btn: ['确定','取消'] //按钮

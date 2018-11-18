@@ -1,6 +1,5 @@
 package com.DS.utils.quartz;
 import java.util.Map;
-
 import org.quartz.*;
 import org.quartz.JobDetail;
 import org.quartz.Scheduler;
@@ -37,7 +36,7 @@ public class QuartzManager {
             if (!sched.isShutdown()) {    
                 sched.start();    
             }   
-            System.out.println("add success");
+            System.out.println("QuartzManager add task success");
         } catch (Exception e) {    
             throw new RuntimeException(e);    
         }    
@@ -58,12 +57,12 @@ public class QuartzManager {
     		 String triggerName, String triggerGroupName, Class jobClass, String cron,String Description,Map<String,String> mapData) { 
     		        try {    
     		            Scheduler sched = schedulerFactory.getScheduler();    
-    		            JobDetail jobDetail= JobBuilder.newJob(jobClass).withIdentity(jobName, jobGroupName).withDescription(Description).build();    		           
+    		            JobDetail jobDetail= JobBuilder.newJob(jobClass).withIdentity(jobName, jobGroupName).build();    		           
     		            for (String in:mapData.keySet()){
     		            	jobDetail.getJobDataMap().put(in, mapData.get(in)); 		            	
     		            }   		    
     		            TriggerBuilder<Trigger> triggerBuilder = TriggerBuilder.newTrigger(); 
-    		            triggerBuilder.withIdentity(triggerName, triggerGroupName);  
+    		            triggerBuilder.withIdentity(triggerName, triggerGroupName).withDescription(Description);  
     		            triggerBuilder.startNow();          
     		            triggerBuilder.withSchedule(CronScheduleBuilder.cronSchedule(cron));          
     		            CronTrigger trigger = (CronTrigger) triggerBuilder.build();      
@@ -71,7 +70,7 @@ public class QuartzManager {
     		            if (!sched.isShutdown()) {    
     		                sched.start();    
     		            }    
-    		            System.out.println("add success");
+    		            System.out.println("QuartzManager add task success");
     		        } catch (Exception e) {    
     		            throw new RuntimeException(e);    
     		        }    
@@ -86,7 +85,7 @@ public class QuartzManager {
      * @param cron  表达式
      */
     public static void modifyJobTime(String jobName,   
-            String jobGroupName, String triggerName, String triggerGroupName, String cron) {    
+            String jobGroupName, String triggerName, String triggerGroupName, String cron,String Description) {    
         try {    
             Scheduler sched = schedulerFactory.getScheduler();    
             TriggerKey triggerKey = TriggerKey.triggerKey(triggerName, triggerGroupName);  
@@ -97,7 +96,7 @@ public class QuartzManager {
             String oldTime = trigger.getCronExpression();    
             if (!oldTime.equalsIgnoreCase(cron)) {                 
                 TriggerBuilder<Trigger> triggerBuilder = TriggerBuilder.newTrigger();                   
-                triggerBuilder.withIdentity(triggerName, triggerGroupName);  
+                triggerBuilder.withIdentity(triggerName, triggerGroupName).withDescription(Description);  
                 triggerBuilder.startNow();               
                 triggerBuilder.withSchedule(CronScheduleBuilder.cronSchedule(cron));                
                 trigger = (CronTrigger) triggerBuilder.build();               
@@ -105,7 +104,7 @@ public class QuartzManager {
             }    
             System.out.println("modifyJobTime success");
         } catch (Exception e) {    
-            throw new RuntimeException(e);    
+            throw new RuntimeException("QuartzManager change time fail...");    
         }    
     }    
   
@@ -125,7 +124,7 @@ public class QuartzManager {
             sched.pauseTrigger(triggerKey);
             sched.unscheduleJob(triggerKey);   
             sched.deleteJob(JobKey.jobKey(jobName, jobGroupName));
-            System.out.println("removeJob success");
+            System.out.println("QuartzManager removeJob success");
         } catch (Exception e) {    
             throw new RuntimeException(e);    
         }    
@@ -139,7 +138,7 @@ public class QuartzManager {
         try {    
             Scheduler sched = schedulerFactory.getScheduler();    
             sched.start();    
-            System.out.println("startJobs success");
+            System.out.println("QuartzManager startJobs success");
         } catch (Exception e) {    
             throw new RuntimeException(e);    
         }    

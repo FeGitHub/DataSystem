@@ -2,7 +2,6 @@ package com.DS.Config;
 import com.DS.Controller.BlogController;
 import com.DS.Controller.Early_warningController;
 import com.DS.Controller.LoginController;
-import com.DS.Controller.OrderController;
 import com.DS.Controller.GoController;
 import com.DS.Controller.QrtzController;
 import com.DS.Controller.RemindController;
@@ -52,7 +51,6 @@ public class DSConfig extends JFinalConfig {
         me.add("/RemoteAction",RemoteHTTPAction.class);//提供给远程调用的action
         me.add("/qrtz",QrtzController.class);//提供给远程调用的action
         me.add("/warn",Early_warningController.class);//预警信息
-        me.add("/order",OrderController.class);//订单的相关处理
         me.add("/remind",RemindController.class);//备忘提醒的相关处理
     }
     @Override
