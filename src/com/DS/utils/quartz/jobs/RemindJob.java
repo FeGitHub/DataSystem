@@ -4,7 +4,6 @@ import org.apache.log4j.Logger;
 import org.quartz.Job;
 import org.quartz.JobExecutionContext;
 import org.quartz.JobExecutionException;
-import com.DS.utils.MailUtil;
 import com.jfinal.plugin.activerecord.Db;
 import com.jfinal.plugin.activerecord.Record;
 /****
@@ -27,6 +26,7 @@ public class RemindJob implements Job{
 		List<Record> remindList=Db.find(sql);
 		String text="";//邮件内容
 		String mail="";//邮件地址	
+	
 		//======
 		logger.info("暂时没有要提醒的事项");
 		return;

@@ -22,7 +22,11 @@ public class QuartzSercviceImpl implements QuartzService {
 		QuartzDao q=new QuartzDao();
 		return q.getQuartzTaskByName(jobName);
 	}
-
+	
+	
+	/***
+	 * 改变调度器任务触发时间
+	 */
 	@Override
 	public void modifyJobTime(QuartzTaskBean bean) {
 		String Cron="";

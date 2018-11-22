@@ -1,4 +1,5 @@
 package com.DS.utils.quartz;
+import java.util.Date;
 import java.util.Map;
 import org.quartz.*;
 import org.quartz.JobDetail;
@@ -6,13 +7,12 @@ import org.quartz.Scheduler;
 import org.quartz.SchedulerFactory;
 import org.quartz.impl.StdSchedulerFactory;
 /***
- * 
  * @author jeff
  * quartz调度器的主要部分
  * 管理调度器任务的新增，修改，删除，暂停
  */
 public class QuartzManager {      
-    private static SchedulerFactory schedulerFactory = new StdSchedulerFactory();   
+    private static SchedulerFactory schedulerFactory = new StdSchedulerFactory();  
     /***
      * 新增调度器任务
      * @param jobName 任务名
@@ -110,7 +110,7 @@ public class QuartzManager {
   
   
     /****
-     * 
+     * 删除调度任务
      * @param jobName 
      * @param jobGroupName
      * @param triggerName
@@ -156,5 +156,30 @@ public class QuartzManager {
         } catch (Exception e) {    
             throw new RuntimeException(e);    
         }    
-    }    
+    }   
+    
+    /** 
+     * 停止调度Job任务 
+     * @param triggerkey 
+     * @return 
+     * @throws SchedulerException 
+     */  
+    public  boolean unscheduleJob(TriggerKey triggerkey)  
+            throws SchedulerException{  
+    	 Scheduler scheduler = schedulerFactory.getScheduler(); 
+        return scheduler.unscheduleJob(triggerkey);  
+    }  
+    
+    /** 
+     * 重新恢复触发器相关的job任务  
+     * @param triggerkey 
+     * @param trigger 
+     * @return 
+     * @throws SchedulerException 
+     */  
+    public  Date rescheduleJob(TriggerKey triggerkey, Trigger trigger)  
+    throws SchedulerException{  
+    	 Scheduler scheduler = schedulerFactory.getScheduler(); 
+        return scheduler.rescheduleJob(triggerkey, trigger);  
+    }  
 }  

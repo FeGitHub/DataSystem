@@ -2,7 +2,9 @@ package com.DS.Config;
 import com.jfinal.core.JFinal;
 /***
  * @Author jeff
- * @Description 用于启动jetty服务
+ * @Description 
+ * 如果使用jetty插件,则这个用于启动服务
+ * 如果使用tomcat,请删除jetty插件
  */
 public class StartDSConfig {
     public static void main(String[] args) {
