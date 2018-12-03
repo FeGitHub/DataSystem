@@ -164,4 +164,23 @@ public class TestController extends Controller {
 	 public void goDatetimepicker(){
 	    	render("datetimepicker.jsp");
 	 }
+	 
+	 @Clear
+	 public void goDemo(){
+		 //========		
+		
+		 		 
+		 //========
+		 List<Map<String, List<Integer>>> firstMenuList=new ArrayList<Map<String, List<Integer>>>();
+		 Map<String, List<Integer>> map=new HashMap<String, List<Integer>>();
+		 List<Integer> secondMenuList=new ArrayList<Integer>();
+		 secondMenuList.add(1);
+		 secondMenuList.add(2);
+		 secondMenuList.add(3);
+         map.put("secondMenuList", secondMenuList);
+         firstMenuList.add(map);
+		 setSessionAttr("firstMenuList",firstMenuList);
+		 render("demo.jsp");
+		 //===========
+	 }
 }

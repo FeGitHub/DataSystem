@@ -6,12 +6,7 @@
 <title>备忘提醒</title>
 </head>
 <body>
-	<div class="panel-body">
-	 <h2 align="center" id="h2text">备忘提醒</h2>		
-    <a tabindex="0"   data-toggle="popover" data-trigger="focus" title="页面介绍" data-content="用于邮件提醒备忘事务的功能页面">页面介绍</a>
-    <button type="button" id="myFilter" class="btn btn-info testBtn" style="float:right;margin-right:20px;margin-bottom:40px;">测试</button>
-	<button type="button"  class="btn btn-info addBtn" style="float:right;margin-right:20px;margin-bottom:40px;">新增</button>
-	<table id="remindTable" class="display">
+	<table id="remindTable" class="display" style="width:100%">
     <thead>
         <tr>
             <th>事项简称</th>
@@ -24,7 +19,7 @@
     <tbody>      
     </tbody>
 </table>
-</div>
+
 <!--弹出框基本框架开始-->
 				<div class="modal" id="seeMethodModal">
 						<div class="modal-dialog modal-lg ptn" style="width:600px;"><!--修改这个width可以改变整个模态框的宽度-->

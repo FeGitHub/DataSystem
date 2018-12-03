@@ -11,6 +11,7 @@
 <%@ include file="/WEB-INF/view/component/headResource.jsp" %>
   <sitemesh:head/> 
    <link type="text/css" rel="styleSheet"  href="${BASE_PATH}/css/template.css" />
+   <link rel="shortcut icon" href="${BASE_PATH}/favicon.ico">
 </head>
 <body>
 	<!--头部导航开始开始 -->

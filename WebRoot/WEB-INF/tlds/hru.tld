@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<taglib xmlns="http://java.sun.com/xml/ns/j2ee"     
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"     
+    xsi:schemaLocation="http://java.sun.com/xml/ns/j2ee 
+    http://java.sun.com/xml/ns/j2ee/web-jsptaglibrary_2_0.xsd"     
+    version="2.0">   
+    <!-- 定义函数版本 -->
+	<tlib-version>1.0</tlib-version>
+	<!-- 定义函数名称 -->
+	<short-name>hr</short-name>
+	<!-- 过滤所有以"<"开头以">"结尾的标签 -->
+	<function>
+		<!-- 定义第一个函数：reverse -->
+		<name>filterHtml</name>
+		<!-- 定义函数处理类 -->
+		<function-class>com.itonghui.framework.util.HtmlRegexpUtil</function-class>
+		<!-- 定义函数的对应方法 -->
+		<function-signature>
+			java.lang.String filterHtml(java.lang.String)
+		</function-signature>
+	</function>
+	<!-- 将富文本被xss替换成全角字符转换回去 -->
+	<function>
+		<name>escape</name>
+		<function-class>com.itonghui.framework.util.HtmlRegexpUtil</function-class>
+		<function-signature>
+			java.lang.String escape(java.lang.String)
+		</function-signature>
+	</function>
+	<!-- 替换标记以正常显示 -->
+	<function>
+		<name>replaceTag</name>
+		<function-class>com.itonghui.framework.util.HtmlRegexpUtil</function-class>
+		<function-signature>
+			java.lang.String replaceTag(java.lang.String)
+		</function-signature>
+	</function>
+	<!-- 判断标记是否存在 -->
+	<function>
+		<name>hasSpecialChars</name>
+		<function-class>com.itonghui.framework.util.HtmlRegexpUtil</function-class>
+		<function-signature>
+			 boolean hasSpecialChars(java.lang.String)
+		</function-signature>
+	</function>
+	<!-- 过滤指定标签 -->
+	<function>
+		<name>fiterHtmlTag</name>
+		<function-class>com.itonghui.framework.util.HtmlRegexpUtil</function-class>
+		<function-signature>
+			 java.lang.String fiterHtmlTag(java.lang.String,java.lang.String)
+		</function-signature>
+	</function>
+	<!-- 替换指定的标签 -->
+	<function>
+		<name>replaceHtmlTag</name>
+		<function-class>com.itonghui.framework.util.HtmlRegexpUtil</function-class>
+		<function-signature>
+			 java.lang.String replaceHtmlTag(java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String)
+		</function-signature>
+	</function>
+	<!-- 获取物料中图路径 -->
+	<function>
+		<name>toMiddleImg</name>
+		<function-class>com.itonghui.framework.util.HtmlRegexpUtil</function-class>
+		<function-signature>
+			java.lang.String toMiddleImg(java.lang.String)
+		</function-signature>
+	</function>
+	<!-- 获取物料小图路径 -->
+	<function>
+		<name>toSmallImg</name>
+		<function-class>com.itonghui.framework.util.HtmlRegexpUtil</function-class>
+		<function-signature>
+			java.lang.String toSmallImg(java.lang.String)
+		</function-signature>
+	</function>
+</taglib>

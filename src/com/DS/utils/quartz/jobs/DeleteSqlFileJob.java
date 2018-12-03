@@ -33,7 +33,7 @@ public class DeleteSqlFileJob implements Job{
 		long fileTime;//从sql文件名知道此备份文件产生的时间
 		long diff;//备份sql与今天的时间差
 		if(pathlist.size()<10){
-			logger.info("数据库备份文件少于10份，不进行删除动作"); 
+			logger.info("数据库备份文件少于10份，不进行删除动作 ，备份文件地址为"+path); 
 			return;
 		}
 		for(String tempPath:pathlist){//遍历备份的sql文件
