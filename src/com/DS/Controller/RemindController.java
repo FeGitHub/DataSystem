@@ -26,7 +26,7 @@ public class RemindController extends Controller {
 	 * 获取预警规则信息
 	 */
 	public void getRemindDetails(){	
-		String sql="SELECT * FROM  ds_remind order by addTime desc";
+		String sql = Db.getSql("remind.getRemindDetails");
 		List<Record> remindDetails=Db.find(sql);
 		Map<String, List<Record>> map = new HashMap<String, List<Record>>();
 		map.put("data", remindDetails);

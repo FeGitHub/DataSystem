@@ -14,6 +14,7 @@ import com.DS.Model.QrtzJobDetailsModel;
 import com.DS.Model.RemindModel;
 import com.DS.Model.TestModel;
 import com.DS.Model.UserModel;
+import com.demo.common.model._MappingKit;
 import com.jfinal.config.*;
 import com.jfinal.ext.handler.ContextPathHandler;
 import com.jfinal.ext.handler.UrlSkipHandler;
@@ -22,6 +23,7 @@ import com.jfinal.plugin.activerecord.ActiveRecordPlugin;
 import com.jfinal.plugin.druid.DruidPlugin;
 import com.jfinal.render.ViewType;
 import com.jfinal.template.Engine;
+import com.jfinal.template.source.ClassPathSourceFactory;
 /***
  * @Author jeff
  * @Description 基于Jfinal的项目的配置文件
@@ -69,11 +71,12 @@ public class DSConfig extends JFinalConfig {
     	 DruidPlugin dp = createDruidPlugin();
     	 me.add(dp);
     	 ActiveRecordPlugin arp = new ActiveRecordPlugin(dp);
+    	 arp.getEngine().setSourceFactory(new ClassPathSourceFactory());
+    	 arp.addSqlTemplate("sql/test.sql");
     	 me.add(arp);
-        this.setDBMapping(arp);//数据库映射
-       
-      
+    	 _MappingKit.mapping(arp);      
     }
+    
     /***
      * 拦截器配置
      */
@@ -87,16 +90,9 @@ public class DSConfig extends JFinalConfig {
     	  me.add(new ContextPathHandler("BASE_PATH"));
     }
     
-    /**
-     * 添加数据库表的映射
-     */
-    public void setDBMapping(ActiveRecordPlugin arp){
-    	 arp.addMapping("blog", TestModel.class);//用于测试
-    	 arp.addMapping("user", UserModel.class);//用户信息
-    	 arp.addMapping("qrtz_job_details", QrtzJobDetailsModel.class);//调度器任务信息   	  
-    	 arp.addMapping("ds_remind", RemindModel.class);//备忘信息
-    }
+   
     public static DruidPlugin createDruidPlugin() {
+    	 PropKit.use("a_little_config.txt");
 		return new DruidPlugin(PropKit.get("jdbcUrl"), PropKit.get("user"), PropKit.get("password").trim());
 	}
 
