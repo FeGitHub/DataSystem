@@ -4,8 +4,28 @@
 <head>
 <meta charset="UTF-8">
 <title>备忘提醒</title>
+
 </head>
 <body>
+<div class="tile">
+	<form action="" class="form-inline" id="filterForm">	
+						<div class="form-group">
+					        <label>事项简称</label>
+					        <input type="text" class="form-control keepPlace" name="taskName">
+					    </div>						    				       
+		               <div class="input-daterange input-group keepPlace">
+		               		<label>时间范围 &nbsp;&nbsp;&nbsp;</label>			                	       			                                
+		                  	<span class="input-group-addon keepPlace"><i class="fa fa-calendar"></i></span>
+						    <input type="text" id="datetimepicker1" class="form-control" name="startDates" style="width:180px;">
+						    <span class="input-group-addon">to</span>
+						    <input type="text" id="datetimepicker2" class="form-control" name="endDates" style="width:180px;">
+						    	 <button type="button" id="querys" class="btn btn-info mt5 mr3 keepPlace" data-step="3" data-intro="点击查询按钮，按查询条件查出数据列表！">查询</button>	
+						    	 <button type="button" id="reset" class="btn btn-default mt5 keepPlace" data-step="4" data-intro="点击重置将查询条件还原成默认查询状态！">重置</button>	
+						    	 <button type="button" class="btn btn-default mt5 keepPlace" data-step="4">新增</button>				    	    
+					  	  </div>					  
+	</form>	
+</div>
+<div class="tile">
 	<table id="remindTable" class="display" style="width:100%">
     <thead>
         <tr>
@@ -19,7 +39,7 @@
     <tbody>      
     </tbody>
 </table>
-
+</div>
 <!--弹出框基本框架开始-->
 				<div class="modal" id="seeMethodModal">
 						<div class="modal-dialog modal-lg ptn" style="width:600px;"><!--修改这个width可以改变整个模态框的宽度-->
@@ -41,12 +61,11 @@
 
 <!--弹出框内容模板-->
 <template id="testTemp">
-    <div class="panel mbn" style="height:550px;overflow-y:auto;">
+    <div class="panel mbn" style="height:550px;">
        <div class="panel-body" >
-       <form id="testFrom">
+       <form id="testFrom" style="margin-top:20px;">
 		<table class="table table-bordered table-hover">
-          <tbody>
-          <!--第0行-->
+          <tbody>       
             <tr>
 				<td class="va-m" width="30%"><span>事项简称</span><input id="recordId" type="text" value="" style="display:none;" name="record.id" ></td>
               	<td>
@@ -56,8 +75,7 @@
 	                  	</div>	                  	
 	                 </div>	                
               	</td>             
-            </tr>
-            <!--第1行-->
+            </tr>       
 			 <tr>
 				<td class="va-m" width="30%"><span>具体事项</span></td>
               	<td>
@@ -67,23 +85,17 @@
 		              	</div>                    	
 	                 </div>	  
               	</td>              	
-            </tr>
-            <!--第2行-->
+            </tr>     
             <tr>
 				<td class="va-m" width="30%"><span>提醒时间</span></td>
               	<td>
 	              	<div class="row">
-	                  	<div class="col-sm-12">	                                                              
-			                  		<div class="input-group date form_date col-md-4" data-date="" data-date-format="dd MM yyyy" data-link-field="dtp_input2" data-link-format="yyyy-mm-dd">
-				                    		<input name="record.remindTime" id="remindTime" class="form-control validate[required]" size="16" type="text" value="" readonly style="width:300px;">
-				                    		<span class="input-group-addon"><span class="glyphicon glyphicon-remove"></span></span>
-											<span class="input-group-addon"><span class="glyphicon glyphicon-calendar"></span></span>
-                					</div>
-	                  	 </div>	                  	
+	                  	<div class="col-sm-12">	                                     
+                             <input  name="record.remindTime" id="remindTime" class="form-control validate[required] form_date" placeholder="" maxlength="20" type="text" readonly>      
+	                  	</div>	                  	
 	                 </div>	  
               	</td>              	
-            </tr>
-            <!--第3行-->
+            </tr>        
              <tr>
 				<td class="va-m" width="30%"><span>提醒邮箱</span></td>
               	<td>

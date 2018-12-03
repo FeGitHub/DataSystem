@@ -17,8 +17,9 @@ import com.DS.Model.UserModel;
 import com.jfinal.config.*;
 import com.jfinal.ext.handler.ContextPathHandler;
 import com.jfinal.ext.handler.UrlSkipHandler;
+import com.jfinal.kit.PropKit;
 import com.jfinal.plugin.activerecord.ActiveRecordPlugin;
-import com.jfinal.plugin.c3p0.C3p0Plugin;
+import com.jfinal.plugin.druid.DruidPlugin;
 import com.jfinal.render.ViewType;
 import com.jfinal.template.Engine;
 /***
@@ -34,6 +35,9 @@ public class DSConfig extends JFinalConfig {
        me.setDevMode(true);//设置为开发者模式
        //me.setViewType(ViewType.FREE_MARKER);//启动FREE_MARKER
        me.setViewType(ViewType.JSP);
+       PropKit.use("a_little_config.txt");
+	   me.setDevMode(PropKit.getBoolean("devMode", false));
+
        
     }
     /***
@@ -55,20 +59,20 @@ public class DSConfig extends JFinalConfig {
     }
     @Override
     public void configEngine(Engine engine) {
+    	
     }
     /***
      * @Description 插件配置
      * @param me
      */
-    public void configPlugin(Plugins me) {
-    	//mysql数据库插件配置
-        C3p0Plugin cp = new C3p0Plugin("jdbc:mysql://localhost/jfinal_demo?useSSL=true", "root", "root");
-        me.add(cp);
-        //记录映射配置
-        ActiveRecordPlugin arp = new ActiveRecordPlugin(cp);
-        me.add(arp);
+    public void configPlugin(Plugins me) {    	    
+    	 DruidPlugin dp = createDruidPlugin();
+    	 me.add(dp);
+    	 ActiveRecordPlugin arp = new ActiveRecordPlugin(dp);
+    	 me.add(arp);
         this.setDBMapping(arp);//数据库映射
        
+      
     }
     /***
      * 拦截器配置
@@ -92,5 +96,8 @@ public class DSConfig extends JFinalConfig {
     	 arp.addMapping("qrtz_job_details", QrtzJobDetailsModel.class);//调度器任务信息   	  
     	 arp.addMapping("ds_remind", RemindModel.class);//备忘信息
     }
-    
+    public static DruidPlugin createDruidPlugin() {
+		return new DruidPlugin(PropKit.get("jdbcUrl"), PropKit.get("user"), PropKit.get("password").trim());
+	}
+
 }

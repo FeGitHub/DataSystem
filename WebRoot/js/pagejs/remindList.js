@@ -1,10 +1,11 @@
 /****
  * 备忘提醒页面的js
  */
+ var remindTable;
 $(function(){
-	    var remindTable=$('#remindTable').DataTable({
+	    remindTable=$('#remindTable').DataTable({
 			language: {
-		     "url": basepath+"/json/datatables_language.json"//国际化文件的文件资源
+		     "url": basepath+"/json/datatables_language.json"
 		 },
 		 bFilter: false, //去掉默认搜索框
 		 bLengthChange: false, //去掉显示总页数
@@ -12,6 +13,7 @@ $(function(){
 		 //bStateSave:true,
 		 ajax: {
 		     url: basepath+'/remind/getRemindDetails',
+		     type: 'POST'
 		 },
 		 columns: [
 		           { data: 'remindName' },//事项简称	     
@@ -48,7 +50,6 @@ $(function(){
 		$("body").on("click",".edtiBtn",function(){
 			var $operatingArea=$(this).parent();
 			var id=$operatingArea.attr("id");				
-			$(".modal-title").text("备忘编辑");
 		    var htm = $($('#testTemp').html());
 			var _html='<div>'+htm[0].outerHTML+'</div>';			
 			$("#seeMethodModal .modal-body").html(_html);	
@@ -64,7 +65,6 @@ $(function(){
 	     */
 		$("body").on("click",".addBtn",function(){
 		    var htm = $($('#testTemp').html());
-		    $(".modal-title").text("新增备忘");
 			var _html='<div>'+htm[0].outerHTML+'</div>';			
 			$("#seeMethodModal .modal-body").html(_html);	
 			activateDatetimepicker($('.form_date'));
@@ -75,7 +75,7 @@ $(function(){
 	     * function 提交表单数据
 	     */
 		$("body").on("click","#submitBtn",function(){	
-			if($("#testFrom").validationEngine('validate')){		
+			if($("#testFrom").validationEngine('validate')){
 				$.ajax({
 					url:basepath+"/remind/addRemindDetail",
 					type:"post",
@@ -100,6 +100,7 @@ $(function(){
 	     *  textStr 点击文本语
 	     */
 	    function setPopverStyle(title,content,textStr){
+	    	textStr=cutString(content,20);
 	    	var str="<a tabindex='0'  data-toggle='popover' data-trigger='focus' title="+title+" data-content="+content+">"+textStr+"</a>";
 	    	return str;	    	
 	    }
@@ -111,10 +112,10 @@ $(function(){
 	    	$object.datetimepicker({
 		         language:"zh-CN",
 		         bootcssVer:3,
-		         format: 'yyyy-mm-dd HH:mm:ss',  
+		         format: 'yyyy-mm-dd hh:ii:ss', 
 		         autoclose:true,
 		         todayHighlight: true,
-		         minView:2,
+		         minView:0,
 		         startDate:new Date(),//过往时间不可以填
 		         weekStart:1
 		     }); 
@@ -161,3 +162,44 @@ $(function(){
 } );
 
 
+/**参数说明：
+ * 根据长度截取先使用字符串，超长部分追加…
+ * str 对象字符串
+ * len 目标字节长度
+ * 返回值： 处理结果字符串
+ */
+function cutString(str, len) {
+    //length属性读出来的汉字长度为1
+    if(str.length*2 <= len) {
+        return str;
+    }
+    var strlen = 0;
+    var s = "";
+    for(var i = 0;i < str.length; i++) {
+        s = s + str.charAt(i);
+        if (str.charCodeAt(i) > 128) {
+            strlen = strlen + 2;
+            if(strlen >= len){
+                return s.substring(0,s.length-1) + "......";
+            }
+        } else {
+            strlen = strlen + 1;
+            if(strlen >= len){
+                return s.substring(0,s.length-2) + "...";
+            }
+        }
+    }
+    return s;
+}
+
+//查询信息过滤
+$("#querys").click(function(){	
+	var startDates = $("#datetimepicker1").val();
+    var endDates = $("#datetimepicker2").val();
+	    var param = {
+	    		 "startDates" :startDates,
+		    	 "endDates":endDates
+	    };
+	    remindTable.settings()[0].ajax.data = param;
+	    remindTable.ajax.reload();
+});

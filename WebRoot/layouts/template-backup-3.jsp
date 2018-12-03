@@ -7,12 +7,10 @@
   <head>
     <title>
 			<sitemesh:title/>
-    </title>
-    <script src="${BASE_PATH}/TemplatePlug/vali/js/jquery-3.2.1.min.js"></script>
-    <sitemesh:head/>  	
+    </title> 
+    <sitemesh:head/>   
     <link rel="stylesheet" type="text/css" href="${BASE_PATH}/TemplatePlug/vali/css/main.css"><!--页面主体样式-->
-    <link rel="stylesheet" type="text/css" href="${BASE_PATH}/TemplatePlug/vali/css/font-awesome.min.css"><!--字体图标样式-->
-      <link type="text/css" rel="styleSheet"  href="${BASE_PATH}/css/jquery.dataTables.min.css" /><!--引进dataTables的样式 -->
+   	    <%@ include file="/WEB-INF/view/component/resource.jsp" %>  
   </head>
   <body class="app sidebar-mini rtl">
     <header class="app-header"><a class="app-header__logo" href="index.html">Vali</a>
@@ -68,7 +66,7 @@
           <ul class="dropdown-menu settings-menu dropdown-menu-right">
             <li><a class="dropdown-item" href="page-user.html"><i class="fa fa-cog fa-lg"></i> 设置</a></li>
             <li><a class="dropdown-item" href="page-user.html"><i class="fa fa-user fa-lg"></i> 账号</a></li>
-            <li><a class="dropdown-item" href="page-login.html"><i class="fa fa-sign-out fa-lg"></i> 登出</a></li>
+            <li><a class="dropdown-item" id="loginOut"><i class="fa fa-sign-out fa-lg"></i> 登出</a></li>
           </ul>
         </li>
       </ul>
@@ -121,7 +119,7 @@
         </li>
       </ul>
     </aside>
-    <main class="app-content">
+    <main class="app-content"> 
       <div class="app-title">
         <div>
          <!--<h1><i class="fa fa-dashboard"></i></h1>
@@ -168,15 +166,30 @@
         </div>
       </div>
       <sitemesh:body/>       
-    </main>
+    </main> 
     <script src="${BASE_PATH}/TemplatePlug/vali/js/popper.min.js"></script>
     <script src="${BASE_PATH}/TemplatePlug/vali/js/bootstrap.min.js"></script>
     <script src="${BASE_PATH}/TemplatePlug/vali/js/main.js"></script>
     <script src="${BASE_PATH}/TemplatePlug/vali/js/plugins/pace.min.js"></script>
-    <script src="${BASE_PATH}/js/jquery.dataTables.min.js"></script><!--引进dataTables的js支持--> 
+    <script src="${BASE_PATH}/js/jquery.dataTables.min.js"></script>
     <script type="text/javascript" src="${BASE_PATH}/TemplatePlug/vali/js/plugins/chart.js"></script> 
 	  <script type="text/javascript">
-	    var basepath= '${BASE_PATH}';//用于单独js文件的路径定位
+	    var basepath= '${BASE_PATH}';
 	  </script>
+	  <script type="text/javascript" src="${BASE_PATH}/js/layer/layer.js"></script>
+<script type="text/javascript">
+$("#loginOut").click(function(){
+		layer.confirm('您确定要退出吗？', {			
+		    btn: ['确定', '取消'], //按钮
+		    skin: 'btnClass',
+		    icon: 2,
+		    title: "提示",
+}, function () {
+    layer.closeAll('dialog');       
+    var url="${BASE_PATH}/login/signOut";
+    $(location).attr("href",url );
+});
+});
+</script>
   </body>
 </html>

@@ -1,0 +1,4 @@
+jdbcUrl=jdbc:mysql://localhost/jfinal_demo?useSSL=true
+user =root
+password =root
+devMode = true
