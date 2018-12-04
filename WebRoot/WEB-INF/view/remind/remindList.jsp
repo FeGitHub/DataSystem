@@ -11,16 +11,16 @@
 	<form action="" class="form-inline" id="filterForm">	
 						<div class="form-group">
 					        <label>事项简称</label>
-					        <input type="text" class="form-control keepPlace" name="taskName">
+					        <input type="text" class="form-control keepPlace" name="taskName" id="taskName">
 					    </div>						    				       
 		               <div class="input-daterange input-group keepPlace">
 		               		<label>时间范围 &nbsp;&nbsp;&nbsp;</label>			                	       			                                
 		                  	<span class="input-group-addon keepPlace"><i class="fa fa-calendar"></i></span>
-						    <input type="text" id="datetimepicker1" class="form-control" name="startDates" style="width:180px;">
+						    <input type="text" id="datetimepicker1" class="form-control quaryTime" name="startDates" style="width:180px;">
 						    <span class="input-group-addon">to</span>
-						    <input type="text" id="datetimepicker2" class="form-control" name="endDates" style="width:180px;">
+						    <input type="text" id="datetimepicker2" class="form-control quaryTime" name="endDates" style="width:180px;">
 						    	 <button type="button" id="querys" class="btn btn-info mt5 mr3 keepPlace" data-step="3" data-intro="点击查询按钮，按查询条件查出数据列表！">查询</button>	
-						    	 <button type="button" id="reset" class="btn btn-default mt5 keepPlace" data-step="4" data-intro="点击重置将查询条件还原成默认查询状态！">重置</button>	
+						    	 <button type="reset" id="reset" class="btn btn-default mt5 keepPlace" data-step="4" data-intro="点击重置将查询条件还原成默认查询状态！">重置</button>	
 						    	 <button type="button" class="btn btn-default mt5 keepPlace" data-step="4">新增</button>				    	    
 					  	  </div>					  
 	</form>	

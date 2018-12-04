@@ -4,10 +4,10 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import com.DS.Model.RemindModel;
-import com.DS.Model.TestModel;
 import com.jfinal.core.Controller;
 import com.jfinal.plugin.activerecord.Db;
 import com.jfinal.plugin.activerecord.Record;
+import com.jfinal.plugin.activerecord.SqlPara;
 /***
  * 
  * @author jeff
@@ -26,11 +26,24 @@ public class RemindController extends Controller {
 	 * 获取预警规则信息
 	 */
 	public void getRemindDetails(){	
-		String sql = Db.getSql("remind.getRemindDetails");
-		List<Record> remindDetails=Db.find(sql);
-		Map<String, List<Record>> map = new HashMap<String, List<Record>>();
-		map.put("data", remindDetails);
+		Map<String,Object> cond=new HashMap<String,Object>();
+		int start=Integer.parseInt(getPara("start"));
+		int length=Integer.parseInt(getPara("length"));
+		cond.put("startDates", getPara("startDates"));
+		cond.put("endDates", getPara("endDates"));
+		cond.put("taskName", getPara("taskName"));
+		cond.put("start", start);
+		cond.put("length", length);
+		SqlPara sq = Db.getSqlPara("remind.getRemindDetails",cond);			
+		List<Record> remindDetails=Db.find(sq);
+		Map<String, Object> map = new HashMap<String, Object>();
+		SqlPara sqlTotal = Db.getSqlPara("remind.getSize",cond);	
+		Record rec=Db.findFirst(sqlTotal);
+		map.put("recordsTotal", rec.getLong("total"));
+		map.put("recordsFiltered", rec.getLong("total"));
+		map.put("data", remindDetails);//此页展示数据
         renderJson(map);
+		
 	}
 	
 	/****

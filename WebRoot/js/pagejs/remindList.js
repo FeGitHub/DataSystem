@@ -2,7 +2,17 @@
  * 备忘提醒页面的js
  */
  var remindTable;
-$(function(){
+$(function(){	
+		$(".quaryTime").datetimepicker({
+	         language:"zh-CN",
+	         bootcssVer:3,
+	         format: 'yyyy-mm-dd', 
+	         autoclose:true,
+	         todayHighlight: true,
+	         minView:2,       
+	         weekStart:1
+	     }); 
+		
 	    remindTable=$('#remindTable').DataTable({
 			language: {
 		     "url": basepath+"/json/datatables_language.json"
@@ -10,7 +20,7 @@ $(function(){
 		 bFilter: false, //去掉默认搜索框
 		 bLengthChange: false, //去掉显示总页数
 		 ordering: false, // 禁止排序
-		 //bStateSave:true,
+		 serverSide: true,
 		 ajax: {
 		     url: basepath+'/remind/getRemindDetails',
 		     type: 'POST'
@@ -185,21 +195,32 @@ function cutString(str, len) {
         } else {
             strlen = strlen + 1;
             if(strlen >= len){
-                return s.substring(0,s.length-2) + "...";
+                return s.substring(0,s.length-2) + "......";
             }
         }
     }
     return s;
 }
 
-//查询信息过滤
-$("#querys").click(function(){	
+function reloadTable(){
 	var startDates = $("#datetimepicker1").val();
     var endDates = $("#datetimepicker2").val();
+    var taskName=$("#taskName").val();
 	    var param = {
 	    		 "startDates" :startDates,
-		    	 "endDates":endDates
+		    	 "endDates":endDates,
+		    	 "taskName":taskName
 	    };
 	    remindTable.settings()[0].ajax.data = param;
 	    remindTable.ajax.reload();
+}
+//查询信息过滤
+$("#querys").click(function(){	
+	reloadTable();
+});
+
+$("#reset").click(function(){
+	$("#datetimepicker1").val("");
+	$("#datetimepicker2").val("");
+	reloadTable();	
 });

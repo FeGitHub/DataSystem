@@ -38,7 +38,7 @@ public class DSConfig extends JFinalConfig {
        //me.setViewType(ViewType.FREE_MARKER);//启动FREE_MARKER
        me.setViewType(ViewType.JSP);
        PropKit.use("a_little_config.txt");
-	   me.setDevMode(PropKit.getBoolean("devMode", false));
+	   me.setDevMode(PropKit.getBoolean("devMode", true));
 
        
     }
@@ -73,6 +73,7 @@ public class DSConfig extends JFinalConfig {
     	 ActiveRecordPlugin arp = new ActiveRecordPlugin(dp);
     	 arp.getEngine().setSourceFactory(new ClassPathSourceFactory());
     	 arp.addSqlTemplate("sql/test.sql");
+    	 arp.setShowSql(true);
     	 me.add(arp);
     	 _MappingKit.mapping(arp);      
     }
