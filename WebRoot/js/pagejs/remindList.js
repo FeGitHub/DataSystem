@@ -21,6 +21,7 @@ $(function(){
 		 bLengthChange: false, //去掉显示总页数
 		 ordering: false, // 禁止排序
 		 serverSide: true,
+		 pageLength:8,
 		 ajax: {
 		     url: basepath+'/remind/getRemindDetails',
 		     type: 'POST'

@@ -3,8 +3,8 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import com.DS.Bean.QuartzTaskBean;
-import com.DS.Service.QuartzService;
-import com.DS.Service.impl.QuartzSercviceImpl;
+import com.DS.quartz.service.QuartzService;
+import com.DS.quartz.service.impl.QuartzSercviceImpl;
 import com.jfinal.core.Controller;
 import com.jfinal.plugin.activerecord.Db;
 import com.jfinal.plugin.activerecord.Record;
@@ -31,6 +31,13 @@ public class QrtzController extends Controller{
 		render("qrtzTable.jsp");
 	}
 	
+	
+	/**
+	 *  跳转到创建新的调度器任务页面
+	 */
+	public void goCreateQuartz(){
+		render("createQuartz.jsp");
+	}
 	/***
 	 * 根据调度任务名得到调度任务的相关信息
 	 */

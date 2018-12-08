@@ -32,7 +32,7 @@ $(function(){
 	     * function 编辑表格行数据
 	     */
 		$("body").on("click",".edtiBtn",function(){	
-			$(".modal-title").text("编辑调度任务");
+		
 		    var htm = $($('#testTemp').html());
 			var _html='<div>'+htm[0].outerHTML+'</div>';			
 			$("#seeMethodModal .modal-body").html(_html);	
@@ -122,7 +122,7 @@ $(function(){
 				}					
 			});
 		
-	    }); 
-	    
-	    
+	    }); 	    	    
 } );
+
+

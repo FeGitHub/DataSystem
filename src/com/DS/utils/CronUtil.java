@@ -19,7 +19,7 @@ public class CronUtil {
 
     public static void main(String[] args) throws Exception {
        // String result = getCron("day", "2018-08-11 12:11:00");
-       String result = getCron("MON", "2018-08-11 12:11:00");
+       String result = getCron("MON", "2018-12-12 21:14:15");
         // String result = getCronByOnce("2017-01-01 12:12:12");
 //       String result = getCron("month", "2019-01-01 12:00:00");
         // String result = getCronToDate("12 12 12 01 01/1 ? 2018");

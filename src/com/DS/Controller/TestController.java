@@ -166,6 +166,11 @@ public class TestController extends Controller {
 	 }
 	 
 	 @Clear
+	 public void tank(){
+		 render("form-samples.jsp");	 
+	 }
+	 
+	 @Clear
 	 public void goDemo(){
 		 //========		
 		

@@ -10,11 +10,7 @@ import com.DS.Controller.TestController;
 import com.DS.Controller.UserController;
 import com.DS.Controller.indexController;
 import com.DS.Interceptor.LoginInterceptor;
-import com.DS.Model.QrtzJobDetailsModel;
-import com.DS.Model.RemindModel;
-import com.DS.Model.TestModel;
-import com.DS.Model.UserModel;
-import com.demo.common.model._MappingKit;
+import com.DS.common.model._MappingKit;
 import com.jfinal.config.*;
 import com.jfinal.ext.handler.ContextPathHandler;
 import com.jfinal.ext.handler.UrlSkipHandler;
@@ -34,10 +30,9 @@ public class DSConfig extends JFinalConfig {
      * @param me
      */
     public void configConstant(Constants me) {
-       me.setDevMode(true);//设置为开发者模式
        //me.setViewType(ViewType.FREE_MARKER);//启动FREE_MARKER
        me.setViewType(ViewType.JSP);
-       PropKit.use("a_little_config.txt");
+       PropKit.use("DB.properties");
 	   me.setDevMode(PropKit.getBoolean("devMode", true));
 
        
@@ -72,8 +67,8 @@ public class DSConfig extends JFinalConfig {
     	 me.add(dp);
     	 ActiveRecordPlugin arp = new ActiveRecordPlugin(dp);
     	 arp.getEngine().setSourceFactory(new ClassPathSourceFactory());
-    	 arp.addSqlTemplate("sql/test.sql");
-    	 arp.setShowSql(true);
+    	 arp.addSqlTemplate("all.sql");
+    	 arp.setShowSql(true);//打开sql语句显示
     	 me.add(arp);
     	 _MappingKit.mapping(arp);      
     }
@@ -93,7 +88,7 @@ public class DSConfig extends JFinalConfig {
     
    
     public static DruidPlugin createDruidPlugin() {
-    	 PropKit.use("a_little_config.txt");
+    	 PropKit.use("DB.properties");
 		return new DruidPlugin(PropKit.get("jdbcUrl"), PropKit.get("user"), PropKit.get("password").trim());
 	}
 
