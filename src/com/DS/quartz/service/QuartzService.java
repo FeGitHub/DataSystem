@@ -24,4 +24,6 @@ public interface QuartzService {
 	 * @param cron
 	 */
 	void modifyJobTime(QuartzTaskBean bean);
+	
+	void addJob(QuartzTaskBean bean);
 }

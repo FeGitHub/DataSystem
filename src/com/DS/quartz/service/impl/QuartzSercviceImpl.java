@@ -1,5 +1,8 @@
 package com.DS.quartz.service.impl;
 import java.text.ParseException;
+
+import org.quartz.Job;
+
 import com.DS.Bean.QuartzTaskBean;
 import com.DS.quartz.dao.QuartzDao;
 import com.DS.quartz.service.QuartzService;
@@ -21,8 +24,7 @@ public class QuartzSercviceImpl implements QuartzService {
 	public Record getQuartzTaskByName(String jobName) {
 		QuartzDao q=new QuartzDao();
 		return q.getQuartzTaskByName(jobName);
-	}
-	
+	}	
 	
 	/***
 	 * 改变调度器任务触发时间
@@ -38,4 +40,22 @@ public class QuartzSercviceImpl implements QuartzService {
 		QuartzManager.modifyJobTime(bean.getJobName(), bean.getJobGroup(), bean.getTriggerGroup(), bean.getTriggerName(),Cron,bean.getDescription());		
 	}
 
+
+	@Override
+	public void addJob(QuartzTaskBean bean){
+		String temp = "com.DS.utils.quartz.jobs."+bean.getJobClassStr();
+		bean.setJobClassStr(temp);
+	    Class jobClass=null;
+		try {
+			jobClass = Class.forName(bean.getJobClassStr());
+		} catch (ClassNotFoundException e) {
+			e.printStackTrace();
+		}
+		QuartzManager.addJob(bean.getJobName(), bean.getJobName(), bean.getTriggerName(), bean.getTriggerGroup(), jobClass, bean.getCron(), bean.getDescription());
+		
+	}
+   
+	  public void getAllJob(){
+		  
+	  }
 }

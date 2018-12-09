@@ -1,10 +1,13 @@
 package com.DS.Controller;
+import java.text.ParseException;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import com.DS.Bean.QuartzTaskBean;
 import com.DS.quartz.service.QuartzService;
 import com.DS.quartz.service.impl.QuartzSercviceImpl;
+import com.DS.utils.CronUtil;
+import com.DS.utils.PackageUtil;
 import com.jfinal.core.Controller;
 import com.jfinal.plugin.activerecord.Db;
 import com.jfinal.plugin.activerecord.Record;
@@ -18,9 +21,7 @@ public class QrtzController extends Controller{
 	 * 三表连接：qrtz_job_details,qrtz_triggers,qrtz_cron_triggers
 	 */
 	public void getJobDetails(){	
-		String sql=" select detail.JOB_NAME,detail.JOB_GROUP,triggers.DESCRIPTION,detail.JOB_CLASS_NAME,cron.CRON_EXPRESSION,triggers.TRIGGER_NAME,triggers.TRIGGER_GROUP from qrtz_job_details as detail "
-				  +" LEFT JOIN qrtz_triggers as triggers on triggers.JOB_NAME=detail.JOB_NAME and triggers.JOB_GROUP=detail.JOB_GROUP and triggers.SCHED_NAME=detail.SCHED_NAME"
-				  +" LEFT JOIN qrtz_cron_triggers as cron on cron.TRIGGER_NAME=triggers.TRIGGER_NAME and cron.TRIGGER_GROUP=triggers.TRIGGER_GROUP and cron.SCHED_NAME=triggers.SCHED_NAME";
+		String sql=Db.getSql("qrtz.getJobDetails");
 		List<Record> jobDetails=Db.find(sql);
 		Map<String, List<Record>> map = new HashMap<String, List<Record>>();
 		map.put("data", jobDetails);
@@ -59,7 +60,44 @@ public class QrtzController extends Controller{
 		 QuartzService q=new QuartzSercviceImpl();
 		 q.modifyJobTime(bean);
 		 map.put("record","dd");
-	     renderJson(map);
-		 
+	     renderJson(map);	 
 	 }
+	 
+	 /***
+	  * 转换普通日期变为cron
+	  */
+	  public void transfer(){
+		  Map<String, String> map = new HashMap<String, String>();
+		  String dataStr=getPara("dataStr");//时间字符串
+		  String period=getPara("period");//周期
+		  String weekType=getPara("weekType");//
+		  String cron="";
+		  if(weekType!=null&&period.equals("week")){
+			  period=weekType;
+		  }		
+		  if(dataStr==null||dataStr.equals("")){		
+			  return;
+		  }		  		 
+		  try {
+			if(period!=null&&!period.equals("once")){
+				cron=CronUtil.getCron(period, dataStr);
+			}else{
+				cron=CronUtil.getCronByOnce(dataStr); 
+				}
+			} catch (ParseException e) {
+				e.printStackTrace();
+			}		  		
+		  map.put("code", "200");
+		  map.put("cron", cron);
+		  renderJson(map);
+	  }
+	  
+	  public void getAllJob(){
+		  Map<String, Object> map = new HashMap<String, Object>();
+		  String packageName = "com.DS.utils.quartz.jobs";  
+		  List<String> allJobList=PackageUtil.getClassName(packageName);
+		  map.put("code", "200");
+		  map.put("allJobList", allJobList);
+		  renderJson(map);
+	  }
 }
