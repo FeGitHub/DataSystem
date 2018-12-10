@@ -92,6 +92,9 @@ public class QrtzController extends Controller{
 		  renderJson(map);
 	  }
 	  
+	  /***
+	   * 获取quartz的job类下拉列表
+	   */
 	  public void getAllJob(){
 		  Map<String, Object> map = new HashMap<String, Object>();
 		  String packageName = "com.DS.utils.quartz.jobs";  
@@ -99,5 +102,18 @@ public class QrtzController extends Controller{
 		  map.put("code", "200");
 		  map.put("allJobList", allJobList);
 		  renderJson(map);
+	  }
+	  
+	  /***
+	   * 创建一个调度任务
+	   */
+	  public void createQuartzTask(){
+		  Map<String, Object> map = new HashMap<String, Object>();
+		  QuartzTaskBean task=getBean(QuartzTaskBean.class, "");
+		  QuartzService quartzService=new QuartzSercviceImpl();
+		  quartzService.addJob(task);
+		  map.put("code", "200");
+		  renderJson(map);
+		  
 	  }
 }

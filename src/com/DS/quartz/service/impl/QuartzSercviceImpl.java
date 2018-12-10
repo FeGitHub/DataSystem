@@ -1,8 +1,5 @@
 package com.DS.quartz.service.impl;
 import java.text.ParseException;
-
-import org.quartz.Job;
-
 import com.DS.Bean.QuartzTaskBean;
 import com.DS.quartz.dao.QuartzDao;
 import com.DS.quartz.service.QuartzService;
@@ -40,11 +37,14 @@ public class QuartzSercviceImpl implements QuartzService {
 		QuartzManager.modifyJobTime(bean.getJobName(), bean.getJobGroup(), bean.getTriggerGroup(), bean.getTriggerName(),Cron,bean.getDescription());		
 	}
 
-
+	/***
+	 * 新增调度器任务
+	 */
 	@Override
 	public void addJob(QuartzTaskBean bean){
-		String temp = "com.DS.utils.quartz.jobs."+bean.getJobClassStr();
-		bean.setJobClassStr(temp);
+		bean.setTriggerName(bean.getJobName()+"TriggerName");
+		bean.setTriggerGroup(bean.getJobGroup()+"TriggerGroup");		
+		bean.setJobClassStr(bean.getJobClassStr());
 	    Class jobClass=null;
 		try {
 			jobClass = Class.forName(bean.getJobClassStr());
@@ -55,7 +55,4 @@ public class QuartzSercviceImpl implements QuartzService {
 		
 	}
    
-	  public void getAllJob(){
-		  
-	  }
 }
