@@ -34,6 +34,7 @@ public class DSConfig extends JFinalConfig {
        me.setViewType(ViewType.JSP);
        PropKit.use("DB.properties");
 	   me.setDevMode(PropKit.getBoolean("devMode", true));
+	  me.setInjectDependency(true);//依赖注入
 
        
     }

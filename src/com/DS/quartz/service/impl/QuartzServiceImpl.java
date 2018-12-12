@@ -1,8 +1,12 @@
 package com.DS.quartz.service.impl;
 import java.text.ParseException;
+import java.util.HashMap;
+import java.util.Map;
+
 import com.DS.Bean.QuartzTaskBean;
 import com.DS.quartz.dao.QuartzDao;
 import com.DS.quartz.service.QuartzService;
+import com.DS.quartz.vo.QuartzTransferVo;
 import com.DS.utils.CronUtil;
 import com.DS.utils.quartz.QuartzManager;
 import com.jfinal.plugin.activerecord.Record;
@@ -10,7 +14,7 @@ import com.jfinal.plugin.activerecord.Record;
  * @author jeff
  * 调度任务服务实现层
  */
-public class QuartzSercviceImpl implements QuartzService {
+public class QuartzServiceImpl implements QuartzService {
 	
 	/***
 	 * 根据调度任务获取调度任务的相关信息
@@ -53,6 +57,31 @@ public class QuartzSercviceImpl implements QuartzService {
 		}
 		QuartzManager.addJob(bean.getJobName(), bean.getJobName(), bean.getTriggerName(), bean.getTriggerGroup(), jobClass, bean.getCron(), bean.getDescription());
 		
+	}
+
+	@Override
+	public Map transfer(QuartzTransferVo paramVo) {
+		  Map<String, String> map = new HashMap<String, String>();
+		  String cron="";
+		  if(paramVo.getWeekType()!=null&&paramVo.getPeriod().equals("week")){
+			  paramVo.setPeriod(paramVo.getWeekType());
+		  }		
+		  if(paramVo.getDataStr()==null||paramVo.getDataStr().equals("")){
+			  map.put("code", "409");
+			  return map;
+		  }		  		 
+		  try {
+			if(paramVo.getPeriod()!=null&&!paramVo.getPeriod().equals("once")){
+				cron=CronUtil.getCron(paramVo.getPeriod(), paramVo.getDataStr());
+			}else{
+				cron=CronUtil.getCronByOnce(paramVo.getDataStr()); 
+				}
+			} catch (ParseException e) {
+				e.printStackTrace();
+			}		  		
+		  map.put("code", "200");
+		  map.put("cron", cron);
+		return map;
 	}
    
 }

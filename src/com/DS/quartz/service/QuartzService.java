@@ -1,5 +1,8 @@
 package com.DS.quartz.service;
+import java.util.Map;
+
 import com.DS.Bean.QuartzTaskBean;
+import com.DS.quartz.vo.QuartzTransferVo;
 import com.jfinal.plugin.activerecord.Record;
 /***
  * 
@@ -26,4 +29,6 @@ public interface QuartzService {
 	void modifyJobTime(QuartzTaskBean bean);
 	
 	void addJob(QuartzTaskBean bean);
+	
+	Map transfer(QuartzTransferVo paramVo);
 }
