@@ -13,15 +13,15 @@ $(function(){
 	         weekStart:1
 	     }); 
 		
-	    remindTable=$('#remindTable').DataTable({
+	     remindTable=$('#remindTable').DataTable({
 			language: {
 		     "url": basepath+"/json/datatables_language.json"
 		 },
 		 bFilter: false, //去掉默认搜索框
 		 bLengthChange: false, //去掉显示总页数
 		 ordering: false, // 禁止排序
-		 serverSide: true,
-		 pageLength:8,
+		 serverSide: true,//开启服务器模式
+		 pageLength:8,//每页显示的数据的条数
 		 ajax: {
 		     url: basepath+'/remind/getRemindDetails',
 		     type: 'POST'
@@ -159,11 +159,12 @@ $(function(){
 						success:function(msg){
 							if(msg.code==233){
 								remindTable.ajax.reload(null,false);
-								$.scojs_message('删除成功！', $.scojs_message.TYPE_OK);								
+								//$.scojs_message('删除成功！', $.scojs_message.TYPE_OK);	
+								toastrSuccess("删除成功！",3000);
 							}else{
-								$.scojs_message('删除失败！', $.scojs_message.TYPE_ERROR);
-							}
-							
+								//$.scojs_message('删除失败！', $.scojs_message.TYPE_ERROR);
+								toastrError("删除失败！",3000);
+							}							
 						}
 					});					 
 					layer.closeAll();
@@ -203,6 +204,9 @@ function cutString(str, len) {
     return s;
 }
 
+/****
+ * 重新加载页面数据
+ */
 function reloadTable(){
 	var startDates = $("#datetimepicker1").val();
     var endDates = $("#datetimepicker2").val();

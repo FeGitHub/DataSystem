@@ -1,3 +1,6 @@
+/****
+ * 创建调度器任务页面的js
+ */
 $(function(){
 	getAllJobList();
 	$(".form_date").datetimepicker({
@@ -70,8 +73,11 @@ $("#submitBtn").click(function(){
 		data:$("#qrtzForm").serialize(),
 		dataType: "json",
 		success:function(data){
-			if(data.code=200){							
-			}			
+			if(data.code=200){	
+				toastrSuccess(data.msg,3000);
+			}else{
+				toastrError(data.msg,3000);
+			}		
 		}
 	});
 });

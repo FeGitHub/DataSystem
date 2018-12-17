@@ -4,6 +4,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import com.DS.web.base.BaseController;
 import com.jfinal.aop.Clear;
 import com.jfinal.core.Controller;
 /***
@@ -12,7 +13,7 @@ import com.jfinal.core.Controller;
  * 为了方便跳转用于测试页面的控制器
  *
  */
-public class GoController extends Controller{
+public class GoController extends BaseController{
 		 public void goMenu(){
 		 	   render("main.jsp");
 		 }

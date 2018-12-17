@@ -2,10 +2,9 @@ package com.DS.quartz.service.impl;
 import java.text.ParseException;
 import java.util.HashMap;
 import java.util.Map;
-
 import com.DS.Bean.QuartzTaskBean;
-import com.DS.quartz.dao.QuartzDao;
 import com.DS.quartz.service.QuartzService;
+import com.DS.quartz.vo.QuartzParamVo;
 import com.DS.quartz.vo.QuartzTransferVo;
 import com.DS.utils.CronUtil;
 import com.DS.utils.quartz.QuartzManager;
@@ -16,16 +15,7 @@ import com.jfinal.plugin.activerecord.Record;
  */
 public class QuartzServiceImpl implements QuartzService {
 	
-	/***
-	 * 根据调度任务获取调度任务的相关信息
-	 * @param jobName 调度任务名
-	 * @return
-	 */
-	@Override
-	public Record getQuartzTaskByName(String jobName) {
-		QuartzDao q=new QuartzDao();
-		return q.getQuartzTaskByName(jobName);
-	}	
+	
 	
 	/***
 	 * 改变调度器任务触发时间
@@ -58,10 +48,13 @@ public class QuartzServiceImpl implements QuartzService {
 		QuartzManager.addJob(bean.getJobName(), bean.getJobName(), bean.getTriggerName(), bean.getTriggerGroup(), jobClass, bean.getCron(), bean.getDescription());
 		
 	}
-
+	
+	/****
+	 * 将普通日期转换成Cron表达式
+	 */
 	@Override
-	public Map transfer(QuartzTransferVo paramVo) {
-		  Map<String, String> map = new HashMap<String, String>();
+	public Map<String,Object> transfer(QuartzTransferVo paramVo) {
+		  Map<String,Object> map = new HashMap<String,Object>();
 		  String cron="";
 		  if(paramVo.getWeekType()!=null&&paramVo.getPeriod().equals("week")){
 			  paramVo.setPeriod(paramVo.getWeekType());
@@ -83,5 +76,14 @@ public class QuartzServiceImpl implements QuartzService {
 		  map.put("cron", cron);
 		return map;
 	}
+	
+	/****
+	 * 删除调度任务
+	 */
+	@Override
+	public void removeJob(QuartzParamVo vo) {
+		QuartzManager.removeJob(vo.getJobName(), vo.getJobGroupName(), vo.getTriggerName(), vo.getTriggerGroupName());	
+	}
    
+	
 }

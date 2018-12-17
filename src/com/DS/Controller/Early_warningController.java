@@ -5,6 +5,7 @@ import java.util.List;
 import java.util.Map;
 import com.DS.Bean.MaterialBean;
 import com.DS.utils.JsonUtil;
+import com.DS.web.base.BaseController;
 import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONArray;
 import com.jfinal.core.Controller;
@@ -14,7 +15,7 @@ import com.jfinal.plugin.activerecord.Record;
  * @author jeff
  *	用于预警信息的控制器
  */
-public class Early_warningController extends Controller {	
+public class Early_warningController extends BaseController {	
 	/***
 	 * 订单预警判定的测试入口，
 	 * 测试数据的准备

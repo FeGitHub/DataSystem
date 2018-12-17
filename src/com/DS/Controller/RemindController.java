@@ -5,14 +5,17 @@ import java.util.Map;
 import com.DS.Model.RemindModel;
 import com.DS.remind.service.RemindService;
 import com.DS.remind.service.impl.RemindServiceImpl;
-import com.jfinal.core.Controller;
+import com.DS.web.base.BaseController;
+import com.jfinal.aop.Inject;
 /***
  * 
  * @author jeff
  * 备忘提醒的控制器
  *
  */
-public class RemindController extends Controller {
+public class RemindController extends BaseController {
+	@Inject(RemindServiceImpl.class)
+	private RemindService remindService;
 	/***
 	 * 备忘提醒的管理页面
 	 */
@@ -24,16 +27,11 @@ public class RemindController extends Controller {
 	 * 获取预警规则信息
 	 */
 	public void getRemindDetails(){	
-		Map<String,Object> cond=new HashMap<String,Object>();
-		int start=Integer.parseInt(getPara("start"));
-		int length=Integer.parseInt(getPara("length"));
-		cond.put("startDates", getPara("startDates"));
-		cond.put("endDates", getPara("endDates"));
-		cond.put("taskName", getPara("taskName"));
-		cond.put("start", start);
-		cond.put("length", length);
-		RemindService remindService=new RemindServiceImpl();
-        renderJson(remindService.getRemindDetails(cond));
+		DivPageCondition=getDivPageCondition();
+		DivPageCondition.put("startDates", getPara("startDates"));
+		DivPageCondition.put("endDates", getPara("endDates"));
+		DivPageCondition.put("taskName", getPara("taskName"));				
+        renderJson(remindService.getRemindDetails(DivPageCondition));
 		
 	}
 	

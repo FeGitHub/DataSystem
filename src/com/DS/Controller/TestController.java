@@ -1,11 +1,11 @@
 package com.DS.Controller;
 import com.DS.Model.TestModel;
+import com.DS.web.base.BaseController;
 import com.jfinal.aop.Clear;
 import com.jfinal.core.ActionKey;
 import com.jfinal.core.Controller;
 import com.jfinal.plugin.activerecord.Db;
 import com.jfinal.plugin.activerecord.Record;
-
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.PrintWriter;
@@ -13,7 +13,6 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import com.google.gson.Gson;
@@ -25,7 +24,7 @@ import com.google.gson.GsonBuilder;
  * 用于测试
  *
  */
-public class TestController extends Controller {
+public class TestController extends BaseController {
 	
     /***
      *   默认的执行方式

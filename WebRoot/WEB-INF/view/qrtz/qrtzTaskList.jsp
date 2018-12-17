@@ -13,14 +13,14 @@
 	<form action="" class="form-inline" id="filterForm">	
 						<div class="form-group">
 					        <label>事项简称</label>
-					        <input type="text" class="form-control keepPlace" name="taskName" id="taskName">
+					        <input type="text" class="form-control keepPlace" name="jobName" id="jobName">
 					    </div>						    				       
 		               <div class="input-daterange input-group keepPlace">
-		               		<label>时间范围 &nbsp;&nbsp;&nbsp;</label>			                	       			                                
+		               		<!-- <label>时间范围 &nbsp;&nbsp;&nbsp;</label>			                	       			                                
 		                  	<span class="input-group-addon keepPlace"><i class="fa fa-calendar"></i></span>
 						    <input type="text" id="datetimepicker1" class="form-control quaryTime" name="startDates" style="width:180px;">
 						    <span class="input-group-addon">to</span>
-						    <input type="text" id="datetimepicker2" class="form-control quaryTime" name="endDates" style="width:180px;">
+						    <input type="text" id="datetimepicker2" class="form-control quaryTime" name="endDates" style="width:180px;"> -->
 						    	 <button type="button" id="querys" class="btn btn-info mt5 mr3 keepPlace" data-step="3" data-intro="点击查询按钮，按查询条件查出数据列表！">查询</button>	
 						    	 <button type="reset" id="reset" class="btn btn-default mt5 keepPlace" data-step="4" data-intro="点击重置将查询条件还原成默认查询状态！">重置</button>	
 						    	 <a type="button"  class="btn btn-default mt5 keepPlace" href="${BASE_PATH}/qrtz/goCreateQuartz">新增</a>				    	    
@@ -28,9 +28,9 @@
 	</form>	
 </div>
 <div class="tile">
-	<table id="qrtzTable" class="display">
+	<table id="qrtzTable" class="display" style="width:100%">
     <thead>
-        <tr>
+        <tr>        
             <th>调度任务</th>
             <th>任务组名</th>
             <th>任务描述</th>
@@ -69,7 +69,6 @@
        <form id="testFrom">
 		<table class="table table-bordered table-hover">
           <tbody>
-          <!--第0行-->
             <tr>
 				<td class="va-m" width="30%"><span>调度任务</span></td>
               	<td>
@@ -90,7 +89,6 @@
 	                 </div>	  
               	</td>              	
             </tr>
-            <!--第1行-->
 			 <tr>
 				<td class="va-m" width="30%"><span>触发器名</span></td>
               	<td>
@@ -121,18 +119,12 @@
 	                 </div>	  
               	</td>              	
             </tr>
-            <!--第2行-->
             <tr>
 				<td class="va-m" width="30%"><span>表达式值</span></td>
               	<td>
 	              	<div class="row">
 	                  	<div class="col-sm-12">	  
-	                  	 <input  name="record.dateStr" id="dateStr" class="form-control validate[required] form_date" placeholder="" maxlength="20" type="text" readonly>                                                                  
-			                  		<!-- <div class="input-group date form_date col-md-4" data-date="" data-date-format="dd MM yyyy" data-link-field="dtp_input2" data-link-format="yyyy-mm-dd">
-				                    		<input name="record.dateStr" id="dateStr" class="form-control validate[required]"  type="text" value="" readonly style="width:300px;">
-				                    		<span class="input-group-addon"><span class="glyphicon glyphicon-remove"></span></span>
-											<span class="input-group-addon"><span class="glyphicon glyphicon-calendar"></span></span> 
-                					</div> -->
+	                  	 <input  name="record.dateStr" id="dateStr" class="form-control validate[required] form_date" placeholder="" maxlength="20" type="text" readonly>                                                                  			                  		
 	                  	 </div>	                  	
 	                 </div>	  
               	</td>              	
@@ -143,6 +135,6 @@
       </div>
     </div>
 </template>
-<script src="${BASE_PATH}/js/pagejs/qrtzTable.js"></script>
+<script src="${BASE_PATH}/js/pagejs/qrtzTaskList.js"></script>
 </body>
 </html>

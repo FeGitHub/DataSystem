@@ -2,6 +2,7 @@ package com.DS.quartz.service;
 import java.util.Map;
 
 import com.DS.Bean.QuartzTaskBean;
+import com.DS.quartz.vo.QuartzParamVo;
 import com.DS.quartz.vo.QuartzTransferVo;
 import com.jfinal.plugin.activerecord.Record;
 /***
@@ -11,12 +12,7 @@ import com.jfinal.plugin.activerecord.Record;
  *
  */
 public interface QuartzService {
-	/***
-	 * 根据调度任务获取调度任务的相关信息
-	 * @param jobName 调度任务名
-	 * @return
-	 */
-	Record getQuartzTaskByName(String jobName);
+	
 	
 	/***
 	 * 
@@ -31,4 +27,6 @@ public interface QuartzService {
 	void addJob(QuartzTaskBean bean);
 	
 	Map transfer(QuartzTransferVo paramVo);
+	
+	void removeJob(QuartzParamVo vo);
 }

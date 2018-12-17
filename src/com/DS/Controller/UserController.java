@@ -1,6 +1,7 @@
 package com.DS.Controller;
 import java.util.List;
 import com.DS.Model.UserModel;
+import com.DS.web.base.BaseController;
 import com.jfinal.core.Controller;
 /***
  * 
@@ -8,7 +9,7 @@ import com.jfinal.core.Controller;
  * 用户信息处理
  *
  */
-public class UserController extends Controller {
+public class UserController extends BaseController {
 	public void index(){
 		 List<UserModel> blogs=UserModel.dao.find("select * from user");
 	        renderJson(blogs);//传递json数据
