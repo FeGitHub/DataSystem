@@ -1,14 +1,16 @@
 /***
  * quartz任务调度信息页面
  */
+var qrtzTable;
 $(function(){	 
-       var qrtzTable=$('#qrtzTable').DataTable({
+        qrtzTable=$('#qrtzTable').DataTable({
     	language: {
             "url": basepath+"/json/datatables_language.json"//国际化文件的文件资源
         },
         ordering: false, //禁止排序
         ajax: {
             url: basepath+'/qrtz/getJobDetails',
+            type: 'POST'
         },
          bFilter: false, //去掉默认搜索框
 		 bLengthChange: false, //去掉显示总页数
@@ -147,4 +149,28 @@ $(function(){
 	    }); 	    	    
 } );
 
+/***
+ * 重新过滤表格数据
+ */
+function queryTable(){
+        var queryJobName=$("#queryJobName").val();
+	    var param = {
+		    	 "jobName":queryJobName
+	    };
+	    qrtzTable.settings()[0].ajax.data = param;
+	    qrtzTable.ajax.reload();
+}
+/****
+ * 查询数据
+ */
+$("#querys").click(function(){	
+	queryTable();
+});
 
+/***
+ * 重置
+ */
+$("#reset").click(function(){
+	$("#queryJobName").val("")
+	queryTable();	
+});

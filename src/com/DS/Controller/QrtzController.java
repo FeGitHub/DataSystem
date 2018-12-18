@@ -35,7 +35,7 @@ public class QrtzController extends BaseController{
 	/***
 	 * 跳转到调取任务列表页面
 	 */
-	public void goQuartzJob(){
+	public void goQrtzTaskList(){
 		render("qrtzTaskList.jsp");
 	}
 	

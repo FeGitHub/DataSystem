@@ -85,7 +85,7 @@
         <li class="treeview"><a class="app-menu__item" href="#" data-toggle="treeview"><i class="app-menu__icon fa fa-laptop"></i><span class="app-menu__label">数据表格</span><i class="treeview-indicator fa fa-angle-right"></i></a>
           <ul class="treeview-menu">
             <li><a href="${BASE_PATH}/remind/goRemindList" class="treeview-item" href="bootstrap-components.html"><i class="icon fa fa-circle-o"></i> 备忘提醒</a></li>
-            <li><a class="treeview-item" href="${BASE_PATH}/qrtz/goQuartzJob" target="_blank" rel="noopener"><i class="icon fa fa-circle-o"></i> 调度任务</a></li>
+            <li><a class="treeview-item" href="${BASE_PATH}/qrtz/goQrtzTaskList" target="_blank" rel="noopener"><i class="icon fa fa-circle-o"></i> 调度任务</a></li>
             <li><a class="treeview-item" href="ui-cards.html"><i class="icon fa fa-circle-o"></i> Cards</a></li>
             <li><a class="treeview-item" href="widgets.html"><i class="icon fa fa-circle-o"></i> Widgets</a></li>
           </ul>
@@ -173,23 +173,7 @@
     <script src="${BASE_PATH}/TemplatePlug/vali/js/plugins/pace.min.js"></script>
     <script src="${BASE_PATH}/js/jquery.dataTables.min.js"></script>
     <script type="text/javascript" src="${BASE_PATH}/TemplatePlug/vali/js/plugins/chart.js"></script> 
-	  <script type="text/javascript">
-	    var basepath= '${BASE_PATH}';
-	  </script>
-	  <script type="text/javascript" src="${BASE_PATH}/js/layer/layer.js"></script>
-<script type="text/javascript">
-$("#loginOut").click(function(){
-		layer.confirm('您确定要退出吗？', {			
-		    btn: ['确定', '取消'], //按钮
-		    skin: 'btnClass',
-		    icon: 2,
-		    title: "提示",
-}, function () {
-    layer.closeAll('dialog');       
-    var url="${BASE_PATH}/login/signOut";
-    $(location).attr("href",url );
-});
-});
-</script>
+	<script type="text/javascript" src="${BASE_PATH}/js/layer/layer.js"></script>
+	<script type="text/javascript" src="${BASE_PATH}/js/pagejs/template.js"></script>
   </body>
 </html>

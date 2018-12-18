@@ -8,8 +8,8 @@ import org.apache.log4j.Logger;
 import org.quartz.Job;
 import org.quartz.JobExecutionContext;
 import org.quartz.JobExecutionException;
-import com.DS.Config.CommonConfig;
 import com.DS.utils.FileUtil;
+import com.jfinal.kit.PropKit;
 /***
  * @author jeff
  * 定时删除不必要的数据库文件
@@ -24,7 +24,7 @@ public class DeleteSqlFileJob implements Job{
 		delSqlFile();
 	}
 	public static void delSqlFile(){
-		String path=CommonConfig.DBPath;//数据库备份存放的位置		
+		String path=PropKit.use("CommonConfig.properties").get("DBPath");//数据库备份存放的位置		
 		ArrayList<String> pathlist=FileUtil.getFilePaths(path);//备份数据库文件夹下的所有备份sql文件
 		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
 		Date now = new Date();

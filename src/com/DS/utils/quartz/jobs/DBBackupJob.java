@@ -12,21 +12,30 @@ import org.apache.log4j.Logger;
 import org.quartz.Job;
 import org.quartz.JobExecutionContext;
 import org.quartz.JobExecutionException;
-import com.DS.Config.CommonConfig;
+import com.jfinal.kit.Prop;
+import com.jfinal.kit.PropKit;
 /***
  * 备份数据库的任务类
  * @author jeff 
  *
  */
 public class DBBackupJob implements Job{
-	private static Logger logger = Logger.getLogger(DBBackupJob.class); 
-	private static String hostIP="127.0.0.1";//hostIP MySQL数据库所在服务器地址IP
-	private static String userName="root";//userName 进入数据库所要的用户
-	private static String password="root";//password 进入数据库所要的密码
-	private static String savePath=CommonConfig.DBPath;//数据库导出文件保存路径
+	private static Logger logger = Logger.getLogger(DBBackupJob.class);
+	//以下是数据库资源备份默认配置
+	private static String hostIP="127.0.0.1";//MySQL数据库所在服务器地址IP
+	private static String userName="root";//进入数据库所要的用户
+	private static String password="root";//进入数据库所要的密码
+	private static String savePath="C:/MysqlBackup";//数据库导出文件保存路径
 	private static String fileName="";//数据库导出文件文件名
 	private static String databaseName="jfinal_demo";//要备份的数据库名称
 	public void execute(JobExecutionContext arg0) throws JobExecutionException {
+			//重新加载数据库备份文件资源
+		    Prop p =PropKit.use("CommonConfig.properties");
+			hostIP=p.get("hostIP");
+		    savePath=p.get("DBPath");
+		    userName=p.get("userName");
+		    password=p.get("password");
+		    databaseName=p.get("databaseName");		    
 		    Date d = new Date();   
 	        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");  
 	        fileName= sdf.format(d)+".sql";  
@@ -100,6 +109,6 @@ public class DBBackupJob implements Job{
 		} catch (InterruptedException e) {
 			e.printStackTrace();
 		}
-
 	}
+	
 }
