@@ -1,4 +1,5 @@
 package com.DS.common.model.base;
+
 import com.jfinal.plugin.activerecord.Model;
 import com.jfinal.plugin.activerecord.IBean;
 

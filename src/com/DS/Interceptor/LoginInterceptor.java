@@ -1,8 +1,8 @@
 package com.DS.Interceptor;
 import javax.servlet.http.HttpSession;
-import com.DS.Model.UserModel;
 import com.jfinal.aop.Interceptor;
 import com.jfinal.aop.Invocation;
+import com.jfinal.plugin.activerecord.Record;
 /***
  * 登录验证的拦截器
  * @author jeff
@@ -16,7 +16,7 @@ public class LoginInterceptor implements Interceptor{
 			inv.getController().redirect("/");
 		}
 		else{
-			UserModel user = (UserModel)session.getAttribute("user");
+			Record user = (Record)session.getAttribute("user");
 			if(user!= null) {
 				inv.invoke();
 			}

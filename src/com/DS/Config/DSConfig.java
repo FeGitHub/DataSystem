@@ -6,7 +6,6 @@ import com.DS.Controller.GoController;
 import com.DS.Controller.QrtzController;
 import com.DS.Controller.RemindController;
 import com.DS.Controller.RemoteHTTPAction;
-import com.DS.Controller.TestController;
 import com.DS.Controller.UserController;
 import com.DS.Controller.indexController;
 import com.DS.Interceptor.LoginInterceptor;
@@ -45,7 +44,6 @@ public class DSConfig extends JFinalConfig {
     public void configRoute(Routes me) {
         me.setBaseViewPath("/WEB-INF/view/"); //默认视图路径
         me.add("/", indexController.class);//默认处理
-        me.add("/test", TestController.class);//用于测试
         me.add("/go", GoController.class);//用于跳转页面
         me.add("/login", LoginController.class);//登录处理
         me.add("/BlogData", BlogController.class);//博客数据
@@ -69,9 +67,9 @@ public class DSConfig extends JFinalConfig {
     	 ActiveRecordPlugin arp = new ActiveRecordPlugin(dp);
     	 arp.getEngine().setSourceFactory(new ClassPathSourceFactory());
     	 arp.addSqlTemplate("all.sql");
-    	 arp.setShowSql(true);//打开sql语句显示
+    	 arp.setShowSql(true);//打开sql语句显示 
+    	 _MappingKit.mapping(arp);    
     	 me.add(arp);
-    	 _MappingKit.mapping(arp);      
     }
     
     /***

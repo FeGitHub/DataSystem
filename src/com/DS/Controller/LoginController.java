@@ -1,12 +1,9 @@
 package com.DS.Controller;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-import com.DS.Model.UserModel;
+import com.DS.common.model.User;
 import com.DS.web.base.BaseController;
 import com.jfinal.aop.Clear;
-import com.jfinal.core.Controller;
+import com.jfinal.plugin.activerecord.Db;
+import com.jfinal.plugin.activerecord.Record;
 public class LoginController extends BaseController{
 	/*
 	 * 登陆验证
@@ -16,7 +13,7 @@ public class LoginController extends BaseController{
 	   String  account=getPara("username");
        String  password=getPara("password");
        String sql="select * from user where account=?";
-       UserModel user=UserModel.dao.findFirst(sql, account);
+       Record user=Db.findFirst(sql, account);
        if(user!=null&&user.getStr("password").equals(password)){
     	   setSessionAttr("user", user);
     	  redirect("/go/goMenu");//重定向	   

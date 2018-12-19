@@ -2,7 +2,7 @@ package com.DS.Controller;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
-import com.DS.Model.RemindModel;
+import com.DS.common.model.DsRemind;
 import com.DS.remind.service.RemindService;
 import com.DS.remind.service.impl.RemindServiceImpl;
 import com.DS.web.base.BaseController;
@@ -41,7 +41,7 @@ public class RemindController extends BaseController {
 	public void addRemindDetail(){
 		boolean result;
 		Map<String, String> map=new HashMap<String, String>();
-		RemindModel  record = getModel(RemindModel.class,"record");	
+		DsRemind  record = getModel(DsRemind.class,"record");	
 		if(record.getStr("id")!=""&&record.getStr("id")!=null){
 			result=record.update();
 		}else{
@@ -59,7 +59,7 @@ public class RemindController extends BaseController {
 	/***
 	 * 删除备忘事项
 	 */
-	public void delRemindDetail(){
+	/*public void delRemindDetail(){
 		String id=getPara("id");
 		Map<String, String> map=new HashMap<String, String>();
 		if(RemindModel.dao.deleteById(Integer.parseInt(id))){
@@ -69,5 +69,5 @@ public class RemindController extends BaseController {
         }
 		renderJson(map);
 	}
-	
+	*/
 }

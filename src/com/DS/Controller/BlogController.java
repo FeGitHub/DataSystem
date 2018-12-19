@@ -1,9 +1,7 @@
 package com.DS.Controller;
 import java.util.HashMap;
 import java.util.Map;
-import com.DS.Model.TestModel;
 import com.DS.web.base.BaseController;
-import com.jfinal.core.Controller;
 import com.jfinal.plugin.activerecord.Db;
 import com.jfinal.plugin.activerecord.Record;
 

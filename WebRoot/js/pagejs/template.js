@@ -9,7 +9,7 @@ $("#loginOut").click(function(){
 				    title: "提示",
 		}, function () {
 		    layer.closeAll('dialog');       
-		    var url="${BASE_PATH}/login/signOut";
+		    var url=basepath+"/login/signOut";
 		    $(location).attr("href",url );
 		});
 });
