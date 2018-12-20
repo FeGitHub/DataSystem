@@ -1,9 +1,11 @@
-package com.DS.Controller;
-import com.DS.common.model.User;
+package com.DS.controller;
+import java.util.HashMap;
+import java.util.Map;
 import com.DS.web.base.BaseController;
 import com.jfinal.aop.Clear;
 import com.jfinal.plugin.activerecord.Db;
 import com.jfinal.plugin.activerecord.Record;
+import com.jfinal.plugin.activerecord.SqlPara;
 public class LoginController extends BaseController{
 	/*
 	 * 登陆验证
@@ -12,8 +14,10 @@ public class LoginController extends BaseController{
    public void index(){
 	   String  account=getPara("username");
        String  password=getPara("password");
-       String sql="select * from user where account=?";
-       Record user=Db.findFirst(sql, account);
+       Map<String,Object> paramMap=new HashMap<String,Object>();
+       paramMap.put("account", account);
+       SqlPara sql=Db.getSqlPara("user.getUserInfoByAccount", paramMap);
+       Record user=Db.findFirst(sql);
        if(user!=null&&user.getStr("password").equals(password)){
     	   setSessionAttr("user", user);
     	  redirect("/go/goMenu");//重定向	   

@@ -1,4 +1,4 @@
-package com.DS.Bean;
+package com.DS.bean;
 /***
  * 	物料的javaBean
  *

@@ -1,4 +1,4 @@
-package com.DS.Interceptor;
+package com.DS.interceptor;
 import javax.servlet.http.HttpSession;
 import com.jfinal.aop.Interceptor;
 import com.jfinal.aop.Invocation;

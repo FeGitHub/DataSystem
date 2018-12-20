@@ -1,7 +1,8 @@
-package com.DS.Controller;
+package com.DS.controller;
 import java.util.List;
 import java.util.Map;
-import com.DS.Bean.QuartzTaskBean;
+
+import com.DS.bean.QuartzTaskBean;
 import com.DS.quartz.service.QuartzService;
 import com.DS.quartz.service.impl.QuartzServiceImpl;
 import com.DS.quartz.vo.QuartzParamVo;

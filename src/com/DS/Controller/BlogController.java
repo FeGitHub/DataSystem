@@ -1,4 +1,4 @@
-package com.DS.Controller;
+package com.DS.controller;
 import java.util.HashMap;
 import java.util.Map;
 import com.DS.web.base.BaseController;

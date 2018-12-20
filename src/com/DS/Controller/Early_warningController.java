@@ -1,9 +1,10 @@
-package com.DS.Controller;
+package com.DS.controller;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import com.DS.Bean.MaterialBean;
+
+import com.DS.bean.MaterialBean;
 import com.DS.utils.JsonUtil;
 import com.DS.web.base.BaseController;
 import com.alibaba.fastjson.JSON;

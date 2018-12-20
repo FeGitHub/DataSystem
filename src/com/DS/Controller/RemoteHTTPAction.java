@@ -1,4 +1,4 @@
-package com.DS.Controller;
+package com.DS.controller;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.PrintWriter;
