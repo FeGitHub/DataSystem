@@ -2,13 +2,14 @@ package com.DS.quartz.service.impl;
 import java.text.ParseException;
 import java.util.HashMap;
 import java.util.Map;
-import com.DS.Bean.QuartzTaskBean;
+
+import com.DS.bean.QuartzTaskBean;
 import com.DS.quartz.service.QuartzService;
 import com.DS.quartz.vo.QuartzParamVo;
 import com.DS.quartz.vo.QuartzTransferVo;
 import com.DS.utils.CronUtil;
 import com.DS.utils.quartz.QuartzManager;
-import com.jfinal.plugin.activerecord.Record;
+
 /***
  * @author jeff
  * 调度任务服务实现层
@@ -39,7 +40,8 @@ public class QuartzServiceImpl implements QuartzService {
 		bean.setTriggerName(bean.getJobName()+"TriggerName");
 		bean.setTriggerGroup(bean.getJobGroup()+"TriggerGroup");		
 		bean.setJobClassStr(bean.getJobClassStr());
-	    Class jobClass=null;
+	    @SuppressWarnings("rawtypes")
+		Class jobClass=null;
 		try {
 			jobClass = Class.forName(bean.getJobClassStr());
 		} catch (ClassNotFoundException e) {
