@@ -51,4 +51,5 @@ public abstract class BaseController extends Controller{
 			DivPageCondition.put("length", length);	
 			return DivPageCondition;
 	 }
+	 
 }

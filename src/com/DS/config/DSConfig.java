@@ -10,6 +10,7 @@ import com.DS.controller.RemoteHTTPAction;
 import com.DS.controller.UserController;
 import com.DS.controller.indexController;
 import com.DS.interceptor.LoginInterceptor;
+import com.DS.utils.SecretUtil;
 import com.jfinal.config.*;
 import com.jfinal.ext.handler.ContextPathHandler;
 import com.jfinal.ext.handler.UrlSkipHandler;
@@ -88,7 +89,9 @@ public class DSConfig extends JFinalConfig {
    
     public static DruidPlugin createDruidPlugin() {
     	 PropKit.use("DB.properties");
-		return new DruidPlugin(PropKit.get("jdbcUrl"), PropKit.get("user"), PropKit.get("password").trim());
+    	 String password=PropKit.get("password").trim();
+    	 password=SecretUtil.decrypt(password);
+		 return new DruidPlugin(PropKit.get("jdbcUrl"), PropKit.get("user"), password);
 	}
 
 }

@@ -2,6 +2,7 @@ package com.DS.controller;
 import java.util.Map;
 import com.DS.common.model.User;
 import com.DS.utils.ObjectUtil;
+import com.DS.utils.SecretUtil;
 import com.DS.web.base.BaseController;
 import com.jfinal.aop.Clear;
 import com.jfinal.plugin.activerecord.Db;
@@ -22,7 +23,8 @@ public class LoginController extends BaseController{
        Map<String,Object> paramMap=ObjectUtil.convertBeanToMap(user);
        SqlPara sql=Db.getSqlPara("user.getUserInfoByAccount", paramMap);
        Record record=Db.findFirst(sql);
-       if(record!=null&&record.getStr("password").equals(user.getPassword())){
+   	   String password = SecretUtil.getMD5(user.getPassword());
+       if(record!=null&&record.getStr("password").equals(password)){
     	   setSessionAttr("user", record);
     	   redirect("/go/goMenu");//重定向	   
        }else{
