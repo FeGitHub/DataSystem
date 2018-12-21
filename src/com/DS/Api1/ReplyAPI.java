@@ -1,4 +1,4 @@
-package com.DS.api;
+package com.DS.Api1;
 /***
  * 
  * 用于远程调用的接口

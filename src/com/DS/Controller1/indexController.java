@@ -1,4 +1,4 @@
-package com.DS.controller;
+package com.DS.Controller1;
 
 import com.DS.web.base.BaseController;
 import com.jfinal.aop.Clear;

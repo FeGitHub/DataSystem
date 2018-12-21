@@ -1,4 +1,4 @@
-package com.DS.config;
+package com.DS.Config1;
 import com.DS.common.model._MappingKit;
 import com.DS.controller.BlogController;
 import com.DS.controller.Early_warningController;

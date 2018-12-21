@@ -1,4 +1,4 @@
-package com.DS.controller;
+package com.DS.Controller1;
 import java.util.List;
 import com.DS.web.base.BaseController;
 import com.jfinal.plugin.activerecord.Db;

@@ -1,4 +1,4 @@
-package com.DS.config;
+package com.DS.Config1;
 import com.jfinal.core.JFinal;
 /***
  * -------------
