@@ -1,14 +1,12 @@
 package com.DS.common.model;
 import javax.sql.DataSource;
-
-import com.DS.config.DSConfig;
+import com.DS.Config.DSConfig;
 import com.jfinal.kit.PathKit;
 import com.jfinal.plugin.activerecord.dialect.MysqlDialect;
 import com.jfinal.plugin.activerecord.generator.Generator;
 import com.jfinal.plugin.druid.DruidPlugin;
 /**
  * 在数据库表有任何变动时，运行一下 main 方法，极速响应变化进行代码重构
- * 运行后代码在项目中不会立刻出现，建议直接去工程下拷贝覆盖
  */
 public class _JFinalDemoGenerator {
 	

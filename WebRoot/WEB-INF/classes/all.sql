@@ -8,8 +8,3 @@
 #namespace("qrtz")
 #include("com/DS/quartz/dao/qrtz.sql")
 #end
-
-
-#namespace("user")
-#include("com/DS/user/dao/user.sql")
-#end
