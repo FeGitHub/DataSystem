@@ -1,4 +1,4 @@
-package com.DS.Controller1;
+package com.DS.controller;
 import java.util.List;
 import java.util.Map;
 

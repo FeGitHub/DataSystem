@@ -1,4 +1,4 @@
-package com.DS.Bean1;
+package com.DS.bean;
 
 public class QuartzTaskBean {
 	  private String jobName;//任务名
