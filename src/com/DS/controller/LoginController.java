@@ -1,26 +1,30 @@
 package com.DS.controller;
-import java.util.HashMap;
 import java.util.Map;
+import com.DS.common.model.User;
+import com.DS.utils.ObjectUtil;
 import com.DS.web.base.BaseController;
 import com.jfinal.aop.Clear;
 import com.jfinal.plugin.activerecord.Db;
 import com.jfinal.plugin.activerecord.Record;
 import com.jfinal.plugin.activerecord.SqlPara;
+/****
+ * 
+ * @author jeff
+ * 登陆登出控制器
+ */
 public class LoginController extends BaseController{
 	/*
 	 * 登陆验证
 	 */
 	@Clear
    public void index(){
-	   String  account=getPara("username");
-       String  password=getPara("password");
-       Map<String,Object> paramMap=new HashMap<String,Object>();
-       paramMap.put("account", account);
+	   User user=getModel(User.class,"");
+       Map<String,Object> paramMap=ObjectUtil.convertBeanToMap(user);
        SqlPara sql=Db.getSqlPara("user.getUserInfoByAccount", paramMap);
-       Record user=Db.findFirst(sql);
-       if(user!=null&&user.getStr("password").equals(password)){
-    	   setSessionAttr("user", user);
-    	  redirect("/go/goMenu");//重定向	   
+       Record record=Db.findFirst(sql);
+       if(record!=null&&record.getStr("password").equals(user.getPassword())){
+    	   setSessionAttr("user", record);
+    	   redirect("/go/goMenu");//重定向	   
        }else{
     	   redirect("/test/goHello");	
        } 

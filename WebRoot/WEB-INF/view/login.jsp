@@ -22,7 +22,7 @@
           <h3 class="login-head"><i class="fa fa-lg fa-fw fa-user"></i>登  陆</h3>
           <div class="form-group">
             <label class="control-label"></label>
-            <input class="form-control" type="text" placeholder="账号" autofocus name="username">
+            <input class="form-control" type="text" placeholder="账号" autofocus name="account">
           </div>
           <div class="form-group">
             <label class="control-label"></label>
