@@ -8,30 +8,56 @@ import java.util.List;
 import java.util.jar.JarEntry;  
 import java.util.jar.JarFile;  
 /****
- *  找到一个包下的所有类
+ *  java包的实用工具类
  *
  */
 public class PackageUtil {  
   
     public static void main(String[] args) throws Exception {  
-        String packageName = "com.DS.utils.quartz.jobs";  
+      /*  String packageName = "com.DS.utils.quartz.jobs";  
         // List<String> classNames = getClassName(packageName);  
         List<String> classNames = getClassName(packageName, false);  
         if (classNames != null) {  
             for (String className : classNames) {  
                 System.out.println(className);  
             }  
-        }  
+        }  */
+    	//clearWarPrefixStr("ff");
+      
     }  
-  
+   
+    /****
+     * 去除war打包在linux服务器上发布出现的路径问题
+     * 
+     */
+    public static String clearWarPrefixStr(String str){
+    	  //str="cat/apache-tomcat-8.5.37/webapps/DataSystem/WEB-INF/classes/com/DS/utils/quartz/jobs/DeleteSqlFileJob";
+    	  int beginIndex = str.lastIndexOf("classes/")+8;
+    	  str=str.substring(beginIndex, str.length());
+    	  str=str.replace("/", ".");
+    	  return str;
+    }
+    
     
     /** 
      * 获取某包下（包括该包的所有子包）所有类 
      * @param packageName 包名 
      * @return 类的完整名称 
      */  
-    public static List<String> getClassName(String packageName) {  
-        return getClassName(packageName, true);  
+    public static List<String> getClassName(String packageName) { 
+    	List<String> listClassNames=getClassName(packageName, true); 
+    	List<String> resultList=new ArrayList<String>();
+    	if(SystemUtil.isLinux()){ //对war包发布在linux服务器时的特殊处理  		   		
+    		if(listClassNames!=null){
+    			 for (String className : listClassNames) {     				
+    				 String tempStr=clearWarPrefixStr(className);
+    				 resultList.add(tempStr);
+    	            } 
+    		}
+    	}else{
+    		resultList=listClassNames;	
+    	}   	
+        return resultList;  
     }  
   
     /** 

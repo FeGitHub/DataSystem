@@ -10,7 +10,7 @@ $(function(){
         autoclose:true,
         todayHighlight: true,
         minuteStep: 1,
-        startDate:new Date(),//过往时间不可以填
+       // startDate:new Date(),//过往时间不可以填
         weekStart:1
     }); 
 });

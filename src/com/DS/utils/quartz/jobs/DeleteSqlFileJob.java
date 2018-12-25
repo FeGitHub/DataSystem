@@ -9,6 +9,8 @@ import org.quartz.Job;
 import org.quartz.JobExecutionContext;
 import org.quartz.JobExecutionException;
 import com.DS.utils.FileUtil;
+import com.DS.utils.SystemUtil;
+import com.jfinal.kit.Prop;
 import com.jfinal.kit.PropKit;
 /***
  * @author jeff
@@ -32,6 +34,10 @@ public class DeleteSqlFileJob implements Job{
 		String tempFileName;
 		long fileTime;//从sql文件名知道此备份文件产生的时间
 		long diff;//备份sql与今天的时间差
+		if(SystemUtil.isLinux()){
+			Prop linuxp =PropKit.use("linux.properties");
+			path=linuxp.get("DBPath");
+        }
 		if(pathlist.size()<10){
 			logger.info("数据库备份文件少于10份，不进行删除动作 ，备份文件地址为"+path); 
 			return;

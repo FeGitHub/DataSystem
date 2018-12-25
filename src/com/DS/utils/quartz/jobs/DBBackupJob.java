@@ -12,6 +12,8 @@ import org.apache.log4j.Logger;
 import org.quartz.Job;
 import org.quartz.JobExecutionContext;
 import org.quartz.JobExecutionException;
+
+import com.DS.utils.SystemUtil;
 import com.jfinal.kit.Prop;
 import com.jfinal.kit.PropKit;
 /***
@@ -38,7 +40,11 @@ public class DBBackupJob implements Job{
 		    databaseName=p.get("databaseName");		    
 		    Date d = new Date();   
 	        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");  
-	        fileName= sdf.format(d)+".sql";  
+	        fileName= sdf.format(d)+".sql"; 
+	        if(SystemUtil.isLinux()){//linux下的默认路径处理
+	        	Prop linuxp =PropKit.use("linux.properties");
+	        	savePath=linuxp.get("DBPath");
+	        }
 		try {
 			if (exportDatabaseTool()) {
 				logger.info("数据库备份成功！--备份文件地址为"+savePath);
