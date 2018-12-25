@@ -1,14 +1,5 @@
 package com.DS.config;
 import com.DS.common.model._MappingKit;
-import com.DS.controller.BlogController;
-import com.DS.controller.Early_warningController;
-import com.DS.controller.GoController;
-import com.DS.controller.LoginController;
-import com.DS.controller.QrtzController;
-import com.DS.controller.RemindController;
-import com.DS.controller.RemoteHTTPAction;
-import com.DS.controller.UserController;
-import com.DS.controller.indexController;
 import com.DS.interceptor.LoginInterceptor;
 import com.DS.utils.SecretUtil;
 import com.jfinal.config.*;
@@ -44,16 +35,9 @@ public class DSConfig extends JFinalConfig {
      */
     public void configRoute(Routes me) {
         me.setBaseViewPath("/WEB-INF/view/"); //默认视图路径
-        me.add("/", indexController.class);//默认处理
-        me.add("/go", GoController.class);//用于跳转页面
-        me.add("/login", LoginController.class);//登录处理
-        me.add("/BlogData", BlogController.class);//博客数据
-        me.add("/user",UserController.class);//用户
-        me.add("/RemoteAction",RemoteHTTPAction.class);//提供给远程调用的action
-        me.add("/qrtz",QrtzController.class);//提供给远程调用的action
-        me.add("/warn",Early_warningController.class);//预警信息
-        me.add("/remind",RemindController.class);//备忘提醒的相关处理
+        _MappingRoute.mapping(me);
     }
+    
     @Override
     public void configEngine(Engine engine) {
     	

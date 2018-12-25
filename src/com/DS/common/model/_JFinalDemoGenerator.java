@@ -1,6 +1,5 @@
 package com.DS.common.model;
 import javax.sql.DataSource;
-
 import com.DS.config.DSConfig;
 import com.jfinal.kit.PathKit;
 import com.jfinal.plugin.activerecord.dialect.MysqlDialect;
