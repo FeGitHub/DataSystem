@@ -5,8 +5,11 @@ import java.util.Map;
 import com.DS.common.model.DsRemind;
 import com.DS.remind.service.RemindService;
 import com.DS.remind.service.impl.RemindServiceImpl;
+import com.DS.utils.ObjectUtil;
 import com.DS.web.base.BaseController;
 import com.jfinal.aop.Inject;
+import com.jfinal.plugin.activerecord.Db;
+import com.jfinal.plugin.activerecord.SqlPara;
 /***
  * 
  * @author jeff
@@ -38,36 +41,39 @@ public class RemindController extends BaseController {
 	/****
 	 * 添加备忘事项
 	 */
-	public void addRemindDetail(){
-		boolean result;
-		Map<String, String> map=new HashMap<String, String>();
-		DsRemind  record = getModel(DsRemind.class,"record");	
+	public void updateRemindDetail(){	
+		int result;
+		DsRemind  record = getModel(DsRemind.class,"");	
 		if(record.getStr("id")!=""&&record.getStr("id")!=null){
-			result=record.update();
+			Map<String,Object> paramMap=ObjectUtil.convertBeanToMap(record);
+		    SqlPara updateSql=Db.getSqlPara("remind.updateData", paramMap);
+		    result=Db.update(updateSql);
 		}else{
-			record.set("addTime", new Date());
-			result=record.save();
+			Map<String,Object> paramMap=ObjectUtil.convertBeanToMap(record);
+			paramMap.put("addTime", new Date());
+		    SqlPara insertSql=Db.getSqlPara("remind.insertData", paramMap);
+		    result=Db.update(insertSql);
 		}
-		if(result){
-			map.put("code","233");
+		if(result>0){
+			renderJson(ajaxDoneSuccess("操作成功"));
 		}else{
-			map.put("code","444");
+			renderJson(ajaxDoneError("操作失败"));
 		}
-		renderJson(map);
+		
 	}
 	
-	/***
-	 * 删除备忘事项
+	/****
+	 * 删除备忘事务
 	 */
-	/*public void delRemindDetail(){
-		String id=getPara("id");
-		Map<String, String> map=new HashMap<String, String>();
-		if(RemindModel.dao.deleteById(Integer.parseInt(id))){
-			map.put("code","233");
-        }else{
-        	map.put("code","444");
-        }
-		renderJson(map);
+	public void delRemindDetail(){
+		Map<String,Object> paramMap=new HashMap<String,Object>();
+		paramMap.put("id", getPara("id"));
+		SqlPara delsql=Db.getSqlPara("remind.delById",paramMap);
+		int result=Db.update(delsql);
+		if(result>0){
+			renderJson(ajaxDoneSuccess("删除成功"));
+		}else{
+			renderJson(ajaxDoneError("删除失败"));
+		}
 	}
-	*/
 }

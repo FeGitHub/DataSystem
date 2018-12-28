@@ -24,5 +24,5 @@ public interface QuartzService {
 	
 	Map<String,Object> transfer(QuartzTransferVo paramVo);
 	
-	void removeJob(QuartzParamVo vo);
+	boolean removeJob(QuartzParamVo vo);
 }

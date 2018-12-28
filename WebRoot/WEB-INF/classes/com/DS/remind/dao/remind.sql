@@ -12,7 +12,7 @@
         #if(taskName)
             and remindName like concat('%', #para(taskName), '%')
         #end 
-        order by remindTime desc
+        order by addTime desc
         #if(start)
         	  limit #para(start),#para(length)
 	     #end 
@@ -33,4 +33,16 @@
             and remindName like concat('%', #para(taskName), '%')
         #end      
 	#end
-
+	
+	#sql("delById")
+		delete from ds_remind where id=#para(id)
+	#end
+	
+	#sql("insertData")
+		insert  into ds_remind (remindName,remindText,remindTime,mail,addTime) values (#para(remindName),#para(remindText),#para(remindTime),#para(mail),#para(addTime))
+	#end
+	
+	#sql("updateData")
+		update   ds_remind  set remindName=#para(remindName),remindText =#para(remindText),remindTime =#para(remindTime),mail =#para(mail)  where id=#para(id)
+	#end
+	

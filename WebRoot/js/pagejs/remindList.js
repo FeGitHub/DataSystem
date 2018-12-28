@@ -38,8 +38,8 @@ $(function(){
 		           { data: null,//操作部分
 		         	  "render": function ( data, type, full, meta ) {            
 		           		 var str = "<span id="+full.id+">";  
-		           		 str+="<button class='btn table_btn btn-primary btn-sm edtiBtn'  target='_blank' >修改</button>";
-		           		 str+="&nbsp;<button class='btn table_btn btn-danger btn-sm delBtn'  target='_blank'>删除</button>";
+		           		 str+="<button class='btn table_btn btn-primary btn-sm edtiBtn'  target='_blank' data-id='"+full.id+"'>修改</button>";
+		           		 str+="&nbsp;<button class='btn table_btn btn-danger btn-sm delBtn'  target='_blank' data-id='"+full.id+"'>删除</button>";
 		           		 str+="</span>";
 		           		 return str;
 		           	}
@@ -59,11 +59,11 @@ $(function(){
 	     */
 		$("body").on("click",".edtiBtn",function(){
 			var $operatingArea=$(this).parent();
-			var id=$operatingArea.attr("id");				
-		    var htm = $($('#testTemp').html());
+			var id=$(this).data("id");		
+		    var htm = $($('#remindTemp').html());
 			var _html='<div>'+htm[0].outerHTML+'</div>';			
 			$("#seeMethodModal .modal-body").html(_html);	
-			$("#recordId").val(id);
+			$("#remindId").val(id);
 			showEditData($operatingArea.parent().parent());
 			activateDatetimepicker($('.form_date'));
 			$("#seeMethodModal").modal("show");		
@@ -72,8 +72,8 @@ $(function(){
 		/***
 	     * function 新增备忘事务
 	     */
-		$("body").on("click",".addBtn",function(){
-		    var htm = $($('#testTemp').html());
+		$("body").on("click","#addBtn",function(){
+		   var htm = $($('#remindTemp').html());
 			var _html='<div>'+htm[0].outerHTML+'</div>';			
 			$("#seeMethodModal .modal-body").html(_html);	
 			activateDatetimepicker($('.form_date'));
@@ -84,18 +84,20 @@ $(function(){
 	     * function 提交表单数据
 	     */
 		$("body").on("click","#submitBtn",function(){	
-			if($("#testFrom").validationEngine('validate')){
+			console.log($("#remindForm").serialize());
+			if($("#remindForm").validationEngine('validate')){
 				$.ajax({
-					url:basepath+"/remind/addRemindDetail",
+					url:basepath+"/remind/updateRemindDetail",
 					type:"post",
 					dataType:"json",
-					data:$("#testFrom").serialize(),
-					success:function(msg){
+					data:$("#remindForm").serialize(),
+					success:function(data){
 						$("#seeMethodModal").modal("hide");
-						if(msg.code==233){
-							remindTable.ajax.reload(null,false);//重新加载当前页表格数据
+						if(data.code==200){
+							remindTable.ajax.reload(null,false);
+							toastrSuccess(data.msg,3000);
 						}else{
-							alert("fail");
+							toastrError(data.msg,3000);
 						}
 					}					
 				});
@@ -144,7 +146,7 @@ $(function(){
 	     * function 删除备忘事务
 	     */
 		$("body").on("click",".delBtn",function(){
-			var id=$(this).parent().attr("id");
+			var id=$(this).data("id");
 			var info={"id":id}
 			layer.confirm('确定删除？', {
 				  btn: ['确定','取消'] //按钮
@@ -154,14 +156,12 @@ $(function(){
 						type:"post",
 						data:info,
 						dataType:"json",
-						success:function(msg){
-							if(msg.code==233){
+						success:function(data){
+							if(data.code==200){							
 								remindTable.ajax.reload(null,false);
-								//$.scojs_message('删除成功！', $.scojs_message.TYPE_OK);	
-								toastrSuccess("删除成功！",3000);
-							}else{
-								//$.scojs_message('删除失败！', $.scojs_message.TYPE_ERROR);
-								toastrError("删除失败！",3000);
+								toastrSuccess(data.msg,3000);
+							}else{							
+								toastrError(data.msg,3000);
 							}							
 						}
 					});					 
@@ -212,9 +212,9 @@ function reloadTable(){
 	    		 "startDates" :startDates,
 		    	 "endDates":endDates,
 		    	 "taskName":taskName
-	    };
-	    remindTable.settings()[0].ajax.data = param;
-	    remindTable.ajax.reload();
+	    		};
+	 remindTable.settings()[0].ajax.data = param;
+	 remindTable.ajax.reload();
 }
 
 /****

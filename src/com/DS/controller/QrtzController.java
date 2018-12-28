@@ -24,7 +24,7 @@ public class QrtzController extends BaseController{
 	 * 三表连接：qrtz_job_details,qrtz_triggers,qrtz_cron_triggers
 	 */
 	public void getJobDetails(){
-		DivPageCondition=getDivPageCondition();
+		DivPageCondition=getDivPageCondition();//基本分页参数
 		DivPageCondition.put("jobName", getPara("jobName"));
 		SqlPara sqlShow = Db.getSqlPara("qrtz.getJobDetails",DivPageCondition);	
 		SqlPara sqlTotal = Db.getSqlPara("qrtz.getSize",DivPageCondition);			
@@ -52,8 +52,7 @@ public class QrtzController extends BaseController{
 	 */
 	 public void modifyJobTime(){
 		 QuartzTaskBean bean=getBean(QuartzTaskBean.class,"");
-		 QuartzService q=new QuartzServiceImpl();
-		 q.modifyJobTime(bean);
+		 quartzService.modifyJobTime(bean);
 	     renderJson(ajaxDoneSuccess());	 
 	 }
 	 
@@ -61,9 +60,8 @@ public class QrtzController extends BaseController{
 	  * 转换普通日期变为cron
 	  */
 	  public void transfer(){
-		  QuartzTransferVo paramVo=getBean(QuartzTransferVo.class,"");
-		  QuartzService QuartzService=new QuartzServiceImpl();
-		  renderJson(QuartzService.transfer(paramVo));
+		  QuartzTransferVo paramVo=getBean(QuartzTransferVo.class,"");	  
+		  renderJson(quartzService.transfer(paramVo));
 	  }
 	  
 	  /***
@@ -94,7 +92,10 @@ public class QrtzController extends BaseController{
 	   */
 	  public void removeJob(){
 		  QuartzParamVo vo=getBean(QuartzParamVo.class, "");
-		  quartzService.removeJob(vo);
-		  renderJson(ajaxDoneSuccess("成功删除调度器任务!"));		
+		   if(quartzService.removeJob(vo)){
+			   renderJson(ajaxDoneSuccess("成功删除调度器任务!"));		
+		   }else{
+			   renderJson(ajaxDoneSuccess("操作失败"));	
+		   }		
 	  }
 }

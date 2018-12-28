@@ -1,13 +1,8 @@
 package com.DS.remind.service.impl;
-
-import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
-
 import com.DS.remind.service.RemindService;
 import com.DS.utils.DataTablesUtil;
 import com.jfinal.plugin.activerecord.Db;
-import com.jfinal.plugin.activerecord.Record;
 import com.jfinal.plugin.activerecord.SqlPara;
 
 public class RemindServiceImpl implements RemindService {

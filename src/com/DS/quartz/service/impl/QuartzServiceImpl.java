@@ -95,8 +95,15 @@ public class QuartzServiceImpl implements QuartzService {
 	 * 删除调度任务
 	 */
 	@Override
-	public void removeJob(QuartzParamVo vo) {
-		QuartzManager.removeJob(vo.getJobName(), vo.getJobGroupName(), vo.getTriggerName(), vo.getTriggerGroupName());	
+	public boolean removeJob(QuartzParamVo vo) {
+		boolean result=true;
+		try {
+			QuartzManager.removeJob(vo.getJobName(), vo.getJobGroupName(), vo.getTriggerName(), vo.getTriggerGroupName());
+		} catch (SchedulerException e) {
+			e.printStackTrace();
+			result=false;
+		}	
+		return result;
 	}
    
 }

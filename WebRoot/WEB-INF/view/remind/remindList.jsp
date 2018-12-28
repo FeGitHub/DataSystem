@@ -20,7 +20,7 @@
 						    <input type="text" id="datetimepicker2" class="form-control quaryTime" name="endDates" style="width:180px;">
 						    	 <button type="button" id="querys" class="btn btn-info mt5 mr3 keepPlace" data-step="3" data-intro="点击查询按钮，按查询条件查出数据列表！">查询</button>	
 						    	 <button type="button" id="reset" class="btn btn-default mt5 keepPlace" data-step="4" data-intro="点击重置将查询条件还原成默认查询状态！">重置</button>	
-						    	 <button type="button" class="btn btn-default mt5 keepPlace" data-step="4">新增</button>				    	    
+						    	 <button type="button" class="btn btn-default mt5 keepPlace" id="addBtn" data-step="4">新增</button>				    	    
 					  	  </div>					  
 	</form>	
 </div>
@@ -59,18 +59,18 @@
 <!--弹出框主体框架结束-->
 
 <!--弹出框内容模板-->
-<template id="testTemp">
+<template id="remindTemp">
     <div class="panel mbn" style="height:550px;">
        <div class="panel-body" >
-       <form id="testFrom" style="margin-top:20px;">
+       <form id="remindForm" style="margin-top:20px;">
 		<table class="table table-bordered table-hover">
           <tbody>       
             <tr>
-				<td class="va-m" width="30%"><span>事项简称</span><input id="recordId" type="text" value="" style="display:none;" name="record.id" ></td>
+				<td class="va-m" width="30%"><span>事项简称</span><input id="remindId" type="text" value="" style="display:none;" name="id" ></td>
               	<td>
 	              	<div class="row">
 	                  	<div class="col-sm-12">	                                     
-                             <input name="record.remindName" id="remindName" class="form-control validate[required]" placeholder="" maxlength="20" type="text">      
+                             <input name="remindName" id="remindName" class="form-control validate[required]" placeholder="" maxlength="20" type="text">      
 	                  	</div>	                  	
 	                 </div>	                
               	</td>             
@@ -80,7 +80,7 @@
               	<td>
 	              	<div class="row">
 		              	<div class="col-sm-12">
-		              		  <textarea class="form-control validate[required]" rows="3" name="record.remindText" id="remindText"></textarea>    
+		              		  <textarea class="form-control validate[required]" rows="3" name="remindText" id="remindText"></textarea>    
 		              	</div>                    	
 	                 </div>	  
               	</td>              	
@@ -90,7 +90,7 @@
               	<td>
 	              	<div class="row">
 	                  	<div class="col-sm-12">	                                     
-                             <input  name="record.remindTime" id="remindTime" class="form-control validate[required] form_date" placeholder="" maxlength="20" type="text" readonly>      
+                             <input  name="remindTime" id="remindTime" class="form-control validate[required] form_date" placeholder="" maxlength="20" type="text" readonly>      
 	                  	</div>	                  	
 	                 </div>	  
               	</td>              	
@@ -100,7 +100,7 @@
               	<td>
 	              	<div class="row">
 	                  	<div class="col-sm-12">	                                     
-                             <input  name="record.mail" id="mail" class="form-control validate[required]" placeholder="" maxlength="20" type="text">      
+                             <input  name="mail" id="mail" class="form-control validate[required]" placeholder="" maxlength="20" type="text">      
 	                  	</div>	                  	
 	                 </div>	  
               	</td>              	

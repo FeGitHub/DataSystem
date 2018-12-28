@@ -115,19 +115,16 @@ public class QuartzManager {
      * @param jobGroupName
      * @param triggerName
      * @param triggerGroupName
+     * @throws SchedulerException 
      */
     public static void removeJob(String jobName, String jobGroupName,    
-            String triggerName, String triggerGroupName) {    
-        try {    
+            String triggerName, String triggerGroupName) throws SchedulerException {        
             Scheduler sched = schedulerFactory.getScheduler();    
             TriggerKey triggerKey = TriggerKey.triggerKey(triggerName, triggerGroupName);   
             sched.pauseTrigger(triggerKey);
             sched.unscheduleJob(triggerKey);   
             sched.deleteJob(JobKey.jobKey(jobName, jobGroupName));
             System.out.println("QuartzManager removeJob success");
-        } catch (Exception e) {    
-            throw new RuntimeException(e);    
-        }    
     }    
   
   
