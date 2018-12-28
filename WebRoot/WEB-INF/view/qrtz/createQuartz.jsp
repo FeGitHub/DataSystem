@@ -3,6 +3,7 @@
 <html lang="en">
   <head>   
     <title>创建调度任务</title>
+    <script src="${BASE_PATH}/js/validation/lang/jquery-1.11.1.min.js"></script>
   </head>
   <body >    
     <main >   
@@ -15,7 +16,7 @@
                 <div class="form-group row">
                   <label class="control-label col-md-3">任务名称</label>
                   <div class="col-md-8">
-                    <input class="form-control" type="text" placeholder="" name="jobName">
+                    <input class="form-control validate[required]" type="text" placeholder="" name="jobName">
                   </div>
                 </div>
                   <div class="form-group row">
@@ -28,7 +29,7 @@
                 <div class="form-group row">
                   <label class="control-label col-md-3">任务组名</label>
                   <div class="col-md-8">
-                    <input class="form-control col-md-8" type="email" placeholder="" name="jobGroup">
+                    <input class="form-control validate[required] col-md-8" type="email" placeholder="" name="jobGroup">
                   </div>
                 </div>
                 <div class="form-group row">
@@ -55,13 +56,13 @@
                  <div class="form-group row">
                   <label class="control-label col-md-3">日期值转Cron表达式</label>
                   <div class="col-md-3">
-                    <input  name="" id="dateStr" class="form-control validate[required] form_date" placeholder="选择日期值" maxlength="20" type="text" readonly>                                                  
+                    <input  name="" id="dateStr" class="form-control  form_date" placeholder="选择日期值" maxlength="20" type="text" readonly>                                                  
                   </div>
                  
                   	<button class="btn btn-primary" type="button" id="transferBtn"><i class="fa fa-fw fa-lg fa-check-circle"></i>转换</button>
  
                    <div class="col-md-3">
-                   		<input  name="cron" id="cron" class="form-control validate[required] form_date" placeholder="" maxlength="20" type="text" readonly>                      
+                   		<input  name="cron" id="cron" class="form-control validate[required]" placeholder="" maxlength="20" type="text" readonly>                      
                    </div>
                 </div>                
                  <div class="form-group row">

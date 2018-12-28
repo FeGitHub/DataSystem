@@ -1,10 +1,8 @@
 package com.DS.utils.quartz;
 import java.util.Date;
+import java.util.HashMap;
 import java.util.Map;
 import org.quartz.*;
-import org.quartz.JobDetail;
-import org.quartz.Scheduler;
-import org.quartz.SchedulerFactory;
 import org.quartz.impl.StdSchedulerFactory;
 /***
  * @author jeff
@@ -21,10 +19,13 @@ public class QuartzManager {
      * @param triggerGroupName 触发器组
      * @param jobClass 具体要调度的类
      * @param cron 时间表达式
+     * @throws SchedulerException 
      */
-    public static void addJob(String jobName, String jobGroupName,   
- String triggerName, String triggerGroupName, Class jobClass, String cron,String Description) { 
-        try {    
+    public static Map<String,Object> addJob(String jobName, String jobGroupName,   
+ String triggerName, String triggerGroupName, Class jobClass, String cron,String Description) throws SchedulerException { 
+    	Map<String,Object> resultMap=new HashMap<String,Object>();
+    	resultMap.put("code", 200);
+       
             Scheduler sched = schedulerFactory.getScheduler();    
             JobDetail jobDetail= JobBuilder.newJob(jobClass).withIdentity(jobName, jobGroupName).withDescription(Description).build(); 
             TriggerBuilder<Trigger> triggerBuilder = TriggerBuilder.newTrigger(); 
@@ -37,9 +38,8 @@ public class QuartzManager {
                 sched.start();    
             }   
             System.out.println("QuartzManager add task success");
-        } catch (Exception e) {    
-            throw new RuntimeException(e);    
-        }    
+       
+        return resultMap;
     }    
   
     /***

@@ -80,9 +80,13 @@ public class QrtzController extends BaseController{
 	   * 创建一个调度任务
 	   */
 	  public void createQuartzTask(){
-		  QuartzTaskBean task=getBean(QuartzTaskBean.class, "");
-		  quartzService.addJob(task);		
-		  renderJson(ajaxDoneSuccess("成功创建调度器任务!"));		  
+		        QuartzTaskBean task=getBean(QuartzTaskBean.class, "");		 	  
+				String errorMsg=quartzService.addJob(task);
+				if(errorMsg==null){
+					renderJson(ajaxDoneSuccess("成功创建调度器任务!"));		
+				}else{
+					renderJson(ajaxDoneError(errorMsg));
+				}	    		   						 		   
 	  }
 	  
 	  /***

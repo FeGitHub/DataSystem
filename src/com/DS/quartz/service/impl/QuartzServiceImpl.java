@@ -2,6 +2,7 @@ package com.DS.quartz.service.impl;
 import java.text.ParseException;
 import java.util.HashMap;
 import java.util.Map;
+import org.quartz.SchedulerException;
 import com.DS.bean.QuartzTaskBean;
 import com.DS.exception.BusinessException;
 import com.DS.quartz.service.QuartzService;
@@ -32,21 +33,31 @@ public class QuartzServiceImpl implements QuartzService {
 
 	/***
 	 * 新增调度器任务
+	 * @throws ClassNotFoundException 
+	 * @throws SchedulerException 
 	 */
 	@Override
-	public void addJob(QuartzTaskBean bean){
+	public String addJob(QuartzTaskBean bean){
+		String errorMsg=null;
 		bean.setTriggerName(bean.getJobName()+"TriggerName");
 		bean.setTriggerGroup(bean.getJobGroup()+"TriggerGroup");		
 		bean.setJobClassStr(bean.getJobClassStr());
 	    @SuppressWarnings("rawtypes")
 		Class jobClass=null;
 		try {
-			jobClass = Class.forName(bean.getJobClassStr());
+			jobClass = Class.forName(bean.getJobClassStr());			
+			QuartzManager.addJob(bean.getJobName(), bean.getJobName(), bean.getTriggerName(), bean.getTriggerGroup(), jobClass, bean.getCron(), bean.getDescription());
 		} catch (ClassNotFoundException e) {
+			errorMsg="对应的class没有找到";
 			e.printStackTrace();
-		}
-		QuartzManager.addJob(bean.getJobName(), bean.getJobName(), bean.getTriggerName(), bean.getTriggerGroup(), jobClass, bean.getCron(), bean.getDescription());
-		
+		}catch (SchedulerException e) {	
+			errorMsg="调度器参数出错";
+			e.printStackTrace();
+		}catch(Exception e){
+			errorMsg="操作失败";
+			e.printStackTrace();
+		}							
+	   return errorMsg;
 	}
 	
 	/****
@@ -88,5 +99,4 @@ public class QuartzServiceImpl implements QuartzService {
 		QuartzManager.removeJob(vo.getJobName(), vo.getJobGroupName(), vo.getTriggerName(), vo.getTriggerGroupName());	
 	}
    
-	
 }

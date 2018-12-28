@@ -39,7 +39,11 @@ public abstract class BaseController extends Controller{
 		resultMap.put("code", "409");
 		return resultMap;
 	}
-	
+	protected Map<String,Object> ajaxDoneError(Map<String,Object> map){
+		resultMap=map;
+		resultMap.put("code", "409");
+		return resultMap;
+	}
 	/****
 	 * 得到dataTables基本的分页约束条件
 	 * @return

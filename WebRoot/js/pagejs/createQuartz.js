@@ -2,6 +2,10 @@
  * 创建调度器任务页面的js
  */
 $(function(){
+	 $('#qrtzForm').validationEngine({   
+			promptPosition: 'centerReight',
+			scroll:false
+		});
 	getAllJobList();
 	$(".form_date").datetimepicker({
         language:"zh-CN",
@@ -31,7 +35,7 @@ $("#transferBtn").click(function(){
 		type:"post",
 		dataType: "json",
 		success:function(data){
-			if(data.code=200){
+			if(data.code==200){
 				$("#cron").val(data.cron);
 			}			
 		}
@@ -49,7 +53,7 @@ function getAllJobList(){
 		dataType: "json",
 		success:function(data){
 			var _html="";
-			if(data.code=200){
+			if(data.code==200){
 				$.each(data.allJobList,function(i,item){
 					_html+= '<option value="'+item+'">'+item+'</option>';
 				});
@@ -63,21 +67,23 @@ function getAllJobList(){
  * 新增调度任务
  */
 $("#submitBtn").click(function(){
-	if($("#dateStr").val()!=""&&$("#cron").val()==""){
-		$("#transferBtn").click();
-	}	
 	//console.log($("#qrtzForm").serialize());
-	$.ajax({
-		url:basepath+"/qrtz/createQuartzTask",
-		type:"post",
-		data:$("#qrtzForm").serialize(),
-		dataType: "json",
-		success:function(data){
-			if(data.code=200){	
-				toastrSuccess(data.msg,3000);
-			}else{
-				toastrError(data.msg,3000);
-			}		
-		}
-	});
+	 if($("#qrtzForm").validationEngine('validate')){
+		 $.ajax({
+				url:basepath+"/qrtz/createQuartzTask",
+				type:"post",
+				data:$("#qrtzForm").serialize(),
+				dataType: "json",
+				success:function(data){
+					if(data.code==200){	
+						toastrSuccess(data.msg,2000);
+						setTimeout(function(){
+							window.location.href=basepath+"/qrtz/goQrtzTaskList";
+							},2000);					
+					}else{
+						toastrError(data.msg,3000);
+					}		
+				}
+			});
+	 }
 });

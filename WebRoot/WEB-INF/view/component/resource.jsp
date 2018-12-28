@@ -10,6 +10,8 @@
   <link type="text/css" rel="styleSheet"  href="${BASE_PATH}/css/validation/validationEngine.jquery.css" />
   <link rel="stylesheet" href="${BASE_PATH}/css/bootstrap-datetimepicker.min.css" type="text/css">
   <link rel="stylesheet" href="${BASE_PATH}/css/font-awesome.min.css">
+  <script src="${BASE_PATH}/js/validation/lang/jquery.validationEngine-zh_CN.js"></script>
+  <script src="${BASE_PATH}/js/validation/jquery.validationEngine.min.js"></script>	
   <!--操作提示-->
   <script src="${BASE_PATH}/js/toastr.min.js"></script>
   <link href="${BASE_PATH}/css/toastr.min.css" type="text/css" rel="stylesheet">
