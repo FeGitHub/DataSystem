@@ -6,12 +6,9 @@ import com.DS.quartz.service.QuartzService;
 import com.DS.quartz.service.impl.QuartzServiceImpl;
 import com.DS.quartz.vo.QuartzParamVo;
 import com.DS.quartz.vo.QuartzTransferVo;
-import com.DS.utils.DataTablesUtil;
 import com.DS.utils.PackageUtil;
 import com.DS.web.base.BaseController;
 import com.jfinal.aop.Inject;
-import com.jfinal.plugin.activerecord.Db;
-import com.jfinal.plugin.activerecord.SqlPara;
 /***
  * @author jeff
  * 处理quartz调度器任务的控制器
@@ -26,9 +23,7 @@ public class QrtzController extends BaseController{
 	public void getJobDetails(){
 		DivPageCondition=getDivPageCondition();//基本分页参数
 		DivPageCondition.put("jobName", getPara("jobName"));
-		SqlPara sqlShow = Db.getSqlPara("qrtz.getJobDetails",DivPageCondition);	
-		SqlPara sqlTotal = Db.getSqlPara("qrtz.getSize",DivPageCondition);			
-		Map<String,Object> map=DataTablesUtil.getPageData(sqlShow, sqlTotal);
+		Map<String, Object> map=quartzService.getQuartzList(DivPageCondition);
         renderJson(ajaxDoneSuccess(map));
 	}
 	

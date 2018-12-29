@@ -26,7 +26,7 @@ $(function(){
                   { data: null,//操作部分
 		         	  "render": function ( data, type, full, meta ) {            
 			           		 var str = "";  
-			           		 str+="<button class='btn table_btn btn-primary btn-sm edtiBtn'  target='_blank' >修改</button>";
+			           		// str+="<button class='btn table_btn btn-primary btn-sm edtiBtn'  target='_blank' >修改</button>";
 			           		 str+="&nbsp;<button class='btn table_btn btn-danger btn-sm delBtn'  target='_blank' data-jobName='"+full.JOB_NAME+"' data-jobGroup='"+full.JOB_GROUP+"' data-triggerName='"+full.TRIGGER_NAME+"' data-triggerGroup='"+full.TRIGGER_GROUP+"' >删除</button>";			        
 			           		 return str;
 			           	}

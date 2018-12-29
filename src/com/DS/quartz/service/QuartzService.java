@@ -25,4 +25,7 @@ public interface QuartzService {
 	Map<String,Object> transfer(QuartzTransferVo paramVo);
 	
 	boolean removeJob(QuartzParamVo vo);
+	
+	Map<String,Object> getQuartzList(Map<String,Object> DivPageCondition);		
+	
 }

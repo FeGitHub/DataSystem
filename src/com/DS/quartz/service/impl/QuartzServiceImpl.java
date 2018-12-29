@@ -9,7 +9,10 @@ import com.DS.quartz.service.QuartzService;
 import com.DS.quartz.vo.QuartzParamVo;
 import com.DS.quartz.vo.QuartzTransferVo;
 import com.DS.utils.CronUtil;
+import com.DS.utils.DataTablesUtil;
 import com.DS.utils.quartz.QuartzManager;
+import com.jfinal.plugin.activerecord.Db;
+import com.jfinal.plugin.activerecord.SqlPara;
 /***
  * @author jeff
  * 调度任务服务实现层
@@ -72,23 +75,21 @@ public class QuartzServiceImpl implements QuartzService {
 		  String cron="";
 		  if(paramVo.getWeekType()!=null&&paramVo.getPeriod().equals("week")){
 			  paramVo.setPeriod(paramVo.getWeekType());
-		  }		
-		  if(paramVo.getDataStr()==null||paramVo.getDataStr().equals("")){
-			  map.put("code", "409");
-			  return map;
 		  }		  		 
 		  try {
-			if(paramVo.getPeriod()!=null&&!paramVo.getPeriod().equals("once")){
-				cron=CronUtil.getCron(paramVo.getPeriod(), paramVo.getDataStr());
-			}else{
-				cron=CronUtil.getCronByOnce(paramVo.getDataStr()); 
-				}
+				if(paramVo.getPeriod()!=null&&!paramVo.getPeriod().equals("once")){//频率调度表达式
+					cron=CronUtil.getCron(paramVo.getPeriod(), paramVo.getDataStr());
+					  map.put("code", "200");
+				}else{//一次使用
+					cron=CronUtil.getCronByOnce(paramVo.getDataStr()); 
+					  map.put("code", "200");
+					}
 			} catch (ParseException e) {
-				e.printStackTrace();
-			}		  		
-		  map.put("code", "200");
-		  map.put("cron", cron);
-		return map;
+				 map.put("code", "409");
+				 e.printStackTrace();
+		     }		  				
+		    map.put("cron", cron);
+		    return map;
 	}
 	
 	/****
@@ -104,6 +105,18 @@ public class QuartzServiceImpl implements QuartzService {
 			result=false;
 		}	
 		return result;
+	}
+	
+	
+	/****
+	 * 获取调度器任务分页数据
+	 */
+	@Override
+	public Map<String, Object> getQuartzList(Map<String, Object> DivPageCondition) {
+		SqlPara sqlShow = Db.getSqlPara("qrtz.getJobDetails",DivPageCondition);	
+		SqlPara sqlTotal = Db.getSqlPara("qrtz.getSize",DivPageCondition);			
+		Map<String,Object> map=DataTablesUtil.getPageData(sqlShow, sqlTotal);
+		return map;
 	}
    
 }

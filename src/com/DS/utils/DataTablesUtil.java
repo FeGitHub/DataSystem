@@ -24,9 +24,9 @@ public class DataTablesUtil {
    public static Map<String,Object> getPageData(SqlPara sqlShow,SqlPara sqlTotal){
     	rec=Db.findFirst(sqlTotal);
     	showPageData=Db.find(sqlShow);
-    	PageData.put("recordsTotal", rec.getLong("total"));
-    	PageData.put("recordsFiltered", rec.getLong("total"));
-    	PageData.put("data", showPageData);
+    	PageData.put("recordsTotal", rec.getLong("total"));//总记录数据
+    	PageData.put("recordsFiltered", rec.getLong("total"));//被过滤后的数据
+    	PageData.put("data", showPageData);//分页展示数据
     	return PageData;
     	
     }

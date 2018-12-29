@@ -1,3 +1,4 @@
+<!--vail-->
 <%@ page language="java" pageEncoding="UTF-8"%>
   <script src="${BASE_PATH}/js/jquery-3.3.1.min.js"></script> 
   <script src="${BASE_PATH}/js/bootstrap.min.js"></script><!-- bootstrap的最小js支持 -->  
@@ -12,9 +13,9 @@
   <link rel="stylesheet" href="${BASE_PATH}/css/font-awesome.min.css">
   <script src="${BASE_PATH}/js/validation/lang/jquery.validationEngine-zh_CN.js"></script>
   <script src="${BASE_PATH}/js/validation/jquery.validationEngine.min.js"></script>	
-  <!--操作提示-->
   <script src="${BASE_PATH}/js/toastr.min.js"></script>
   <link href="${BASE_PATH}/css/toastr.min.css" type="text/css" rel="stylesheet">
+  <script src="${BASE_PATH}/js/plugjs/handlebars.min-latest.js"></script> 
   <script type="text/javascript">
     var basepath= '${BASE_PATH}';
   </script>

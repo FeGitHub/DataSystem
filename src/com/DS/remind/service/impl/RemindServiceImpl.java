@@ -9,8 +9,8 @@ public class RemindServiceImpl implements RemindService {
 
 	@Override
 	public Map<String, Object> getRemindDetails(Map<String,Object> cond) {
-		SqlPara sqlShow = Db.getSqlPara("remind.getRemindDetails",cond);
-		SqlPara sqlTotal = Db.getSqlPara("remind.getSize",cond);      
+		  SqlPara sqlShow = Db.getSqlPara("remind.getRemindDetails",cond);
+		  SqlPara sqlTotal = Db.getSqlPara("remind.getSize",cond);      
 		  Map<String,Object> map=DataTablesUtil.getPageData(sqlShow, sqlTotal);
           return map;
 	}
