@@ -66,9 +66,9 @@
             <li><a class="treeview-item" href="form-notifications.html"><i class="icon fa fa-circle-o"></i> Form Notifications</a></li>
           </ul>
         </li>
-        <li class="treeview"><a class="app-menu__item" href="#" data-toggle="treeview"><i class="app-menu__icon fa fa-th-list"></i><span class="app-menu__label">Tables</span><i class="treeview-indicator fa fa-angle-right"></i></a>
+        <li class="treeview"><a class="app-menu__item" href="#" data-toggle="treeview"><i class="app-menu__icon fa fa-th-list"></i><span class="app-menu__label">案例页面</span><i class="treeview-indicator fa fa-angle-right"></i></a>
           <ul class="treeview-menu">
-            <li><a class="treeview-item" href="table-basic.html"><i class="icon fa fa-circle-o"></i> Basic Tables</a></li>
+            <li><a class="treeview-item" href="${BASE_PATH}/demo/goTreePage"><i class="icon fa fa-circle-o"></i>Ztree-bootstrap</a></li>
             <li><a class="treeview-item" href="table-data-table.html"><i class="icon fa fa-circle-o"></i> Data Tables</a></li>
           </ul>
         </li>
@@ -133,16 +133,8 @@
         </div>
       </div>
       <sitemesh:body/>       
-    </main> 
-    <script src="${BASE_PATH}/TemplatePlug/vali/js/popper.min.js"></script>
-    <script src="${BASE_PATH}/TemplatePlug/vali/js/bootstrap.min.js"></script>
-    <script src="${BASE_PATH}/TemplatePlug/vali/js/main.js"></script>
-    <script src="${BASE_PATH}/TemplatePlug/vali/js/plugins/pace.min.js"></script>
-    <script src="${BASE_PATH}/js/jquery.dataTables.min.js"></script>
-    <script type="text/javascript" src="${BASE_PATH}/TemplatePlug/vali/js/plugins/chart.js"></script> 
-	<script type="text/javascript" src="${BASE_PATH}/js/layer/layer.js"></script>
-	<script type="text/javascript" src="${BASE_PATH}/js/pagejs/template.js"></script>	
-	<script type="text/javascript" src="${BASE_PATH}/js/pagejs/template/app-notification.js"></script>
+    </main>   
+	<%@ include file="/WEB-INF/view/component/footerJs.jsp" %>  
 	<%@ include file="/WEB-INF/view/component/handlebarsTemplate.jsp" %>  	 	      
   </body>
 </html>

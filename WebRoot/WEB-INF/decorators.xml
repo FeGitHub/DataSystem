@@ -4,7 +4,7 @@
  <excludes>  
   <pattern>/static/*</pattern>  
   <pattern>/login/*</pattern> 
- 
+   
  </excludes>  
  <!-- 定义装饰器要过滤的页面 -->  
  <decorator name="template" page="template-backup-3.jsp">  
@@ -15,6 +15,7 @@
        <pattern>/warn/*</pattern> 
        <pattern>/order/*</pattern> 
        <pattern>/remind/*</pattern> 
-        <pattern>/test/*</pattern>           
+       <pattern>/test/*</pattern>   
+        <pattern>/demo/*</pattern>   
  </decorator>     
 </decorators> 

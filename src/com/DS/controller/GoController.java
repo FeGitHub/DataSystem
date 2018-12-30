@@ -14,13 +14,13 @@ public class GoController extends BaseController{
 		 public void goData(){
 		 	   render("data.html");
 		 }
-		 public void goVue(){
-		 	   render("vueDemo.jsp");
-		 }
+		
 		 @Clear
 		 public void goTree(){
 			   render("tree.jsp");
 		 }
+		
+		
 		 @Clear
 		 public void goDynamicTable(){
 			   render("DynamicTable.jsp");

@@ -1,5 +1,6 @@
 package com.DS.config;
 import com.DS.controller.BlogController;
+import com.DS.controller.DemoController;
 import com.DS.controller.Early_warningController;
 import com.DS.controller.GoController;
 import com.DS.controller.LoginController;
@@ -26,5 +27,6 @@ public class _MappingRoute {
 	        me.add("/warn",Early_warningController.class);//预警信息
 	        me.add("/remind",RemindController.class);//备忘提醒的相关处理
 	        me.add("/test",TestController.class);
+	        me.add("/demo",DemoController.class);
 	}
 }

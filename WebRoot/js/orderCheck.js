@@ -23,7 +23,7 @@ function treeMenu(){
     };
     
     //================
-  /*  var zTreeNodes1=[
+   var zTreeNodes1=[
 {"name":"毕设","open":true,children:[
     {"name":"前端设计","open":true,children:[
 			{"name":"bootstrap页面框架"},		
@@ -40,12 +40,13 @@ function treeMenu(){
                           			{"name":"..."},  
                                     ]}
 ]}
-];*/  
+];
+   $.fn.zTree.init($("#tree"), setting, zTreeNodes1);
     //==============
-    var url=basepath+"/warn/getTree";
+   /* var url=basepath+"/warn/getTree";
     $.post(url,function(zTreeNodes){
     	$.fn.zTree.init($("#tree"), setting, zTreeNodes); 
-	  },"json");
+	  },"json");*/
 }
 
 /***

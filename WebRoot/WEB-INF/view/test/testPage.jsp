@@ -4,6 +4,8 @@
 <head>
 <meta charset="UTF-8">
 <title>测试区域</title>
+<link href="http://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" type="text/css" rel="stylesheet">
+<link href="${BASE_PATH}/css/zTreeStyle/zTreeStyle.css" type="text/css" rel="stylesheet">
 </head>
 <body>
 <div class="tile">
@@ -11,18 +13,12 @@
 </div>
 
 <div class="tile" id="testId">
-		
+			<ul id="tree" class="ztree" style="width:230px; overflow:auto;"></ul> 
+			        
 </div>
-<script id="complainListData" type="text/x-handlebars-template">
- {{#each this}}
-		<div>
-			<h1>{{title}}</h1>
-		<div class="body">
-			{{body}}
-		</div>
-	</div>
-{{/each}}
-</script>  
+  
+
+<script src="${BASE_PATH}/js/jquery.ztree.all.min.js"></script>
 <script type="text/javascript" src="${BASE_PATH}/js/pagejs/testPage.js"></script>
 </body>
 </html>
