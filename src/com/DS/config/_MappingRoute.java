@@ -7,6 +7,7 @@ import com.DS.controller.LoginController;
 import com.DS.controller.QrtzController;
 import com.DS.controller.RemindController;
 import com.DS.controller.RemoteHTTPAction;
+import com.DS.controller.TaskController;
 import com.DS.controller.TestController;
 import com.DS.controller.UserController;
 import com.DS.controller.indexController;
@@ -27,6 +28,7 @@ public class _MappingRoute {
 	        me.add("/warn",Early_warningController.class);//预警信息
 	        me.add("/remind",RemindController.class);//备忘提醒的相关处理
 	        me.add("/test",TestController.class);
+	        me.add("/task",TaskController.class);
 	        me.add("/demo",DemoController.class);
 	}
 }

@@ -16,6 +16,7 @@
        <pattern>/order/*</pattern> 
        <pattern>/remind/*</pattern> 
        <pattern>/test/*</pattern>   
-        <pattern>/demo/*</pattern>   
+        <pattern>/demo/*</pattern>  
+         <pattern>/task/*</pattern>   
  </decorator>     
 </decorators> 

@@ -27,3 +27,11 @@
 #namespace("ztree")
 #include("com/DS/ztree/dao/ztree.sql")
 #end
+
+
+/****
+ * ztree
+ */
+#namespace("task")
+#include("com/DS/task/dao/task.sql")
+#end
