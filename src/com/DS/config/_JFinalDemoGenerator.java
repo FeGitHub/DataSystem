@@ -1,4 +1,4 @@
-package com.DS.common.model;
+package com.DS.config;
 import javax.sql.DataSource;
 import com.DS.config.DSConfig;
 import com.jfinal.kit.PathKit;

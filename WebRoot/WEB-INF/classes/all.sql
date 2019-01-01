@@ -19,3 +19,11 @@
 #namespace("user")
 #include("com/DS/user/dao/user.sql")
 #end
+
+
+/****
+ * ztree
+ */
+#namespace("ztree")
+#include("com/DS/ztree/dao/ztree.sql")
+#end

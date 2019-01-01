@@ -48,6 +48,7 @@ public class _MappingKit {
 		arp.addMapping("th_earlywarning_order", "id", ThEarlywarningOrder.class);
 		arp.addMapping("th_earlywarning_rule", "id", ThEarlywarningRule.class);
 		arp.addMapping("user", "id", User.class);
+		arp.addMapping("ztree", "majorid", Ztree.class);
 	}
 }
 
