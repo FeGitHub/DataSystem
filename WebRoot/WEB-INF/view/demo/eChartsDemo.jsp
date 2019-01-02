@@ -6,8 +6,14 @@
 </head>
 <body>
    <div class="tile">
-    	<div id="main" style="height:400px"></div>
+    	 <div id="main" style="height:400px;"></div>
     </div>
-    <script src="${BASE_PATH}/plug/echarts/build/dist/echarts.js"></script>
-     <script src="${BASE_PATH}/js/pagejs/demojs/eChartsDemo.js"></script>
+     <div class="tile">
+    	  <div id="container" style="height:700px;"></div>
+    </div>
+  <!--http://echarts.baidu.com/-->
+    <script src="${BASE_PATH}/js/plugjs/echarts.js"></script>
+    <script src="${BASE_PATH}/js/pagejs/demojs/eChartsDemo/walden.js"></script> 
+   <script src="${BASE_PATH}/js/pagejs/demojs/eChartsDemo/eChartsDemo.js"></script> 
+    
 </body>

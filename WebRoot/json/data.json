@@ -1,5 +1,17 @@
 {
-	"name":"xiaoming",
-	 "job":"solider",
-	 "age":"14"
+    "categories":[
+        "apple",
+        "orange",
+        "apple",
+        "orange",
+       
+        "orange"
+    ],
+    "data":[
+        500,
+        280,
+        386,
+        190,           
+        452
+    ]
 }
