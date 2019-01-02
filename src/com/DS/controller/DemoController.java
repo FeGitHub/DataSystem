@@ -18,6 +18,10 @@ public class DemoController extends BaseController {
     	  render("ztreeBootstrap.jsp");
       }
 	  
+	  public void goEChartsPage(){
+    	  render("eChartsDemo.jsp");
+      }
+	  
 	  
 	  public void getZtreeJson(){
 		  String ztreeJson=getPara("ztreeJson");

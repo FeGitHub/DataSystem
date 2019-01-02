@@ -69,7 +69,7 @@
         <li class="treeview"><a class="app-menu__item" href="#" data-toggle="treeview"><i class="app-menu__icon fa fa-th-list"></i><span class="app-menu__label">案例页面</span><i class="treeview-indicator fa fa-angle-right"></i></a>
           <ul class="treeview-menu">
             <li><a class="treeview-item" href="${BASE_PATH}/demo/goTreePage"><i class="icon fa fa-circle-o"></i>Ztree-bootstrap</a></li>
-            <li><a class="treeview-item" href="table-data-table.html"><i class="icon fa fa-circle-o"></i> Data Tables</a></li>
+            <li><a class="treeview-item" href="${BASE_PATH}/demo/goEChartsPage"><i class="icon fa fa-circle-o"></i> ECharts</a></li>
           </ul>
         </li>
         <li class="treeview"><a class="app-menu__item" href="#" data-toggle="treeview"><i class="app-menu__icon fa fa-file-text"></i><span class="app-menu__label">任务模块</span><i class="treeview-indicator fa fa-angle-right"></i></a>

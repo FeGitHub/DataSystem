@@ -30,7 +30,7 @@
 
 
 /****
- * ztree
+ * task
  */
 #namespace("task")
 #include("com/DS/task/dao/task.sql")
