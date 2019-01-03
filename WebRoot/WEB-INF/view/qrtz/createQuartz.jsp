@@ -2,8 +2,7 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>   
-    <title>创建调度任务</title>
-    <script src="${BASE_PATH}/js/validation/lang/jquery-1.11.1.min.js"></script>
+    <title>创建调度任务</title>  
   </head>
   <body >    
     <main >   
@@ -32,39 +31,22 @@
                     <input class="form-control validate[required] col-md-8" type="email" placeholder="" name="jobGroup">
                   </div>
                 </div>
-                <div class="form-group row">
-                  <label class="control-label col-md-3">任务描述</label>
-                  <div class="col-md-8">
-                    <textarea class="form-control" rows="4" placeholder="" name="description"></textarea>
-                  </div>
-                </div>
-                <div class="form-group row">
-                  <label class="control-label col-md-3">cron</label>
-                  <div class="col-md-9">
-                    <div class="form-check">
-                      <label class="form-check-label">
-                        <input class="form-check-input" type="radio" name="gender1" checked>普通模式
-                      </label>
-                    </div>
-                    <div class="form-check">
-                      <label class="form-check-label">
-                        <input class="form-check-input" type="radio" name="gender1">开发模式
-                      </label>
-                    </div>
-                  </div>
-                </div>
                  <div class="form-group row">
                   <label class="control-label col-md-3">日期值转Cron表达式</label>
                   <div class="col-md-3">
                     <input  name="" id="dateStr" class="form-control  form_date" placeholder="选择日期值" maxlength="20" type="text" readonly>                                                  
-                  </div>
-                 
+                  </div>                
                   	<button class="btn btn-primary" type="button" id="transferBtn"><i class="fa fa-fw fa-lg fa-check-circle"></i>转换</button>
- 
                    <div class="col-md-3">
-                   		<input  name="cron" id="cron" class="form-control validate[required]" placeholder="" maxlength="20" type="text" readonly>                      
+                   		<input  name="cron" id="cron" class="form-control validate[required]" placeholder="借助转换工具或者自己编写" maxlength="20" type="text">                      
                    </div>
-                </div>                
+                </div>        
+                <div class="form-group row">
+                  <label class="control-label col-md-3">任务描述</label>
+                  <div class="col-md-8">
+                    <textarea class="form-control" rows="4" placeholder="" name="description" id="description"></textarea>
+                  </div>
+                </div>                                      
                  <div class="form-group row">
                   <label class="control-label col-md-3">频率</label>
                   <div class="col-md-9">
@@ -104,32 +86,18 @@
                         </select>
                      </div>                 
                   </div>
-                 <!--  <div class="form-group row">
-                  <label class="control-label col-md-3">表达式</label>
-                  <div class="col-md-8">
-                    <input  name="cron" id="cron" class="form-control validate[required] form_date" placeholder="" maxlength="20" type="text" readonly>                                                  
-                  </div>
-                </div> -->
-                <!-- <div class="form-group row">
-                  <label class="control-label col-md-3">Identity Proof</label>
-                  <div class="col-md-8">
-                    <input class="form-control" type="file">
-                  </div>
-                </div>      -->   
               </form>
             </div>
             <div class="tile-footer">
               <div class="row">
                 <div class="col-md-8 col-md-offset-3">
                   <button class="btn btn-primary" type="button" id="submitBtn"><i class="fa fa-fw fa-lg fa-check-circle"></i>提交</button>&nbsp;&nbsp;&nbsp;
-                  <a class="btn btn-secondary" href="#"><i class="fa fa-fw fa-lg fa-times-circle"></i>取消</a>&nbsp;&nbsp;&nbsp;
-                  
+                  <a class="btn btn-secondary" href="${BASE_PATH}/qrtz/goQrtzTaskList"><i class="fa fa-fw fa-lg fa-times-circle"></i>取消</a>&nbsp;&nbsp;&nbsp;                 
                 </div>
               </div>
             </div>
           </div>
-        </div>
-       
+        </div>     
       </div>
     </main>
     <script src="${BASE_PATH}/js/pagejs/createQuartz.js"></script>

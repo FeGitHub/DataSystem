@@ -37,6 +37,7 @@ $("#transferBtn").click(function(){
 		success:function(data){
 			if(data.code==200){
 				$("#cron").val(data.cron);
+				$("#description").val(" ( "+data.comment+" )");
 			}			
 		}
 	});
@@ -76,10 +77,10 @@ $("#submitBtn").click(function(){
 				dataType: "json",
 				success:function(data){
 					if(data.code==200){	
-						toastrSuccess(data.msg,2000);
+						toastrSuccess(data.msg,1000);
 						setTimeout(function(){
 							window.location.href=basepath+"/qrtz/goQrtzTaskList";
-							},2000);					
+							},1000);					
 					}else{
 						toastrError(data.msg,3000);
 					}		

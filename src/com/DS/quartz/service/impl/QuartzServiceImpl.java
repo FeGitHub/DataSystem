@@ -68,6 +68,7 @@ public class QuartzServiceImpl implements QuartzService {
 	 */
 	@Override
 	public Map<String,Object> transfer(QuartzTransferVo paramVo) {
+		String comment=CronUtil.mappingComment(paramVo);
 		  if(paramVo==null){
 			  throw new BusinessException(SYS_NO,"transfer","Cron表达式为null");
 		  }
@@ -77,7 +78,7 @@ public class QuartzServiceImpl implements QuartzService {
 			  paramVo.setPeriod(paramVo.getWeekType());
 		  }		  		 
 		  try {
-				if(paramVo.getPeriod()!=null&&!paramVo.getPeriod().equals("once")){//频率调度表达式
+			if(paramVo.getPeriod()!=null&&!paramVo.getPeriod().equals("once")){//频率调度表达式
 					cron=CronUtil.getCron(paramVo.getPeriod(), paramVo.getDataStr());
 					  map.put("code", "200");
 				}else{//一次使用
@@ -89,6 +90,7 @@ public class QuartzServiceImpl implements QuartzService {
 				 e.printStackTrace();
 		     }		  				
 		    map.put("cron", cron);
+		    map.put("comment", comment);
 		    return map;
 	}
 	

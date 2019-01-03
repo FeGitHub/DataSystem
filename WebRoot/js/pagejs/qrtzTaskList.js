@@ -33,32 +33,9 @@ $(function(){
 			           }                
               ]
     });      
-       
-       /***
-	     * function 编辑表格行数据
-	     */
-		$("body").on("click",".edtiBtn",function(){			
-		    var htm = $($('#testTemp').html());
-			var _html='<div>'+htm[0].outerHTML+'</div>';			
-			$("#seeMethodModal .modal-body").html(_html);	
-			var $object=$(this).parent().parent();
-	        var jobName=$object.find("td").eq(0).text();
-	        showEditData(jobName);
-			activateDatetimepicker($('.form_date'));
-			$("#seeMethodModal").modal("show");		
-	   }); 
+      
 	   
-		/***
-	     * function 新增调度任务
-	     */
-		$("body").on("click",".addBtn",function(){
-		    var htm = $($('#testTemp').html());
-		    $(".modal-title").text("新增调度任务");
-			var _html='<div>'+htm[0].outerHTML+'</div>';			
-			$("#seeMethodModal .modal-body").html(_html);	
-			activateDatetimepicker($('.form_date'));
-			$("#seeMethodModal").modal("show");
-	   }); 
+		
        
 		/***
 	     * function 删除调度任务
@@ -106,47 +83,8 @@ $(function(){
 		     }); 
 	    }      	    
 	    
-	    /***
-	     * function 编辑数据回显
-	     */
-	    function showEditData(jobName){
-	    	 $.ajax({
-		        	url:basepath+"/qrtz/getQuartzTaskByName",
-		        	type:"post",
-		        	data:{"jobName":jobName},
-		        	dataType:"json",
-		        	success:function(data){
-		        		$("#jobName").val(data.record.JOB_NAME);	
-		        		$("#jobGroup").val(data.record.JOB_GROUP);
-		        		$("#triggerName").val(data.record.TRIGGER_NAME);
-		        		$("#triggerGroup").val(data.record.TRIGGER_GROUP);
-		        		$("#DateStr").val(data.record.DateStr);
-		        		$("#description").val(data.record.DESCRIPTION);
-		        	}
-		        });
-	    }
-	   
-	    /***
-	     * function 提交表单数据
-	     */
-		$("body").on("click","#submitBtn",function(){
-			$.ajax({
-				url:basepath+"/qrtz/ChangeQuartzTaskTime",
-				type:"post",
-				dataType:"json",
-				data:$("#testFrom").serialize(),
-				success:function(){
-					$("#seeMethodModal").modal("hide");
-					qrtzTable.ajax.reload(null,false);//重新加载当前页表格数据
-					/*if(msg.code==233){
-						remindTable.ajax.reload(null,false);//重新加载当前页表格数据
-					}else{
-						alert("fail");
-					}*/
-				}					
-			});
-		
-	    }); 	    	    
+	  
+	 	    
 } );
 
 /***
@@ -173,4 +111,11 @@ $("#querys").click(function(){
 $("#reset").click(function(){
 	$("#queryJobName").val("")
 	queryTable();	
+});
+
+/***
+ * 跳转到新增调度任务的页面
+ */
+$("#create").click(function(){
+	window.location.href=basepath+"/qrtz/goCreateQuartz";
 });

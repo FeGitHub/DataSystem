@@ -2,6 +2,9 @@ package com.DS.utils;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+
+import com.DS.bean.DateBean;
+import com.DS.quartz.vo.QuartzTransferVo;
 /***
  * 普通日期转Cron表达式
  */
@@ -92,6 +95,51 @@ public class CronUtil {
             e.printStackTrace();
             return "";
         }
+    }
+    
+    public static String mappingComment(QuartzTransferVo paramVo){   	  
+    	DateBean dateBean=DateUtil.dateStrToDiv(paramVo.getDataStr());
+    	if(dateBean==null){
+    		return "";
+    	}  	
+    	if(paramVo.getPeriod()!=null&&!paramVo.getPeriod().equals("once")){
+    		  if(paramVo.getPeriod().equals("week")){
+    			  return mapKeyWorld(paramVo.getWeekType(),dateBean);
+    		  }else{
+    			  return mapKeyWorld(paramVo.getPeriod(),dateBean);
+    		  }
+    	}else{
+    		return "只执行一次："+paramVo.getDataStr();
+    	}     	
+    }
+    
+   public static String mapKeyWorld(String key,DateBean dateBean){
+	    String workTime=dateBean.getHour()+"点"+dateBean.getMinute()+"分执行";
+	    String weekStr="每个星期的";
+    	 String world="";
+    	 if(key.equals("day")){
+    		 world="每天"+workTime;
+    	 }else if(key.equals("MON")){
+    		 world=weekStr+"星期一"+workTime;
+    	 }else if(key.equals("TUE")){
+    		 world=weekStr+"星期二"+workTime;
+    	 }else if(key.equals("WED")){
+    		 world=weekStr+"星期三"+workTime;
+    	 }else if(key.equals("THU")){
+    		 world=weekStr+"星期四"+workTime;
+    	 }else if(key.equals("FRI")){
+    		 world=weekStr+"星期五"+workTime;
+    	 }else if(key.equals("SAT")){
+    		 world=weekStr+"星期六"+workTime;
+    	 }else if(key.equals("SUN")){
+    		 world=weekStr+"星期日"+workTime;
+    	 }else if(key.equals("month")){
+    		 world="每个月"+dateBean.getDay()+"号"+workTime;
+    	 }else{
+    		 world="参数错误";
+    	 }
+    	 
+    	return world;
     }
   
 }
