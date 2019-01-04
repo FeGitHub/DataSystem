@@ -19,6 +19,7 @@ public class _MappingKit {
 		arp.addMapping("blog", "id", Blog.class);
 		arp.addMapping("ds_remind", "id", DsRemind.class);
 		arp.addMapping("early_warning_rule", "id", EarlyWarningRule.class);
+		arp.addMapping("echarts", "id", Echarts.class);
 		arp.addMapping("materialtree", "id", Materialtree.class);
 		arp.addMapping("menu_info", "MENU_ID", MenuInfo.class);
 		arp.addMapping("order_item", "id", OrderItem.class);

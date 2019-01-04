@@ -3,7 +3,7 @@
 		  var myChart = echarts.init(document.getElementById('main'),'walden');
 		  myChart.setOption({
 		        title: {
-		            text: '异步数据加载示例'
+		            text: '蔬菜交易数量'
 		        },
 		        tooltip: {},
 		        legend: {
@@ -20,19 +20,26 @@
 		        }]
 		    });
 		  $.ajax({
-			   url: basepath+"/json/data.json",//json文件位置
+			  // url: basepath+"/json/ECharts.json",//json文件位置
+			   url: basepath+"/demo/getEChartsData",
 			   type: "post",//请求方式为get
 			   dataType: "json", //返回数据格式为json
-			   success: function(data) {//请求成功完成后要执行的方法 
+			   success: function(info) {//请求成功完成后要执行的方法 				  
+				    var categories = new Array();
+		        	var data= new Array();
+		        	for(var i=0;i<info.length;i++){
+		        		categories.push(info[i].categories);
+		        		data.push(info[i].data);
+		        	}		        					  
 				   myChart.setOption({
 		                xAxis: {
-		                    data: data.categories
+		                    data: categories
 		                },
 		                series: [{
 		                    name: '销量',
-		                    data: data.data
+		                    data: data
 		                }]
-		            });			 
+		            });			
 				   }
 			  
 			})
@@ -145,6 +152,6 @@
         }
         
         
-        
+     
         
       

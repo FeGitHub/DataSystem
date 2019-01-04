@@ -35,3 +35,10 @@
 #namespace("task")
 #include("com/DS/task/dao/task.sql")
 #end
+
+/****
+ * demo
+ */
+#namespace("demo")
+#include("com/DS/demo/dao/demo.sql")
+#end

@@ -11,9 +11,8 @@
      <div class="tile">
     	  <div id="container" style="height:700px;"></div>
     </div>
-  <!--http://echarts.baidu.com/-->
+    <!--http://echarts.baidu.com/-->
     <script src="${BASE_PATH}/js/plugjs/echarts.js"></script>
-    <script src="${BASE_PATH}/js/pagejs/demojs/eChartsDemo/walden.js"></script> 
-   <script src="${BASE_PATH}/js/pagejs/demojs/eChartsDemo/eChartsDemo.js"></script> 
-    
+    <script src="${BASE_PATH}/js/pagejs/demojs/eChartsDemo/walden.js"></script> <!--图标样式-->
+    <script src="${BASE_PATH}/js/pagejs/demojs/eChartsDemo/eChartsDemo.js"></script>     
 </body>
