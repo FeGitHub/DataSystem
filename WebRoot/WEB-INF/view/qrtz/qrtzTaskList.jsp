@@ -18,7 +18,7 @@
 		               <div class="input-daterange input-group keepPlace">
 						    	 <button type="button" id="querys" class="btn btn-info mt5 mr3 keepPlace" data-step="3" data-intro="点击查询按钮，按查询条件查出数据列表！">查询</button>	
 						    	 <button type="button" id="reset" class="btn btn-default mt5 keepPlace" data-step="4" data-intro="点击重置将查询条件还原成默认查询状态！">重置</button>	
-						    	 <button type="button"  id="create" class="btn btn-success mt5 keepPlace" href="${BASE_PATH}/qrtz/goCreateQuartz">新增</button>				    	    
+						    	 <button type="button"  id="create" class="btn btn-success mt5 keepPlace">新增</button>				    	    
 					  	  </div>					  
 	</form>	
 </div>

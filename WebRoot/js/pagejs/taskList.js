@@ -104,3 +104,7 @@ $("#reset").click(function(){
 	$("#taskName").val("");
 	reloadTable();	
 });
+
+$("#create").click(function(){
+	window.location.href=basepath+"/task/goCreateTask";
+});

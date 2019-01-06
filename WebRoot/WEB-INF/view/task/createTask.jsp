@@ -24,14 +24,12 @@
               <div class="row">
                 <div class="col-md-8 col-md-offset-3">
                   <button class="btn btn-primary" type="button" id="submitBtn"><i class="fa fa-fw fa-lg fa-check-circle"></i>提交</button>&nbsp;&nbsp;&nbsp;
-                  <a class="btn btn-secondary" href="#"><i class="fa fa-fw fa-lg fa-times-circle"></i>取消</a>&nbsp;&nbsp;&nbsp;
-                  
+                  <a class="btn btn-secondary" href="${BASE_PATH}/task/goTaskList"><i class="fa fa-fw fa-lg fa-times-circle"></i>取消</a>&nbsp;&nbsp;&nbsp;                  
                 </div>
               </div>
             </div>
           </div>
-        </div>
-       
+        </div>     
       </div>
     </main>
     <script src="${BASE_PATH}/js/pagejs/createTask.js"></script>

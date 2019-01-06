@@ -3,6 +3,11 @@
 <html lang="en">
   <head>   
     <title>创建调度任务</title>  
+    <style type="text/css">
+      .form-check-label{
+      	padding-right:30px;
+      }
+    </style>
   </head>
   <body >    
     <main >   
@@ -41,35 +46,24 @@
                    		<input  name="cron" id="cron" class="form-control validate[required]" placeholder="借助转换工具或者自己编写" maxlength="20" type="text">                      
                    </div>
                 </div>        
-                <div class="form-group row">
-                  <label class="control-label col-md-3">任务描述</label>
-                  <div class="col-md-8">
-                    <textarea class="form-control" rows="4" placeholder="" name="description" id="description"></textarea>
-                  </div>
-                </div>                                      
+                                               
                  <div class="form-group row">
                   <label class="control-label col-md-3">频率</label>
                   <div class="col-md-9">
                     <div class="form-check">
                       <label class="form-check-label">
-                        <input class="form-check-input" type="radio" name="period" value="once" checked>一次                       
+                        <input class="form-check-input" type="radio" name="period" value="once" checked>一次                                                    
                       </label>
-                    </div>
-                    <div class="form-check">
-                      <label class="form-check-label">
-                        <input class="form-check-input" type="radio" name="period" value="day">每天
+                        <label class="form-check-label">
+                        	<input class="form-check-input" type="radio" name="period" value="day">每天
                       </label>
-                    </div>
-                     <div class="form-check">
-                      <label class="form-check-label">
+                       <label class="form-check-label">
                         <input class="form-check-input" type="radio" name="period" value="month">每月
                       </label>
-                    </div>
-                    <div class="form-check">
-                      <label class="form-check-label">
+                       <label class="form-check-label">
                         <input class="form-check-input" type="radio" name="period" value="week" id="weekId">每星期
                       </label>
-                    </div>
+                    </div>                 
                   </div>
                 </div>
                  <div class="form-group row">
@@ -86,6 +80,12 @@
                         </select>
                      </div>                 
                   </div>
+                     <div class="form-group row">
+                 	 <label class="control-label col-md-3">任务描述</label>
+                  		<div class="col-md-8">
+                    		<textarea class="form-control" rows="4" placeholder="" name="description" id="description"></textarea>
+                  		</div>
+                </div>    
               </form>
             </div>
             <div class="tile-footer">

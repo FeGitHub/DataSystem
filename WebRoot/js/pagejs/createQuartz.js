@@ -23,6 +23,10 @@ $(function(){
 //转换表达式的值
 $("#transferBtn").click(function(){
 	var dateStr=$("#dateStr").val();
+	if(dateStr==""){
+		toastrError("转换参数为空",3000);
+		return;
+	}
 	var period=$("input[name='period']:checked").val();
 	var weekType=$("#weekType").val();
 	$.ajax({
