@@ -53,7 +53,7 @@ function param_bulidNotification(){
  * @param data
  */
 function bulidNotification(data){
-	var source = $("#complainListData").html();
+	var source = $("#appNotification").html();
 	var template = Handlebars.compile(source);
 	var _html = template(data);
 	$(".app-notification__content").html(_html);
