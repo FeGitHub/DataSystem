@@ -23,7 +23,7 @@ public class FileUtil {
         String tempFilePath="";
         if (!file.exists()){
         	System.out.println("文件路径不存在！"+path);
-        	return FileNameList;
+        	return null;
         }
         // 如果这个路径是文件夹
         if (file.isDirectory()) {

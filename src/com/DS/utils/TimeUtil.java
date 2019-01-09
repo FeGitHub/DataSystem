@@ -5,7 +5,7 @@ import java.util.Calendar;
 import java.util.Date;
 import com.DS.bean.DateBean;
 
-public class DateUtil {
+public class TimeUtil {
 	/****
 	 * 将时间字符串逐个拆分
 	 * @param timeStr
@@ -30,5 +30,18 @@ public class DateUtil {
 			bean.setMinute(cal.get(Calendar.MINUTE)+"");
 			bean.setSecond(cal.get(Calendar.SECOND)+"");
 		 return bean;
+	 }
+	 	
+	 	/*****
+	 	 * 比较两个时间点的天数差
+	 	 * @param A
+	 	 * @param B
+	 	 * @return
+	 	 */
+	    public static int  compareTime(Date A,Date B){
+		 long diff=Math.abs(A.getTime()-B.getTime());
+		 diff=diff/(1000 * 60 * 60 * 24);
+		 int day=(int)diff;
+		 return day;
 	 }
 }

@@ -98,7 +98,7 @@ public class CronUtil {
     }
     
     public static String mappingComment(QuartzTransferVo paramVo){   	  
-    	DateBean dateBean=DateUtil.dateStrToDiv(paramVo.getDataStr());
+    	DateBean dateBean=TimeUtil.dateStrToDiv(paramVo.getDataStr());
     	if(dateBean==null){
     		return "";
     	}  	
