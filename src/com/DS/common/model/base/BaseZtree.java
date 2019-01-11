@@ -9,25 +9,10 @@ import com.jfinal.plugin.activerecord.IBean;
 @SuppressWarnings("serial")
 public abstract class BaseZtree<M extends BaseZtree<M>> extends Model<M> implements IBean {
 
-	public void setLogicalId(java.lang.Integer logicalId) {
-		set("logicalId", logicalId);
-	}
-	
-	public java.lang.Integer getLogicalId() {
-		return getInt("logicalId");
-	}
-
-	public void setTaskId(java.lang.Integer taskId) {
-		set("taskId", taskId);
-	}
-	
-	public java.lang.Integer getTaskId() {
-		return getInt("taskId");
-	}
-
 	public void setId(java.lang.String id) {
 		set("id", id);
 	}
+	
 	
 	public java.lang.String getId() {
 		return getStr("id");
@@ -48,5 +33,17 @@ public abstract class BaseZtree<M extends BaseZtree<M>> extends Model<M> impleme
 	public java.lang.String getName() {
 		return getStr("name");
 	}
-
+	public void setOpen(java.lang.String open) {
+		set("open", open);
+	}
+	public java.lang.String getOpen() {
+		return getStr("open");
+	}
+	
+	public void setUrl(java.lang.String url) {
+		set("url", url);
+	}
+	public java.lang.String getUrl() {
+		return getStr("url");
+	}
 }

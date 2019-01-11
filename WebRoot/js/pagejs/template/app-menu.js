@@ -15,7 +15,7 @@ function param_bulidMenu(){
 	var context = {
             "menuTree": [
                      {               
-                         "url": "#",          
+                         "url": basepath+"/go/goMenu",          
                          "title":"首页",
                          "icon":dashboard
                     },

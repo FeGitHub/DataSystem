@@ -19,7 +19,7 @@
     <script type="text/javascript" src="${BASE_PATH}/plug/ztree-bootstrap/js/jquery.ztree.core.js"></script>
     <script type="text/javascript" src="${BASE_PATH}/plug/ztree-bootstrap/js/jquery.ztree.excheck.js"></script>
     <script type="text/javascript" src="${BASE_PATH}/plug/ztree-bootstrap/js/jquery.ztree.exedit.js"></script>
-    <script type="text/javascript" src="${BASE_PATH}/js/pagejs/ztreeBootstrap.js"></script>
+    <script type="text/javascript" src="${BASE_PATH}/js/pagejs/demojs/ztreeBootstrap.js"></script>
 </BODY>
 
 </HTML>

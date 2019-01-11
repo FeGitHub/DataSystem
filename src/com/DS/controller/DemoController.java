@@ -2,7 +2,7 @@ package com.DS.controller;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import com.DS.bean.ZtreeJsonBean;
+import com.DS.common.model.Ztree;
 import com.DS.web.base.BaseController;
 import com.alibaba.fastjson.JSON;
 import com.jfinal.plugin.activerecord.Db;
@@ -24,16 +24,25 @@ public class DemoController extends BaseController {
       }
 	  
 	  /****
-	   * 将页面上传递来的json的ztree数据转换成可插入数据可的对应数据
+	   * 将页面上传递来的json格式的ztree数据转换成可插入的数据库信息
 	   */
-	  public void getZtreeJson(){
+	  public void getZtreeJsonFromView(){
 		  String ztreeJson=getPara("ztreeJson");
-		  List<ZtreeJsonBean> temp= JSON.parseArray(ztreeJson,ZtreeJsonBean.class); 
-		  Map<String, List<ZtreeJsonBean>> map=new HashMap<String, List<ZtreeJsonBean>>();
+		  List<Ztree> temp= JSON.parseArray(ztreeJson,Ztree.class); 
+		  Map<String, List<Ztree>> map=new HashMap<String, List<Ztree>>();
 		  map.put("cond", temp);
 		  SqlPara sql=Db.getSqlPara("ztree.insertDataBatch", map);
 		  //Db.update(sql);
 		  renderJson(ajaxDoneSuccess("操作成功"));
+	  }
+	  
+	  /****
+	   * 取出数据库的ztree表的数据
+	   */
+	  public void getZtreeJsonFromDB(){
+		  String sql=Db.getSql("ztree.getZtreeJsonFromDB");
+		 List<Record> ztreeList= Db.find(sql);
+		 renderJson(ztreeList);
 	  }
 	  
 	  /****
