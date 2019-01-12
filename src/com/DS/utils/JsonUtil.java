@@ -25,7 +25,7 @@ public class JsonUtil {
 		   JSONObject hash = new JSONObject();
 		   for(int i=0;i<arr.size();i++){//将数组转换成键值对，自身节点为key,自身为value
 		      JSONObject json = (JSONObject) arr.get(i);
-		     hash.put(json.getString(id), json);
+		      hash.put(json.getString(id), json);
 		   }
 		   //遍历结果集
 		   for(int j=0;j<arr.size();j++){

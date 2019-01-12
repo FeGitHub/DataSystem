@@ -27,14 +27,14 @@
 	        	 </a>
 		          <ul class="treeview-menu">	
 						{{#each subMenuList}}	       
-		            		<li><a class="treeview-item" href="{{subMenuUrl}}"><i class="icon fa fa-circle-o"></i>{{subMenuName}}</a></li>
+		            		<li><a class="treeview-item" href="{{url}}"><i class="icon fa fa-circle-o"></i>{{menuName}}</a></li>
 						{{/each}}
 		          </ul>
 	        </li>
 			{{else}}
 		    <li>
 	        	<a class="app-menu__item" href="{{url}}">
-	        		<i class="{{icon}}"></i><span class="app-menu__label">{{title}}</span>
+	        		<i class="{{icon}}"></i><span class="app-menu__label">{{menuName}}</span>
 	        	</a>
 	        </li>
 		{{/if}}

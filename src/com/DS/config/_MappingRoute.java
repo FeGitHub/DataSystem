@@ -4,6 +4,7 @@ import com.DS.controller.DemoController;
 import com.DS.controller.Early_warningController;
 import com.DS.controller.GoController;
 import com.DS.controller.LoginController;
+import com.DS.controller.MenuController;
 import com.DS.controller.QrtzController;
 import com.DS.controller.RemindController;
 import com.DS.controller.RemoteHTTPAction;
@@ -30,5 +31,6 @@ public class _MappingRoute {
 	        me.add("/test",TestController.class);
 	        me.add("/task",TaskController.class);
 	        me.add("/demo",DemoController.class);
+	        me.add("/menu",MenuController.class);
 	}
 }

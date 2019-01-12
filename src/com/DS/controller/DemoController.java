@@ -3,8 +3,11 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import com.DS.common.model.Ztree;
+import com.DS.utils.JsonUtil;
 import com.DS.web.base.BaseController;
 import com.alibaba.fastjson.JSON;
+import com.alibaba.fastjson.JSONArray;
+import com.jfinal.json.FastJson;
 import com.jfinal.plugin.activerecord.Db;
 import com.jfinal.plugin.activerecord.Record;
 import com.jfinal.plugin.activerecord.SqlPara;
@@ -31,7 +34,8 @@ public class DemoController extends BaseController {
 		  List<Ztree> temp= JSON.parseArray(ztreeJson,Ztree.class); 
 		  Map<String, List<Ztree>> map=new HashMap<String, List<Ztree>>();
 		  map.put("cond", temp);
-		  SqlPara sql=Db.getSqlPara("ztree.insertDataBatch", map);
+		 // SqlPara sql=Db.getSqlPara("ztree.insertDataBatch", map);
+		  SqlPara sql=Db.getSqlPara("menu.insertDataBatch", map);
 		  //Db.update(sql);
 		  renderJson(ajaxDoneSuccess("操作成功"));
 	  }
@@ -42,6 +46,12 @@ public class DemoController extends BaseController {
 	  public void getZtreeJsonFromDB(){
 		  String sql=Db.getSql("ztree.getZtreeJsonFromDB");
 		 List<Record> ztreeList= Db.find(sql);
+		 //==========
+		 String json=FastJson.getJson().toJson(ztreeList);
+		 JSONArray array= JSONArray.parseArray(json);
+		 JSONArray test=JsonUtil.listToTree(array, "id", "pId", "subMenuList");
+		 System.out.println(test);
+		 //========
 		 renderJson(ztreeList);
 	  }
 	  

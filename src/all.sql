@@ -42,3 +42,10 @@
 #namespace("demo")
 #include("com/DS/demo/dao/demo.sql")
 #end
+
+/****
+ * demo
+ */
+#namespace("menu")
+#include("com/DS/menu/dao/menu.sql")
+#end

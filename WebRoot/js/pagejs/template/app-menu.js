@@ -16,7 +16,7 @@ function param_bulidMenu(){
             "menuTree": [
                      {               
                          "url": basepath+"/go/goMenu",          
-                         "title":"首页",
+                         "menuName":"首页",
                          "icon":dashboard
                     },
                   {                  
@@ -25,12 +25,12 @@ function param_bulidMenu(){
                       "icon":laptop,
                       "subMenuList":[
 	                                  {
-	                                	  "subMenuName":"备忘提醒",
-	                                	  "subMenuUrl":basepath+"/remind/goRemindList"
+	                                	  "menuName":"备忘提醒",
+	                                	  "url":basepath+"/remind/goRemindList"
 	                                  },
 	                                  {
-	                                	  "subMenuName":"调度任务",
-	                                	  "subMenuUrl":basepath+"/qrtz/goQrtzTaskList"
+	                                	  "menuName":"调度任务",
+	                                	  "url":basepath+"/qrtz/goQrtzTaskList"
 	                                  }
                                  ]
                  },
@@ -40,8 +40,8 @@ function param_bulidMenu(){
                      "icon":edit,
                      "subMenuList":[
 	                                  {
-	                                	  "subMenuName":"测试页面",
-	                                	  "subMenuUrl":basepath+"/test/goTestPage"
+	                                	  "menuName":"测试页面",
+	                                	  "url":basepath+"/test/goTestPage"
 	                                  }
                                 ]
                 },
@@ -51,12 +51,12 @@ function param_bulidMenu(){
                     "icon":list,
                     "subMenuList":[
 	                                  {
-	                                	  "subMenuName":"Ztree-bootstrap",
-	                                	  "subMenuUrl":basepath+"/demo/goTreePage"
+	                                	  "menuName":"Ztree-bootstrap",
+	                                	  "url":basepath+"/demo/goTreePage"
 	                                  },
 	                                  {
-	                                	  "subMenuName":"ECharts",
-	                                	  "subMenuUrl":basepath+"/demo/goEChartsPage"
+	                                	  "menuName":"ECharts",
+	                                	  "url":basepath+"/demo/goEChartsPage"
 	                                  }
                                ]
                },
@@ -66,14 +66,25 @@ function param_bulidMenu(){
                    "icon":text,
                    "subMenuList":[
 	                                  {
-	                                	  "subMenuName":"工程任务",
-	                                	  "subMenuUrl":basepath+"/task/goTaskList"
+	                                	  "menuName":"工程任务",
+	                                	  "url":basepath+"/task/goTaskList"
 	                                  }
                               ]
               },
               ]
          };
+	
 	bulidApp(context);
+	//===
+		/*$.ajax({
+			url:basepath+"/menu/getZtreeJsonFromDB",
+			type:"post",
+			dataType:"json",
+			success:function(context){
+				bulidApp(context)
+			}
+		});*/
+	//========
 }
 
 /****

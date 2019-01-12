@@ -21,7 +21,7 @@ public class _MappingKit {
 		arp.addMapping("early_warning_rule", "id", EarlyWarningRule.class);
 		arp.addMapping("echarts", "id", Echarts.class);
 		arp.addMapping("materialtree", "id", Materialtree.class);
-		arp.addMapping("menu_info", "MENU_ID", MenuInfo.class);
+		arp.addMapping("menu", "id", Menu.class);
 		arp.addMapping("order_item", "id", OrderItem.class);
 		arp.addMapping("orders", "id", Orders.class);
 		// Composite Primary Key order: SCHED_NAME,TRIGGER_GROUP,TRIGGER_NAME

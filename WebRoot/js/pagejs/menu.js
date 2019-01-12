@@ -1,5 +1,3 @@
-//ztree-bootstrap
-
 /********
  * testZNodes:每一个节点的信息，父id,自身id，自身节点名
  */
@@ -30,21 +28,19 @@ $(document).ready(function() {
 					onClick: onClick//点击后的事件
 				}
 	        };
-	paramToZtreeBootstrap();
+	//paramToZtreeBootstrap();
 	//====
-	/*	$.ajax({
-			url:basepath+"/demo/getZtreeJsonFromDB",
+		$.ajax({
+			url:basepath+"/menu/getZtreeJsonFromDB",
 			type:"post",
 			dataType:"json",
-			success:function(ztree){	
+			success:function(ztree){
+				console.log(ztree);
 				$.fn.zTree.init($("#treeDemo"), setting, ztree);  			
 			}
-		});*/
-    $.fn.zTree.init($("#treeDemo"), setting, testZNodes);    
-  
-   
+		});
+   // $.fn.zTree.init($("#treeDemo"), setting, testZNodes);     
 });
-//=============
 
 function beforeClick(treeId, treeNode, clickFlag) {
 	/*var url=treeNode.url;
@@ -54,10 +50,11 @@ function onClick(event, treeId, treeNode, clickFlag) {
 	layer.prompt({title: '修改菜单链接',value:treeNode.url, formType: 3}, function(text, index){
 		  layer.close(index);	
 		  treeNode.url=text;
-		    layer.msg('修改链接为：'+ text);
+		  treeNode.icon="funk";
+		    layer.msg('修改链接为：'+ treeNode.icon);
 		});
 }
-//==================
+
 /***
  * 测试
  */
@@ -65,7 +62,7 @@ $("#testBtn").click(function(){
 	  var zTreeObj = $.fn.zTree.getZTreeObj("treeDemo");
 	  var ztreeJson=getZtreeNodesInfo(zTreeObj);
 	  $.ajax({
-		  url:basepath+"/demo/getZtreeJsonFromView",
+		  url:basepath+"/menu/getZtreeJsonFromView",
 		  type:"post",
 		  data:{"ztreeJson":ztreeJson},
 	      dataType:"json",
@@ -125,14 +122,11 @@ function getZtreeNodesInfo(zTreeObj){
 	    for(var i=0;i<act.length;i++)
 	    {
 	    	zTreeObj.selectNode(act[i],true);//选中目前遍历的节点
-	        MyNode=zTreeObj.getSelectedNodes();	
-	        //========
-	       //console.log(MyNode[0]);
-	        //==========
+	        MyNode=zTreeObj.getSelectedNodes();	    
 	        if(MyNode[0].pId==null){
 	        	MyNode[0].pId=0;
 	        }
-	        params.push({ "id": MyNode[0].id, "pId":MyNode[0].pId,"name" :MyNode[0].name,"url":MyNode[0].url});
+	        params.push({ "id": MyNode[0].id, "pId":MyNode[0].pId,"menuName" :MyNode[0].name,"url":MyNode[0].url,"icon":MyNode[0].icon});
 	    }
 	    var ztreeJson = JSON.stringify(params);
 	    console.log(ztreeJson);
@@ -143,44 +137,6 @@ function getZtreeNodesInfo(zTreeObj){
  * tree-bootstrap测试参数准备
  */
 function paramToZtreeBootstrap(){
-//第二个
-	  var zNodes =[
-	           	{id:1, pId:0, name:"[core] 基本功能 演示",open:true},
-	           	{id:101, pId:1, name:"标准 JSON 数据"},
-	           	{id:102, pId:1, name:"简单 JSON 数据"},
-	           	
-	           	{id:2, pId:0, name:"单选框功能 演示", open:false},
-	           	{id:201, pId:2, name:"Checkbox 勾选操作"},
-	           	{id:206, pId:2, name:"Checkbox演示"},
-	           	
-	           	{id:3, pId:0, name:"编辑功能 演示", open:false},
-	           	{id:301, pId:3, name:"拖拽 节点 基本控制"},
-	           	{id:302, pId:3, name:"拖拽 节点 高级控制"}
-	           	];
-  //第三个
-	  var zNodes3 =[
-	   			{ id:1, pId:0, name:"zTree Home", url:"http://www.treejs.cn/", target:"_blank"},
-	   			{ id:2, pId:0, name:"zTree in Google", url:"http://code.google.com/p/jquerytree/", target:"_blank"},
-	   			{ id:3, pId:0, name:"zTree in Iteye", url:"http://ztreeapi.iteye.com/", target:"_blank"},
-	   			{ id:4, pId:0, name:"Nothing...", url:"", target:"_blank", click:"alert('我是不会跳转的...');"}
-	   		];
-	  
- //第四个
-	  var zNodes4 =[
-		           	{id:1, pId:0, name:"[core] 基本功能 演示",open:true},
-		           	{id:101, pId:1, name:"标准 JSON 数据", url:"http://www.treejs.cn/", target:"_blank"},
-		           	{id:102, pId:1, name:"简单 JSON 数据",url:"http://www.treejs.cn/"},
-		           	
-		           	{id:2, pId:0, name:"单选框功能 演示", open:false},
-		           	{id:201, pId:2, name:"Checkbox 勾选操作", url:"http://www.treejs.cn/", target:"_blank"},
-		           	{id:206, pId:2, name:"Checkbox演示", url:"http://www.treejs.cn/", target:"_blank"},
-		           	
-		           	{id:3, pId:0, name:"编辑功能 演示", open:false},
-		           	{id:301, pId:3, name:"拖拽 节点 基本控制", url:"http://www.treejs.cn/", target:"_blank"},
-		           	{id:302, pId:3, name:"拖拽 节点 高级控制", url:"http://www.treejs.cn/", target:"_blank"}
-		           	];
-	  
-	 //第五个
 	  var zNodes5 =[
 	            	{id:1, pId:0, name:"数据表格",open:true},
 		           	{id:101, pId:1, name:"备忘提醒", url:"/remind/goRemindList"},
