@@ -41,12 +41,12 @@ public abstract class BaseMenu<M extends BaseMenu<M>> extends Model<M> implement
 		return getStr("icon");
 	}
 
-	public void setMenuName(java.lang.String menuName) {
-		set("menuName", menuName);
+	public void setName(java.lang.String name) {
+		set("name", name);
 	}
 	
-	public java.lang.String getMenuName() {
-		return getStr("menuName");
+	public java.lang.String getName() {
+		return getStr("name");
 	}
 
 	public void setOpen(java.lang.String open) {

@@ -12,14 +12,14 @@
 <BODY>
 
     <div class="tile">
-    	 <ul id="treeDemo" class="ztree"></ul>
-    	 <button id="testBtn" type="button" class="btn btn-primary">测试</button>
+    	 <ul id="menuTree" class="ztree"></ul>
+    	 <button id="updateMenuBtn" type="button" class="btn btn-primary">保存</button>
     </div> 
     <script type="text/javascript" src="${BASE_PATH}/plug/ztree-bootstrap/js/jquery.min.js"></script>
     <script type="text/javascript" src="${BASE_PATH}/plug/ztree-bootstrap/js/jquery.ztree.core.js"></script>
     <script type="text/javascript" src="${BASE_PATH}/plug/ztree-bootstrap/js/jquery.ztree.excheck.js"></script>
     <script type="text/javascript" src="${BASE_PATH}/plug/ztree-bootstrap/js/jquery.ztree.exedit.js"></script>
-    <script type="text/javascript" src="${BASE_PATH}/js/pagejs/menu.js"></script>
+    <script type="text/javascript" src="${BASE_PATH}/js/pagejs/menuSettings.js"></script>
 </BODY>
 
 </HTML>

@@ -16,57 +16,57 @@ function param_bulidMenu(){
             "menuTree": [
                      {               
                          "url": basepath+"/go/goMenu",          
-                         "menuName":"首页",
+                         "name":"首页",
                          "icon":dashboard
                     },
                   {                  
                       "url": "#",         
-                      "menuName":"数据表格",
+                      "name":"数据表格",
                       "icon":laptop,
                       "subMenuList":[
 	                                  {
-	                                	  "menuName":"备忘提醒",
+	                                	  "name":"备忘提醒",
 	                                	  "url":basepath+"/remind/goRemindList"
 	                                  },
 	                                  {
-	                                	  "menuName":"调度任务",
+	                                	  "name":"调度任务",
 	                                	  "url":basepath+"/qrtz/goQrtzTaskList"
 	                                  }
                                  ]
                  },
                  {             
                      "url": "#",              
-                     "menuName":"测试区域",
+                     "name":"测试区域",
                      "icon":edit,
                      "subMenuList":[
 	                                  {
-	                                	  "menuName":"测试页面",
+	                                	  "name":"测试页面",
 	                                	  "url":basepath+"/test/goTestPage"
 	                                  }
                                 ]
                 },
                 {           
                     "url": "#",              
-                    "menuName":"案例页面",
+                    "name":"案例页面",
                     "icon":list,
                     "subMenuList":[
 	                                  {
-	                                	  "menuName":"Ztree-bootstrap",
+	                                	  "name":"Ztree-bootstrap",
 	                                	  "url":basepath+"/demo/goTreePage"
 	                                  },
 	                                  {
-	                                	  "menuName":"ECharts",
+	                                	  "name":"ECharts",
 	                                	  "url":basepath+"/demo/goEChartsPage"
 	                                  }
                                ]
                },
                {
                    "url": "#",              
-                   "menuName":"任务模块",
+                   "name":"任务模块",
                    "icon":text,
                    "subMenuList":[
 	                                  {
-	                                	  "menuName":"工程任务",
+	                                	  "name":"工程任务",
 	                                	  "url":basepath+"/task/goTaskList"
 	                                  }
                               ]
@@ -74,16 +74,16 @@ function param_bulidMenu(){
               ]
          };
 	
-	bulidApp(context);
-	//===
-		/*$.ajax({
-			url:basepath+"/menu/getZtreeJsonFromDB",
+	//bulidApp(context);
+
+		$.ajax({
+			url:basepath+"/menu/getTreeMenu",
 			type:"post",
 			dataType:"json",
 			success:function(context){
 				bulidApp(context)
 			}
-		});*/
+		});
 	//========
 }
 

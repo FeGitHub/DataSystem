@@ -14,7 +14,7 @@ import com.jfinal.plugin.activerecord.SqlPara;
 
 public class MenuController extends BaseController{
 	 public void goMenu(){
-   	  render("menu.jsp");
+   	  render("menuSettings.jsp");
      }
 	 
 	 public void getZtreeJsonFromView(){
@@ -22,8 +22,13 @@ public class MenuController extends BaseController{
 		  List<Menu> temp= JSON.parseArray(ztreeJson,Menu.class); 
 		  Map<String, List<Menu>> map=new HashMap<String, List<Menu>>();
 		  map.put("cond", temp);
-		  SqlPara sql=Db.getSqlPara("menu.insertDataBatch", map);
-		  //Db.update(sql);
+		  SqlPara updateSql=Db.getSqlPara("menu.insertDataBatch", map);		
+		  String deleteSql=Db.getSql("menu.deleteAll");
+		  Db.tx(() -> {
+			  Db.delete(deleteSql);
+			  Db.update(updateSql);			
+			  return true;
+			});
 		  renderJson(ajaxDoneSuccess("操作成功"));
 	  }
 	 
@@ -37,7 +42,7 @@ public class MenuController extends BaseController{
 	  }
 	  
 	  public void getTreeMenu(){
-		     String sql=Db.getSql("menu.selectAllData");
+		     String sql=Db.getSql("menu.selectMenuData");
 			 List<Record> ztreeList= Db.find(sql);
 			 String json=FastJson.getJson().toJson(ztreeList);
 			 JSONArray array= JSONArray.parseArray(json);

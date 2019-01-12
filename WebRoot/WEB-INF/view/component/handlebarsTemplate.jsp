@@ -22,19 +22,19 @@
 	{{#if subMenuList}}
 	       <li class="treeview">
 	        	 <a class="app-menu__item" href="{{url}}" data-toggle="treeview">
-	        		 <i class="{{icon}}"></i><span class="app-menu__label">{{menuName}}</span>
+	        		 <i class="{{icon}}"></i><span class="app-menu__label">{{name}}</span>
 	        		 <i class="treeview-indicator fa fa-angle-right"></i>
 	        	 </a>
 		          <ul class="treeview-menu">	
 						{{#each subMenuList}}	       
-		            		<li><a class="treeview-item" href="{{url}}"><i class="icon fa fa-circle-o"></i>{{menuName}}</a></li>
+		            		<li><a class="treeview-item" href="{{url}}"><i class="icon fa fa-circle-o"></i>{{name}}</a></li>
 						{{/each}}
 		          </ul>
 	        </li>
 			{{else}}
 		    <li>
 	        	<a class="app-menu__item" href="{{url}}">
-	        		<i class="{{icon}}"></i><span class="app-menu__label">{{menuName}}</span>
+	        		<i class="{{icon}}"></i><span class="app-menu__label">{{name}}</span>
 	        	</a>
 	        </li>
 		{{/if}}

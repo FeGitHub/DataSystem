@@ -2,7 +2,7 @@
  *  模板页面的js编写
  */
 $("#loginOut").click(function(){
-				layer.confirm('您确定要退出吗？', {			
+		layer.confirm('您确定要退出吗？', {			
 				    btn: ['确定', '取消'], //按钮
 				    skin: 'btnClass',
 				    icon: 2,
