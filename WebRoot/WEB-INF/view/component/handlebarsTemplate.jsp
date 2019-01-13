@@ -33,7 +33,7 @@
 	        </li>
 			{{else}}
 		    <li>
-	        	<a class="app-menu__item" href="{{url}}">
+	        	<a class="app-menu__item menuUrl" href="{{url}}">
 	        		<i class="{{icon}}"></i><span class="app-menu__label">{{name}}</span>
 	        	</a>
 	        </li>

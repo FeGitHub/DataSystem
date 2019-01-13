@@ -48,7 +48,7 @@
           <p class="app-sidebar__user-designation">描述</p>
         </div>
       </div>
-      <ul class="app-menu">
+      <ul class="app-menu" id="menuId">
       </ul>
     </aside>
     <main class="app-content"> 

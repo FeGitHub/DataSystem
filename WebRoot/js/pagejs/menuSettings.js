@@ -10,7 +10,7 @@ var text="app-menu__icon fa fa-file-text";
 var testZNodes;//展示的节点信息
 var setting;//ztree的设置
 var newCount = 1;//新节点默认序号
-var switchFlag=1;//0--静态资源  1--数据库
+var switchFlag=0;//0--静态资源  1--数据库
 $(document).ready(function() {	
 	//设置	  
 	initMenu();	
