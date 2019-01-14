@@ -10,7 +10,7 @@ var text="app-menu__icon fa fa-file-text";
 var testZNodes;//展示的节点信息
 var setting;//ztree的设置
 var newCount = 1;//新节点默认序号
-var switchFlag=0;//0--静态资源  1--数据库
+var switchFlag=1;//0--静态资源  1--数据库
 $(document).ready(function() {	
 	//设置	  
 	initMenu();	
@@ -91,6 +91,11 @@ $("#updateMenuBtn").click(function(){
 	  });
 });
 
+$("#testMenuBtn").click(function(){
+	  var zTreeObj = $.fn.zTree.getZTreeObj("menuTree");
+	  var ztreeJson=getZtreeNodesInfo(zTreeObj);
+	  console.log(ztreeJson);
+})
 
 
 /****
@@ -119,6 +124,7 @@ function addNodeInfo(treeNode){
 	 var childrenSize;
 	 if(treeNode.children!=null){
 		 childrenSize=treeNode.children.length;
+		 alert(treeNode.children.length);
 	 }else{
 		 childrenSize=0;
 	 }
@@ -159,10 +165,9 @@ function getZtreeNodesInfo(zTreeObj){
 	        MyNode=zTreeObj.getSelectedNodes();	  
 	        indexNodePid=MyNode[0].pId==null?0:MyNode[0].pId;
 	        indexNodeIcon=MyNode[0].icon==null?dashboard:MyNode[0].icon;	      
-	        params.push({ "id": MyNode[0].id, "pId":indexNodePid,"name" :MyNode[0].name,"url":MyNode[0].url,"icon":indexNodeIcon});
+	        params.push({ "id": MyNode[0].id, "pId":indexNodePid,"name" :MyNode[0].name,"url":MyNode[0].url,"icon":indexNodeIcon,"checked":MyNode[0].checked});
 	    }
 	    var ztreeJson = JSON.stringify(params);
-	    console.log(ztreeJson);
 	    return ztreeJson;
 }
 
@@ -171,26 +176,26 @@ function getZtreeNodesInfo(zTreeObj){
  */
 function paramToZtreeBootstrap(){
 	  var zNodes5 =[
-	                {id:1, pId:0, name:"菜单编辑",open:true},
+	                {id:1, pId:0, name:"菜单编辑",open:true,checked:false},
 	                
-	                {id:102, pId:1, name:"首页",icon:dashboard,open:true},
+	                {id:101, pId:1, name:"首页",icon:dashboard,open:true,checked:false},
 	                
-	            	{id:103, pId:1, name:"数据表格",icon:laptop,open:true},
-		           	{id:10301, pId:103, name:"备忘提醒", url:"/remind/goRemindList"},
-		           	{id:10302, pId:103, name:"调度任务",url:"/qrtz/goQrtzTaskList"},
+	            	{id:102, pId:1, name:"数据表格",icon:laptop,open:true,checked:false},
+		           	{id:10201, pId:102, name:"备忘提醒", url:"/remind/goRemindList",checked:false},
+		           	{id:10202, pId:102, name:"调度任务",url:"/qrtz/goQrtzTaskList",checked:false},
 		           	
-		           	{id:104, pId:1, name:"测试区域",icon:edit, open:true},
-		           	{id:10401, pId:104, name:"测试页面", url:"/test/goTestPage"},
+		           	{id:103, pId:1, name:"测试区域",icon:edit, open:true,checked:false},
+		           	{id:10301, pId:103, name:"测试页面", url:"/test/goTestPage",checked:false},
 		    
-		           	{id:105, pId:1, name:"案例页面", icon:list,open:true},
-		           	{id:10501, pId:105, name:"Ztree-bootstrap", url:"/demo/goTreePage"},
-		           	{id:10502, pId:105, name:"ECharts", url:"/demo/goEChartsPage"},
+		           	{id:104, pId:1, name:"案例页面", icon:list,open:true,checked:false},
+		           	{id:10401, pId:104, name:"Ztree-bootstrap", url:"/demo/goTreePage",checked:false},
+		           	{id:10402, pId:104, name:"ECharts", url:"/demo/goEChartsPage",checked:false},
 		           	
-		           	{id:106, pId:1, name:"任务模块",icon:text, open:true},
-		           	{id:10601, pId:106, name:"工程任务", url:"/task/goTaskList"},
+		           	{id:105, pId:1, name:"任务模块",icon:text, open:true,checked:false},
+		           	{id:10501, pId:105, name:"工程任务", url:"/task/goTaskList",checked:false},
 		           	
-		           	{id:107, pId:1, name:"系统设置",icon:text, open:true},
-		           	{id:10701, pId:107, name:"菜单设置", url:"/menu/goMenu"},
+		           	{id:106, pId:1, name:"系统设置",icon:text, open:true,checked:false},
+		           	{id:10601, pId:106, name:"菜单设置", url:"/menu/goMenu",checked:false},
 		           	];
 	  testZNodes=zNodes5;	  
 

@@ -14,6 +14,7 @@
     <div class="tile">
     	 <ul id="menuTree" class="ztree"></ul>
     	 <button id="updateMenuBtn" type="button" class="btn btn-primary">保存</button>
+    	 <button id="testMenuBtn" type="button" class="btn btn-primary">测试</button>
     </div> 
     <script type="text/javascript" src="${BASE_PATH}/plug/ztree-bootstrap/js/jquery.min.js"></script>
     <script type="text/javascript" src="${BASE_PATH}/plug/ztree-bootstrap/js/jquery.ztree.core.js"></script>

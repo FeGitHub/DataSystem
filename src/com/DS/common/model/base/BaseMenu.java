@@ -56,5 +56,12 @@ public abstract class BaseMenu<M extends BaseMenu<M>> extends Model<M> implement
 	public java.lang.String getOpen() {
 		return getStr("open");
 	}
+	public void setChecked(java.lang.String checked) {
+		set("checked", checked);
+	}
+	
+	public java.lang.String getChecked() {
+		return getStr("checked");
+	}
 
 }

@@ -3,7 +3,7 @@ var laptop= "app-menu__icon fa fa-laptop";
 var edit="app-menu__icon fa fa-edit";
 var list="app-menu__icon fa fa-th-list";
 var text="app-menu__icon fa fa-file-text";
-var menuFlag=0;//0--静态资源  1--数据库资源
+var menuFlag=1;//0--静态资源  1--数据库资源
 $(function(){
 	param_bulidMenu();	
 });
