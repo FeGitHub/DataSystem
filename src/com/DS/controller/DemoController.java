@@ -26,6 +26,9 @@ public class DemoController extends BaseController {
     	  render("eChartsDemo.jsp");
       }
 	  
+	  public void goProgress(){
+    	  render("progressBar.jsp");
+      }
 	  /****
 	   * 将页面上传递来的json格式的ztree数据转换成可插入的数据库信息
 	   */

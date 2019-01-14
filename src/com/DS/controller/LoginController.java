@@ -1,4 +1,5 @@
 package com.DS.controller;
+import java.util.HashMap;
 import java.util.Map;
 import com.DS.common.model.User;
 import com.DS.utils.ObjectUtil;
@@ -26,9 +27,13 @@ public class LoginController extends BaseController{
    	   String password = SecretUtil.getMD5(user.getPassword());
        if(record!=null&&record.getStr("password").equals(password)){
     	   setSessionAttr("user", record);
-    	   redirect("/go/goMenu");//重定向	   
+    	   //redirect("/go/goMenu");//重定向	
+    	   Map<String,Object> map=new HashMap<String,Object>();
+    	   map.put("url", "/go/goMenu");
+    	   renderJson(ajaxDoneSuccess(map));
        }else{
-    	   redirect("/test/goHello");	
+    	   //redirect("/test/goHello");	
+    	   renderJson(ajaxDoneError("账号或密码出错"));
        } 
    }
    /***
