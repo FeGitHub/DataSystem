@@ -1,22 +1,32 @@
 package com.DS.controller;
+import java.io.File;
+import java.io.IOException;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.UUID;
 import com.DS.common.model.Ztree;
+import com.DS.fileService.FileService;
+import com.DS.fileService.impl.FileServiceImpl;
 import com.DS.utils.JsonUtil;
 import com.DS.web.base.BaseController;
 import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONArray;
+import com.jfinal.aop.Inject;
 import com.jfinal.json.FastJson;
+import com.jfinal.kit.PathKit;
 import com.jfinal.plugin.activerecord.Db;
 import com.jfinal.plugin.activerecord.Record;
 import com.jfinal.plugin.activerecord.SqlPara;
+import com.jfinal.upload.UploadFile;
 /*****
  * 
  * @author jeff
  * 案例页面的控制器
  */
 public class DemoController extends BaseController {
+	@Inject(FileServiceImpl.class)
+	private FileService fileService;
 	 //ztree
 	  public void goTreePage(){
     	  render("ztreeBootstrap.jsp");
@@ -80,4 +90,34 @@ public class DemoController extends BaseController {
 			  return true;
 			});
 	  }
+	  
+	  /****
+	   * 文件下载
+	   */
+	  public void downfile() 
+	   {		
+		 //String path = getSession().getServletContext().getRealPath("/");
+			File file = new File(PathKit.getRootClassPath()+"/resources/excel/test.xls"); 
+			  if (file.exists()) { //如果文件存在 
+				  renderFile(file); 
+			  } else  { 
+		  	   renderJson("文件不存在");
+		  	 } 
+	  } 
+	  
+	  public void uploadFile() 
+	  {//文件上传 
+	  UploadFile uploadFile = this.getFile();//获取前台上传文件对象 
+	  //String fileName = uploadFile.getOriginalFileName();//获取文件名 
+	  File file = uploadFile.getFile();//获取文件对象 
+	  File t = new File("F:\\" + UUID.randomUUID().toString() + file.getName().substring(file.getName().lastIndexOf(".")));//设置本地上传文件对象（并重命名）
+	  try { 
+		   t.createNewFile(); 
+		   } catch (IOException e) { 
+			   e.printStackTrace(); 
+	   } 
+		   fileService.fileChannelCopy(file, t);//将上传的文件的数据拷贝到本地新建的文件 
+		   file.delete(); 
+		   this.renderHtml("success,<a href=\"./\">back</a>");
+	   } 	  
 }

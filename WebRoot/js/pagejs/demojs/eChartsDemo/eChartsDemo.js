@@ -232,3 +232,7 @@
     	      myChart.setOption(option, true);
     	  }
       }
+      
+     $("#testBtn").click(function(){
+    	
+     });
