@@ -9,18 +9,11 @@ import com.alibaba.druid.filter.config.ConfigTools;
 public class SecretUtil {
 	private static ConfigTools configTools=new ConfigTools();	
 	public static void main(String[] args) {
-		/*try {
-			String str="root";//原始数据		
-			String EncryptStr="";//加密后
-			String DecryptStr="";//解密后
-			EncryptStr=configTools.encrypt(str);
-			System.out.println(EncryptStr);
-			System.out.println(configTools.decrypt(EncryptStr));
-		} catch (Exception e) {
-			e.printStackTrace();
-		}*/
-		String temp=getMD5("123456");
-		System.out.println(temp);
+	   String rawData="1234";
+	   String d=DSEncrypt(rawData);
+	   System.out.println(d);
+	   String test=DSDecrypt(d);
+	   System.out.println(test);
 	}
 	
 	/*****
@@ -40,7 +33,7 @@ public class SecretUtil {
 	}
 	
 	/*****
-	 * 
+	 * 解密处理
 	 * @param EncryptStr 加密字符串
 	 * @return 原始数据
 	 */
@@ -53,6 +46,28 @@ public class SecretUtil {
 		}
 		return rawData;
 	}
+	
+	
+	public static String DSEncrypt(String rawData){
+		String EncryptStr="";
+		try {
+			EncryptStr=configTools.encrypt(rawData);
+		} catch (Exception e) {			
+			e.printStackTrace();
+		}
+		return EncryptStr;		
+	}
+	
+	public static String DSDecrypt(String EncryptStr){
+		String rawData="";
+		try {
+			rawData=configTools.decrypt(EncryptStr);
+		} catch (Exception e) {		
+			e.printStackTrace();
+		}	
+		return rawData;
+	}
+	
 	
 	/*******
 	 * MD5算法加密
