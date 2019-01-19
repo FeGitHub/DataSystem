@@ -32,7 +32,7 @@ public class DBBackupJob implements Job{
 	private static String databaseName="jfinal_demo";//要备份的数据库名称
 	public void execute(JobExecutionContext arg0) throws JobExecutionException {
 			//重新加载数据库备份文件资源
-		    Prop p =PropKit.use("CommonConfig.properties");
+		    Prop p =PropKit.use("config.properties");
 			hostIP=p.get("hostIP");
 		    savePath=p.get("DBPath");
 		    userName=p.get("userName");

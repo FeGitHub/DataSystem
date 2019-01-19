@@ -2,6 +2,7 @@ package com.DS.config;
 import com.DS.controller.BlogController;
 import com.DS.controller.DemoController;
 import com.DS.controller.Early_warningController;
+import com.DS.controller.FileController;
 import com.DS.controller.GoController;
 import com.DS.controller.LoginController;
 import com.DS.controller.MenuController;
@@ -32,5 +33,6 @@ public class _MappingRoute {
 	        me.add("/task",TaskController.class);
 	        me.add("/demo",DemoController.class);
 	        me.add("/menu",MenuController.class);
+	        me.add("/file",FileController.class);
 	}
 }

@@ -5,9 +5,11 @@ public class TestUtil {
 	
 	@Test
 	 public void testProKit(){
-		 PropKit.use("CommonConfig.properties");
+		 PropKit.use("config.properties");
 		 String path=PropKit.get("DBPath");
+		 String filePath=PropKit.get("uploadFile");
 		 System.out.println(path);
+		 System.out.println(filePath);
 	 }
 	@Test 
 	public void hello(){

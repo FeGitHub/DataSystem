@@ -28,6 +28,9 @@ public class DemoController extends BaseController {
 	@Inject(FileServiceImpl.class)
 	private FileService fileService;
 	 //ztree
+	  public void goDownUpLoadPage(){
+    	  render("downUpLoad.jsp");
+      }
 	  public void goTreePage(){
     	  render("ztreeBootstrap.jsp");
       }
@@ -91,33 +94,5 @@ public class DemoController extends BaseController {
 			});
 	  }
 	  
-	  /****
-	   * 文件下载
-	   */
-	  public void downfile() 
-	   {		
-		 //String path = getSession().getServletContext().getRealPath("/");
-			File file = new File(PathKit.getRootClassPath()+"/resources/excel/test.xls"); 
-			  if (file.exists()) { //如果文件存在 
-				  renderFile(file); 
-			  } else  { 
-		  	   renderJson("文件不存在");
-		  	 } 
-	  } 
-	  
-	  public void uploadFile() 
-	  {//文件上传 
-	  UploadFile uploadFile = this.getFile();//获取前台上传文件对象 
-	  //String fileName = uploadFile.getOriginalFileName();//获取文件名 
-	  File file = uploadFile.getFile();//获取文件对象 
-	  File t = new File("F:\\" + UUID.randomUUID().toString() + file.getName().substring(file.getName().lastIndexOf(".")));//设置本地上传文件对象（并重命名）
-	  try { 
-		   t.createNewFile(); 
-		   } catch (IOException e) { 
-			   e.printStackTrace(); 
-	   } 
-		   fileService.fileChannelCopy(file, t);//将上传的文件的数据拷贝到本地新建的文件 
-		   file.delete(); 
-		   this.renderHtml("success,<a href=\"./\">back</a>");
-	   } 	  
+	 
 }

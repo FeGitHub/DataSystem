@@ -33,7 +33,7 @@ public class SystemUtil {
 		if(isLinux()){
 			DBPath=PropKit.use("linux.properties").get("DBPath");
 		}else{
-			DBPath=PropKit.use("CommonConfig.properties").get("DBPath");//数据库备份存放的位置	
+			DBPath=PropKit.use("config.properties").get("DBPath");//数据库备份存放的位置	
 		}
 		return DBPath;
 	}

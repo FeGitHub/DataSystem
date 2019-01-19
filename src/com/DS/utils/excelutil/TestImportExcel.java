@@ -14,7 +14,8 @@ public class TestImportExcel {
 
   @Test
   public void importXls() throws FileNotFoundException {
-    File f=new File("src/resources/excel/test.xls");
+   File f=new File("src/resources/excel/test.xls");
+	  //File f=new File("F:/res.xls");
     InputStream inputStream= new FileInputStream(f);
     
     ExcelLogs logs =new ExcelLogs();
