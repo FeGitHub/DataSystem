@@ -12,17 +12,25 @@
 	    	</form> 
 	    	<a href="${BASE_PATH}/file/downfile">test.xls下载</a> 
 	    </div>    --%>
-	    <div class="tile">
 	    
+	    <div class="tile">
+	         <h4>上传文件到服务器(项目路径)</h4>
 	    	  <input type="file" name="file" id="fileid"/> 
-	    	  <input type="submit" id="submitBtn"/> 
+	    	  <button type="button" id="submitBtn">上传</button>
 	    
 	    	<a href="${BASE_PATH}/file/downfile">test.xls下载</a> 
 	    </div>
 	    
-	     <div class="tile">	    
+	     <div class="tile">	   
+	       <h4>上传文件到服务器(任意路径)</h4> 
 	    	  <input type="file" name="file" id="testId"/> 
 	    	  <button type="button" id="testBtn">测试</button>    
+	    </div>
+	    
+	     <div class="tile">	   
+	      <h4>读取excel文件信息</h4>  
+	    	  <input type="file" name="file" id="execlId"/> 
+	    	  <button type="button" id="exceltBtn">测试</button>    
 	    </div>
 	     <script src="${BASE_PATH}/js/pagejs/demojs/downUpLoad.js"></script>     
 </body>

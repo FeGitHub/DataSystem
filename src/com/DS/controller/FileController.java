@@ -1,16 +1,9 @@
 package com.DS.controller;
 import java.io.File;
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
 import java.io.IOException;
-import java.io.InputStream;
-import java.util.Collection;
-import java.util.Map;
 import java.util.UUID;
 import com.DS.fileService.FileService;
 import com.DS.fileService.impl.FileServiceImpl;
-import com.DS.utils.excelutil.ExcelLogs;
-import com.DS.utils.excelutil.ExcelUtil;
 import com.DS.web.base.BaseController;
 import com.jfinal.aop.Inject;
 import com.jfinal.kit.PathKit;
@@ -34,6 +27,9 @@ public class FileController extends BaseController{
 		  	 } 
 	  } 
 	  
+	  /****
+	   * 上传文件资源到服务器（服务器任意位置）
+	   */
 	  public void uploadFile() 
 	  {   
 		  boolean exceptionFlag=false;
@@ -43,19 +39,16 @@ public class FileController extends BaseController{
 		  Prop p =PropKit.use("config.properties");	
 		  String filePath=p.get("uploadFile")+"/";  
 		  String newfileName=UUID.randomUUID().toString() + file.getName().substring(file.getName().lastIndexOf("."));
-		  File t = new File(filePath + newfileName);//设置本地上传文件对象（并重命名）	 
+		  File copyfile = new File(filePath + newfileName);//设置本地上传文件对象（并重命名）	 
 		  try { 
-			   t.createNewFile(); 
+			  copyfile.createNewFile(); 
 			   } catch (IOException e) { 
 				   exceptionFlag=true;
 				   e.printStackTrace(); 
 		   }  
 		  	if(!exceptionFlag){
-		  		fileService.fileChannelCopy(file, t);//将上传的文件的数据拷贝到本地新建的文件 
+		  		fileService.fileChannelCopy(file, copyfile);//将上传的文件的数据拷贝到本地新建的文件 
 				file.delete(); 
-				//====
-				//importXls(filePath + newfileName);
-				//===
 				renderJson(ajaxDoneSuccess("文件上传成功"));
 		  	}else{
 		  		renderJson(ajaxDoneError("文件上传失败"));
@@ -63,6 +56,9 @@ public class FileController extends BaseController{
 			   
 	   } 	  
 	  
+	  /***
+	   * 上传文件资源到服务器（项目中）
+	   */
 	  public void uploadFileToProject(){		
 		  UploadFile uf = getFile();
 		  File f = uf.getFile();
@@ -71,24 +67,16 @@ public class FileController extends BaseController{
 		  renderJson(ajaxDoneSuccess("文件上传成功"));
 	  }
 	  
-	 //===========
-	   //测试上传后立刻读取数据
-	  public void importXls(String path) {
-		  System.out.println(path);
-		   File f=new File(path);
-		    InputStream inputStream = null;
-			try {
-				inputStream = new FileInputStream(f);
-			} catch (FileNotFoundException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}	    
-		    ExcelLogs logs =new ExcelLogs();
-		    @SuppressWarnings("rawtypes")
-			Collection<Map> importExcel = ExcelUtil.importExcel(Map.class, inputStream, "yyyy/MM/dd HH:mm:ss", logs , 0);	    
-		    for(@SuppressWarnings("rawtypes") Map m : importExcel){
-		      System.out.println(m);
-		    }
-		  }
-	  //============
+	  /****
+	   * 读取excel文件信息
+	   */
+	  public void getInfoFromExcel(){
+		  UploadFile uploadFile = this.getFile();//获取前台上传文件对象 
+		  File file = uploadFile.getFile();
+		   if(fileService.readExcelData(file)){
+			   renderJson(ajaxDoneSuccess("excel数据读取成功"));
+		   }else{
+			   renderJson(ajaxDoneError("excel数据读取失败"));
+		   }
+	  }
 }
