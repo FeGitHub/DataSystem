@@ -49,3 +49,11 @@
 #namespace("menu")
 #include("com/DS/menu/dao/menu.sql")
 #end
+
+
+/****
+ * demo
+ */
+#namespace("excel")
+#include("com/DS/excel/dao/excel.sql")
+#end

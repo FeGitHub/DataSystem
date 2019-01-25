@@ -1,5 +1,4 @@
 package com.DS.fileService.impl;
-
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
@@ -7,20 +6,23 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.nio.channels.FileChannel;
+import java.util.ArrayList;
 import java.util.Collection;
-import java.util.HashMap;
 import java.util.Map;
+import java.util.UUID;
 
+import com.DS.bean.TestExcelBean;
 import com.DS.fileService.FileService;
 import com.DS.utils.excelutil.ExcelLogs;
 import com.DS.utils.excelutil.ExcelUtil;
 import com.jfinal.kit.Prop;
 import com.jfinal.kit.PropKit;
-import com.jfinal.upload.UploadFile;
 
 public class FileServiceImpl implements FileService {
-
-	@Override
+		/****
+		 * 拷贝文件信息
+		 */
+	    @Override
 		public void fileChannelCopy(File file, File copyfile) {
 			FileInputStream fi = null;//文件输入流 
 			FileOutputStream fo = null;//文件输出流 
@@ -45,60 +47,27 @@ public class FileServiceImpl implements FileService {
 					} 
 			   }
 			 }
-		
-	 /****
-	  * @param file 上传的excel文件资源
-	  * 步骤如下：
-	  * 1.上传excel文件资源到本地
-	  * 2.将文件信息拷贝到临时excel
-	  * 3.读取excel信息
-	  * 4.删除不必要的excel文件
-	  */
-	   @Override
-		public  boolean readExcelData(File file) {
-		  boolean exceptionFlag=false;
+		  	
+	/****
+	 * 上传文件并拷贝，删除原上传文件，留下拷贝信息
+	 */
+	@Override
+	public File uploadFile(File file) {
 		  Prop p =PropKit.use("config.properties");	
 		  String filePath=p.get("uploadFile")+"/";  
-		  String newfileName="tempExcel" + file.getName().substring(file.getName().lastIndexOf("."));
+		  String newfileName=UUID.randomUUID().toString() + file.getName().substring(file.getName().lastIndexOf("."));
 		  File copyfile = new File(filePath + newfileName);//设置本地上传文件对象（并重命名）	 
 		  try { 
 			  copyfile.createNewFile(); 
+			  fileChannelCopy(file, copyfile);			 
 			   } catch (IOException e) { 
-				   exceptionFlag=true;
+				   copyfile=null;
 				   e.printStackTrace(); 
-		   }  
-		  	if(!exceptionFlag){
-		  		fileChannelCopy(file, copyfile);//将上传的文件的数据拷贝到本地新建的文件 
-				file.delete(); 			
-				importXls(filePath + newfileName);		
-				copyfile.delete();
-			    return true;
-		  	}else{
-		  		return false;
-		  	}
-			
-		} 
-		
-	/****
-	 * 读取excel文件信息
-	 * @param path  excel文件位置
-	 */
-	  public void importXls(String path) {
-		  System.out.println(path);
-		   File f=new File(path);
-		    InputStream inputStream = null;
-			try {
-				inputStream = new FileInputStream(f);
-			} catch (FileNotFoundException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}	    
-		    ExcelLogs logs =new ExcelLogs();
-		    @SuppressWarnings("rawtypes")
-			Collection<Map> importExcel = ExcelUtil.importExcel(Map.class, inputStream, "yyyy/MM/dd HH:mm:ss", logs , 0);	    
-		    for(@SuppressWarnings("rawtypes") Map m : importExcel){
-		      System.out.println(m);
-		    }
-		  }
+		    } finally{
+		    	  file.delete();
+		    }	 
+		  return copyfile;
+	}
+	  
 	}
 

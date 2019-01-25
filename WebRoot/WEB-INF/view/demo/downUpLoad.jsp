@@ -25,12 +25,12 @@
 	       <h4>上传文件到服务器(任意路径)</h4> 
 	    	  <input type="file" name="file" id="testId"/> 
 	    	  <button type="button" id="testBtn">测试</button>    
-	    </div>
-	    
+	    </div>	    
+	    	    
 	     <div class="tile">	   
-	      <h4>读取excel文件信息</h4>  
-	    	  <input type="file" name="file" id="execlId"/> 
-	    	  <button type="button" id="exceltBtn">测试</button>    
+	      <h4>导入财务信息</h4>  
+	    	  <input type="file" name="file" id="financeId"/> 
+	    	  <button type="button" id="financeBtn">导入</button>    
 	    </div>
 	     <script src="${BASE_PATH}/js/pagejs/demojs/downUpLoad.js"></script>     
 </body>
