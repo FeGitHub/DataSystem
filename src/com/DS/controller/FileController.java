@@ -19,7 +19,7 @@ public class FileController extends BaseController{
 	   */
 	  public void downfile() 
 	   {		
-		 //String path = getSession().getServletContext().getRealPath("/");
+		   // String path = getSession().getServletContext().getRealPath("/");	
 			File file = new File(PathKit.getRootClassPath()+"/resources/excel/test.xls"); 
 			  if (file.exists()) { //如果文件存在 
 				  renderFile(file); 

@@ -1,10 +1,7 @@
 package com.DS.controller;
-import java.io.File;
-import java.io.IOException;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.UUID;
 import com.DS.common.model.Ztree;
 import com.DS.fileService.FileService;
 import com.DS.fileService.impl.FileServiceImpl;
@@ -14,11 +11,9 @@ import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONArray;
 import com.jfinal.aop.Inject;
 import com.jfinal.json.FastJson;
-import com.jfinal.kit.PathKit;
 import com.jfinal.plugin.activerecord.Db;
 import com.jfinal.plugin.activerecord.Record;
 import com.jfinal.plugin.activerecord.SqlPara;
-import com.jfinal.upload.UploadFile;
 /*****
  * 
  * @author jeff
@@ -27,7 +22,7 @@ import com.jfinal.upload.UploadFile;
 public class DemoController extends BaseController {
 	@Inject(FileServiceImpl.class)
 	private FileService fileService;
-	 //ztree
+
 	  public void goDownUpLoadPage(){
     	  render("downUpLoad.jsp");
       }
@@ -50,7 +45,6 @@ public class DemoController extends BaseController {
 		  List<Ztree> temp= JSON.parseArray(ztreeJson,Ztree.class); 
 		  Map<String, List<Ztree>> map=new HashMap<String, List<Ztree>>();
 		  map.put("cond", temp);
-		 // SqlPara sql=Db.getSqlPara("ztree.insertDataBatch", map);
 		  SqlPara sql=Db.getSqlPara("menu.insertDataBatch", map);
 		  //Db.update(sql);
 		  renderJson(ajaxDoneSuccess("操作成功"));
