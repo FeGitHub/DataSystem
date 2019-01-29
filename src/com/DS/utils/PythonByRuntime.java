@@ -12,7 +12,7 @@ public class PythonByRuntime {
 	private static String exe = "python";
 	public static void main(String[] args) throws IOException,InterruptedException {		
 		  try {
-				PythonByRuntime.runPython3(PathKit.getRootClassPath()+"/py/hello.py");
+				PythonByRuntime.runPython3(PathKit.getRootClassPath()+"/py/pandasTest.py");
 			} catch (IOException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
