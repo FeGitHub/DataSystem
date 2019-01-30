@@ -20,7 +20,6 @@ def main():
         主函数
     """
     DATA_FILE=argv[1]+'\\house_data.csv';
-    print(DATA_FILE);
     house_data = pd.read_csv(DATA_FILE, usecols=FEAT_COLS + ['price'])
     #ai_utils.plot_feat_and_price(house_data)
 
@@ -36,7 +35,7 @@ def main():
     linear_reg_model.fit(X_train, y_train)
     # 验证模型
     r2_score = linear_reg_model.score(X_test, y_test)
-    print('模型的R2值', r2_score)
+    print('模型的R2值2', r2_score)
 
     # 单个样本房价预测
     i = 50
