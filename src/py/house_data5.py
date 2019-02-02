@@ -19,7 +19,7 @@ def main():
     """
         主函数
     """
-    DATA_FILE=argv[1]+'\\house_data.csv';
+    DATA_FILE=argv[1]+'\\house_data.csv'
     house_data = pd.read_csv(DATA_FILE, usecols=FEAT_COLS + ['price'])
     #ai_utils.plot_feat_and_price(house_data)
 

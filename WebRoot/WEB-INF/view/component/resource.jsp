@@ -18,6 +18,7 @@
   <script src="${BASE_PATH}/js/plugjs/handlebars.min-latest.js"></script> 
   <script type="text/javascript">
     var basepath= '${BASE_PATH}';
+    var userMenu= '<%=session.getAttribute("menuTree")%>'; 
   </script>
 
 

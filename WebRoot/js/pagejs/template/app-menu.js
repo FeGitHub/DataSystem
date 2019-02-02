@@ -13,6 +13,11 @@ $(function(){
  * 构建参数测试
  */
 function param_bulidMenu(){
+	 if(JSON.parse(userMenu)!=null){		
+		 //console.log(JSON.parse(userMenu));
+		 bulidApp(JSON.parse(userMenu));
+		 return;
+	 }
 	if(menuFlag==0){
 		var context = {
 	            "menuTree": [
@@ -82,6 +87,8 @@ function param_bulidMenu(){
 			type:"post",
 			dataType:"json",
 			success:function(context){
+				console.log("============");
+				console.log(context);
 				bulidApp(context)				
 			}
 		});
