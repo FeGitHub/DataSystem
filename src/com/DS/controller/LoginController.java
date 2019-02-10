@@ -1,16 +1,16 @@
 package com.DS.controller;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 import com.DS.common.model.User;
-import com.DS.utils.JsonUtil;
+import com.DS.menu.service.MenuService;
+import com.DS.menu.service.impl.MenuServiceImpl;
 import com.DS.utils.ObjectUtil;
 import com.DS.utils.SecretUtil;
 import com.DS.web.base.BaseController;
 import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
 import com.jfinal.aop.Clear;
-import com.jfinal.json.FastJson;
+import com.jfinal.aop.Inject;
 import com.jfinal.plugin.activerecord.Db;
 import com.jfinal.plugin.activerecord.Record;
 import com.jfinal.plugin.activerecord.SqlPara;
@@ -20,6 +20,9 @@ import com.jfinal.plugin.activerecord.SqlPara;
  * 登陆登出控制器
  */
 public class LoginController extends BaseController{
+	@Inject(MenuServiceImpl.class)
+	private MenuService menuService;
+	
 	/*
 	 * 登陆验证
 	 */
@@ -37,13 +40,9 @@ public class LoginController extends BaseController{
        if(record!=null&&record.getStr("password").equals(password)){
     	     //用户信息
     	     setSessionAttr("user", record);  
-    	     //菜单信息
-    	     String sql1=Db.getSql("menu.selectMenuData");
-			 List<Record> ztreeList= Db.find(sql1);
-			 String json=FastJson.getJson().toJson(ztreeList);
-			 JSONArray array= JSONArray.parseArray(json);
-			 JSONArray menu=JsonUtil.listToTree(array, "id", "pId", "subMenuList");			 
-			 JSONObject hash = new JSONObject();
+    	     //菜单信息   	
+    	     JSONArray menu=menuService.getTreeMenu();
+    	     JSONObject hash = new JSONObject();
 			 hash.put("menuTree", menu);	
 			 setSessionAttr("menuTree", hash);  
     	     Map<String,Object> map=new HashMap<String,Object>();

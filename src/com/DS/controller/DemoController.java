@@ -22,7 +22,10 @@ import com.jfinal.plugin.activerecord.SqlPara;
 public class DemoController extends BaseController {
 	@Inject(FileServiceImpl.class)
 	private FileService fileService;
-
+	 
+	 /****
+	  * 跳转到上传下载页面
+	  */
 	  public void goDownUpLoadPage(){
     	  render("downUpLoad.jsp");
       }
@@ -30,40 +33,41 @@ public class DemoController extends BaseController {
     	  render("ztreeBootstrap.jsp");
       }
 	  
+	  /****
+	   * 跳转到Echarts数据分析页面
+	   */
 	  public void goEChartsPage(){
     	  render("eChartsDemo.jsp");
       }
 	  
+	  /***
+	   * 跳转到进度条控制页面
+	   */
 	  public void goProgress(){
     	  render("progressBar.jsp");
       }
-	  /****
-	   * 将页面上传递来的json格式的ztree数据转换成可插入的数据库信息
-	   */
-	  public void getZtreeJsonFromView(){
+	 
+	 /* public void getZtreeJsonFromView(){
 		  String ztreeJson=getPara("ztreeJson");
 		  List<Ztree> temp= JSON.parseArray(ztreeJson,Ztree.class); 
 		  Map<String, List<Ztree>> map=new HashMap<String, List<Ztree>>();
 		  map.put("cond", temp);
 		  SqlPara sql=Db.getSqlPara("menu.insertDataBatch", map);
-		  //Db.update(sql);
+		  Db.update(sql);
 		  renderJson(ajaxDoneSuccess("操作成功"));
-	  }
+	  }*/
 	  
-	  /****
-	   * 取出数据库的ztree表的数据
-	   */
-	  public void getZtreeJsonFromDB(){
+	 
+	/*  public void getZtreeJsonFromDB(){
 		  String sql=Db.getSql("ztree.getZtreeJsonFromDB");
-		 List<Record> ztreeList= Db.find(sql);
-		 //==========
+		 List<Record> ztreeList= Db.find(sql);		
 		 String json=FastJson.getJson().toJson(ztreeList);
 		 JSONArray array= JSONArray.parseArray(json);
 		 JSONArray test=JsonUtil.listToTree(array, "id", "pId", "subMenuList");
-		 System.out.println(test);
-		 //========
+		 System.out.println(test);	
 		 renderJson(ztreeList);
 	  }
+	  */
 	  
 	  /****
 	   * 得到EchartsData数据的测试返回

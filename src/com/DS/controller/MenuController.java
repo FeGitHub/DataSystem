@@ -3,25 +3,40 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import com.DS.common.model.Menu;
-import com.DS.utils.JsonUtil;
+import com.DS.menu.service.MenuService;
+import com.DS.menu.service.impl.MenuServiceImpl;
 import com.DS.web.base.BaseController;
 import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONArray;
-import com.jfinal.json.FastJson;
+import com.alibaba.fastjson.JSONObject;
+import com.jfinal.aop.Inject;
 import com.jfinal.plugin.activerecord.Db;
 import com.jfinal.plugin.activerecord.Record;
 import com.jfinal.plugin.activerecord.SqlPara;
-
+/****
+ * 
+ * @author jeff
+ * 菜单控制器
+ */
 public class MenuController extends BaseController{
+	@Inject(MenuServiceImpl.class)
+	private MenuService menuService;
+	
+	/*****
+	 * 跳转到菜单设置页面
+	 */
 	 public void goMenu(){
-   	  render("menuSettings.jsp");
+   	   render("menuSettings.jsp");
      }
 	 
-	 public void getZtreeJsonFromView(){
+	 /****
+	  * 更新菜单数据
+	  */
+	 public void updateZtreeJson(){
 		  String ztreeJson=getPara("ztreeJson");
-		  List<Menu> temp= JSON.parseArray(ztreeJson,Menu.class); 
+		  List<Menu> menuList= JSON.parseArray(ztreeJson,Menu.class); 
 		  Map<String, List<Menu>> map=new HashMap<String, List<Menu>>();
-		  map.put("cond", temp);
+		  map.put("cond", menuList);
 		  SqlPara updateSql=Db.getSqlPara("menu.insertDataBatch", map);		
 		  String deleteSql=Db.getSql("menu.deleteAll");
 		  Db.tx(() -> {
@@ -29,6 +44,11 @@ public class MenuController extends BaseController{
 			  Db.update(updateSql);			
 			  return true;
 			});
+		  //更新即时菜单数据
+		  JSONArray menu=menuService.getTreeMenu();
+ 	      JSONObject hash = new JSONObject();
+		  hash.put("menuTree", menu);	
+		  setSessionAttr("menuTree", hash);  
 		  renderJson(ajaxDoneSuccess("操作成功"));
 	  }
 	 
@@ -41,15 +61,13 @@ public class MenuController extends BaseController{
 		 renderJson(ztreeList);
 	  }
 	  
-	  public void getTreeMenu(){
-		     String sql=Db.getSql("menu.selectMenuData");
-			 List<Record> ztreeList= Db.find(sql);
-			 String json=FastJson.getJson().toJson(ztreeList);
-			 JSONArray array= JSONArray.parseArray(json);
-			 JSONArray test=JsonUtil.listToTree(array, "id", "pId", "subMenuList");
-			 System.out.println(test);
+	  /****
+	   * 获取菜单信息数据
+	   */
+	  public void getTreeMenu(){		   
+		     JSONArray menuJsonArray=menuService.getTreeMenu();
 			 Map<String,Object> map=new HashMap<String,Object>();
-			 map.put("menuTree", test);
+			 map.put("menuTree", menuJsonArray);
 			 renderJson(map);
 	  }
 }

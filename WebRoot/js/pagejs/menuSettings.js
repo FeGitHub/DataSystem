@@ -16,7 +16,9 @@ $(document).ready(function() {
 	initMenu();	
 });
 
-
+/****
+ * 树形展示设置
+ */
 function initSetting(){
 	  setting = {
 	            view: {
@@ -42,7 +44,9 @@ function initSetting(){
 	        };
 }
 
-
+/***
+ * 初始化菜单
+ */
 function initMenu(){
 	initSetting();
 	if(switchFlag==0){
@@ -77,7 +81,7 @@ $("#updateMenuBtn").click(function(){
 	  var zTreeObj = $.fn.zTree.getZTreeObj("menuTree");
 	  var ztreeJson=getZtreeNodesInfo(zTreeObj);
 	  $.ajax({
-		  url:basepath+"/menu/getZtreeJsonFromView",
+		  url:basepath+"/menu/updateZtreeJson",
 		  type:"post",
 		  data:{"ztreeJson":ztreeJson},
 	      dataType:"json",
@@ -91,6 +95,9 @@ $("#updateMenuBtn").click(function(){
 	  });
 });
 
+/****
+ * 控制台打印菜单信息
+ */
 $("#testMenuBtn").click(function(){
 	  var zTreeObj = $.fn.zTree.getZTreeObj("menuTree");
 	  var ztreeJson=getZtreeNodesInfo(zTreeObj);
@@ -123,8 +130,7 @@ function addHoverDomBtn(treeId, treeNode) {
 function addNodeInfo(treeNode){
 	 var childrenSize;
 	 if(treeNode.children!=null){
-		 childrenSize=treeNode.children.length;
-		 alert(treeNode.children.length);
+		 childrenSize=treeNode.children.length;		
 	 }else{
 		 childrenSize=0;
 	 }
