@@ -9,11 +9,9 @@ var style1="fa fa-circle fa-stack-2x text-primary";
 var style2="fa fa-circle fa-stack-2x text-danger";
 var style3="fa fa-circle fa-stack-2x text-success";
 
-$(function(){
-	param_bulidNotification();
-	 
-	
-});
+/*$(function(){
+	param_bulidNotification();	
+});*/
 
 
 /*****
