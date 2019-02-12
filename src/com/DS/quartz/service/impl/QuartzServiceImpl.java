@@ -2,6 +2,7 @@ package com.DS.quartz.service.impl;
 import java.text.ParseException;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.UUID;
 import org.quartz.SchedulerException;
 import com.DS.bean.QuartzTaskBean;
 import com.DS.exception.BusinessException;
@@ -42,6 +43,11 @@ public class QuartzServiceImpl implements QuartzService {
 	@Override
 	public String addJob(QuartzTaskBean bean){
 		String errorMsg=null;
+		//修改：调度任务的命名参数由系统生成
+		UUID uuid = UUID.randomUUID();
+		bean.setJobName(uuid.toString());
+		//以下命名参数根据jobName修改
+		bean.setJobGroup(bean.getJobName()+"JobGroup");		
 		bean.setTriggerName(bean.getJobName()+"TriggerName");
 		bean.setTriggerGroup(bean.getJobGroup()+"TriggerGroup");		
 		bean.setJobClassStr(bean.getJobClassStr());
@@ -49,7 +55,7 @@ public class QuartzServiceImpl implements QuartzService {
 		Class jobClass=null;
 		try {
 			jobClass = Class.forName(bean.getJobClassStr());			
-			QuartzManager.addJob(bean.getJobName(), bean.getJobName(), bean.getTriggerName(), bean.getTriggerGroup(), jobClass, bean.getCron(), bean.getDescription());
+			QuartzManager.addJob(bean.getJobName(), bean.getJobGroup(), bean.getTriggerName(), bean.getTriggerGroup(), jobClass, bean.getCron(), bean.getDescription());
 		} catch (ClassNotFoundException e) {
 			errorMsg="对应的class没有找到";
 			e.printStackTrace();

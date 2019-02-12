@@ -4,9 +4,9 @@ var edit="app-menu__icon fa fa-edit";
 var list="app-menu__icon fa fa-th-list";
 var text="app-menu__icon fa fa-file-text";
 var menuFlag=1;//0--静态资源  1--数据库资源
-$(function(){
+/*$(function(){
 	param_bulidMenu();	
-});
+});*/
 
 
 /*****
@@ -86,8 +86,7 @@ function param_bulidMenu(){
 			url:basepath+"/menu/getTreeMenu",
 			type:"post",
 			dataType:"json",
-			success:function(context){
-				console.log("============");
+			success:function(context){				
 				console.log(context);
 				bulidApp(context)				
 			}
@@ -107,11 +106,13 @@ function bulidApp(data){
 	$(".app-menu").html(_html);
 }
 
+//处理子菜单的路径问题
 $("body").on("click",".treeview-item",function(event){
 	event.preventDefault();
 	window.location.href=basepath+$(this).attr("href");
 });
 
+//处理单条菜单没有子菜单的url路径问题
 $("body").on("click",".menuUrl",function(event){
 	event.preventDefault();
 	window.location.href=basepath+$(this).attr("href");

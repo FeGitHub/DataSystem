@@ -26,8 +26,8 @@
 	<table id="qrtzTable" class="display" style="width:100%">
     <thead>
         <tr>        
-            <th>调度任务</th>
-            <th>任务组名</th>
+           <!--  <th>调度任务</th>
+            <th>任务组名</th> -->
             <th>任务描述</th>
             <th>具体类名</th>
             <th>表达式值</th>

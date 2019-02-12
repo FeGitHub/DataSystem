@@ -17,12 +17,12 @@
             <h3 class="tile-title">调度任务</h3>
             <div class="tile-body">
               <form class="form-horizontal" id="qrtzForm">
-                <div class="form-group row">
+               <!--  <div class="form-group row">
                   <label class="control-label col-md-3">任务名称</label>
                   <div class="col-md-8">
                     <input class="form-control validate[required]" type="text" placeholder="" name="jobName">
                   </div>
-                </div>
+                </div> -->
                   <div class="form-group row">
                     <label for="jobClass" class="control-label col-md-3">类名</label>
                     <div class="col-md-8">
@@ -30,12 +30,12 @@
                     </select>
                     </div>                 
                   </div>
-                <div class="form-group row">
+               <!--  <div class="form-group row">
                   <label class="control-label col-md-3">任务组名</label>
                   <div class="col-md-8">
                     <input class="form-control validate[required] col-md-8" type="email" placeholder="" name="jobGroup">
                   </div>
-                </div>
+                </div> -->
                  <div class="form-group row">
                   <label class="control-label col-md-3">日期值转Cron表达式</label>
                   <div class="col-md-3">

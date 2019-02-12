@@ -18,8 +18,8 @@ $(function(){
 		 serverSide: true,
 		 pageLength:8,
         columns: [                
-                  { data: 'JOB_NAME' },//任务名
-                  { data: 'JOB_GROUP'},//任务组
+                  /*{ data: 'JOB_NAME' },
+                  { data: 'JOB_GROUP'},*/
                   { data: 'DESCRIPTION'},//任务描述
                   { data: 'JOB_CLASS_NAME'},//任务类名
                   { data: 'CRON_EXPRESSION'},//表达式
