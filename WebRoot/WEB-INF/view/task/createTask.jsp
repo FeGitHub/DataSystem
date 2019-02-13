@@ -3,6 +3,7 @@
 <html lang="en">
   <head>   
     <title>创建调度任务</title>
+      <link rel="stylesheet" href="${BASE_PATH}/plug/ztree-bootstrap/css/bootstrapStyle/bootstrapStyle.css" type="text/css">
   </head>
   <body >    
     <main >   
@@ -29,9 +30,18 @@
               </div>
             </div>
           </div>
+          <div class="tile">
+	    	 <ul id="treeDemo" class="ztree"></ul>
+	    	 <button id="testBtn" type="button" class="btn btn-primary">打开控制台查看数据</button>
+         </div> 
         </div>     
       </div>
     </main>
+  
+    <script type="text/javascript" src="${BASE_PATH}/plug/ztree-bootstrap/js/jquery.ztree.core.js"></script>
+    <script type="text/javascript" src="${BASE_PATH}/plug/ztree-bootstrap/js/jquery.ztree.excheck.js"></script>
+    <script type="text/javascript" src="${BASE_PATH}/plug/ztree-bootstrap/js/jquery.ztree.exedit.js"></script>
+   
     <script src="${BASE_PATH}/js/pagejs/createTask.js"></script>
   </body>
 </html>

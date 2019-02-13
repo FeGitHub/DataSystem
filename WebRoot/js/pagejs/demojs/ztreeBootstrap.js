@@ -88,7 +88,7 @@ $("#testBtn").click(function(){
  */
 function addHoverDom(treeId, treeNode) {
     var sObj = $("#" + treeNode.tId + "_span");
-    if (treeNode.editNameFlag || $("#addBtn_" + treeNode.tId).length > 0||treeNode.pId!=null) return;
+    if (treeNode.editNameFlag || $("#addBtn_" + treeNode.tId).length > 0) return;
     var addStr = "<span class='button add' id='addBtn_" + treeNode.tId +
         "' title='add node' onfocus='this.blur();'></span>";
     sObj.after(addStr);
