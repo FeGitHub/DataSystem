@@ -19,7 +19,7 @@
                     <input class="form-control validate[required]" type="text" placeholder="" name="taskName">
                   </div>
                 </div>           
-              </form>
+              </form>                  
             </div>
             <div class="tile-footer">
               <div class="row">
@@ -29,19 +29,34 @@
                 </div>
               </div>
             </div>
-          </div>
-          <div class="tile">
+          </div>      
+        </div>     
+      </div>
+      
+      <div class="row">   
+         <div class="col-md-6">
+         <div class="tile" style="height:400px;">
+         	 <div id="pieChart" style="height:400px;"></div>
+         </div>
+         </div>
+         <div class="col-md-6">
+         	<div class="tile">
 	    	 <ul id="treeDemo" class="ztree"></ul>
 	    	 <button id="testBtn" type="button" class="btn btn-primary">打开控制台查看数据</button>
          </div> 
-        </div>     
-      </div>
+         </div>   
+        	 
+        </div>
     </main>
   
     <script type="text/javascript" src="${BASE_PATH}/plug/ztree-bootstrap/js/jquery.ztree.core.js"></script>
     <script type="text/javascript" src="${BASE_PATH}/plug/ztree-bootstrap/js/jquery.ztree.excheck.js"></script>
     <script type="text/javascript" src="${BASE_PATH}/plug/ztree-bootstrap/js/jquery.ztree.exedit.js"></script>
-   
+   <!--  -->
+   <script src="${BASE_PATH}/js/plugjs/echarts.js"></script>
+    <script src="${BASE_PATH}/js/pagejs/demojs/eChartsDemo/walden.js"></script> <!--图标样式-->
+ 
+   <!--  -->
     <script src="${BASE_PATH}/js/pagejs/createTask.js"></script>
   </body>
 </html>

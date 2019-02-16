@@ -3,8 +3,8 @@
  <!-- 不需要过滤的请求 -->  
  <excludes>  
   <pattern>/static/*</pattern>  
-  <pattern>/login/*</pattern> 
-   
+  <pattern>/login/*</pattern>  
+  <!-- <pattern>/demo/goGant</pattern>   -->
  </excludes>  
  <!-- 定义装饰器要过滤的页面 -->  
  <decorator name="template" page="template.jsp">  
@@ -20,4 +20,8 @@
        <pattern>/task/*</pattern>   
        <pattern>/menu/*</pattern>   
  </decorator>     
+ 
+ <decorator name="template" page="template-NoTitle.jsp">    
+       <pattern>/demo/goGant</pattern>   
+ </decorator>    
 </decorators> 

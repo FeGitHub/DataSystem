@@ -38,6 +38,12 @@ public class DemoController extends BaseController {
 	  public void goProgress(){
     	  render("progressBar.jsp");
       }
+	  /***
+	   * 跳转到甘特图
+	   */
+	  public void goGant(){
+    	  render("ganttView.jsp");
+      }
 	 
 	 /* public void getZtreeJsonFromView(){
 		  String ztreeJson=getPara("ztreeJson");

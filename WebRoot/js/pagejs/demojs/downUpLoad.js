@@ -1,12 +1,14 @@
- $(function () {  
+ /****
+  * demo：处理文件上传和下载的js
+  */
+$(function () {  
 	 	/****
 	 	 * 上传文件资源到服务器（项目路径）
 	 	 */
 		$("#submitBtn").click(function(){
-			var url="/file/uploadFileToProject";
-			var formData = new FormData();
-			formData.append('file', $('#fileid')[0].files[0]);  
-			clickAction(formData,url);
+			var url="/file/uploadFileToProject";			
+			var file=$('#fileid')[0].files[0];		 			
+			clickAction(file,url);
 		})		
 		
 		/***
@@ -14,9 +16,8 @@
 		 */
 		$("#testBtn").click(function(){
 			var url="/file/uploadFile";
-			var formData = new FormData();
-			formData.append('file', $('#testId')[0].files[0]);  
-			clickAction(formData,url);
+			var file=$('#testId')[0].files[0]		 		
+			clickAction(file,url);
 		})		
 		
 		
@@ -25,9 +26,11 @@
 		 */
 		$("#financeBtn").click(function(){	
 			var url="/excel/importFinanceToDB";
-			var formData = new FormData();
-			formData.append('file', $('#financeId')[0].files[0]); 			
-			clickAction(formData,url);
+		    var file=$('#financeId')[0].files[0];	
+		    if(!checkData($('#financeId').val())){
+		    	return;
+		    }
+			clickAction(file,url);
 		})	
     }); 
  
@@ -36,7 +39,13 @@
        * @param formData
        * @param url
        */
-      function clickAction(formData,url){
+      function clickAction(file,url){
+    	if(file==null){
+				toastrError("请选择文件资源",3000);
+				return;
+		}
+    	var formData = new FormData();
+    	formData.append('file',file );  
   		$.ajax({
 			url: basepath+url,
 			type: "POST",
@@ -55,3 +64,17 @@
 			}
 		});	
       }
+
+        //JS校验文件格式是否为excel    
+          function checkData(fileDir){                 
+             var suffix = fileDir.substr(fileDir.lastIndexOf("."));    
+             if("" == fileDir){    
+                 toastrError("选择需要导入的Excel文件！");
+                 return false;    
+             }    
+             if(".xls" != suffix && ".xlsx" != suffix ){    
+                 toastrError("选择Excel格式的文件导入！");         
+                 return false;    
+             }    
+             return true;    
+          } 

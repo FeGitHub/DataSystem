@@ -62,7 +62,7 @@ function onClick(event, treeId, treeNode, clickFlag) {
  * 测试
  */
 $("#testBtn").click(function(){
-	  var zTreeObj = $.fn.zTree.getZTreeObj("treeDemo");
+	 /* var zTreeObj = $.fn.zTree.getZTreeObj("treeDemo");
 	  var ztreeJson=getZtreeNodesInfo(zTreeObj);
 	  $.ajax({
 		  url:basepath+"/demo/getZtreeJsonFromView",
@@ -76,7 +76,7 @@ $("#testBtn").click(function(){
 	    			toastrError(data.msg,3000);
 	    	  }
 	      }
-	  });
+	  });*/
 });
 
 

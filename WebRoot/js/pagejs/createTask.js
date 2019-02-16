@@ -2,6 +2,7 @@
  *  创建工程任务的页面js
  */
 $(function(){
+	pieChart();
 	 $('#taskForm').validationEngine({   
 			promptPosition: 'centerReight',
 			scroll:false
@@ -159,3 +160,50 @@ $("#testBtn").click(function(){
 	  var zTreeObj = $.fn.zTree.getZTreeObj("treeDemo");
 	  var ztreeJson=getZtreeNodesInfo(zTreeObj);		  
 });
+
+function pieChart(){
+	 var dom = document.getElementById("pieChart");
+	 var pieChart = echarts.init(dom);
+	 var app = {};
+	 option = null;
+	 option = {
+	     title : {
+	         text: '工程任务',
+	         subtext: '纯属虚构',
+	         x:'center'
+	     },
+	     tooltip : {
+	         trigger: 'item',
+	         formatter: "{a} <br/>{b} : {c} ({d}%)"
+	     },
+	     legend: {
+	         orient: 'vertical',
+	         left: 'left',
+	         data: ['直接访问','搜索引擎']
+	     },
+	     series : [
+	         {
+	             name: '访问来源',
+	             type: 'pie',
+	             radius : '55%',
+	             center: ['50%', '60%'],
+	             data:[
+	                 {value:735, name:'直接访问'},
+	                
+	                 {value:1548, name:'搜索引擎'}
+	             ],
+	             itemStyle: {
+	                 emphasis: {
+	                     shadowBlur: 10,
+	                     shadowOffsetX: 0,
+	                     shadowColor: 'rgba(0, 0, 0, 0.5)'
+	                 }
+	             }
+	         }
+	     ]
+	 };
+	 ;
+	 if (option && typeof option === "object") {
+		 pieChart.setOption(option, true);
+	 }
+}
