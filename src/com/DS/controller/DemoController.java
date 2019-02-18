@@ -45,6 +45,12 @@ public class DemoController extends BaseController {
     	  render("ganttView.jsp");
       }
 	 
+	  /***
+	   * bootstrap组件
+	   */
+	  public void goBootstrap(){
+    	  render("bootstrap-components.jsp");
+      }
 	 /* public void getZtreeJsonFromView(){
 		  String ztreeJson=getPara("ztreeJson");
 		  List<Ztree> temp= JSON.parseArray(ztreeJson,Ztree.class); 

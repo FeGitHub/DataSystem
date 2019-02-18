@@ -18,7 +18,8 @@
 	    	  <input type="file" name="file" id="fileid"/> 
 	    	  <button type="button" id="submitBtn">上传</button>
 	    
-	    	<a href="${BASE_PATH}/file/downfile">test.xls下载</a> 
+	    	<%-- <a href="${BASE_PATH}/file/downfile">test.xls下载</a>  --%>
+	    	<a class="btn btn-success mr-2 mb-2" href="${BASE_PATH}/file/downfile" target="_blank"><i class="fa fa-download"></i>下载</a>
 	    </div>
 	    
 	     <div class="tile">	   

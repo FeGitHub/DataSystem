@@ -21,7 +21,7 @@
        <pattern>/menu/*</pattern>   
  </decorator>     
  
- <decorator name="template" page="template-NoTitle.jsp">    
+ <decorator name="template-NoTitle" page="template-NoTitle.jsp">    
        <pattern>/demo/goGant</pattern>   
  </decorator>    
 </decorators> 

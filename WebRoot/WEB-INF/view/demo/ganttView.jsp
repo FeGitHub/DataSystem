@@ -21,8 +21,7 @@
 	<title>jQuery Gantt</title>
 </head>
 <body>
-  <div class="tile"> 
-    	<!--  -->
+  <div class="tile">   
     		<div id="ganttChart"></div>
 	<br/><br/>
 	<div id="eventMessage"></div>
@@ -40,10 +39,9 @@
 	</div>
 	<button id="submit">提交</button>
 	<div id="submitData"></div>
-    	<!--  -->
    </div>	 
-	<script type="text/javascript" src="https://cdn.bootcss.com/jquery/1.8.3/jquery.min.js"></script>
-	<script src="https://cdn.bootcss.com/jqueryui/1.9.0/jquery-ui.min.js"></script>
+	<script type="text/javascript" src="${BASE_PATH}/plug/jQuery-ganttView/jquery/1.8.3/jquery.min.js"></script>
+	<script type="text/javascript" src="${BASE_PATH}/plug/jQuery-ganttView/jqueryui/1.9.0/jquery-ui.min.js"></script>
 	<script type="text/javascript" src="${BASE_PATH}/plug/jQuery-ganttView/ganttView.js"></script>
 	<script type="text/javascript" src="${BASE_PATH}/plug/jQuery-ganttView/example/data.js"></script>
 	<script type="text/javascript">
