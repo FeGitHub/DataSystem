@@ -1,6 +1,5 @@
-<%@ page language="java" pageEncoding="UTF-8"%>
+  <%@ page language="java" pageEncoding="UTF-8"%>
   <script src="${BASE_PATH}/js/jquery-3.3.1.min.js"></script> 
- <%--  <script src="${BASE_PATH}/js/bootstrap.min.js"></script> --%>
   <script src="${BASE_PATH}/js/jquery.dataTables.min.js"></script>
   <script src="${BASE_PATH}/js/Sco/sco.message.min.js"></script>
   <script src="${BASE_PATH}/js/bootstrap-datetimepicker.js" type="text/javascript"></script>

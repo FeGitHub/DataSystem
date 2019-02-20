@@ -1,11 +1,11 @@
-package com.DS.fileService.impl;
+package com.DS.file.service.impl;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.nio.channels.FileChannel;
 import java.util.UUID;
-import com.DS.fileService.FileService;
+import com.DS.file.service.FileService;
 import com.jfinal.kit.Prop;
 import com.jfinal.kit.PropKit;
 

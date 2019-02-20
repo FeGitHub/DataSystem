@@ -1,4 +1,4 @@
-package com.DS.fileService;
+package com.DS.file.service;
 import java.io.File;
 
 /****

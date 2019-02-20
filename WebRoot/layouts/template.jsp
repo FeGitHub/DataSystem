@@ -9,7 +9,7 @@
 			<sitemesh:title/>
     </title> 
      
-    <link rel="stylesheet" type="text/css" href="${BASE_PATH}/TemplatePlug/vali/css/main.css"><!--页面主体样式-->
+    <link rel="stylesheet" type="text/css" href="${BASE_PATH}/plug/vali/css/main.css"><!--页面主体样式-->
    	    <%@ include file="/WEB-INF/view/component/headjs.jsp" %>  
    	     <sitemesh:head/> 
   </head>

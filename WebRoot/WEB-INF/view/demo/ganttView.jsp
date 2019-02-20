@@ -3,25 +3,13 @@
 <html lang="en">
 <head>
 	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-	 <link rel="stylesheet" type="text/css" href="${BASE_PATH}/plug/jQuery-ganttView/lib/jquery-ui-1.8.4.css" />
+	<link rel="stylesheet" type="text/css" href="${BASE_PATH}/plug/jQuery-ganttView/lib/jquery-ui-1.8.4.css" />
 	<link rel="stylesheet" type="text/css" href="${BASE_PATH}/plug/jQuery-ganttView/ganttView.css" />
-        <link rel="stylesheet" type="text/css" href="${BASE_PATH}/TemplatePlug/vali/css/main.css"><!--页面主体样式-->
-	<style type="text/css">
-		body {
-			font-family: tahoma, verdana, helvetica;
-			font-size: 0.8em;
-			padding: 10px;
-		}
-		
-		*, *::before, *::after {
-    -webkit-box-sizing: content-box;
-    box-sizing: content-box;
-}
-	</style>
+	<link rel="stylesheet" type="text/css" href="${BASE_PATH}/css/pagecss/democss/ganttViewAdd.css"><!--页面主体样式-->
 	<title>jQuery Gantt</title>
 </head>
 <body>
-  <div class="tile">   
+    <div class="tile">   
     		<div id="ganttChart"></div>
 	<br/><br/>
 	<div id="eventMessage"></div>
@@ -39,47 +27,11 @@
 	</div>
 	<button id="submit">提交</button>
 	<div id="submitData"></div>
-   </div>	 
+    </div>	 
 	<script type="text/javascript" src="${BASE_PATH}/plug/jQuery-ganttView/jquery/1.8.3/jquery.min.js"></script>
 	<script type="text/javascript" src="${BASE_PATH}/plug/jQuery-ganttView/jqueryui/1.9.0/jquery-ui.min.js"></script>
 	<script type="text/javascript" src="${BASE_PATH}/plug/jQuery-ganttView/ganttView.js"></script>
 	<script type="text/javascript" src="${BASE_PATH}/plug/jQuery-ganttView/example/data.js"></script>
-	<script type="text/javascript">
-        $( ".task" ).draggable({
-			revert: true,
-            opacity: 0.7
-		});
-	</script>
-	<script type="text/javascript">
-		$(function () {
-			$("#ganttChart").ganttView({
-                // showWeekends: true,
-				data: ganttData,
-				behavior: {
-					onClick: function (data) { 
-						var msg = "click事件:" + JSON.stringify(data);
-						$("#eventMessage").text(msg);
-					},
-					onResize: function (data) {
-					    console.log(data);
-						var msg = "resize事件:" + JSON.stringify(data);
-						$("#eventMessage").text(msg);
-					},
-					onDrag: function (data) {
-					    // console.log(data);
-						var msg = "drag事件:" + JSON.stringify(data);
-						$("#eventMessage").text(msg);
-					}
-				}
-			});
-			$("#submit").click(function () {
-                $("#ganttChart").ganttView("getDatas", function (datas) {
-                    console.log(datas);
-                    $("#submitData").text(JSON.stringify(datas));
-                });
-            });
-		});
-	</script>
-
+	<script type="text/javascript" src="${BASE_PATH}/js/pagejs/demojs/ganttView.js"></script>
 </body>
 </html>

@@ -26,10 +26,8 @@ public class DSConfig extends JFinalConfig {
        PropKit.use("DB.properties");
 	   me.setDevMode(PropKit.getBoolean("devMode", true));
 	   me.setInjectDependency(true);//依赖注入
-	   me.setBaseUploadPath("uploadFile");
-	   me.setBaseDownloadPath("F:/");
-
-       
+	 /*  me.setBaseUploadPath("upload");
+	   me.setBaseDownloadPath("C:/");*/       
     }
     /***
      * @Description 配置访问路由

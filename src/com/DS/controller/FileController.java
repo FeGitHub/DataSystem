@@ -1,7 +1,7 @@
 package com.DS.controller;
 import java.io.File;
-import com.DS.fileService.FileService;
-import com.DS.fileService.impl.FileServiceImpl;
+import com.DS.file.service.FileService;
+import com.DS.file.service.impl.FileServiceImpl;
 import com.DS.web.base.BaseController;
 import com.jfinal.aop.Inject;
 import com.jfinal.kit.PathKit;
