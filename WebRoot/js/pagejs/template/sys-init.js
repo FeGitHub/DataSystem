@@ -7,7 +7,7 @@ $(function(){
 })
 
 //登出
-$("#loginOut").click(function(){
+/*$("#loginOut").click(function(){
 		layer.confirm('您确定要退出吗？', {			
 				    btn: ['确定', '取消'], //按钮
 				    skin: 'btnClass',
@@ -18,4 +18,4 @@ $("#loginOut").click(function(){
 		    var url=basepath+"/login/signOut";
 		    $(location).attr("href",url );
 		});
-});
+});*/

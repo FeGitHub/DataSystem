@@ -7,7 +7,7 @@
   <!-- <pattern>/demo/goGant</pattern>   -->
  </excludes>  
  <!-- 定义装饰器要过滤的页面 -->  
- <decorator name="template" page="template.jsp">  
+ <decorator name="global" page="global.jsp">  
        <pattern>/go/*</pattern> 
        <pattern>/login/*</pattern> 
        <pattern>/user/*</pattern> 
@@ -21,7 +21,7 @@
        <pattern>/menu/*</pattern>   
  </decorator>     
  
- <decorator name="template-NoTitle" page="template-NoTitle.jsp">    
+ <decorator name="notitle" page="notitle.jsp">    
        <pattern>/demo/goGant</pattern>   
  </decorator>    
 </decorators> 

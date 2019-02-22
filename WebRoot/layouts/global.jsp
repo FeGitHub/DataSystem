@@ -1,3 +1,4 @@
+<!--页面布局-->
 <%@ page contentType="text/html;charset=UTF-8"%>  
 <%@ taglib prefix="sitemesh" uri="http://www.opensymphony.com/sitemesh/decorator" %>    
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%> 
@@ -6,10 +7,9 @@
   <head>
     <title>
 			<sitemesh:title/>
-    </title> 
-     
+    </title>      
     <link rel="stylesheet" type="text/css" href="${BASE_PATH}/plug/vali/css/main.css"><!--页面主体样式-->
-   	    <%@ include file="/WEB-INF/view/component/headjs.jsp" %>  
+   	    <%@ include file="/WEB-INF/view/component/head.jsp" %>  
    	     <sitemesh:head/> 
   </head>
   <body class="app sidebar-mini rtl">
@@ -60,10 +60,43 @@
           <li class="breadcrumb-item"><a href="#">当前目录</a></li>
         </ul>
       </div>
-          
+      
+      <div class="row">
+        <div class="col-md-6 col-lg-3">
+          <div class="widget-small primary coloured-icon"><i class="icon fa fa-users fa-3x"></i>
+            <div class="info">
+              <h4>学习</h4>
+              <p><b></b></p>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-6 col-lg-3">
+          <div class="widget-small info coloured-icon"><i class="icon fa fa-thumbs-o-up fa-3x"></i>
+            <div class="info">
+              <h4>工作</h4>
+              <p><b></b></p>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-6 col-lg-3">
+          <div class="widget-small warning coloured-icon"><i class="icon fa fa-files-o fa-3x"></i>
+            <div class="info">
+              <h4>娱乐</h4>
+              <p><b></b></p>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-6 col-lg-3">
+          <div class="widget-small danger coloured-icon"><i class="icon fa fa-star fa-3x"></i>
+            <div class="info">
+              <h4>运动</h4>
+              <p><b></b></p>
+            </div>
+          </div>
+        </div>
+      </div>
       <sitemesh:body/>       
     </main>   
-	<%@ include file="/WEB-INF/view/component/footerJs.jsp" %>  
-	<%@ include file="/WEB-INF/view/component/handlebarsTemplate.jsp" %>  	 	      
+	<%@ include file="/WEB-INF/view/component/footer.jsp" %>        
   </body>
 </html>

@@ -44,7 +44,7 @@
 #end
 
 /****
- * demo
+ * 菜单信息的sql
  */
 #namespace("menu")
 #include("com/DS/menu/dao/menu.sql")
@@ -52,7 +52,7 @@
 
 
 /****
- * demo
+ * excel
  */
 #namespace("excel")
 #include("com/DS/excel/dao/excel.sql")

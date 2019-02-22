@@ -63,5 +63,16 @@ public class FileUtil {
         
     }  
     
-    
+    /***
+     * 判断盘符是否存在
+     * @return
+     */
+    public static boolean isDiskExist(String diskPath){
+    	File f = new File(diskPath);
+    	if(f.exists()){
+    		return true;
+    		}else{
+    		return false;
+    		}   	 
+      }
 }
