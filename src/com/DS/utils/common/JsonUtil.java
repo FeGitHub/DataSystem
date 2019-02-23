@@ -1,4 +1,4 @@
-package com.DS.utils;
+package com.DS.utils.common;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.Map;

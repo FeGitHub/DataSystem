@@ -26,12 +26,14 @@ $(function(){
 		     type: 'POST'
 		 },
 		 columns: [
-		           { data: 'taskName' },//事项简称	     		         
-		           { data: 'addTime'},//
+		           { data: 'taskName' },	     		         
+		           { data: 'addTime'},
+		           { data: 'goal'},
+		           { data: 'deadline'},
 		           { data: null,//操作部分
 		         	  "render": function ( data, type, full, meta ) {            
 		           		 var str = "<span id="+full.taskId+">";  
-		           		// str+="<button class='btn table_btn btn-primary btn-sm edtiBtn'  target='_blank' data-id='"+full.taskId+"'>修改</button>";
+		           		 str+="<button class='btn table_btn btn-primary btn-sm taskDetailBtn'  target='_blank' data-id='"+full.taskId+"'>详情</button>";
 		           		 str+="&nbsp;<button class='btn table_btn btn-danger btn-sm delBtn'  target='_blank' data-id='"+full.taskId+"'>删除</button>";
 		           		 str+="</span>";
 		           		 return str;
@@ -42,7 +44,7 @@ $(function(){
 			   
 	    
 	    /***
-	     * function 删除备忘事务
+	     * function 删除任务
 	     */
 		$("body").on("click",".delBtn",function(){
 			var taskId=$(this).data("id");
@@ -70,6 +72,14 @@ $(function(){
 } );
 
 
+/***
+ *  跳转到具体任务详情页面
+ */
+$("body").on("click",".taskDetailBtn",function(){	
+	 var taskId=$(this).data("id");
+	 window.location.href=basepath+"/task/goTaskDetail?taskId="+taskId;
+	
+});
 
 
 /****
@@ -105,6 +115,6 @@ $("#reset").click(function(){
 	reloadTable();	
 });
 
-$("#create").click(function(){
-	window.location.href=basepath+"/task/goCreateTask";
+$("#createTask-btn").click(function(){
+	  window.location.href=basepath+"/task/goCreateTask";
 });

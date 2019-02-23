@@ -1,4 +1,4 @@
-package com.DS.utils;
+package com.DS.utils.common;
 import java.beans.BeanInfo;
 import java.beans.IntrospectionException;
 import java.beans.Introspector;

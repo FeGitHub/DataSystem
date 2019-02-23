@@ -1,7 +1,7 @@
 package com.DS.menu.service.impl;
 import java.util.List;
 import com.DS.menu.service.MenuService;
-import com.DS.utils.JsonUtil;
+import com.DS.utils.common.JsonUtil;
 import com.alibaba.fastjson.JSONArray;
 import com.jfinal.json.FastJson;
 import com.jfinal.plugin.activerecord.Db;

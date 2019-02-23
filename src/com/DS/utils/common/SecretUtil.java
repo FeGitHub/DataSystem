@@ -1,4 +1,4 @@
-package com.DS.utils;
+package com.DS.utils.common;
 import com.alibaba.druid.filter.config.ConfigTools;
 /***
  * 

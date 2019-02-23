@@ -6,7 +6,7 @@ import com.DS.quartz.service.QuartzService;
 import com.DS.quartz.service.impl.QuartzServiceImpl;
 import com.DS.quartz.vo.QuartzParamVo;
 import com.DS.quartz.vo.QuartzTransferVo;
-import com.DS.utils.PackageUtil;
+import com.DS.utils.common.PackageUtil;
 import com.DS.web.base.BaseController;
 import com.jfinal.aop.Inject;
 /***

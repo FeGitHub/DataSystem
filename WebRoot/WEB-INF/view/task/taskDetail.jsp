@@ -2,7 +2,7 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>   
-    <title>创建调度任务</title>
+    <title>任务详情</title>
       <link rel="stylesheet" href="${BASE_PATH}/plug/ztree-bootstrap/css/bootstrapStyle/bootstrapStyle.css" type="text/css">
   </head>
   <body >    
@@ -26,7 +26,7 @@
                
                  
                   <div class="col-md-3">
-                    <input class="form-control validate[required]" type="text" placeholder="填数值" name="goal">
+                    <input class="form-control validate[required]" type="text" placeholder="填数值" name="taskName">
                   </div>
                 </div>                               
                     
@@ -44,7 +44,7 @@
                       <div class="form-group row">
                          <label class="control-label col-md-3">最迟完成时间</label>
                        <div class="col-md-3">
-                    <input  name="deadline" id="dateStr" class="form-control  form_date" placeholder="选择日期值" maxlength="20" type="text" readonly>                                                  
+                    <input  name="" id="dateStr" class="form-control  form_date" placeholder="选择日期值" maxlength="20" type="text" readonly>                                                  
                   </div> 
                       </div>
                       
@@ -71,7 +71,7 @@
         </div>     
       </div>
       
-      <div class="row">   
+    <!--   <div class="row">   
          <div class="col-md-6">
          <div class="tile" style="height:400px;">
          	 <div id="pieChart" style="height:400px;"></div>
@@ -82,8 +82,8 @@
 	    	 <ul id="treeDemo" class="ztree"></ul>
 	    	 <button id="testBtn" type="button" class="btn btn-primary">打开控制台查看数据</button>
          </div> 
-         </div>           	 
-        </div>
+         </div>          	 
+        </div> -->
     </main>
   
     <script type="text/javascript" src="${BASE_PATH}/plug/ztree-bootstrap/js/jquery.ztree.core.js"></script>
@@ -91,6 +91,6 @@
     <script type="text/javascript" src="${BASE_PATH}/plug/ztree-bootstrap/js/jquery.ztree.exedit.js"></script>
     <script src="${BASE_PATH}/js/plugjs/echarts.js"></script>
     <script src="${BASE_PATH}/js/pagejs/demojs/eChartsDemo/walden.js"></script> <!--图标样式-->
-    <script src="${BASE_PATH}/js/pagejs/task/createTask.js"></script>
+    <script src="${BASE_PATH}/js/pagejs/task/taskDetail.js"></script>
   </body>
 </html>

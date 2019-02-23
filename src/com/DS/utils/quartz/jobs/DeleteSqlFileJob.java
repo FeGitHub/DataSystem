@@ -8,9 +8,10 @@ import org.apache.log4j.Logger;
 import org.quartz.Job;
 import org.quartz.JobExecutionContext;
 import org.quartz.JobExecutionException;
-import com.DS.utils.FileUtil;
-import com.DS.utils.SystemUtil;
-import com.DS.utils.TimeUtil;
+
+import com.DS.utils.common.FileUtil;
+import com.DS.utils.common.SystemUtil;
+import com.DS.utils.common.TimeUtil;
 /***
  * @author jeff
  * 定时删除不必要的数据库文件

@@ -5,7 +5,7 @@ import java.util.Map;
 import com.DS.common.model.DsRemind;
 import com.DS.remind.service.RemindService;
 import com.DS.remind.service.impl.RemindServiceImpl;
-import com.DS.utils.ObjectUtil;
+import com.DS.utils.common.ObjectUtil;
 import com.DS.web.base.BaseController;
 import com.jfinal.aop.Inject;
 import com.jfinal.plugin.activerecord.Db;

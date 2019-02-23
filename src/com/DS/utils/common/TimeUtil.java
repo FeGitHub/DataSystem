@@ -1,4 +1,4 @@
-package com.DS.utils;
+package com.DS.utils.common;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;

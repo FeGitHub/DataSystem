@@ -1,4 +1,4 @@
-package com.DS.utils;
+package com.DS.utils.common;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;

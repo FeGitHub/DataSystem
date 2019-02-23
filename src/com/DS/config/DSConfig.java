@@ -1,7 +1,7 @@
 package com.DS.config;
 import com.DS.common.model._MappingKit;
 import com.DS.interceptor.LoginInterceptor;
-import com.DS.utils.SecretUtil;
+import com.DS.utils.common.SecretUtil;
 import com.jfinal.config.*;
 import com.jfinal.ext.handler.ContextPathHandler;
 import com.jfinal.ext.handler.UrlSkipHandler;

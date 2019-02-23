@@ -1,4 +1,4 @@
-package com.DS.utils;
+package com.DS.utils.common;
 
 public class StringUtil {
 	private static int indexMy=2;

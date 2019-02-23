@@ -1,4 +1,4 @@
-package com.DS.utils;
+package com.DS.utils.common;
 import javax.mail.Session;
 import javax.mail.Transport;
 import javax.mail.internet.InternetAddress;
@@ -12,8 +12,8 @@ import java.util.Properties;
  *
  */
 public class MailUtil {
-    public static String myEmailAccount = "*******";
-    public static String myEmailPassword = "*******";
+    public static String myEmailAccount = "tankgo@protonmail.com";
+    public static String myEmailPassword = "tankgo192837gf";
     public static String myEmailSMTPHost = "*******";
     public static String receiveMailAccount = "*******";
     public static void sendMail() throws Exception {

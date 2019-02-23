@@ -12,7 +12,8 @@ import org.apache.log4j.Logger;
 import org.quartz.Job;
 import org.quartz.JobExecutionContext;
 import org.quartz.JobExecutionException;
-import com.DS.utils.SystemUtil;
+
+import com.DS.utils.common.SystemUtil;
 import com.jfinal.kit.Prop;
 import com.jfinal.kit.PropKit;
 /***

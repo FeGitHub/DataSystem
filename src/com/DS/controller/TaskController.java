@@ -2,10 +2,10 @@ package com.DS.controller;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
-
-import com.DS.bean.QuartzTaskBean;
 import com.DS.task.service.TaskService;
 import com.DS.task.service.impl.TaskServiceImpl;
+import com.DS.task.vo.TaskVo;
+import com.DS.utils.common.ObjectUtil;
 import com.DS.web.base.BaseController;
 import com.jfinal.aop.Inject;
 import com.jfinal.plugin.activerecord.Db;
@@ -13,15 +13,22 @@ import com.jfinal.plugin.activerecord.SqlPara;
 /****
  * 
  * @author jeff
- *
+ *  任务控制器
  */
 public class TaskController extends BaseController{
 	@Inject(TaskServiceImpl.class)
 	private TaskService taskService;
+	
+	  /***
+	   *  跳转到任务列表
+	   */
        public void goTaskList(){
     	  render("taskList.jsp");
        }
        
+       /****
+        * 获取任务列表详情
+        */
        public void getTaskList(){	
    		DivPageCondition=getDivPageCondition();
    		DivPageCondition.put("startDates", getPara("startDates"));
@@ -31,7 +38,7 @@ public class TaskController extends BaseController{
    		
    	}
        
-       /****
+     /****
    	 * 删除备忘事务
    	 */
    	public void delTask(){
@@ -53,18 +60,27 @@ public class TaskController extends BaseController{
 		render("createTask.jsp");
 	}	
 	
-	 public void createTask(){
-		 Map<String,Object> paramMap=new HashMap<String,Object>();
-	   	 paramMap.put("taskName", getPara("taskName"));
-		 paramMap.put("addTime",new Date());
-		 SqlPara insertSql=Db.getSqlPara("task.insertData",paramMap);
-		 int result=Db.update(insertSql);
+	/**
+	 *  跳转到目标任务详情页面
+	 */
+	public void goTaskDetail(){
+		render("taskDetail.jsp");
+	}	
+	
+	
+	/***
+	 * 创建目标任务
+	 */
+	 public void createTask(){		
+		  TaskVo vo=getBean(TaskVo.class,"");
+		  Map<String,Object> paramMap=ObjectUtil.convertBeanToMap(vo);		
+		  paramMap.put("addTime",new Date());
+		  SqlPara insertSql=Db.getSqlPara("task.insertData",paramMap);
+		  int result=Db.update(insertSql);
 		  if(result>0){
 				renderJson(ajaxDoneSuccess("操作成功"));
 			}else{
 				renderJson(ajaxDoneError("操作失败"));
-			}
-		 
-	   						 		   
+			}		 	   						 		   
 	 }
 }
