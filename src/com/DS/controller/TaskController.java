@@ -7,8 +7,10 @@ import com.DS.task.service.impl.TaskServiceImpl;
 import com.DS.task.vo.TaskVo;
 import com.DS.utils.common.ObjectUtil;
 import com.DS.web.base.BaseController;
+import com.alibaba.druid.pool.vendor.SybaseExceptionSorter;
 import com.jfinal.aop.Inject;
 import com.jfinal.plugin.activerecord.Db;
+import com.jfinal.plugin.activerecord.Record;
 import com.jfinal.plugin.activerecord.SqlPara;
 /****
  * 
@@ -23,6 +25,7 @@ public class TaskController extends BaseController{
 	   *  跳转到任务列表
 	   */
        public void goTaskList(){
+    	 
     	  render("taskList.jsp");
        }
        
@@ -63,8 +66,10 @@ public class TaskController extends BaseController{
 	/**
 	 *  跳转到目标任务详情页面
 	 */
-	public void goTaskDetail(){
-		render("taskDetail.jsp");
+	public void goTaskDetail(String taskId){
+		 Record record=Db.findFirst("select * from task where taskId="+getPara("taskId"));
+		 setAttr("vo",record);
+		 render("taskDetail.jsp");
 	}	
 	
 	

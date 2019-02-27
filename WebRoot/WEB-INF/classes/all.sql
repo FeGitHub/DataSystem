@@ -50,6 +50,13 @@
 #include("com/DS/menu/dao/menu.sql")
 #end
 
+/****
+ *
+ */
+#namespace("notification")
+#include("com/DS/notification/dao/notification.sql")
+#end
+
 
 /****
  * excel

@@ -1,16 +1,23 @@
 package com.DS.controller;
+import com.DS.notification.service.NotificationService;
+import com.DS.notification.service.impl.NotificationServiceImpl;
 import com.DS.web.base.BaseController;
 import com.jfinal.aop.Clear;
+import com.jfinal.aop.Inject;
+
+
 /***
  * 
  * @author jeff
  * 为了方便跳转用于测试页面的控制器
  *
  */
-public class GoController extends BaseController{
-		 public void goMenu(){
-		 	   render("main.jsp");
+public class GoController extends BaseController{	
+	
+		 public void goMenu(){				
+		 	 render("main.jsp");
 		 }
+		 
 		 public void goData(){
 		 	   render("data.html");
 		 }

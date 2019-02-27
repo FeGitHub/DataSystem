@@ -16,11 +16,7 @@
   <script src="${BASE_PATH}/js/plugjs/handlebars.min-latest.js"></script> <!--语义化模板-->
   <script type="text/javascript">
     var basepath= '${BASE_PATH}';
-    var userMenu= '<%=session.getAttribute("menuTree")%>'; 
   </script>
-  <script type="text/javascript" src="${BASE_PATH}/js/pagejs/template/sys-notification.js"></script><!--信息通知构建-->
-  <script type="text/javascript" src="${BASE_PATH}/js/pagejs/template/sys-menu.js"></script> <!--主菜单构建-->
-  <script type="text/javascript" src="${BASE_PATH}/js/pagejs/template/sys-init.js"></script><!--模板页面的自定义js-->
 
 
   

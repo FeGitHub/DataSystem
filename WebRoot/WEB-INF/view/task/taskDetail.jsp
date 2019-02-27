@@ -12,12 +12,11 @@
           <div class="tile">
             <h3 class="tile-title">工程任务</h3>
             <div class="tile-body">
-              <form class="form-horizontal" id="taskForm">
-              
+              <form class="form-horizontal" id="taskForm">             
                 <div class="form-group row">
                   <label class="control-label col-md-3">任务名称</label>
                   <div class="col-md-8">
-                    <input class="form-control validate[required]" type="text" placeholder="" name="taskName">
+                    <input class="form-control validate[required]" type="text" placeholder="${vo.taskName}" name="taskName">
                   </div>
                 </div>     
                 
@@ -26,7 +25,7 @@
                
                  
                   <div class="col-md-3">
-                    <input class="form-control validate[required]" type="text" placeholder="填数值" name="taskName">
+                    <input class="form-control validate[required]" type="text" placeholder="${vo.goal}" name="taskName">
                   </div>
                 </div>                               
                     
@@ -44,7 +43,7 @@
                       <div class="form-group row">
                          <label class="control-label col-md-3">最迟完成时间</label>
                        <div class="col-md-3">
-                    <input  name="" id="dateStr" class="form-control  form_date" placeholder="选择日期值" maxlength="20" type="text" readonly>                                                  
+                    <input  name="" id="dateStr" class="form-control  form_date" placeholder="${vo.deadline}" maxlength="20" type="text" readonly>                                                  
                   </div> 
                       </div>
                       
@@ -52,7 +51,7 @@
                       <div class="form-group row">
                  	 <label class="control-label col-md-3">任务描述</label>
                   		<div class="col-md-8">
-                    		<textarea class="form-control" rows="4" placeholder="" name="description" id="description"></textarea>
+                    		<textarea class="form-control" rows="4" placeholder="${vo.description}" name="description" id="description"></textarea>
                   		</div>
                 </div>       
                      

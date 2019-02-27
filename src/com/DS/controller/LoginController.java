@@ -7,8 +7,6 @@ import com.DS.menu.service.impl.MenuServiceImpl;
 import com.DS.utils.common.ObjectUtil;
 import com.DS.utils.common.SecretUtil;
 import com.DS.web.base.BaseController;
-import com.alibaba.fastjson.JSONArray;
-import com.alibaba.fastjson.JSONObject;
 import com.jfinal.aop.Clear;
 import com.jfinal.aop.Inject;
 import com.jfinal.plugin.activerecord.Db;
@@ -41,10 +39,10 @@ public class LoginController extends BaseController{
     	     //用户信息
     	     setSessionAttr("user", record);  
     	     //菜单信息   	
-    	     JSONArray menu=menuService.getTreeMenu();
+    	    /* JSONArray menu=menuService.getTreeMenu();
     	     JSONObject hash = new JSONObject();
 			 hash.put("menuTree", menu);	
-			 setSessionAttr("menuTree", hash);  
+			 setSessionAttr("menuTree", hash);*/  			
     	     Map<String,Object> map=new HashMap<String,Object>();
     	     map.put("url", "/go/goMenu");
     	     renderJson(ajaxDoneSuccess(map));

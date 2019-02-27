@@ -45,10 +45,10 @@ public class MenuController extends BaseController{
 			  return true;
 			});
 		  //更新即时菜单数据
-		  JSONArray menu=menuService.getTreeMenu();
+		/*  JSONArray menu=menuService.getTreeMenu();
  	      JSONObject hash = new JSONObject();
 		  hash.put("menuTree", menu);	
-		  setSessionAttr("menuTree", hash);  
+		  setSessionAttr("menuTree", hash);*/  
 		  renderJson(ajaxDoneSuccess("操作成功"));
 	  }
 	 
