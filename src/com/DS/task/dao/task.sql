@@ -41,3 +41,16 @@
 	#sql("delById")
 		delete from task where taskId=#para(taskId)
 	#end
+	
+	
+ /****
+  * 通过工程任务id找到这个工程的所有用户
+  */
+  #sql("getUserByProjectId")
+     select userId as id,name from user__project where projectId=#para(projectId)
+  #end
+  
+  
+  #sql("getTaskByProjectId")
+      select taskName as name,DATE_FORMAT(start,'%Y/%m/%d') as start,DATE_FORMAT(end,'%Y/%m/%d') as end,userId as id  from task where projectId=#para(projectId)
+  #end

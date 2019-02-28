@@ -71,7 +71,7 @@
         </div>     
       </div>
       
-      <div class="row">   
+     <!--  <div class="row">   
          <div class="col-md-6">
          <div class="tile" style="height:400px;">
          	 <div id="pieChart" style="height:400px;"></div>
@@ -83,7 +83,7 @@
 	    	 <button id="testBtn" type="button" class="btn btn-primary">打开控制台查看数据</button>
          </div> 
          </div>           	 
-        </div>
+        </div> -->
     </main>
   
     <script type="text/javascript" src="${BASE_PATH}/plug/ztree-bootstrap/js/jquery.ztree.core.js"></script>

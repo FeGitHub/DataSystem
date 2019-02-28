@@ -1,9 +1,10 @@
 package com.DS.controller;
-import com.DS.notification.service.NotificationService;
-import com.DS.notification.service.impl.NotificationServiceImpl;
+import com.DS.task.service.TaskService;
+import com.DS.task.service.impl.TaskServiceImpl;
 import com.DS.web.base.BaseController;
 import com.jfinal.aop.Clear;
 import com.jfinal.aop.Inject;
+
 
 
 /***
@@ -13,8 +14,10 @@ import com.jfinal.aop.Inject;
  *
  */
 public class GoController extends BaseController{	
+	@Inject(TaskServiceImpl.class)
+	private TaskService taskService;
 	
-		 public void goMenu(){				
+		 public void goMenu(){					
 		 	 render("main.jsp");
 		 }
 		 

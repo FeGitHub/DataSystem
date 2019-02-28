@@ -7,7 +7,7 @@ import com.DS.task.service.impl.TaskServiceImpl;
 import com.DS.task.vo.TaskVo;
 import com.DS.utils.common.ObjectUtil;
 import com.DS.web.base.BaseController;
-import com.alibaba.druid.pool.vendor.SybaseExceptionSorter;
+import com.alibaba.fastjson.JSONArray;
 import com.jfinal.aop.Inject;
 import com.jfinal.plugin.activerecord.Db;
 import com.jfinal.plugin.activerecord.Record;
@@ -88,4 +88,10 @@ public class TaskController extends BaseController{
 				renderJson(ajaxDoneError("操作失败"));
 			}		 	   						 		   
 	 }
+	 
+	 
+     public void getProjectGantt(){
+    	 JSONArray r=taskService.getProjectGantt("1");
+    	 renderJson(r);
+     }
 }

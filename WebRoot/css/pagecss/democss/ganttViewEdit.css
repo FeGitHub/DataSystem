@@ -1,0 +1,15 @@
+*, *::before, *::after {
+    -webkit-box-sizing: content-box;
+    box-sizing: content-box;
+   }
+ 
+ .task{
+ 	 background: #fff; 
+ 	 overflow: hidden;
+ 	 margin: 10px 0;
+ 	 box-shadow:0 0 10px rgba(0,0,0,.3);
+ 	 width:200px;
+ 	 padding:10px;
+ 	 -webkit-user-select: none;
+ 	 user-select: none;
+ }

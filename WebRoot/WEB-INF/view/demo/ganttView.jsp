@@ -5,22 +5,20 @@
 	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 	<link rel="stylesheet" type="text/css" href="${BASE_PATH}/plug/jQuery-ganttView/lib/jquery-ui-1.8.4.css" />
 	<link rel="stylesheet" type="text/css" href="${BASE_PATH}/plug/jQuery-ganttView/ganttView.css" />
-	<link rel="stylesheet" type="text/css" href="${BASE_PATH}/css/pagecss/democss/ganttViewAdd.css"><!--页面主体样式-->
+	<link rel="stylesheet" type="text/css" href="${BASE_PATH}/css/pagecss/democss/ganttViewEdit.css"><!--页面主体样式-->
 	<title>jQuery Gantt</title>
 </head>
 <body>
     <div class="tile">   
-    		<div id="ganttChart"></div>
+    	<div id="ganttChart"></div>
 	<br/><br/>
 	<div id="eventMessage"></div>
-	<div class="task" data-task='{ "name": "任务7", "start": "2018/01/11", "end": "2018/01/18" }'
-		 style="background: #fff; overflow: hidden;margin: 10px 0; box-shadow:0 0 10px rgba(0,0,0,.3); width:200px;padding:10px;-webkit-user-select: none;user-select: none;">
+	<div class="task" data-task='{ "name": "任务7", "start": "2018/01/11", "end": "2018/01/18" }'>
 		<h2>任务7</h2>
 		<p>预计开始时间：2018/1/12</p>
 		<p>预计结束时间：2018/1/15</p>
 	</div>
-	<div class="task" data-task='{ "name": "任务6", "start": "2018/01/06", "end": "2018/01/13" }'
-		 style="background: #fff; overflow: hidden;margin: 10px 0;box-shadow:0 0 10px rgba(0,0,0,.3); width:200px;padding:10px;-webkit-user-select: none;user-select: none;">
+	<div class="task" data-task='{ "name": "任务6", "start": "2018/01/06", "end": "2018/01/13" }'>
 		<h2>任务6</h2>
 		<p>预计开始时间：2018/1/06</p>
 		<p>预计结束时间：2018/1/13</p>
