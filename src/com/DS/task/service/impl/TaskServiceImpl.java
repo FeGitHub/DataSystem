@@ -13,14 +13,18 @@ import com.jfinal.plugin.activerecord.SqlPara;
 /****
  * 
  * @author jeff
+ * 任务的服务层实现类
  *
  */
 public class TaskServiceImpl implements TaskService {
-
+    
+	/****
+	 * 获取目标任务的分页数据
+	 */
 	@Override
-	public Map<String, Object> getTaskList(Map<String,Object> cond) {
-		  SqlPara sqlShow = Db.getSqlPara("task.getTaskList",cond);
-		  SqlPara sqlTotal = Db.getSqlPara("task.getSize",cond);      
+	public Map<String, Object> getTargetTaskList(Map<String,Object> cond) {
+		  SqlPara sqlShow = Db.getSqlPara("task.getTargetList",cond);
+		  SqlPara sqlTotal = Db.getSqlPara("task.getTargetListSize",cond);      
 		  Map<String,Object> map=DataTablesUtil.getPageData(sqlShow, sqlTotal);
           return map;
 	}
@@ -67,8 +71,5 @@ public class TaskServiceImpl implements TaskService {
         	 r.add(obj);
         }
 		return r;
-	}
-    
-	
-	
+	}   		
 }

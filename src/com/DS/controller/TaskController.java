@@ -24,27 +24,26 @@ public class TaskController extends BaseController{
 	  /***
 	   *  跳转到任务列表
 	   */
-       public void goTaskList(){
-    	 
-    	  render("taskList.jsp");
+       public void goTargetList(){   	 
+    	  render("targetList.jsp");
        }
        
        /****
         * 获取任务列表详情
         */
-       public void getTaskList(){	
+       public void getTargetList(){	
    		DivPageCondition=getDivPageCondition();
    		DivPageCondition.put("startDates", getPara("startDates"));
    		DivPageCondition.put("endDates", getPara("endDates"));
    		DivPageCondition.put("taskName", getPara("taskName"));				
-        renderJson(taskService.getTaskList(DivPageCondition));
+        renderJson(taskService.getTargetTaskList(DivPageCondition));
    		
    	}
        
      /****
-   	 * 删除备忘事务
+   	 * 删除目标任务
    	 */
-   	public void delTask(){
+   	public void delTarget(){
    		Map<String,Object> paramMap=new HashMap<String,Object>();
    		paramMap.put("taskId", getPara("taskId"));
    		SqlPara delsql=Db.getSqlPara("task.delById",paramMap);
@@ -59,24 +58,24 @@ public class TaskController extends BaseController{
    	/**
 	 *  跳转到创建新的调度器任务页面
 	 */
-	public void goCreateTask(){
-		render("createTask.jsp");
+	public void goCreateTarget(){
+		render("createTarget.jsp");
 	}	
 	
 	/**
 	 *  跳转到目标任务详情页面
 	 */
-	public void goTaskDetail(String taskId){
+	public void goTargetDetail(String taskId){
 		 Record record=Db.findFirst("select * from task where taskId="+getPara("taskId"));
 		 setAttr("vo",record);
-		 render("taskDetail.jsp");
+		 render("targetDetail.jsp");
 	}	
 	
 	
 	/***
 	 * 创建目标任务
 	 */
-	 public void createTask(){		
+	 public void createTarget(){		
 		  TaskVo vo=getBean(TaskVo.class,"");
 		  Map<String,Object> paramMap=ObjectUtil.convertBeanToMap(vo);		
 		  paramMap.put("addTime",new Date());

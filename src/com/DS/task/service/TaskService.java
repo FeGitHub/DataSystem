@@ -10,7 +10,7 @@ public interface TaskService {
    * @param cond
    * @return
    */
-    Map<String, Object> getTaskList(Map<String,Object> cond);
+    Map<String, Object> getTargetTaskList(Map<String,Object> cond);
     
     JSONArray getProjectGantt(String projectId);
 }

@@ -1,8 +1,9 @@
 /***
- * 获取分页的备忘提醒数据
+ * 获取分页的目标任务数据列表
  */
-  #sql("getTaskList")
+  #sql("getTargetList")
 	    SELECT * FROM  task where 1=1
+	    and projectId is null
 	    #if(startDates)
             and addTime >= #para(startDates)
         #end
@@ -19,9 +20,9 @@
 	#end
 	
 /**
- * 获取过滤的备忘提醒数据的总条数
+ * 获取过滤的目标任务数据的总条数
  */	
-	#sql("getSize")
+	#sql("getTargetListSize")
 	    SELECT count(1) as total FROM  task where 1=1   
 	     #if(startDates)
             and addTime >= #para(startDates)

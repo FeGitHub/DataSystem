@@ -22,7 +22,7 @@ $(function(){
 		 serverSide: true,//开启服务器模式
 		 pageLength:8,//每页显示的数据的条数
 		 ajax: {
-		     url: basepath+'/task/getTaskList',
+		     url: basepath+'/task/getTargetList',
 		     type: 'POST'
 		 },
 		 columns: [
@@ -53,7 +53,7 @@ $(function(){
 				  btn: ['确定','取消'] //按钮
 				}, function(){
 					$.ajax({
-						url:basepath+"/task/delTask",
+						url:basepath+"/task/delTarget",
 						type:"post",
 						data:info,
 						dataType:"json",
@@ -77,7 +77,7 @@ $(function(){
  */
 $("body").on("click",".taskDetailBtn",function(){	
 	 var taskId=$(this).data("id");
-	 window.location.href=basepath+"/task/goTaskDetail?taskId="+taskId;
+	 window.location.href=basepath+"/task/goTargetDetail?taskId="+taskId;
 	
 });
 
@@ -116,5 +116,5 @@ $("#reset").click(function(){
 });
 
 $("#createTask-btn").click(function(){
-	  window.location.href=basepath+"/task/goCreateTask";
+	  window.location.href=basepath+"/task/goCreateTarget";
 });

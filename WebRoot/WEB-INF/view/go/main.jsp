@@ -53,10 +53,10 @@
         </div>
       </div>
 	<script>
-$(function () { 
+/* $(function () { 
 	$("[data-toggle='popover']").popover();
 	$("#test").attr("data-content","测试成功");
-});
+}); */
 </script>
 </body>
 </html>
