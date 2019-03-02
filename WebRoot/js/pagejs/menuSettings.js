@@ -58,6 +58,7 @@ function initMenu(){
 			type:"post",
 			dataType:"json",
 			success:function(ztree){
+				$(".overlay").remove();
 				$.fn.zTree.init($("#menuTree"), setting, ztree);  			
 			}
 		});   

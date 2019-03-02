@@ -1,10 +1,8 @@
-<!--页面布局-->
 <%@ page contentType="text/html;charset=UTF-8"%>  
 <%@ taglib prefix="sitemesh" uri="http://www.opensymphony.com/sitemesh/decorator" %>    
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%> 
-<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%> 
 <!DOCTYPE html>
-<html lang="en">
+<html>
   <head>
     <title>
 			<sitemesh:title/>
@@ -25,8 +23,7 @@
         <li class="dropdown"><a class="app-nav__item" href="#" data-toggle="dropdown" aria-label="Show notifications"><i class="fa fa-bell-o fa-lg"></i></a>
           <ul class="app-notification dropdown-menu dropdown-menu-right">
             <li class="app-notification__title">你有4个新的通知</li>
-            <div class="app-notification__content">	    
-                       <!--  --> 
+            <div class="app-notification__content">	                      
                        <c:forEach items="${notifications}" var="item">                       
 					<li>
 	  					 <a class="app-notification__item" href="${item.url}">
@@ -41,8 +38,7 @@
 	   				 	</div>
 	  			 	 </a>    
   			 		</li>
-			</c:forEach> 
-                       <!--  -->
+			</c:forEach>                
             </div>
             <li class="app-notification__footer"><a href="#">查看所有通知</a></li>
           </ul>

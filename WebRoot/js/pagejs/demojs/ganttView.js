@@ -1,17 +1,14 @@
-		$(function () {
-			//===
+		$(function () {			
 			  $.ajax({
 				 url:basepath+"/task/getProjectGantt",
 				 type:"post",
 				 data:{"projectId":"1"},
 				 dataType:"json",
 				 success:function(data){
-					 console.log(ganttData);
-					 console.log(data);
+					 $(".overlay").remove();
 					 showGantt($("#ganttChart"),data);
 				 }
-			  })
-			//===
+			  })		
 			//showGantt($("#ganttChart"),ganttData);
 			$("#submit").click(function () {
                 $("#ganttChart").ganttView("getDatas", function (datas) {
