@@ -1,6 +1,5 @@
 package com.DS.controller;
 import java.util.List;
-
 import com.DS.file.service.FileService;
 import com.DS.file.service.impl.FileServiceImpl;
 import com.DS.web.base.BaseController;
@@ -51,6 +50,10 @@ public class DemoController extends BaseController {
 	   */
 	  public void goBootstrap(){
     	  render("bootstrap-components.jsp");
+      }
+	  
+	  public void goMail(){
+    	  render("page-mailbox.jsp");
       }
 	 /* public void getZtreeJsonFromView(){
 		  String ztreeJson=getPara("ztreeJson");
