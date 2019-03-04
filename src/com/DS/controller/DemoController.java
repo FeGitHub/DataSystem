@@ -1,7 +1,12 @@
 package com.DS.controller;
+import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import com.DS.file.service.FileService;
 import com.DS.file.service.impl.FileServiceImpl;
+import com.DS.notification.service.NotificationService;
+import com.DS.notification.service.impl.NotificationServiceImpl;
 import com.DS.web.base.BaseController;
 import com.jfinal.aop.Inject;
 import com.jfinal.plugin.activerecord.Db;
@@ -15,6 +20,9 @@ public class DemoController extends BaseController {
 	@Inject(FileServiceImpl.class)
 	private FileService fileService;
 	 
+	
+	@Inject(NotificationServiceImpl.class)
+	private NotificationService notificationService;
 	 /****
 	  * 跳转到上传下载页面
 	  */
@@ -52,8 +60,18 @@ public class DemoController extends BaseController {
     	  render("bootstrap-components.jsp");
       }
 	  
-	  public void goMail(){
-    	  render("page-mailbox.jsp");
+	  public void goMailBox(){				
+		  List list = new ArrayList();
+		 //===
+		 Map map=new HashMap();
+		 map.put("sender", "xiao");
+		 map.put("subject", "fffff");
+		 map.put("content", "fdfdf");
+		 map.put("meta", "3 minute");		  
+		  //==
+		 list.add(map);					
+		 setAttr("mailList",list);
+    	 render("page-mailbox.jsp");
       }
 	 /* public void getZtreeJsonFromView(){
 		  String ztreeJson=getPara("ztreeJson");

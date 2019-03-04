@@ -1,6 +1,7 @@
 <%@ page contentType="text/html;charset=UTF-8"%>  
 <%@ taglib prefix="sitemesh" uri="http://www.opensymphony.com/sitemesh/decorator" %>    
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%> 
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%> 
 <!DOCTYPE html>
 <html>
   <head>
@@ -22,7 +23,7 @@
         <!--通知信息菜单-->
         <li class="dropdown"><a class="app-nav__item" href="#" data-toggle="dropdown" aria-label="Show notifications"><i class="fa fa-bell-o fa-lg"></i></a>
           <ul class="app-notification dropdown-menu dropdown-menu-right">
-            <li class="app-notification__title">你有3个新的通知</li>
+            <li class="app-notification__title">你有${fn:length(notifications)}个新的通知</li>
             <div class="app-notification__content">	                
                        <c:forEach items="${notifications}" var="item">                       
 					<li>
@@ -33,14 +34,14 @@
 								</span>
 							</span>
 	    				<div>
-	      					<p class="app-notification__message">${item.message}</p>
-	      					<p class="app-notification__meta">${item.meta}</p>
+	      					<p class="app-notification__message">${item.sender}发来信息</p>
+	      					<p class="app-notification__meta">${item.meta}分钟前</p>
 	   				 	</div>
 	  			 	 </a>    
   			 		</li>
 			</c:forEach> 
             </div>
-            <li class="app-notification__footer"><a href="#">查看所有通知</a></li>
+            <li class="app-notification__footer"><a href="${BASE_PATH}/demo/goMailBox">查看所有通知</a></li>
           </ul>
         </li>
         <!--用户菜单-->
@@ -65,7 +66,7 @@
       <ul class="app-menu" id="menuId">
     	<c:forEach items="${menuTree}" var="item"> 
         		<c:choose>
-					<c:when test="${item.subMenuList ne null}">
+					<c:when test="${not empty item.subMenuList}">
 						 <li class="treeview">
 						 	  <a class="app-menu__item" href="${item.url}" data-toggle="treeview">
 						 	  	<i class="${item.icon}"></i><span class="app-menu__label">${item.name}</span>
