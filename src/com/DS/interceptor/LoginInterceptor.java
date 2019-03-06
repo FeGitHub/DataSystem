@@ -34,7 +34,9 @@ public class LoginInterceptor implements Interceptor{
 			Record user = (Record)session.getAttribute("user");
 			if(user!= null) {
 				 JSONArray menu=menuService.getTreeMenu();  
-				 List<Record> notifications=notificationService.getNotification();
+				 List<Record> notifications=notificationService.getNotification(user.getStr("id"));
+				 long notificationSize=notificationService.getNotificationSize(user.getStr("id"));
+				 controller.setAttr("notificationSize", notificationSize);
 				 controller.setAttr("menuTree", menu);
 				 controller.setAttr("notifications", notifications);
 				 inv.invoke();

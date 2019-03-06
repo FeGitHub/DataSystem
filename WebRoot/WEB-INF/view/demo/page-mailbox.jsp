@@ -32,7 +32,7 @@
                 </label>
               </div>
               <div class="btn-group">
-                <button class="btn btn-primary btn-sm" type="button"><i class="fa fa-trash-o"></i></button>
+                <button class="btn btn-primary btn-sm" type="button" id="delBtn"><i class="fa fa-trash-o"></i></button>
                 <button class="btn btn-primary btn-sm" type="button"><i class="fa fa-reply"></i></button>
                 <button class="btn btn-primary btn-sm" type="button"><i class="fa fa-share"></i></button>
                 <button class="btn btn-primary btn-sm" type="button"><i class="fa fa-refresh"></i></button>
@@ -40,14 +40,13 @@
             </div>
             <div class="table-responsive mailbox-messages">
               <table class="table table-hover">
-                <tbody>
-                <!--  -->
+                <tbody>            
                 <c:forEach items="${mailList}" var="item">                      
                <tr>
                  	 <td>
                       <div class="animated-checkbox">
                         <label>
-                          <input type="checkbox"><span class="label-text"> </span>
+                          <input type="checkbox" value="${item.id}" ><span class="label-text"> </span>
                         </label>
                       </div>
                     </td>
@@ -57,10 +56,7 @@
                     <td><i class="fa fa-paperclip"></i></td>
                     <td>${item.meta }</td>
                   </tr>    
-                </c:forEach>  
-                <!--  -->
-                 
-                          
+                </c:forEach>                                    
                 </tbody>
               </table>
             </div>
@@ -74,13 +70,6 @@
         </div>
       </div>
     </main> 
-    <script type="text/javascript">
-     $(function(){
-    
-    	 console.log('${mail}');
-    	 console.log('${notifications}');
-     });
-    
-    </script>
+    <script src="${BASE_PATH}/js/pagejs/demojs/page-mailbox.js"></script> 
   </body>
 </html>

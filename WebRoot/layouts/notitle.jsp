@@ -23,7 +23,7 @@
         <!--通知信息菜单-->
        <li class="dropdown"><a class="app-nav__item" href="#" data-toggle="dropdown" aria-label="Show notifications"><i class="fa fa-bell-o fa-lg"></i></a>
           <ul class="app-notification dropdown-menu dropdown-menu-right">
-            <li class="app-notification__title">你有${fn:length(notifications)}个新的通知</li>
+            <li class="app-notification__title">你有${notificationSize}个新的通知</li>
             <div class="app-notification__content">	                
                        <c:forEach items="${notifications}" var="item">                       
 					<li>
@@ -35,7 +35,7 @@
 							</span>
 	    				<div>
 	      					<p class="app-notification__message">${item.sender}发来信息</p>
-	      					<p class="app-notification__meta">${item.meta}分钟前</p>
+	      					<p class="app-notification__meta">${item.meta}</p>
 	   				 	</div>
 	  			 	 </a>    
   			 		</li>

@@ -1,8 +1,5 @@
 package com.DS.controller;
-import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 import com.DS.file.service.FileService;
 import com.DS.file.service.impl.FileServiceImpl;
 import com.DS.notification.service.NotificationService;
@@ -60,16 +57,9 @@ public class DemoController extends BaseController {
     	  render("bootstrap-components.jsp");
       }
 	  
-	  public void goMailBox(){				
-		  List list = new ArrayList();
-		 //===
-		 Map map=new HashMap();
-		 map.put("sender", "xiao");
-		 map.put("subject", "fffff");
-		 map.put("content", "fdfdf");
-		 map.put("meta", "3 minute");		  
-		  //==
-		 list.add(map);					
+	  public void goMailBox(){									
+		 Record user=(Record)getSession().getAttribute("user");
+		 List<Record> list=notificationService.getNotificationList(user.getStr("id"));
 		 setAttr("mailList",list);
     	 render("page-mailbox.jsp");
       }
@@ -105,7 +95,7 @@ public class DemoController extends BaseController {
 	  }
 	  
 	  /***
-	   * 测试jfinal的事务处理
+	   * 测试jfinal的事务异常处理
 	   */
 	  public void testJfinalTX(){
 		  int size=0;

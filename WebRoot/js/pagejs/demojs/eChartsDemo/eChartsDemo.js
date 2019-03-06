@@ -43,7 +43,7 @@
 	        		categories.push(info[i].categories);
 	        		data.push(info[i].data);
 	        	}
-	           myChart.hideLoading();  //提示关闭
+	          
 			   myChart.setOption({
 	                xAxis: {
 	                    data: categories
@@ -184,7 +184,6 @@
     	  var app = {};
     	  option = null;
     	  app.title = '正负条形图';
-
     	  option = {
     	      tooltip : {
     	          trigger: 'axis',
@@ -251,12 +250,10 @@
     	      ]
     	  };
     	  ;
-    	  if (option && typeof option === "object") {
-    		  myChart.hideLoading();  //提示关闭
+    	  if (option && typeof option === "object") {  		  
     	      myChart.setOption(option, true);
+    	      myChart.hideLoading();  //提示关闭
     	  }
       }
       
-     $("#testBtn").click(function(){
-    	
-     });
+    
