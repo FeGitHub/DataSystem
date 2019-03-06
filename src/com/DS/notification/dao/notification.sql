@@ -13,7 +13,7 @@
 END AS meta   
    from notification
 where userId=#para(userId)
-order by operatetime
+order by operatetime desc
 	#if(limitSize)
 	   limit 0,#para(limitSize)
 	#end
