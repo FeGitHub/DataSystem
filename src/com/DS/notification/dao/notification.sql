@@ -2,7 +2,7 @@
  * 获取用户的通知信息
  */
 #sql("selectNotifications")
- select id,url,style,icon,sender,subject,content,
+ select id,level,type,sender,subject,content,readFlag,
    CASE 
   WHEN TIMESTAMPDIFF(MINUTE,operatetime, NOW())>=1440 THEN
 	 operatetime
@@ -19,6 +19,39 @@ order by operatetime desc
 	#end
 #end
 
+/****
+ * 获取用用户通知信息的条数
+ */
 #sql("getNotificationSize")
-   select count(*) as size from notification where userId=#para(userId);
+   select count(*) as size from notification where userId=#para(userId)
+#end
+
+/***
+ * 新增通知信息
+ */
+#sql("addNotification")
+  insert into notification (level,type,sender,subject,content,operatetime,userId) values (#para(level),#para(type),#para(sender),#para(subject),#para(content),now(),#para(userId))
+#end
+
+/***
+ * 删除通知信息
+ */
+#sql("delNotification")
+  delete from notification where id=#para(id) and userId=#para(userId)
+#end
+
+
+/****
+ * 修改通知信息
+ */
+#sql("updateNotification")
+    update notification
+      #if(readFlag)
+         set readFlag=#para(readFlag)
+      #end
+       #if(subject)
+         set subject=#para(subject)
+      #end
+      where id=#para(id)
+      and userId=#para(userId)
 #end

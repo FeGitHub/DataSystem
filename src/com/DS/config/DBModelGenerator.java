@@ -9,7 +9,7 @@ import com.jfinal.plugin.druid.DruidPlugin;
  * 在数据库表有任何变动时，运行一下 main 方法，极速响应变化进行代码重构
  * PS:生成的相关文件的路径请看控制台输出
  */
-public class _JFinalDemoGenerator {
+public class DBModelGenerator {
 	
 	public static DataSource getDataSource() {
 		DruidPlugin druidPlugin = DSConfig.createDruidPlugin();

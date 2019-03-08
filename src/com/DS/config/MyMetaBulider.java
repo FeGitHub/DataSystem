@@ -13,7 +13,8 @@ public class MyMetaBulider extends MetaBuilder{
     	String[] tableArray = {
     			"user",
     			"menu",
-    			"ds_remind"
+    			"ds_remind",
+    			"notification"
     			};
     	for(int i=0;i<tableArray.length;i++){
     		if(tableName.equals(tableArray[i])){

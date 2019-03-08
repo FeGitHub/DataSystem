@@ -18,6 +18,7 @@ public class _MappingKit {
 	public static void mapping(ActiveRecordPlugin arp) {
 		arp.addMapping("ds_remind", "id", DsRemind.class);
 		arp.addMapping("menu", "id", Menu.class);
+		arp.addMapping("notification", "id", Notification.class);
 		arp.addMapping("user", "id", User.class);
 	}
 }

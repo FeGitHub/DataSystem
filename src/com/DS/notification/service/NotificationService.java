@@ -1,8 +1,6 @@
 package com.DS.notification.service;
-
 import java.util.List;
-
-
+import com.DS.common.model.Notification;
 import com.jfinal.plugin.activerecord.Record;
 /****
  * 
@@ -30,5 +28,18 @@ public interface NotificationService {
 	 /****
 	  * 新增通知信息
 	  */	 
-	 int addNotification(String userId);	
+	 int addNotification(Notification n);	
+	 
+	 /****
+	  * 
+	  * @param id  通知信息的id
+	  * @param userId  用户的id,确保用户只能操作自己的数据
+	  * @return
+	  */
+	 int delNotification(String id,String userId);
+	 
+	 /***
+	  * 修改通知信息
+	  */
+	 int updateNotification(Notification n);
 }

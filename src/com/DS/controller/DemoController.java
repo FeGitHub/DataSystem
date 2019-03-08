@@ -60,7 +60,7 @@ public class DemoController extends BaseController {
 	  public void goMailBox(){									
 		 Record user=(Record)getSession().getAttribute("user");
 		 List<Record> list=notificationService.getNotificationList(user.getStr("id"));
-		 setAttr("mailList",list);
+		 setAttr("mailList",list);		
     	 render("page-mailbox.jsp");
       }
 	 /* public void getZtreeJsonFromView(){

@@ -17,28 +17,20 @@ public abstract class BaseNotification<M extends BaseNotification<M>> extends Mo
 		return getInt("id");
 	}
 
-	public void setUrl(java.lang.String url) {
-		set("url", url);
+	public void setLevel(java.lang.Integer level) {
+		set("level", level);
 	}
 	
-	public java.lang.String getUrl() {
-		return getStr("url");
+	public java.lang.Integer getLevel() {
+		return getInt("level");
 	}
 
-	public void setStyle(java.lang.String style) {
-		set("style", style);
+	public void setType(java.lang.Integer type) {
+		set("type", type);
 	}
 	
-	public java.lang.String getStyle() {
-		return getStr("style");
-	}
-
-	public void setIcon(java.lang.String icon) {
-		set("icon", icon);
-	}
-	
-	public java.lang.String getIcon() {
-		return getStr("icon");
+	public java.lang.Integer getType() {
+		return getInt("type");
 	}
 
 	public void setSender(java.lang.String sender) {
@@ -79,6 +71,14 @@ public abstract class BaseNotification<M extends BaseNotification<M>> extends Mo
 	
 	public java.lang.String getUserId() {
 		return getStr("userId");
+	}
+
+	public void setReadFlag(java.lang.Integer readFlag) {
+		set("readFlag", readFlag);
+	}
+	
+	public java.lang.Integer getReadFlag() {
+		return getInt("readFlag");
 	}
 
 }

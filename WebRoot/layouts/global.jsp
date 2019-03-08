@@ -27,10 +27,32 @@
             <div class="app-notification__content">	                
                        <c:forEach items="${notifications}" var="item">                       
 					<li>
-	  					 <a class="app-notification__item" href="${item.url}">
+	  					 <a class="app-notification__item" href="${item.id}">
 							<span class="app-notification__icon">
-								<span class="fa-stack fa-lg">
-									<i class="${item.style}"></i><i class="${item.icon}"></i>
+								<span class="fa-stack fa-lg">							
+								    <c:choose>
+										    <c:when test="${item.level==-1}">
+										        <i class="fa fa-circle fa-stack-2x text-danger"></i>
+										    </c:when>
+										   <c:when test="${item.level==0}">
+										        <i class="fa fa-circle fa-stack-2x text-primary"></i>
+										    </c:when>
+										     <c:when test="${item.level==1}">
+										        <i class="fa fa-circle fa-stack-2x text-success"></i>
+										    </c:when>									   
+									</c:choose>
+									
+									<c:choose>
+										 <c:when test="${item.type==0}">
+										        <i class="fa fa-envelope fa-stack-1x fa-inverse"></i>
+										    </c:when>
+										   <c:when test="${item.type==1}">
+										        <i class="fa fa-hdd-o fa-stack-1x fa-inverse"></i>
+										    </c:when>
+										     <c:when test="${item.type==2}">
+										        <i class="fa fa-money fa-stack-1x fa-inverse"></i>
+										    </c:when>	
+									</c:choose>
 								</span>
 							</span>
 	    				<div>
