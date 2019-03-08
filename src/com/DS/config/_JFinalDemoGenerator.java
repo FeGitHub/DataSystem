@@ -7,6 +7,7 @@ import com.jfinal.plugin.activerecord.generator.Generator;
 import com.jfinal.plugin.druid.DruidPlugin;
 /**
  * 在数据库表有任何变动时，运行一下 main 方法，极速响应变化进行代码重构
+ * PS:生成的相关文件的路径请看控制台输出
  */
 public class _JFinalDemoGenerator {
 	
@@ -28,12 +29,20 @@ public class _JFinalDemoGenerator {
 		String modelOutputDir = baseModelOutputDir + "/..";
 		
 		// 创建生成器
-		Generator generator = new Generator(getDataSource(), baseModelPackageName, baseModelOutputDir, modelPackageName, modelOutputDir);
+		Generator generator = new Generator(getDataSource(), baseModelPackageName, baseModelOutputDir, modelPackageName, modelOutputDir);					
+		
 		// 设置数据库方言
-		generator.setDialect(new MysqlDialect());
+		generator.setDialect(new MysqlDialect());		
+		
+		/****
+		 * 注释下面这句生成全部表，否则生成指定表对应的model
+		 */
+		generator.setMetaBuilder(new MyMetaBulider(getDataSource()));
+		
 		// 设置是否生成链式 setter 方法
 		generator.setGenerateChainSetter(false);
 		// 添加不需要生成的表名
+		
 		generator.addExcludedTable("adv");
 		// 设置是否在 Model 中生成 dao 对象
 		generator.setGenerateDaoInModel(false);

@@ -51,4 +51,10 @@ public class NotificationServiceImpl implements NotificationService {
 		 return size;
 	}
 
+	@Override
+	public int addNotification(String userId) {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
 }

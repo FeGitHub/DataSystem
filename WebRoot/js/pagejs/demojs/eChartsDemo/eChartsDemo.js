@@ -181,8 +181,12 @@
     	  myChart.showLoading({
     		  text : '正在加载数据'
     		});  //增加提示
+    	  init(myChart);
+      }
+      
+      function  init(myChart){   	 
     	  var app = {};
-    	  option = null;
+    	  var  option = null;
     	  app.title = '正负条形图';
     	  option = {
     	      tooltip : {
@@ -254,6 +258,6 @@
     	      myChart.setOption(option, true);
     	      myChart.hideLoading();  //提示关闭
     	  }
-      }
       
-    
+      }
+     
