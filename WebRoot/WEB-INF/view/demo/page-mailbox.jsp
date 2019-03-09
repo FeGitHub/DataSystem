@@ -36,32 +36,34 @@
                 <button class="btn btn-primary btn-sm" type="button" id="delBtn"><i class="fa fa-trash-o"></i></button>
                 <button class="btn btn-primary btn-sm" type="button"><i class="fa fa-reply"></i></button>
                 <button class="btn btn-primary btn-sm" type="button"><i class="fa fa-share"></i></button>
-                <button class="btn btn-primary btn-sm" type="button"><i class="fa fa-refresh"></i></button>
+                <button class="btn btn-primary btn-sm" type="button" id="refreshBtn"><i class="fa fa-refresh"></i></button>
               </div>
             </div>
             <div class="table-responsive mailbox-messages">
               <table class="table table-hover">
-                <tbody id="tb">            
-                <c:forEach items="${mailList}" var="item">                      
-               <tr>
+                <tbody id="tb">          
+                 <script id="appNotification" type="text/x-handlebars-template">
+ 				{{#each mailList}}
+					<tr>
                  	 <td>
                       <div class="animated-checkbox">
                         <label>
-                          <input type="checkbox" name="itemBox" value="${item.id}" onclick="userCheck(this)"><span class="label-text"> </span>
+                          <input type="checkbox" name="itemBox" value="{{id}}" onclick="userCheck(this)"><span class="label-text"> </span>
                         </label>
                       </div>
                     </td>
                     <td><a href="#"><i class="fa fa-star-o"></i></a></td>
-                    <td><a href="read-mail.html">${item.sender}</a></td>
-                    <td class="mail-subject"><b>${item.subject}</b>${item.content}</td>
+                    <td><a href="read-mail.html">{{sender}}</a></td>
+                    <td class="mail-subject"><b>{{subject}}</b>{{content}}</td>
                     <td><i class="fa fa-paperclip"></i></td>
-                    <td>${item.meta}</td>
-                  </tr>    
-                </c:forEach>                                    
+                    <td>{{meta}}</td>
+                  </tr>  
+			     {{/each}}
+	         </script>                                
                 </tbody>
               </table>
             </div>
-            <div class="text-right"><span class="text-muted mr-2">共${fn:length(mailList)}条信息</span>
+            <div class="text-right"><span class="text-muted mr-2">共<span id="sizeId"></span>条信息</span>
               <div class="btn-group">
                 <button class="btn btn-primary btn-sm" type="button"><i class="fa fa-chevron-left"></i></button>
                 <button class="btn btn-primary btn-sm" type="button"><i class="fa fa-chevron-right"></i></button>

@@ -42,4 +42,9 @@ public interface NotificationService {
 	  * 修改通知信息
 	  */
 	 int updateNotification(Notification n);
+	 
+	 /****
+	  *  批量删除
+	  */
+	 int batchDel(List<String> list);
 }

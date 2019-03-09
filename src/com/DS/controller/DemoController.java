@@ -1,11 +1,21 @@
 package com.DS.controller;
+import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
+
+import com.DS.common.model.Menu;
+import com.DS.common.model.Notification;
 import com.DS.file.service.FileService;
 import com.DS.file.service.impl.FileServiceImpl;
 import com.DS.notification.service.NotificationService;
 import com.DS.notification.service.impl.NotificationServiceImpl;
 import com.DS.web.base.BaseController;
+import com.alibaba.fastjson.JSON;
+import com.alibaba.fastjson.JSONArray;
+import com.alibaba.fastjson.JSONObject;
 import com.jfinal.aop.Inject;
+import com.jfinal.json.FastJson;
 import com.jfinal.plugin.activerecord.Db;
 import com.jfinal.plugin.activerecord.Record;
 /*****
@@ -57,12 +67,42 @@ public class DemoController extends BaseController {
     	  render("bootstrap-components.jsp");
       }
 	  
-	  public void goMailBox(){									
-		 Record user=(Record)getSession().getAttribute("user");
-		 List<Record> list=notificationService.getNotificationList(user.getStr("id"));
-		 setAttr("mailList",list);		
+	  public void goMailBox(){											 	
     	 render("page-mailbox.jsp");
       }
+	  
+	  public void refreshNotifications(){
+		  Record user=(Record)getSession().getAttribute("user");
+		  List<Record> list=notificationService.getNotificationList(user.getStr("id"));	
+		  long size=notificationService.getNotificationSize(user.getStr("id"));
+	      Map<String,Object> map=new HashMap<String,Object>();
+	      JSONObject hash = new JSONObject();
+		  hash.put("mailList", list);	
+	      map.put("info", hash);
+	      map.put("size", size);
+	      map.put("msg", "刷新成功");
+	      renderJson(ajaxDoneSuccess(map));
+	  }
+	  
+	  
+	  /****
+	   * 批量删除信息通知
+	   */
+	  public void batchDelNotifications(){
+		  String[] ids = this.getParaValues("ids[]");
+		  List<String>  list=new ArrayList<String>();
+		  for(int i=0;i<ids.length;i++){
+			  list.add(ids[i]);
+		  }
+		  int result=notificationService.batchDel(list);
+		  if(result>0){
+			  renderJson(ajaxDoneSuccess("操作成功"));
+		  }else{
+			  renderJson(ajaxDoneError("操作失败"));
+		  }
+	  }
+	  
+	  
 	 /* public void getZtreeJsonFromView(){
 		  String ztreeJson=getPara("ztreeJson");
 		  List<Ztree> temp= JSON.parseArray(ztreeJson,Ztree.class); 

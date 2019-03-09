@@ -94,5 +94,16 @@ public class NotificationServiceImpl implements NotificationService {
 		SqlPara sql = Db.getSqlPara("notification.updateNotification",paramMap);
 		return Db.update(sql);
 	}
+   
+	/****
+	 * 批量删除通知新信息
+	 */
+	@Override
+	public int batchDel(List<String> list) {
+	    Map<String,List<String>> param=new HashMap<String,List<String>>();
+	    param.put("ids", list);
+	    SqlPara delSql=Db.getSqlPara("notification.batchDel", param);			    
+		return Db.update(delSql);
+	}
 
 }
