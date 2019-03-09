@@ -63,10 +63,12 @@
                 </tbody>
               </table>
             </div>
-            <div class="text-right"><span class="text-muted mr-2">共<span id="sizeId"></span>条信息</span>
+            <div class="text-right"><span class="text-muted mr-2">第<span id="pageId">1</span>页，总计<span id="sizeId"></span>条信息</span>
               <div class="btn-group">
-                <button class="btn btn-primary btn-sm" type="button"><i class="fa fa-chevron-left"></i></button>
-                <button class="btn btn-primary btn-sm" type="button"><i class="fa fa-chevron-right"></i></button>
+                <input type="text" id="pageNumberId" value="1" style="display:none;"/>
+                <input type="text" id="endPageNumberId" value="${endPageNumber}" style="display:none;"/>
+                <button class="btn btn-primary btn-sm"  id="prevId" type="button"><i class="fa fa-chevron-left"></i></button>
+                <button class="btn btn-primary btn-sm" id="nextId" type="button"><i class="fa fa-chevron-right"></i></button>
               </div>
             </div>
           </div>

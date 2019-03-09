@@ -1,3 +1,4 @@
+
 /****
  * 获取用户的通知信息
  */
@@ -16,6 +17,9 @@ where userId=#para(userId)
 order by operatetime desc
 	#if(limitSize)
 	   limit 0,#para(limitSize)
+	#end
+	#if(start && pageSize)
+	   limit #para(start),#para(pageSize)
 	#end
 #end
 

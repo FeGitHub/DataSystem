@@ -78,18 +78,24 @@ $("#refreshBtn").click(function(){
 	/***
 	 * 加载邮箱列表
 	 */
-	function loadMailBox(showFlag){		
+	function loadMailBox(showFlag){	
+		var pageNumber=$("#pageNumberId").val();
 		 $.ajax({
-			  url:basepath+"/demo/refreshNotifications",
+			  url:basepath+"/demo/loadNotifyList",
 			  type:"post",		 
 		      dataType:"json",
+		      data:{"pageNumber":pageNumber},
 		      success:function(data){	
 		    	  if(data.code==200){   		   
 		    		     var _html = template(data.info);	
 		    		     $("#tb").empty();
 		    			 $("#tb").html(_html);
 		    			 $("#sizeId").empty();
-		    			 $("#sizeId").html(data.size);	
+		    			 $("#sizeId").html(data.size);		    			
+		    			 $("#pageNumberId").val(data.pageNumber);	
+		    			 $("#endPageNumberId").val(data.endPageNumber);
+		    			 $("#pageId").empty();	
+		    			 $("#pageId").html(data.pageNumber);
 	                   if(showFlag){
 	                		toastrSuccess("刷新成功",3000);
 	                   }	    			 
@@ -101,3 +107,24 @@ $("#refreshBtn").click(function(){
 		      }
 		  });				
 	}
+	
+	$("#prevId").click(function(){
+		var pageNumber=parseInt($("#pageNumberId").val())-1;
+		console.log("prevId:"+pageNumber);
+		if(pageNumber>0){
+			$("#pageNumberId").val(pageNumber);
+			loadMailBox(false);
+		}
+		
+	});
+	
+	$("#nextId").click(function(){
+		var pageNumber=parseInt($("#pageNumberId").val())+1;
+		var endpageNumber=$("#endPageNumberId").val();
+		console.log("nextId:"+pageNumber);
+		if(pageNumber<=endpageNumber){
+			$("#pageNumberId").val(pageNumber);
+			loadMailBox(false);
+		}
+		
+	});

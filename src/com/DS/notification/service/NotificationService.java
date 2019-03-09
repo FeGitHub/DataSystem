@@ -1,5 +1,7 @@
 package com.DS.notification.service;
 import java.util.List;
+import java.util.Map;
+
 import com.DS.common.model.Notification;
 import com.jfinal.plugin.activerecord.Record;
 /****
@@ -16,7 +18,7 @@ public interface NotificationService {
 	  * @param userId  用户id
 	  * @return
 	  */
-	 List<Record> getNotificationList(String userId);
+	 List<Record> getNotificationList(String userId,String pageNumber);
 	 
 	 /****
 	  * 获取用户的通知信息条数
@@ -47,4 +49,6 @@ public interface NotificationService {
 	  *  批量删除
 	  */
 	 int batchDel(List<String> list);
+	 
+	 Map<String,Object> loadNotifyList(String userId,String pageNumber);
 }

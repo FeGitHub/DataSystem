@@ -67,20 +67,23 @@ public class DemoController extends BaseController {
     	  render("bootstrap-components.jsp");
       }
 	  
-	  public void goMailBox(){											 	
-    	 render("page-mailbox.jsp");
+	  public void goMailBox(){
+		  Record user=(Record)getSession().getAttribute("user");
+		  long endPageNumber=notificationService.getNotificationSize(user.getStr("id"));
+		  endPageNumber=(long) Math.floor(endPageNumber/5);
+		  if(endPageNumber==0){
+			  endPageNumber=endPageNumber+1;
+		  }
+		  setAttr("endPageNumber",endPageNumber);
+    	  render("page-mailbox.jsp");
       }
 	  
-	  public void refreshNotifications(){
-		  Record user=(Record)getSession().getAttribute("user");
-		  List<Record> list=notificationService.getNotificationList(user.getStr("id"));	
-		  long size=notificationService.getNotificationSize(user.getStr("id"));
-	      Map<String,Object> map=new HashMap<String,Object>();
-	      JSONObject hash = new JSONObject();
-		  hash.put("mailList", list);	
-	      map.put("info", hash);
-	      map.put("size", size);
-	      map.put("msg", "刷新成功");
+	  /***
+	   * 加载通知信息列表
+	   */
+	  public void loadNotifyList(){		  
+	      Record user=(Record)getSession().getAttribute("user");
+	      Map<String, Object> map=notificationService.loadNotifyList(user.getStr("id"), getPara("pageNumber"));
 	      renderJson(ajaxDoneSuccess(map));
 	  }
 	  

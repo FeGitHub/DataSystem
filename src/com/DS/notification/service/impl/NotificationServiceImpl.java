@@ -5,6 +5,7 @@ import java.util.Map;
 import com.DS.common.model.Notification;
 import com.DS.notification.service.NotificationService;
 import com.DS.utils.common.ObjectUtil;
+import com.alibaba.fastjson.JSONObject;
 import com.jfinal.plugin.activerecord.Db;
 import com.jfinal.plugin.activerecord.Record;
 import com.jfinal.plugin.activerecord.SqlPara;
@@ -32,8 +33,12 @@ public class NotificationServiceImpl implements NotificationService {
 	 * 获取用户的信息列表
 	 */
 	@Override
-	public List<Record> getNotificationList(String userId) {
-		 Map<String,String> cond=new HashMap<String,String>();
+	public List<Record> getNotificationList(String userId,String pageNumber) {
+		 int pageSize=5;
+		 int start=(Integer.parseInt(pageNumber)-1)*pageSize;
+		 Map<String,Object> cond=new HashMap<String,Object>();
+		 cond.put("start", start);
+		 cond.put("pageSize", pageSize);
 		 cond.put("userId", userId);
 		 SqlPara sql = Db.getSqlPara("notification.selectNotifications",cond);		
 		 List<Record> list= Db.find(sql);			
@@ -104,6 +109,29 @@ public class NotificationServiceImpl implements NotificationService {
 	    param.put("ids", list);
 	    SqlPara delSql=Db.getSqlPara("notification.batchDel", param);			    
 		return Db.update(delSql);
+	}
+    
+	/****
+	 * 加载通知信息列表
+	 */
+	@Override
+	public Map<String, Object> loadNotifyList(String userId, String pageNumber) {		 
+		  List<Record> list=getNotificationList(userId,pageNumber);	
+		  long size=getNotificationSize(userId);		  
+		  long endPageNumber=getNotificationSize(userId);
+		  endPageNumber=(long) Math.floor(endPageNumber/5);	
+		  if(endPageNumber==0){
+			  endPageNumber=endPageNumber+1;
+		  }
+	      Map<String,Object> map=new HashMap<String,Object>();
+	      JSONObject hash = new JSONObject();
+		  hash.put("mailList", list);	
+	      map.put("info", hash);//详细通知信息列表
+	      map.put("size", size);//通知信息总条数
+	      map.put("pageNumber", pageNumber);//页码
+	      map.put("endPageNumber", endPageNumber);
+	      map.put("msg", "刷新成功");
+		return map;
 	}
 
 }
