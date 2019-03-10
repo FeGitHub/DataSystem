@@ -2,8 +2,10 @@ package com.DS.notification.service.impl;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import com.DS.bean.MailBean;
 import com.DS.common.model.Notification;
 import com.DS.notification.service.NotificationService;
+import com.DS.utils.common.MailUtil;
 import com.DS.utils.common.ObjectUtil;
 import com.alibaba.fastjson.JSONObject;
 import com.jfinal.plugin.activerecord.Db;
@@ -132,6 +134,23 @@ public class NotificationServiceImpl implements NotificationService {
 	      map.put("endPageNumber", endPageNumber);
 	      map.put("msg", "刷新成功");
 		return map;
+	}
+   
+	
+	/****
+	 * 发送邮件
+	 */
+	@Override
+	public int sendMail(MailBean mail) {
+		if(mail.getReceiveMailAccount()==null&&"".equals(mail.getReceiveMailAccount())){
+			return 0;
+		}
+		try {
+			MailUtil.sendMail(mail);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return 1;
 	}
 
 }

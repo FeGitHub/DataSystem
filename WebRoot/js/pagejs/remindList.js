@@ -26,10 +26,10 @@ $(function(){
 		     type: 'POST'
 		 },
 		 columns: [
-		           { data: 'remindName' },//事项简称	     
+		           { data: 'subject' },//事项简称	     
 		           { data: null,
 		         	  "render": function ( data, type, full, meta ) {        
-		           		 var str = setPopverStyle(full.remindName,full.remindText,"详情");  	           		
+		           		 var str = setPopverStyle(full.subject,full.content,"详情");  	           		
 		           		 return str;
 		           	}
 		           },
@@ -136,8 +136,8 @@ $(function(){
 	     * function 编辑数据回显
 	     */
 	    function showEditData($object){
-	    	$("#remindName").val($object.find("td").eq(0).text());
-	    	$("#remindText").val($object.find("td").eq(1).text());
+	    	$("#subjectId").val($object.find("td").eq(0).text());
+	    	$("#contentId").val($object.find("td").eq(1).text());
 	    	$("#remindTime").val($object.find("td").eq(2).text());
 	    	$("#mail").val($object.find("td").eq(3).text());	    	
 	    }
@@ -231,5 +231,15 @@ $("#reset").click(function(){
 	$("#datetimepicker1").val("");
 	$("#datetimepicker2").val("");
 	$("#taskName").val("");
-	reloadTable();	
+	reloadTable();
 });
+
+function checkMail(field, rules, i, options){
+	var re=/^([a-zA-Z]|[0-9])(\w|\-)+@[a-zA-Z0-9]+\.([a-zA-Z]{2,4})$/;
+	var mail=$("#mail").val();
+	if(!re.test(mail)){
+		 rules.push('required');
+		 return "* 无效的邮箱地址";
+	}
+	
+}

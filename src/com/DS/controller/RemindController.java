@@ -2,13 +2,14 @@ package com.DS.controller;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
-import com.DS.common.model.DsRemind;
+import com.DS.common.model.Remind;
 import com.DS.remind.service.RemindService;
 import com.DS.remind.service.impl.RemindServiceImpl;
 import com.DS.utils.common.ObjectUtil;
 import com.DS.web.base.BaseController;
 import com.jfinal.aop.Inject;
 import com.jfinal.plugin.activerecord.Db;
+import com.jfinal.plugin.activerecord.Record;
 import com.jfinal.plugin.activerecord.SqlPara;
 /***
  * 
@@ -30,10 +31,12 @@ public class RemindController extends BaseController {
 	 * 获取预警规则信息
 	 */
 	public void getRemindDetails(){	
+		Record user = (Record)getSession().getAttribute("user");
 		DivPageCondition=getDivPageCondition();
 		DivPageCondition.put("startDates", getPara("startDates"));
 		DivPageCondition.put("endDates", getPara("endDates"));
-		DivPageCondition.put("taskName", getPara("taskName"));				
+		DivPageCondition.put("taskName", getPara("taskName"));	
+		DivPageCondition.put("userId", user.get("id"));	
         renderJson(remindService.getRemindDetails(DivPageCondition));
 		
 	}
@@ -43,7 +46,10 @@ public class RemindController extends BaseController {
 	 */
 	public void updateRemindDetail(){	
 		int result;
-		DsRemind  record = getModel(DsRemind.class,"");	
+		Remind  record = getModel(Remind.class,"");	
+		Record user = (Record)getSession().getAttribute("user");
+		record.setUserId(user.get("id"));
+		record.setUserName(user.get("userName"));
 		if(record.getStr("id")!=""&&record.getStr("id")!=null){
 			Map<String,Object> paramMap=ObjectUtil.convertBeanToMap(record);
 		    SqlPara updateSql=Db.getSqlPara("remind.updateData", paramMap);

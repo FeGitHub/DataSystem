@@ -1,6 +1,7 @@
 package com.DS.controller;
 import java.util.List;
 import com.DS.web.base.BaseController;
+
 import com.jfinal.plugin.activerecord.Db;
 import com.jfinal.plugin.activerecord.Record;
 /***
@@ -15,5 +16,7 @@ public class UserController extends BaseController {
 	        renderJson(blogs);//传递json数据
 		System.out.println("UserController");
 	}
+	
+	
 
 }

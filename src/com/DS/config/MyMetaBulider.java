@@ -13,7 +13,7 @@ public class MyMetaBulider extends MetaBuilder{
     	String[] tableArray = {
     			"user",
     			"menu",
-    			"ds_remind",
+    			"remind",
     			"notification"
     			};
     	for(int i=0;i<tableArray.length;i++){

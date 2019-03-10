@@ -1,0 +1,35 @@
+@charset "utf-8";
+
+/*顶部白色背景*/
+.material-half-bg {
+  height: 100vh;
+  background-color: #e7e7e7;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: -1;
+}
+
+/*绿色半边*/
+.material-half-bg .cover {
+  background-color: #009688;
+  height: 50vh;
+}
+
+
+.container {
+	margin-top:15px;
+}
+.red {
+	color:red;
+}
+
+.panel-body{
+	background-color:#fff;
+	width:650px;
+	margin:100px auto;
+	border-radius:12px;
+	
+}

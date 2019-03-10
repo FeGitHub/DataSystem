@@ -8,4 +8,9 @@ public class indexController extends BaseController{
 	public void index(){
 		 render("login.jsp");	 	  
 	 }
+	
+	@Clear
+	public  void goRegister(){
+		 render("register.jsp");
+	}
 }

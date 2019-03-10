@@ -70,7 +70,7 @@
               	<td>
 	              	<div class="row">
 	                  	<div class="col-sm-12">	                                     
-                             <input name="remindName" id="remindName" class="form-control validate[required]" placeholder="" maxlength="20" type="text">      
+                             <input name="subject" id="subjectId" class="form-control validate[required]" placeholder="" maxlength="20" type="text">      
 	                  	</div>	                  	
 	                 </div>	                
               	</td>             
@@ -80,7 +80,7 @@
               	<td>
 	              	<div class="row">
 		              	<div class="col-sm-12">
-		              		  <textarea class="form-control validate[required]" rows="3" name="remindText" id="remindText"></textarea>    
+		              		  <textarea class="form-control validate[required]" rows="3" name="content" id="contentId"></textarea>    
 		              	</div>                    	
 	                 </div>	  
               	</td>              	
@@ -100,7 +100,7 @@
               	<td>
 	              	<div class="row">
 	                  	<div class="col-sm-12">	                                     
-                             <input  name="mail" id="mail" class="form-control validate[required]" placeholder="" maxlength="20" type="text">      
+                             <input  name="mail" id="mail" class="form-control validate[funcCall[checkMail]]" placeholder="" maxlength="20" type="text">      
 	                  	</div>	                  	
 	                 </div>	  
               	</td>              	

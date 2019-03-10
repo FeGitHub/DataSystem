@@ -1,7 +1,7 @@
 package com.DS.notification.service;
 import java.util.List;
 import java.util.Map;
-
+import com.DS.bean.MailBean;
 import com.DS.common.model.Notification;
 import com.jfinal.plugin.activerecord.Record;
 /****
@@ -46,9 +46,19 @@ public interface NotificationService {
 	 int updateNotification(Notification n);
 	 
 	 /****
-	  *  批量删除
+	  *  批量删除通知信息
 	  */
 	 int batchDel(List<String> list);
 	 
+	 /****
+	  * 加载用户的通知信息列表
+	  * @param userId 用户id
+	  * @param pageNumber  当前页码
+	  * @return
+	  */
 	 Map<String,Object> loadNotifyList(String userId,String pageNumber);
+	 
+	 int sendMail(MailBean mail);
+	 
+	 
 }

@@ -32,11 +32,7 @@
           </div>
           <div class="form-group">
             <div class="utility">
-              <div class="animated-checkbox">
-                <label>
-                  <input type="checkbox"><span class="label-text">保持登陆</span>
-                </label>
-              </div>
+              <p class="semibold-text mb-2"><a href="${BASE_PATH}/goRegister" data-toggle="flip">注册账号</a></p>
               <p class="semibold-text mb-2"><a href="#" data-toggle="flip">忘记密码 ?</a></p>
             </div>
           </div>

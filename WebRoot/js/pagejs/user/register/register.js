@@ -1,14 +1,37 @@
-/*****
- *  通过正则表达式和bootstrap的基本样式进行表单校验
- */
+var userJson = [];//用于存放账户信息
 var regUsername = /^[a-zA-Z_][a-zA-Z0-9_]{4,19}$/;//用户名
 var regPasswordSpecial = /[~!@#%&=;':",./<>_\}\]\-\$\(\)\*\+\.\[\?\\\^\{\|]/;//特殊字符
 var regPasswordAlpha = /[a-zA-Z]/;//字母
 var regPasswordNum = /[0-9]/;//数字
+var checkMail = /^([a-zA-Z]|[0-9])(\w|\-)+@[a-zA-Z0-9]+\.([a-zA-Z]{2,4})$/;
 var password;//密码
-var check = [false, false, false, false, false, false];//分别对应六个输入框的数据的正确与否
+var check = [false, false, false, false, false];
 var countdown=60; 
 
+function settime(val) { 
+	if (countdown == 0) { 
+	val.removeAttribute("disabled");    
+	val.value="免费获取验证码"; 
+	countdown = 60; 
+	} else { 
+	val.setAttribute("disabled", true); 
+	val.value="重新发送(" + countdown + ")"; 
+	countdown--; 
+	} 
+	setTimeout(function() { 
+	settime(val) 
+	},1000) 
+}
+
+function sendMail(val){	
+	$obj=$('.container').find('input').eq(4);
+	if (checkMail.test($obj.val())) {
+		settime(val);
+    } else {
+    	 fail($obj, 4, '无效邮箱地址');
+    }
+	
+}
 
 
 //校验成功函数
@@ -84,57 +107,20 @@ $('.container').find('input').eq(3).change(function() {
     }
 });
 
-//手机号码 ,test方法为正则表达式匹配的文本搜索字符串
-var regPhoneNum = /^[0-9]{11}$/
+
+
 $('.container').find('input').eq(4).change(function() {
-    if (regPhoneNum.test($(this).val())) {
+    if (checkMail.test($(this).val())) {
         success($(this), 4);
     } else {
-        fail($(this), 4, '手机号码只能为11位数字');
+        fail($(this), 4, '无效邮箱地址');
     }
 });
 
-//短信验证码
-var regMsg = /111111/;
-$('.container').find('input').eq(5).change(function() {
-    if (check[4]) {//有正确的电话号码
-        if (regMsg.test($(this).val())) {
-            success($(this), 5);
-        } else {
-            fail($(this), 5, '短信验证码错误');
-        }
-    } else {
-        $('.container').find('input').eq(4).parent().parent().removeClass('has-success').addClass('has-error');
-    }
 
-});
 
-//获取短信的校验码
-$('#loadingButton').click(function() {	
-    if (check[4]) {
-        $(this).removeClass('btn-primary').addClass('disabled');
-        $(this).html('<span class="red">59</span> 秒后重新获取');
-        var secondObj = $('#loadingButton').find('span');
-        var secondObjVal = secondObj.text();
-        //验证码重新生成的时间检验
-        function secondCounter() {
-            var secondTimer = setTimeout(function() {
-                secondObjVal--;
-                secondObj.text(secondObjVal);
-                secondCounter();
-            }, 1000);
-            if (secondObjVal == 0) {
-                clearTimeout(secondTimer);
-                $('#loadingButton').text('重新获取校验码');
-                $('#loadingButton').removeClass('disabled').addClass('btn-primary');
-            }
-        }
-        secondCounter();
-    } else {
-        $('.container').find('input').eq(4).parent().parent().removeClass('has-success').addClass('has-error');
-    }
 
-})
+
 
 //提交前的表单的校验
 $('#submit').click(function(e) {
@@ -149,15 +135,31 @@ $('#submit').click(function(e) {
         }
     }else{
     	//表单数据合法后操作
-    	alert("成功登陆");
+        var userValue=$("#username").val();
+        var padValue=$("#password").val();
+        var phoneValue=$("#phoneNum").val();
+        userJson = JSON.parse(localStorage.getItem("storageData")) == null ? [] : JSON.parse(localStorage.getItem("storageData"));  
+                var userInfo = {
+                    'username': userValue,
+                    'password': padValue,
+                    'phone': phoneValue
+                  };
+                  userJson.push(userInfo);
+                  localStorage.setItem("storageData", JSON.stringify(userJson));
+    	    alert("成功注册");
+         $(location).attr("href", "index.html");
     }
 });
 
 //重置表单数据
 $('#reset').click(function() {
-    $('input').slice(0, 6).parent().parent().removeClass('has-error has-success');
+    $('input').slice(0, 5).parent().parent().removeClass('has-error has-success');
     $('.tips').hide();
     $('.glyphicon-ok').hide();
     $('.glyphicon-remove').hide();
-    check = [false, false, false, false, false, false];
+    check = [false, false, false, false, false];
 });
+
+function back(){
+	window.location.href=basepath+"/";
+}
