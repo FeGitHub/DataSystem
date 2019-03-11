@@ -2,6 +2,8 @@ package com.DS.notification.service.impl;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Random;
+
 import com.DS.bean.MailBean;
 import com.DS.common.model.Notification;
 import com.DS.notification.service.NotificationService;
@@ -151,6 +153,26 @@ public class NotificationServiceImpl implements NotificationService {
 			e.printStackTrace();
 		}
 		return 1;
+	}
+   
+	/****
+	 * 发送验证码
+	 */
+	@Override
+	public int sendCode(String mailAdress) {
+		 Random random = new Random();
+		 int randomNum = random.nextInt(1000000);
+         String randomCode = String.format("%06d", randomNum);
+         MailBean mail=new MailBean();
+         mail.setReceiveName("新用户");
+         mail.setSenderName("系统");
+         mail.setSubject("系统验证码");
+         mail.setReceiveMailAccount(mailAdress);
+         mail.setContent("系统注册验证码："+randomCode);  
+         if(sendMail(mail)>0){
+        	 return randomNum;
+         }
+         return 0;
 	}
 
 }

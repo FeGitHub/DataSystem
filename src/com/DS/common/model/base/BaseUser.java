@@ -17,14 +17,6 @@ public abstract class BaseUser<M extends BaseUser<M>> extends Model<M> implement
 		return getInt("id");
 	}
 
-	public void setName(java.lang.String name) {
-		set("name", name);
-	}
-	
-	public java.lang.String getName() {
-		return getStr("name");
-	}
-
 	public void setAccount(java.lang.String account) {
 		set("account", account);
 	}
@@ -47,6 +39,22 @@ public abstract class BaseUser<M extends BaseUser<M>> extends Model<M> implement
 	
 	public java.lang.String getMail() {
 		return getStr("mail");
+	}
+
+	public void setUserFlag(java.lang.Integer userFlag) {
+		set("userFlag", userFlag);
+	}
+	
+	public java.lang.Integer getUserFlag() {
+		return getInt("userFlag");
+	}
+
+	public void setLeve(java.lang.Integer leve) {
+		set("leve", leve);
+	}
+	
+	public java.lang.Integer getLeve() {
+		return getInt("leve");
 	}
 
 }

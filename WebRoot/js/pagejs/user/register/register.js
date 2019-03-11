@@ -1,4 +1,4 @@
-var userJson = [];//用于存放账户信息
+
 var regUsername = /^[a-zA-Z_][a-zA-Z0-9_]{4,19}$/;//用户名
 var regPasswordSpecial = /[~!@#%&=;':",./<>_\}\]\-\$\(\)\*\+\.\[\?\\\^\{\|]/;//特殊字符
 var regPasswordAlpha = /[a-zA-Z]/;//字母
@@ -23,9 +23,10 @@ function settime(val) {
 	},1000) 
 }
 
-function sendMail(val){	
-	$obj=$('.container').find('input').eq(4);
+function sendCode(val){	
+	$obj=$('.container').find('input').eq(4);	
 	if (checkMail.test($obj.val())) {
+		sendAction();
 		settime(val);
     } else {
     	 fail($obj, 4, '无效邮箱地址');
@@ -124,6 +125,9 @@ $('.container').find('input').eq(4).change(function() {
 
 //提交前的表单的校验
 $('#submit').click(function(e) {
+	//====
+	console.log($("#register").serialize());
+	//===
     if(!check.every(function(value){
             return value == true
         })) {
@@ -133,21 +137,21 @@ $('#submit').click(function(e) {
                 $('.container').find('input').eq(key).parent().parent().removeClass('has-success').addClass('has-error')
             }
         }
-    }else{
-    	//表单数据合法后操作
-        var userValue=$("#username").val();
-        var padValue=$("#password").val();
-        var phoneValue=$("#phoneNum").val();
-        userJson = JSON.parse(localStorage.getItem("storageData")) == null ? [] : JSON.parse(localStorage.getItem("storageData"));  
-                var userInfo = {
-                    'username': userValue,
-                    'password': padValue,
-                    'phone': phoneValue
-                  };
-                  userJson.push(userInfo);
-                  localStorage.setItem("storageData", JSON.stringify(userJson));
-    	    alert("成功注册");
-         $(location).attr("href", "index.html");
+    }else{  	
+    	$.ajax({
+    		url:basepath+"/user/register",
+    		data:$("#register").serialize(),
+    		type:"post",
+    		dataType:"json",
+    		success:function(data){
+    			if(data.code==200){
+    				toastrSuccess(data.msg,3000);
+    			}else{
+    				toastrError(data.msg,3000);
+    			}
+    		}
+    	});
+    	 
     }
 });
 
@@ -163,3 +167,21 @@ $('#reset').click(function() {
 function back(){
 	window.location.href=basepath+"/";
 }
+
+function sendAction(){
+	var mailAdress=$("#mailAdress").val();
+	$.ajax({
+		url:basepath+"/demo/sendCode",
+		data:{"mailAdress":mailAdress},
+		type:"post",
+		dataType:"json",
+		success:function(data){
+			if(data.code==200){
+				
+			}else{
+				
+			}
+		}
+	});
+}
+ 

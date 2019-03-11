@@ -4,6 +4,8 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import javax.servlet.http.HttpSession;
+
 import com.DS.common.model.Menu;
 import com.DS.common.model.Notification;
 import com.DS.file.service.FileService;
@@ -14,6 +16,7 @@ import com.DS.web.base.BaseController;
 import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
+import com.jfinal.aop.Clear;
 import com.jfinal.aop.Inject;
 import com.jfinal.json.FastJson;
 import com.jfinal.plugin.activerecord.Db;
@@ -105,6 +108,17 @@ public class DemoController extends BaseController {
 		  }
 	  }
 	  
+	  @Clear
+	  public void sendCode(){
+		  String mailAdress=getPara("mailAdress");		 		
+		  int code=notificationService.sendCode(mailAdress);
+			  if(code>0){				
+				  setSessionAttr(mailAdress, code+"");				  
+				  renderJson(ajaxDoneSuccess("操作成功"));
+			  }else{
+				  renderJson(ajaxDoneError("操作失败"));
+			  }			
+		  }			  
 	  
 	 /* public void getZtreeJsonFromView(){
 		  String ztreeJson=getPara("ztreeJson");

@@ -60,5 +60,6 @@ public interface NotificationService {
 	 
 	 int sendMail(MailBean mail);
 	 
+	 int sendCode(String mailAdress);
 	 
 }
