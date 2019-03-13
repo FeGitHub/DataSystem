@@ -2,6 +2,7 @@ package com.DS.task.service;
 
 import java.util.Map;
 
+import com.DS.common.model.Project;
 import com.alibaba.fastjson.JSONArray;
 
 public interface TaskService {
@@ -12,5 +13,11 @@ public interface TaskService {
    */
     Map<String, Object> getTargetTaskList(Map<String,Object> cond);
     
-    JSONArray getProjectGantt(String projectId);
+    Map<String, Object> getProjectList(Map<String,Object> cond);
+    
+    JSONArray getProjectGantt(String userId);
+    
+    int createProject(Project project);
+    
+    int deleteProject(String projectId);
 }

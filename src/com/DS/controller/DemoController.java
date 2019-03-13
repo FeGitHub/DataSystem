@@ -1,24 +1,16 @@
 package com.DS.controller;
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-
-import javax.servlet.http.HttpSession;
-
-import com.DS.common.model.Menu;
-import com.DS.common.model.Notification;
 import com.DS.file.service.FileService;
 import com.DS.file.service.impl.FileServiceImpl;
 import com.DS.notification.service.NotificationService;
 import com.DS.notification.service.impl.NotificationServiceImpl;
+import com.DS.task.service.TaskService;
+import com.DS.task.service.impl.TaskServiceImpl;
 import com.DS.web.base.BaseController;
-import com.alibaba.fastjson.JSON;
-import com.alibaba.fastjson.JSONArray;
-import com.alibaba.fastjson.JSONObject;
 import com.jfinal.aop.Clear;
 import com.jfinal.aop.Inject;
-import com.jfinal.json.FastJson;
 import com.jfinal.plugin.activerecord.Db;
 import com.jfinal.plugin.activerecord.Record;
 /*****
@@ -30,6 +22,8 @@ public class DemoController extends BaseController {
 	@Inject(FileServiceImpl.class)
 	private FileService fileService;
 	 
+	@Inject(TaskServiceImpl.class)
+	private TaskService taskService;
 	
 	@Inject(NotificationServiceImpl.class)
 	private NotificationService notificationService;
@@ -109,7 +103,7 @@ public class DemoController extends BaseController {
 	  }
 	  
 	  @Clear
-	  public void sendCode(){
+	  public void sendCode(){		 
 		  String mailAdress=getPara("mailAdress");		 		
 		  int code=notificationService.sendCode(mailAdress);
 			  if(code>0){				

@@ -37,6 +37,14 @@
 #end
 
 /****
+ * projectTree
+ */
+#namespace("projectTree")
+#include("com/DS/task/dao/projectTree.sql")
+#end
+
+
+/****
  * demo
  */
 #namespace("demo")

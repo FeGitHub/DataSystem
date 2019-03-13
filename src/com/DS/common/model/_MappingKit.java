@@ -18,6 +18,8 @@ public class _MappingKit {
 	public static void mapping(ActiveRecordPlugin arp) {
 		arp.addMapping("menu", "id", Menu.class);
 		arp.addMapping("notification", "id", Notification.class);
+		arp.addMapping("project", "id", Project.class);
+		arp.addMapping("project_tree", "id", ProjectTree.class);
 		arp.addMapping("remind", "id", Remind.class);
 		arp.addMapping("user", "id", User.class);
 	}

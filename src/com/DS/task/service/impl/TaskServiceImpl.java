@@ -2,6 +2,7 @@ package com.DS.task.service.impl;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import com.DS.common.model.Project;
 import com.DS.task.service.TaskService;
 import com.DS.utils.common.DataTablesUtil;
 import com.alibaba.fastjson.JSONArray;
@@ -28,15 +29,24 @@ public class TaskServiceImpl implements TaskService {
 		  Map<String,Object> map=DataTablesUtil.getPageData(sqlShow, sqlTotal);
           return map;
 	}
+	
+	public Map<String, Object> getProjectList(Map<String,Object> cond) {
+		  SqlPara sqlShow = Db.getSqlPara("projectTree.getPTaskList",cond);
+		  SqlPara sqlTotal = Db.getSqlPara("projectTree.getPTaskListSize",cond);      
+		  Map<String,Object> map=DataTablesUtil.getPageData(sqlShow, sqlTotal);
+        return map;
+	}
+	
+	
    
 	
 	/****
 	 * 得到工程任务的甘特图展示数据
 	 */
 	@Override
-	public JSONArray getProjectGantt(String projectId) {
+	public JSONArray getProjectGantt(String userId) {
 		Map<String,Object> cond=new HashMap<String,Object>();
-		cond.put("projectId", projectId);
+		cond.put("userId", userId);
 		SqlPara getUserSql = Db.getSqlPara("task.getUserByProjectId",cond);
 		SqlPara getTaskSql = Db.getSqlPara("task.getTaskByProjectId",cond);   
 		List<Record> userList= Db.find(getUserSql);
@@ -71,5 +81,38 @@ public class TaskServiceImpl implements TaskService {
         	 r.add(obj);
         }
 		return r;
+	}
+
+
+	@Override
+	public int createProject(Project project) {
+		Record record = new Record();
+		record.set("projectName", project.getProjectName());
+		record.set("userId", project.getUserId());
+		record.set("userName", project.getUserName());
+		record.set("planStartDate", project.getPlanStartDate());
+		record.set("plantFinshDate", project.getPlantFinshDate());
+		Db.save("project",record); 
+		int id=record.getInt("id");
+		return id;
+			
+	}
+   
+	
+	/*****
+	 * 删除工程任务
+	 */
+	@Override
+	public int deleteProject(String projectId) {
+		  Map<String,Object> delMap=new HashMap<String,Object>();
+		  delMap.put("projectId", projectId);
+		 SqlPara delProjectTree=Db.getSqlPara("projectTree.deleteAll", delMap);	
+		 SqlPara delProject=Db.getSqlPara("projectTree.deleteProject", delMap);	
+		  Db.tx(() -> {
+			  Db.update(delProjectTree);
+			  Db.update(delProject);			
+			  return true;
+			}); 
+		return 1;
 	}   		
 }

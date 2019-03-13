@@ -119,6 +119,7 @@
 <script type="text/javascript">
    		 var basepath= '${BASE_PATH}';
 </script>
+  <script src="${BASE_PATH}/js/plugjs/jquery.cookie.js"></script>
   <script src="${BASE_PATH}/js/pagejs/user/register/idcode.js"></script>
   <script src="${BASE_PATH}/js/pagejs/user/register/register.js"></script>
   <script type="text/javascript"> 

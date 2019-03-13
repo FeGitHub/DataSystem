@@ -14,6 +14,8 @@ public class MyMetaBulider extends MetaBuilder{
     			"user",
     			"menu",
     			"remind",
+    			"project_tree",
+    			"project",
     			"notification"
     			};
     	for(int i=0;i<tableArray.length;i++){

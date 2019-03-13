@@ -8,19 +8,29 @@ var password;//密码
 var check = [false, false, false, false, false];
 var countdown=60; 
 
+$(function(){
+	/*if($.cookie("captcha")){
+		countdown = $.cookie("captcha");
+		settime($("#btn"));
+	}*/
+	
+});
+
 function settime(val) { 
 	if (countdown == 0) { 
 	val.removeAttribute("disabled");    
 	val.value="免费获取验证码"; 
 	countdown = 60; 
+	//$.cookie("captcha", countdown, {path: '/', expires: (1/86400)*countdown});
 	} else { 
 	val.setAttribute("disabled", true); 
 	val.value="重新发送(" + countdown + ")"; 
 	countdown--; 
-	} 
+	//$.cookie("captcha", countdown, {path: '/', expires: (1/86400)*countdown});
 	setTimeout(function() { 
-	settime(val) 
-	},1000) 
+		settime(val) 
+		},1000) 
+	} 	
 }
 
 function sendCode(val){	
