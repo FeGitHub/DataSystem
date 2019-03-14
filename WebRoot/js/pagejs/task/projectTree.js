@@ -26,7 +26,8 @@ $(document).ready(function() {
 	            },
 	            callback: {
 					beforeClick: beforeClick,//点击前最开始的事件
-					onClick: onClick//点击后的事件
+					onClick: onClick,//点击后的事件
+					onRemove: zTreeOnRemove
 				}
 	        };
 	  $.ajax({
@@ -147,7 +148,11 @@ function addNodeInfo(treeNode){
 	 }else{
 		 childrenSize=0;
 	 }
-	 var preCode=treeNode.id+"00";	 
+    if(childrenSize>=99){
+		 alert("子节点数太多");
+		 return;
+	 }
+	 var preCode=treeNode.id+"00";
 	 var nodeId=parseInt(preCode)+childrenSize+1;
 	 var zTree = $.fn.zTree.getZTreeObj(tree);
      zTree.addNodes(treeNode, {      
@@ -219,3 +224,21 @@ $("#updateBtn").click(function(){
 	});
 	});	
 
+
+function zTreeOnRemove(event, treeId, treeNode) {
+	var ztree=$.fn.zTree.getZTreeObj(treeId);
+	var id=treeNode.id.toString();	
+	var indexNode=id.substring(id.length-2,id.length);
+	var pNode = treeNode.getParentNode();
+	var pNodeLength=pNode.children.length;
+	var diff=parseInt(pNodeLength)-parseInt(indexNode)+1;
+	var pNode;
+	var updateNode;
+	var updateId;
+	for(var i=1;i<=diff;i++){
+	  updateNode=parseInt(id)+parseInt(i);
+      pNode=ztree.getNodeByParam('id',updateNode);
+      updateId=parseInt(updateNode)-1;
+      pNode.id=updateId;    
+	}
+}

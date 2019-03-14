@@ -39,7 +39,8 @@ function initSetting(){
 	            },
 	            callback: {
 					beforeClick: beforeClick,//点击前最开始的事件
-					onClick: onClick//点击后的事件
+					onClick: onClick,//点击后的事件
+					onRemove: zTreeOnRemove
 				}
 	        };
 }
@@ -160,7 +161,7 @@ function removeHoverDomBtn(treeId, treeNode) {
  *得到树形节点的信息
  */
 function getZtreeNodesInfo(zTreeObj){
-	   var nodes = zTreeObj.getNodes();//当前数的节点信息
+	   var nodes = zTreeObj.getNodes();//当前树的节点信息
 	   var act=zTreeObj.transformToArray(nodes);//转换成数组
 	   var MyNode="";//用于被遍历的节点的载体
 	   var params = [];  
@@ -208,4 +209,28 @@ function paramToZtreeBootstrap(){
 
 }
   
-       
+
+function zTreeOnRemove(event, treeId, treeNode) {
+	var ztree=$.fn.zTree.getZTreeObj(treeId);
+	var id=treeNode.id.toString();
+	console.log("indexNode===="+id);
+	var indexNode=id.substring(id.length-2,id.length);
+	console.log("indexNode===="+parseInt(indexNode));
+	var pNode = treeNode.getParentNode();
+	var pNodeLength=pNode.children.length;
+	console.log("父节点的孩子数"+pNodeLength);
+	var diff=parseInt(pNodeLength)-parseInt(indexNode)+1;
+	console.log("diff===="+diff);
+	var pNode;
+	var updateNode;
+	var updateId;
+	for(var i=1;i<=diff;i++){
+	  updateNode=parseInt(id)+parseInt(i);
+      console.log("updateNode=="+updateNode);
+      pNode=ztree.getNodeByParam('id',updateNode);
+      updateId=parseInt(updateNode)-1;
+      pNode.id=updateId;
+      console.log("pNode.id=="+pNode.id);
+      console.log("=========");
+	}
+}      
