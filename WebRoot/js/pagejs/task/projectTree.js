@@ -1,10 +1,8 @@
 /********
- * 
+ *  工程任务树
  */
-var testZNodes;//展示的节点信息
 var setting;//ztree的设置
-var newCount = 1;//新节点默认序号
-var tree="treeDemo";
+var tree="projectTree";
 $(document).ready(function() {		
 	//设置	  
 	  setting = {
@@ -72,28 +70,27 @@ function onClick(event, treeId, treeNode, clickFlag) {
 	var _html='<div>'+htm[0].outerHTML+'</div>';
 	$("#seeMethodModal .modal-body").html(_html);
 	$("#seeMethodModal").modal("show");	
+	showData(treeNode)
 	activateDatetimepicker($('.form_date'));
 	$("#nodeId").val(treeNode.id);
-	/*layer.prompt({title: '修改菜单链接',value:treeNode.projectId, formType: 3}, function(text, index){
-		  layer.close(index);	
-		  treeNode.projectId=text;
-		    layer.msg('修改链接为：'+ text);
-		});*/
-	
 }
 
+/****
+ * 节点信息的详细修改
+ */
 $("body").on("click","#submitBtn",function(){
 	var nodeId=$("#nodeId").val();
 	var ztree=$.fn.zTree.getZTreeObj(tree);
 	var node=ztree.getNodeByParam('id',nodeId);
 	node.startDate=$("#startDate").val();
 	node.endDate=$("#endDate").val();
-	console.log(node.startDate);
-	console.log(node.endDate);
+	node.name=$("#taskName").val();
+	node.depiction=$("#depiction").val();
+	ztree.updateNode(node);
 	$("#seeMethodModal").modal("hide");
 })
 
-  /****
+      /****
 	     * function 激活时间输入框
 	     */
 	    function activateDatetimepicker($object){	    	
@@ -155,11 +152,13 @@ function addNodeInfo(treeNode){
 	 var preCode=treeNode.id+"00";
 	 var nodeId=parseInt(preCode)+childrenSize+1;
 	 var zTree = $.fn.zTree.getZTreeObj(tree);
+	 var node=zTree.getNodeByParam('id',1);
      zTree.addNodes(treeNode, {      
     	 id:nodeId,
          pId: treeNode.id,
          name: "任务" + nodeId,
-         projectId:$("#projectId").val()
+         projectId:$("#projectId").val(),
+         userId:node.userId
      });
 }
 
@@ -198,7 +197,9 @@ function getZtreeNodesInfo(zTreeObj){
 	        	"projectId":MyNode[0].projectId,
 	        	"startDate":MyNode[0].startDate,
 	        	"endDate":MyNode[0].endDate,
-	        	"checked":MyNode[0].checked
+	        	"userId":MyNode[0].userId,
+	        	"depiction":MyNode[0].depiction,
+	        	"checked":MyNode[0].checked//选中的标志，表示已被处理
 	        	});
 	    }
 	    var ztreeJson = JSON.stringify(params);
@@ -206,6 +207,9 @@ function getZtreeNodesInfo(zTreeObj){
 	    return ztreeJson;
 }
 
+/****
+ * 更新工程树
+ */
 $("#updateBtn").click(function(){
 	  var zTreeObj = $.fn.zTree.getZTreeObj(tree);
 	  var pTaskJson=getZtreeNodesInfo(zTreeObj);
@@ -224,14 +228,19 @@ $("#updateBtn").click(function(){
 	});
 	});	
 
-
+/****
+ *  移除节点后对兄弟节点id的更新
+ * @param event
+ * @param treeId
+ * @param treeNode
+ */
 function zTreeOnRemove(event, treeId, treeNode) {
 	var ztree=$.fn.zTree.getZTreeObj(treeId);
 	var id=treeNode.id.toString();	
-	var indexNode=id.substring(id.length-2,id.length);
+	var indexNode=id.substring(id.length-2,id.length);//删除的节点在原兄弟节点中的序号
 	var pNode = treeNode.getParentNode();
-	var pNodeLength=pNode.children.length;
-	var diff=parseInt(pNodeLength)-parseInt(indexNode)+1;
+	var pNodeLength=pNode.children.length;//删除后剩余的兄弟节点数
+	var diff=parseInt(pNodeLength)-parseInt(indexNode)+1;//应该被更新的兄弟节点数
 	var pNode;
 	var updateNode;
 	var updateId;
@@ -242,3 +251,15 @@ function zTreeOnRemove(event, treeId, treeNode) {
       pNode.id=updateId;    
 	}
 }
+/***
+ * 编辑数据回显
+ * @param taskName
+ * @param startDate
+ * @param endDate
+ */
+function showData(treeNode){
+	   $("#taskName").val(treeNode.name);
+	   $("#startDate").val(treeNode.startDate);
+	   $("#endDate").val(treeNode.endDate);
+	   $("#depiction").val(treeNode.depiction);
+	}

@@ -1,20 +1,18 @@
 <%@ page language="java" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
-<HTML>
-
-<HEAD>
-    <TITLE>工程任务树</TITLE>
+<html>
+<head>
+    <title>工程任务树</title>
     <meta http-equiv="content-type" content="text/html; charset=UTF-8">
   <link rel="stylesheet" href="${BASE_PATH}/plug/ztree-bootstrap/css/bootstrapStyle/bootstrapStyle.css" type="text/css"> 
-</HEAD>
-
-<BODY>
+</head>
+<body>
     <div class="tile">    	    	
     	    	 <button id="testBtn" type="button" class="btn btn-primary">输出树形数据</button>&nbsp;&nbsp;
     	    	 <button id="updateBtn" type="button" class="btn btn-primary">提交工程任务</button>
     </div>
     <div class="tile">
-    	 <ul id="treeDemo" class="ztree"></ul>
+    	 <ul id="projectTree" class="ztree"></ul>
     	 <input type="text" style="display:none;" id="projectId" value="${projectId}"> 
     	 <input type="text" style="display:none;" id="nodeId">   	
     </div> 
@@ -42,8 +40,18 @@
        <div class="panel-body" >
        <form id="remindForm" style="margin-top:20px;">
 		<table class="table table-bordered table-hover">
-          <tbody>                       		   
-            <tr>
+          <tbody> 
+          <tr>
+				<td class="va-m" width="30%"><span>任务名称</span><input id="remindId" type="text" value="" style="display:none;" name="id" ></td>
+              	<td>
+	              	<div class="row">
+	                  	<div class="col-sm-12">	                                     
+                             <input name="taskName" id="taskName" class="form-control validate[required]" placeholder="" maxlength="20" type="text">      
+	                  	</div>	                  	
+	                 </div>	                
+              	</td>             
+            </tr>                                     		   
+            <tr>          
 				<td class="va-m" width="30%"><span>开始时间</span></td>
               	<td>
 	              	<div class="row">
@@ -62,21 +70,28 @@
 	                  	</div>	                  	
 	                 </div>	  
               	</td>              	
-            </tr>                            		
+            </tr>       
+            <tr>
+				<td class="va-m" width="30%"><span>任务描述</span></td>
+              	<td>
+	              	<div class="row">
+		              	<div class="col-sm-12">
+		              		  <textarea class="form-control validate[required]" rows="3" name="depiction" id="depiction"></textarea>    
+		              	</div>                    	
+	                 </div>	  
+              	</td>              	
+            </tr>                     		
           </tbody>
         </table>
         </form>
       </div>
     </div>
 </template>
-
-<%--     <script type="text/javascript" src="${BASE_PATH}/plug/ztree-bootstrap/js/jquery.min.js"></script> --%>
     <script type="text/javascript" src="${BASE_PATH}/plug/ztree-bootstrap/js/jquery.ztree.core.js"></script>
     <script type="text/javascript" src="${BASE_PATH}/plug/ztree-bootstrap/js/jquery.ztree.excheck.js"></script>
     <script type="text/javascript" src="${BASE_PATH}/plug/ztree-bootstrap/js/jquery.ztree.exedit.js"></script>
-        <script src="${BASE_PATH}/js/validation/lang/jquery.validationEngine-zh_CN.js"></script>
+    <script src="${BASE_PATH}/js/validation/lang/jquery.validationEngine-zh_CN.js"></script>
     <script src="${BASE_PATH}/js/validation/jquery.validationEngine.min.js"></script>	
-        <script type="text/javascript" src="${BASE_PATH}/js/pagejs/task/projectTree.js"></script>
-</BODY>
-
-</HTML>
+    <script type="text/javascript" src="${BASE_PATH}/js/pagejs/task/projectTree.js"></script>
+</body>
+</html>

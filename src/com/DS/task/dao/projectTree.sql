@@ -11,9 +11,9 @@
 
 
 #sql("insertDataBatch")
-	insert into project_tree (cId,pId,taskName,userId,projectId,startDate,endDate,checked) values
+	insert into project_tree (cId,pId,taskName,userId,projectId,startDate,endDate,checked,depiction) values
 	#for(x : cond)
-		(#para(x.cId),#para(x.pId),#para(x.taskName),#para(x.userId),#para(x.projectId),#para(x.startDate),#para(x.endDate),#para(x.checked)) #(for.last ? " ": ",")
+		(#para(x.cId),#para(x.pId),#para(x.taskName),#para(x.userId),#para(x.projectId),#para(x.startDate),#para(x.endDate),#para(x.checked),#para(x.depiction)) #(for.last ? " ": ",")
 	 #end
 #end
 
@@ -48,7 +48,15 @@
 
 	#end
 	
-	
+
+/****
+ * 获取用户的工程任务树信息
+ */
 #sql("getProjectById")
-	select cId as id,pId,taskName as name,projectId,open,checked,startDate,endDate from project_tree where projectId=#para(projectId)
+	select cId as id,pId,taskName as name,
+	       projectId,open,checked,startDate,
+	       endDate,userId,depiction 
+	from project_tree 
+	where projectId=#para(projectId)
+	and userId=#para(userId)
 #end

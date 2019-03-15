@@ -89,4 +89,12 @@ public abstract class BaseProjectTree<M extends BaseProjectTree<M>> extends Mode
 		return get("endDate");
 	}
 
+	public void setDepiction(java.lang.String depiction) {
+		set("depiction", depiction);
+	}
+	
+	public java.lang.String getDepiction() {
+		return getStr("depiction");
+	}
+
 }

@@ -163,10 +163,15 @@ public class TaskController extends BaseController{
 		 renderJson(taskService.getProjectList(DivPageCondition));
      }
      
+     /*****
+      * 获取用户的工程任务树的数据
+      */
      public void getProjectTree(){
+    	 Record user = (Record)getSession().getAttribute("user");
     	 String projectId=getPara("projectId");
     	 Map<String,Object> paramMap=new HashMap<String,Object>();
     	 paramMap.put("projectId", projectId);
+    	 paramMap.put("userId", user.get("id"));
     	 SqlPara sql=Db.getSqlPara("projectTree.getProjectById",paramMap);
  		 List<Record> projectTree= Db.find(sql);		
  		 renderJson(projectTree);   	 

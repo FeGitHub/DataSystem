@@ -55,3 +55,10 @@
   #sql("getTaskByProjectId")
       select projectName as name,DATE_FORMAT(planStartDate,'%Y/%m/%d') as start,DATE_FORMAT(plantFinshDate,'%Y/%m/%d') as end,userId as id  from project where userId=#para(userId)
   #end
+  
+  /***
+   * 得到用户当天需要完成的任务
+   */
+  #sql("getTodayTask")
+     select * from task where to_days(deadline) = to_days(now()) where userId=#para(userId)
+  #end

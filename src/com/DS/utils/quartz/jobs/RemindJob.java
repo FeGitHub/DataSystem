@@ -17,10 +17,7 @@ import com.jfinal.plugin.activerecord.Record;
 public class RemindJob implements Job{
 	private static Logger logger = Logger.getLogger(RemindJob.class); 
 	@Override
-	public void execute(JobExecutionContext arg0) throws JobExecutionException {	
-		/*JobDataMap map = arg0.getJobDetail().getJobDataMap();
-		String str = map.getString("Test");
-		System.out.println("测试："+str);*/		
+	public void execute(JobExecutionContext arg0) throws JobExecutionException {				
 		//以今天为标准，后三天内的数据
 		String sql="select * from ds_remind where remindTime>=DATE_SUB(NOW(),INTERVAL 3 DAY)";
 		List<Record> remindList=Db.find(sql);
