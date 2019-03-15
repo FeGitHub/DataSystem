@@ -16,7 +16,8 @@ public class MyMetaBulider extends MetaBuilder{
     			"remind",
     			"project_tree",
     			"project",
-    			"notification"
+    			"notification",
+    			"task"
     			};
     	for(int i=0;i<tableArray.length;i++){
     		if(tableName.equals(tableArray[i])){

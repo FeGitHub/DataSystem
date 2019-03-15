@@ -3,6 +3,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import com.DS.common.model.Project;
+import com.DS.common.model.Task;
 import com.DS.task.service.TaskService;
 import com.DS.utils.common.DataTablesUtil;
 import com.alibaba.fastjson.JSONArray;
@@ -83,7 +84,10 @@ public class TaskServiceImpl implements TaskService {
 		return r;
 	}
 
-
+    /****
+     * 创建新的工程任务
+     * return id 新创建的工程任务的id
+     */
 	@Override
 	public int createProject(Project project) {
 		Record record = new Record();
@@ -104,15 +108,30 @@ public class TaskServiceImpl implements TaskService {
 	 */
 	@Override
 	public int deleteProject(String projectId) {
-		  Map<String,Object> delMap=new HashMap<String,Object>();
-		  delMap.put("projectId", projectId);
+		 Map<String,Object> delMap=new HashMap<String,Object>();
+		 delMap.put("projectId", projectId);
 		 SqlPara delProjectTree=Db.getSqlPara("projectTree.deleteAll", delMap);	
 		 SqlPara delProject=Db.getSqlPara("projectTree.deleteProject", delMap);	
-		  Db.tx(() -> {
+		  if(!Db.tx(() -> {
 			  Db.update(delProjectTree);
 			  Db.update(delProject);			
 			  return true;
-			}); 
-		return 1;
+			})){
+			  return 0;
+		  }
+		   return 1;
+	}
+   
+	/****
+	 * 获取用户当日的目标任务
+	 */
+	@Override
+	public List<Task> getTodayTarget(String userId) {
+		Map<String,Object> paramMap=new HashMap<String,Object>();
+		paramMap.put("userId", userId);
+		SqlPara sql=Db.getSqlPara("task.getTodayTask", paramMap);
+		Task dao=new Task();
+		List<Task> taskList=dao.find(sql);
+		return taskList;		
 	}   		
 }

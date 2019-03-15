@@ -3,7 +3,6 @@ import javax.mail.Session;
 import javax.mail.Transport;
 import javax.mail.internet.InternetAddress;
 import javax.mail.internet.MimeMessage;
-
 import com.DS.bean.MailBean;
 import com.jfinal.kit.Prop;
 import com.jfinal.kit.PropKit;
@@ -67,11 +66,9 @@ public class MailUtil {
     }
     
     public  static void main(String[] args){
-    	MailBean mail=new MailBean();
-    	mail.setReceiveMailAccount("2498082473@qq.com");
+    	MailBean mail=new MailBean("2498082473@qq.com","系统提示");
     	mail.setReceiveName("用户");
-    	mail.setSenderName("系统");
-    	mail.setSubject("系统提示");
+    	mail.setSenderName("系统");   	
     	mail.setContent("信息内容");    
     	try {
 			sendMail(mail);

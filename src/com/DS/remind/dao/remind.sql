@@ -47,3 +47,11 @@
 		update   remind  set subject=#para(subject),content =#para(content),remindTime =#para(remindTime),mail =#para(mail)  where id=#para(id)
 	#end
 	
+	/***
+	 * 得到用户当日应被提醒的事务
+	 */
+	#sql("getTodayRemind")
+		select * from remind where to_days(remindTime)=to_days(NOW())
+		and userId=#para(userId)
+	#end()
+	

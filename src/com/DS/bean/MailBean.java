@@ -1,12 +1,16 @@
 package com.DS.bean;
 
 public class MailBean {
-	 private  String receiveMailAccount;//接收者邮箱
-	 private  String senderName;//发送者名称
-	 private  String receiveName;//接收者姓名
-	 private  String subject;//邮件主题
-	 private  String content;//邮件内容
+	 private  String receiveMailAccount="";//接收者邮箱
+	 private  String senderName="";//发送者名称
+	 private  String receiveName="";//接收者姓名
+	 private  String subject="";//邮件主题
+	 private  String content="";//邮件内容
 	 
+	public MailBean(String receiveMailAccount,String subject){
+		 this.receiveMailAccount=receiveMailAccount;
+		 this.subject=subject;
+	 }
 	public String getReceiveName() {
 		return receiveName;
 	}

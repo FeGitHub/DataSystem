@@ -21,6 +21,7 @@ public class _MappingKit {
 		arp.addMapping("project", "id", Project.class);
 		arp.addMapping("project_tree", "id", ProjectTree.class);
 		arp.addMapping("remind", "id", Remind.class);
+		arp.addMapping("task", "taskId", Task.class);
 		arp.addMapping("user", "id", User.class);
 	}
 }

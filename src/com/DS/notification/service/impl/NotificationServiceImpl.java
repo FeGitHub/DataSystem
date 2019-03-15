@@ -1,15 +1,25 @@
 package com.DS.notification.service.impl;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Random;
-
 import com.DS.bean.MailBean;
 import com.DS.common.model.Notification;
+import com.DS.common.model.ProjectTree;
+import com.DS.common.model.Remind;
+import com.DS.common.model.Task;
 import com.DS.notification.service.NotificationService;
+import com.DS.remind.service.RemindService;
+import com.DS.remind.service.impl.RemindServiceImpl;
+import com.DS.task.service.ProjectTreeService;
+import com.DS.task.service.TaskService;
+import com.DS.task.service.impl.ProjectTreeServiceImpl;
+import com.DS.task.service.impl.TaskServiceImpl;
 import com.DS.utils.common.MailUtil;
 import com.DS.utils.common.ObjectUtil;
 import com.alibaba.fastjson.JSONObject;
+import com.jfinal.aop.Inject;
 import com.jfinal.plugin.activerecord.Db;
 import com.jfinal.plugin.activerecord.Record;
 import com.jfinal.plugin.activerecord.SqlPara;
@@ -19,7 +29,15 @@ import com.jfinal.plugin.activerecord.SqlPara;
  *
  */
 public class NotificationServiceImpl implements NotificationService {
-  
+    @Inject(RemindServiceImpl.class)
+    RemindService remindService;
+    
+    @Inject(TaskServiceImpl.class)
+    TaskService taskService;
+    
+    @Inject(ProjectTreeServiceImpl.class)
+    ProjectTreeService projectTreeService;
+    
 	/****
 	 * 获取用户最新的5条通知信息
 	 */
@@ -163,16 +181,36 @@ public class NotificationServiceImpl implements NotificationService {
 		 Random random = new Random();
 		 int randomNum = random.nextInt(1000000);
          String randomCode = String.format("%06d", randomNum);
-         MailBean mail=new MailBean();
+         MailBean mail=new MailBean(mailAdress,"系统验证码");
          mail.setReceiveName("新用户");
          mail.setSenderName("系统");
-         mail.setSubject("系统验证码");
-         mail.setReceiveMailAccount(mailAdress);
          mail.setContent("系统注册验证码："+randomCode);  
          if(sendMail(mail)>0){
         	 return randomNum;
          }
          return 0;
 	}
-
+   
+	/****
+	 * 得到今天应进行的任务
+	 */
+	@Override
+	public void getAllTaskToday(String userId) {
+		List<Remind> remindList=remindService.getTodayRemind(userId);
+		List<Task> taskList=taskService.getTodayTarget(userId);
+		List<ProjectTree> projectTreeList=projectTreeService.getTodayTreeTask(userId);
+	}
+    
+	
+	public int  remindToNotify(List<Remind> remindList){
+		List<Notification> resultList=new ArrayList<Notification>();
+		for(Remind item:remindList){
+			Notification n=new Notification();
+			n.setSender("系统");
+			n.setSubject(item.getSubject());
+			n.setContent(item.getContent());
+			resultList.add(n);			
+		}		
+		return 1;	
+	}
 }

@@ -58,8 +58,21 @@ public interface NotificationService {
 	  */
 	 Map<String,Object> loadNotifyList(String userId,String pageNumber);
 	 
+	 /****
+	  * 发送邮寄
+	  * @param mail
+	  * @return
+	  */
 	 int sendMail(MailBean mail);
 	 
+	 /****
+	  * 发送验证码
+	  * @param mailAdress
+	  * @return
+	  */
 	 int sendCode(String mailAdress);
+	 
+	 void getAllTaskToday(String userId);
+	 
 	 
 }

@@ -1,3 +1,8 @@
+/***************************
+ ******工程任务树sql*********
+ ***************************/
+
+
 
 #sql("deleteAll")
 	delete  from project_tree where 1=1
@@ -9,7 +14,9 @@
    delete from project where id=#para(projectId)
 #end
 
-
+/****
+ * 插入工程任务树详细信息
+ */
 #sql("insertDataBatch")
 	insert into project_tree (cId,pId,taskName,userId,projectId,startDate,endDate,checked,depiction) values
 	#for(x : cond)
@@ -59,4 +66,18 @@
 	from project_tree 
 	where projectId=#para(projectId)
 	and userId=#para(userId)
+#end
+
+/****
+ * 获取工程任务树的实际执行任务
+ */
+#sql("getProjectTreeTask")
+	select * 
+	from project_tree 
+	where cId 
+	not in (select distinct pId from project_tree where projectId=#para(projectId)and userId=#para(userId)) 
+	and userId=#para(userId)
+	#if(dateLimit)
+	  to_days(now())>=to_days(startDate) and to_days(now())<=to_days(endDate)
+	#end
 #end
