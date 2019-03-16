@@ -17,7 +17,7 @@
     </section>
     <section class="login-content">
       <div class="logo">
-        <h1>DS</h1>
+        <h1>PAMS</h1>
       </div>
       <div class="login-box">
         <form class="login-form" id="loginForm">
