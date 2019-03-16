@@ -18,20 +18,21 @@ public class MailUtil {
     public static String myEmailAccount = "*************";//发送方邮件地址
     public static String myEmailPassword = "*************";//发送方密码
     public static String myEmailSMTPHost = "*************";
-    public static String receiveMailAccount ="*************";
+    public static String receiveMailAccount ="************";
     
     
-    public static void initConfig(MailBean mail){
+    public static void initConfig(String mailAccount){
     	Prop p =PropKit.use("config.properties");
     	myEmailAccount=p.get("myEmailAccount");
     	myEmailPassword=p.get("myEmailPassword");
+    	myEmailPassword=SecretUtil.decrypt(myEmailPassword);
     	myEmailSMTPHost=p.get("myEmailSMTPHost");
-    	receiveMailAccount=mail.getReceiveMailAccount();
+    	receiveMailAccount=mailAccount;
     }
     
     
     public static void sendMail(MailBean mail) throws Exception {   
-    	initConfig(mail);
+    	initConfig(mail.getReceiveMailAccount());
         // 1. 创建参数配置, 用于连接邮件服务器的参数配置
         Properties props = new Properties();                    // 参数配置
         props.setProperty("mail.transport.protocol", "smtp");   // 使用的协议（JavaMail规范要求）

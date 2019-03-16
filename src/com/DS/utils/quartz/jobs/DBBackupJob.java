@@ -29,7 +29,7 @@ public class DBBackupJob implements Job{
 	private static String password="root";//进入数据库所要的密码
 	private static String savePath="C:/MysqlBackup";//数据库导出文件保存路径
 	private static String fileName="";//数据库导出文件文件名
-	private static String databaseName="jfinal_demo";//要备份的数据库名称
+	private static String databaseName="pams";//要备份的数据库名称
 	public void execute(JobExecutionContext arg0) throws JobExecutionException {
 			//重新加载数据库备份文件资源
 		    Prop p =PropKit.use("config.properties");

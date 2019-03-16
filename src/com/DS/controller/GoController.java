@@ -4,9 +4,6 @@ import com.DS.task.service.impl.TaskServiceImpl;
 import com.DS.web.base.BaseController;
 import com.jfinal.aop.Clear;
 import com.jfinal.aop.Inject;
-
-
-
 /***
  * 
  * @author jeff
@@ -21,9 +18,7 @@ public class GoController extends BaseController{
 		 	 render("main.jsp");
 		 }
 		 
-		 public void goData(){
-		 	   render("data.html");
-		 }
+		
 		
 		 @Clear
 		 public void goTree(){
@@ -31,48 +26,16 @@ public class GoController extends BaseController{
 		 }
 		
 		
-		 @Clear
-		 public void goDynamicTable(){
-			   render("DynamicTable.jsp");
-		 }
-		 @Clear
-		 public void goPopup(){
-			   render("popup.jsp");
-		 }
+		 
 		 @Clear
 		 public void goValidate(){
 			   render("validationEngine.jsp");
 		 }	 
-		 /****
-		  * 测试新的主管理页面
-		  */
-		 @Clear
-		 public void goTest(){
-			   render("page-main.jsp");
-		 }
+		
 		 
-		 @Clear
-		 public void goBc(){
-			   render("bootstrap-components.jsp");
-		 }
-		 @Clear
-		 public void goHello(){
-		 	   render("hello.jsp");
-		 }
-		 /****
-		  * 测试新的登陆页面
-		  */
-		 @Clear
-		 public void goLogin(){
-			   render("page-login.jsp");
-		 }
+		
 	 
-	    /***
-	     * 测试dataTables
-	     */
-	    public void goDataTables(){
-	    	   render("dataTable.jsp");
-	    }
+	   
 	    
 	    /***
 	     * 测试弹出框
@@ -81,12 +44,7 @@ public class GoController extends BaseController{
 	    	   render("component.jsp");
 	    }
 	    
-	    /***
-	     * 测试
-	     */
-	    public void goRemindTest(){
-	    	   render("remindTest.jsp");
-	    }
+	    
 	    
 }
 
