@@ -1,5 +1,5 @@
-# DataSystem
-Jfinal+bootstrap此系统将被用来测试java的各种相关技术
+# PAMS
+个人事务管理系统（Personal Affairs Management System）
 
 # 开发环境  
 1.jfinal 3.5  
