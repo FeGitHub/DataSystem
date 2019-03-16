@@ -81,4 +81,12 @@ public abstract class BaseNotification<M extends BaseNotification<M>> extends Mo
 		return getInt("readFlag");
 	}
 
+	public void setCreateType(java.lang.Integer createType) {
+		set("createType", createType);
+	}
+	
+	public java.lang.Integer getCreateType() {
+		return getInt("createType");
+	}
+
 }

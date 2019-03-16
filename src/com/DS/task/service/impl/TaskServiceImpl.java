@@ -128,7 +128,7 @@ public class TaskServiceImpl implements TaskService {
 	@Override
 	public List<Task> getTodayTarget(String userId) {
 		Map<String,Object> paramMap=new HashMap<String,Object>();
-		paramMap.put("userId", userId);
+		paramMap.put("userId", Integer.parseInt(userId));
 		SqlPara sql=Db.getSqlPara("task.getTodayTask", paramMap);
 		Task dao=new Task();
 		List<Task> taskList=dao.find(sql);

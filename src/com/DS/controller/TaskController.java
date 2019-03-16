@@ -88,8 +88,10 @@ public class TaskController extends BaseController{
 	 */
 	 public void createTarget(){		
 		  TaskVo vo=getBean(TaskVo.class,"");
+		  Record nowUser = (Record)getSession().getAttribute("user");
 		  Map<String,Object> paramMap=ObjectUtil.convertBeanToMap(vo);		
 		  paramMap.put("addTime",new Date());
+		  paramMap.put("userId",nowUser.get("id"));
 		  SqlPara insertSql=Db.getSqlPara("task.insertData",paramMap);
 		  int result=Db.update(insertSql);
 		  if(result>0){
@@ -113,7 +115,7 @@ public class TaskController extends BaseController{
      public void goProjectList(){
     	 String projectId=getPara("projectId");
     	 setAttr("projectId",projectId);
-      	  render("projectList.jsp");
+      	 render("projectList.jsp");
         }
      
      /****

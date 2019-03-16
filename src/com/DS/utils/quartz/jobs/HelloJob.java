@@ -12,6 +12,9 @@ public class HelloJob implements Job{
 	private static Logger logger = Logger.getLogger(HelloJob.class);
 	@Override
 	public void execute(JobExecutionContext arg0) throws JobExecutionException {
-		logger.info("======HELLO========WORLD=============================");		
+		logger.info("***************HELLO***********WORLD*************************");			
+		
 	}
+	
+	
 }

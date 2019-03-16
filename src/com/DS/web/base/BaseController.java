@@ -2,10 +2,11 @@ package com.DS.web.base;
 import java.util.HashMap;
 import java.util.Map;
 import com.jfinal.core.Controller;
+import com.jfinal.plugin.activerecord.Record;
 /****
  * 
  * @author jeff
- *
+ * 基本控制器
  */
 public abstract class BaseController extends Controller{	
 	protected Map<String,Object> resultMap=new HashMap<String,Object>();//Ajax返回数据
@@ -14,6 +15,7 @@ public abstract class BaseController extends Controller{
 	
 	protected  int start;//开始展示的数据
 	protected  int length;//每页展示数据条数
+	
 	
 	protected Map<String,Object> ajaxDoneSuccess(String message){
 		resultMap.put("code", "200");
@@ -50,9 +52,12 @@ public abstract class BaseController extends Controller{
 	 * 得到dataTables基本的分页约束条件
 	 * @return
 	 */
-	 public Map<String,Object> getDivPageCondition(){					
+	 public Map<String,Object> getDivPageCondition(){
+		    Record nowUser = (Record)getSession().getAttribute("user");
+		    String userId=nowUser.get("id")+"";		 
 			start=Integer.parseInt(getPara("start"));
-			length=Integer.parseInt(getPara("length"));		
+			length=Integer.parseInt(getPara("length"));	
+			DivPageCondition.put("userId", userId);
 			DivPageCondition.put("start", start);
 			DivPageCondition.put("length", length);	
 			return DivPageCondition;

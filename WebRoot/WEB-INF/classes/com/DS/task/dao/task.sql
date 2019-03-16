@@ -3,7 +3,7 @@
  */
   #sql("getTargetList")
 	    SELECT * FROM  task where 1=1
-	    and projectId is null
+	    and userId =#para(userId)
 	    #if(startDates)
             and addTime >= #para(startDates)
         #end
@@ -23,7 +23,7 @@
  * 获取过滤的目标任务数据的总条数
  */	
 	#sql("getTargetListSize")
-	    SELECT count(1) as total FROM  task where 1=1   
+	    SELECT count(1) as total FROM  task where userId =#para(userId) 
 	     #if(startDates)
             and addTime >= #para(startDates)
         #end
@@ -36,7 +36,7 @@
 	#end
 	
     #sql("insertData")
-		insert into task (taskName,addTime,goal,deadline,description) values (#para(taskName),#para(addTime),#para(goal),#para(deadline),#para(description))
+		insert into task (taskName,addTime,goal,deadline,description,userId) values (#para(taskName),#para(addTime),#para(goal),#para(deadline),#para(description),#para(userId))
 	#end	
 	
 	#sql("delById")
@@ -60,5 +60,5 @@
    * 得到用户当天需要完成的任务
    */
   #sql("getTodayTask")
-     select * from task where to_days(deadline) = to_days(now()) where userId=#para(userId)
+     select * from task where to_days(deadline) = to_days(now()) and userId=#para(userId)
   #end

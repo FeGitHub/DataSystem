@@ -57,14 +57,6 @@ public abstract class BaseTask<M extends BaseTask<M>> extends Model<M> implement
 		return getStr("description");
 	}
 
-	public void setProjectId(java.lang.Integer projectId) {
-		set("projectId", projectId);
-	}
-	
-	public java.lang.Integer getProjectId() {
-		return getInt("projectId");
-	}
-
 	public void setUserId(java.lang.Integer userId) {
 		set("userId", userId);
 	}

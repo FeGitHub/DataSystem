@@ -75,7 +75,7 @@
 	select * 
 	from project_tree 
 	where cId 
-	not in (select distinct pId from project_tree where projectId=#para(projectId)and userId=#para(userId)) 
+	not in (select distinct pId from project_tree where  userId=#para(userId)) 
 	and userId=#para(userId)
 	#if(dateLimit)
 	  to_days(now())>=to_days(startDate) and to_days(now())<=to_days(endDate)

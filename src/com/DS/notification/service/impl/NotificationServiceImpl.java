@@ -39,13 +39,13 @@ public class NotificationServiceImpl implements NotificationService {
     ProjectTreeService projectTreeService;
     
 	/****
-	 * 获取用户最新的5条通知信息
+	 * 用户通知信息栏的信息
 	 */
 	@Override
 	public  List<Record> getNotification(String userId) {
 		 Map<String,Object> cond=new HashMap<String,Object>();
 		 cond.put("userId", userId);
-		 cond.put("limitSize", 5);
+		 //cond.put("limitSize", 5);
 		 SqlPara sql = Db.getSqlPara("notification.selectNotifications",cond);		
 		 List<Record> notifications= Db.find(sql);		
 		 return notifications;
@@ -197,20 +197,11 @@ public class NotificationServiceImpl implements NotificationService {
 	@Override
 	public void getAllTaskToday(String userId) {
 		List<Remind> remindList=remindService.getTodayRemind(userId);
-		List<Task> taskList=taskService.getTodayTarget(userId);
-		List<ProjectTree> projectTreeList=projectTreeService.getTodayTreeTask(userId);
+
+		//List<Task> taskList=taskService.getTodayTarget(userId);
+		//List<ProjectTree> projectTreeList=projectTreeService.getTodayTreeTask(userId);
 	}
     
 	
-	public int  remindToNotify(List<Remind> remindList){
-		List<Notification> resultList=new ArrayList<Notification>();
-		for(Remind item:remindList){
-			Notification n=new Notification();
-			n.setSender("系统");
-			n.setSubject(item.getSubject());
-			n.setContent(item.getContent());
-			resultList.add(n);			
-		}		
-		return 1;	
-	}
+	
 }
