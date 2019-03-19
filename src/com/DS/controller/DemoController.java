@@ -63,6 +63,10 @@ public class DemoController extends BaseController {
 	  public void goBootstrap(){
     	  render("bootstrap-components.jsp");
       }
+	  	  
+	  public void goFullCalendar(){
+    	  render("fullcalendar.jsp");
+      }
 	  
 	  public void goMailBox(){
 		  Record user=(Record)getSession().getAttribute("user");

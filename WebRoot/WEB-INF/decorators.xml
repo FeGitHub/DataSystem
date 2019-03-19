@@ -3,8 +3,8 @@
  <!-- 不需要过滤的请求 -->  
  <excludes>  
   <pattern>/static/*</pattern>  
-  <pattern>/login/*</pattern>  
-  <!-- <pattern>/demo/goGant</pattern>   -->
+  <pattern>/login/*</pattern> 
+  
  </excludes>  
  <!-- 定义装饰器要过滤的页面 -->  
  <decorator name="global" page="global.jsp">  
@@ -14,14 +14,19 @@
        <pattern>/qrtz/*</pattern> 
        <pattern>/warn/*</pattern> 
        <pattern>/order/*</pattern> 
-       <pattern>/remind/*</pattern> 
-       <pattern>/test/*</pattern>   
+       <pattern>/remind/*</pattern>      
        <pattern>/demo/*</pattern>  
        <pattern>/task/*</pattern>   
        <pattern>/menu/*</pattern>   
+        
  </decorator>     
  
  <decorator name="notitle" page="notitle.jsp">    
        <pattern>/demo/goGant</pattern>   
  </decorator>    
+ 
+  <decorator name="self" page="self.jsp">    
+        <pattern>/test/*</pattern> 
+         <pattern>/task/goFullCalendar</pattern>      
+ </decorator>   
 </decorators> 

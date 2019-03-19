@@ -1,0 +1,51 @@
+		body{
+			margin:40px 10px;
+			padding:0;
+			background:#E5E5E5;
+			font-family: "Lucida Grande",Helvetica,Arial,Verdana,sans-serif;
+			font-size: 14px;
+		}
+		#calendar{
+			width:900px;
+			margin:0 auto;
+		}
+		.taxt{
+			width:440px;
+		}
+		.time{
+			width:100px;
+		}
+		.sear{
+			width:85px;
+		}
+		.select{
+			width:150px;
+		}
+		.textarea{
+			width:300px;
+		}
+		.check{
+			padding:8px;
+		}
+		.slidertext{
+			padding-top:40px;
+		}
+		.timepicki{
+			position:relative;
+			z-index: 999;
+		}
+		#edit{
+			position:relative;
+			width:300px;
+		}
+		#edittitle{
+			padding-bottom:10px;
+			font-weight: bold;
+			font-size: 18px;
+		}
+		#edittype{
+			position:absolute;
+			top:5px;
+			right:5px;
+			width:80px;
+		}

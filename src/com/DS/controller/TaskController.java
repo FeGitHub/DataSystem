@@ -25,6 +25,11 @@ public class TaskController extends BaseController{
 	@Inject(TaskServiceImpl.class)
 	private TaskService taskService;
 	
+	  public void goFullCalendar(){
+    	  render("taskCalendar.jsp");
+      }
+	
+	
 	  /***
 	   *  跳转到任务列表
 	   */
@@ -190,4 +195,16 @@ public class TaskController extends BaseController{
     		 renderJson(ajaxDoneError("删除失败"));
     	 }
      }
+     
+     /*****
+      * 获取日历任务信息
+      */
+     public void getTaskCalendar(){
+		 Record user = (Record)getSession().getAttribute("user");
+		 Map<String,Object> paramMap=new HashMap<String,Object>();
+    	 paramMap.put("userId", user.get("id"));
+    	 SqlPara sql=Db.getSqlPara("task.getTaskCalendar",paramMap);
+ 		 List<Record> projectTree= Db.find(sql);		
+ 		 renderJson(projectTree);   	 
+	}
 }
