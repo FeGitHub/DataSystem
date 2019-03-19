@@ -7,6 +7,15 @@ public class TaskCalendarBean {
     private Date start;
     private Date end;
     private String title;
+	private String description;
+   
+
+	public String getDescription() {
+		return description;
+	}
+	public void setDescription(String description) {
+		this.description = description;
+	}
 	public int getId() {
 		return id;
 	}

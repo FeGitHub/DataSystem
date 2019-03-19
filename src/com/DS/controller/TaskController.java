@@ -60,8 +60,13 @@ public class TaskController extends BaseController{
    	 * 删除目标任务
    	 */
    	public void delTarget(){
+   		String taskId=getPara("taskId");
+   		if(taskId==null||"".equals(taskId)){
+   			renderJson(ajaxDoneError("事务主键为空"));
+   			return;
+   		}
    		Map<String,Object> paramMap=new HashMap<String,Object>();
-   		paramMap.put("taskId", getPara("taskId"));
+   		paramMap.put("taskId",taskId );
    		SqlPara delsql=Db.getSqlPara("task.delById",paramMap);
    		int result=Db.update(delsql);
    		if(result>0){

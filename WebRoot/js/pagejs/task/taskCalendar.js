@@ -1,5 +1,4 @@
-$(function(){
-	 
+$(function(){ 
 		$("#calendar").fullCalendar({
 			theme: true,
 			events: {
@@ -87,8 +86,6 @@ $(function(){
 					}
 				}
 			},
-			//1
-			
 			header: {
 				left: 'prev,next today button3',
 				center: 'title',
@@ -186,13 +183,13 @@ $(function(){
 					content:$("#edit"),
 					okValue:"编辑",
 					ok:function(){
-						initEventClick();
+						initEventClick(event);
 						dialog({
 							title:"新建日程",
 							content:$("#dialog-form"),
 							okValue:"确定",
 							ok:function(){
-						        editTask();
+						        editTask(event);
 							},
 							cancelValue:"关闭",
 							cancel:function(){
@@ -205,13 +202,7 @@ $(function(){
 					button:[{
 						value:"删除",
 						callback:function(){
-							$("#calendar").fullCalendar("removeEvents",function(event){
-									if(event.title==eventtitle){
-										return true;
-									}else{
-										return false;
-									}
-							});
+							delTask(event);
 						}
 					}],
 
@@ -235,71 +226,62 @@ function simpleCreateTask(titleall,selDate){
 		   	type:'POST',
 		   	dataType:'json',
 		  	success:function(data){
-		  console.log("======="+data);
 		  	$("#calendar").fullCalendar("renderEvent",data,true);
 		  	},
 		  	error:function(){
 		  			alert("Failed");
-		  		}
-		   						
+		  		}		   						
 			});
 }
  
 
-
+/***
+ * 创建新完整的事务
+ */
 function createTask(){
-	var title = $("#title").val();
-	var titledetail = $("#titledetail").val();//标题
-	var startdate = $("#startdate").val();
-	var starttime = $("#starttime").val().split(" ").join("");
-	var enddate = $("#stopdate").val();
-	var endtime = $("#endtime").val().split(" ").join("");
-	var start=startdate+" "+starttime;
-	var end=enddate+" "+endtime;
-
-	//var allDay = $("#isallday").val();
-	var data={taskName:title,start:start,end:end,description:titledetail};
-	if(titledetail){
+	     var data=getTaskAllData();
 			$.ajax({
-			url:basepath+"/task/addTaskCalendar",
-			data:data,
-			type:'POST',
-			dataType:'json',
-			success:function(data){
-			$("#calendar").fullCalendar("renderEvent",data,true);
-			},
-			error:function(){
-				alert("Failed");
-				}
-				   						
+				url:basepath+"/task/addTaskCalendar",
+				data:data,
+				type:'POST',
+				dataType:'json',
+				success:function(data){
+				   $("#calendar").fullCalendar("renderEvent",data,true);
+				},
+				error:function(){
+					alert("Failed");
+					}					   						
 				});
-			}
 }
 
 
-
-function editTask(){
-   		var titledetail = $("#titledetail").val();
-		var startdate = $("#startdate").val();
-		var starttime = $("#starttime").val().split(" ").join("");
-		var enddate = $("#stopdate").val();
-		var endtime = $("#endtime").val().split(" ").join("");
-		var allDay = $("#isallday").val();
-								/*if(titledetail){
-									$.ajax({
-										url:'http://localhost/fullcalendar/detail.php',
-				   						data:{title:titledetail,sdate:startdate,stime:starttime,edate:enddate,etime:endtime,allDay:allDay},
-				   						type:'POST',
-				   						dataType:'json',
-				  						success:function(data){
-				  							$("#calendar").fullCalendar("renderEvent",data,true);
-				  						},
-				  						error:function(){
-				  							alert("Failed");
-				  						}
-				   						
-									});
-								}*/
+/***
+ * 提交编辑数据
+ * @param event
+ */
+function editTask(event){
+	var data=getTaskAllData();
+	var eventtitle=event.title;
+	data.taskId=event.id;
+	$.ajax({
+		url:basepath+"/task/updateTaskCalendar",
+		data:data,
+		type:'POST',
+		dataType:'json',
+		success:function(data){
+			$("#calendar").fullCalendar("removeEvents",function(event){				
+				if(event.title==eventtitle){
+					return true;
+				}else{
+					return false;
+				}
+	       });
+		   $("#calendar").fullCalendar("renderEvent",data,true);
+		},
+		error:function(){
+			alert("Failed");
+			}					   						
+		});	
 }
 
 
@@ -453,7 +435,9 @@ function InitDayClick(){
 
 
 
-function initEventClick(){
+function initEventClick(event){
+   var time=getTaskDate(event);
+   showTaskData(event);
    $(".datepicker").datepicker({
 							language:"zh-CN",
 							format:"yyyy-mm-dd",
@@ -461,8 +445,15 @@ function initEventClick(){
 							autoclose:true,
 							weekStart:0
 						});
-						$(".timepicki").wickedpicker({
-							// now: time,
+						$("#starttime").wickedpicker({
+							now:time.starttime,
+							title:'',
+							showSeconds:true,
+							twentyFour:true
+						});
+				
+						$("#endtime").wickedpicker({
+							now:time.endtime,
 							title:'',
 							showSeconds:true,
 							twentyFour:true
@@ -514,4 +505,105 @@ function initEventClick(){
 									break;
 							}
 						});
+}
+
+
+
+function getTaskAllData(){
+	var title = $("#title").val();//标题
+	var titledetail = $("#titledetail").val();//描述
+	var startdate = $("#startdate").val();
+	var starttime = $("#starttime").val().split(" ").join("");
+	var enddate = $("#stopdate").val();
+	var endtime = $("#endtime").val().split(" ").join("");
+	var start=startdate+" "+starttime;//开始时间
+	var end;
+	if($('#end').is(':checked')) {//截止时间
+		end=enddate+" "+endtime;
+	}
+	//var allDay = $("#isallday").val();
+	var data={taskName:title,start:start,end:end,description:titledetail};
+	return data;
+}
+
+/***
+ * 展示编辑数据
+ */
+function showTaskData(event){
+	 var time=getTaskDate(event);
+	 $("#title").val(event.title);//标题
+	 $("#titledetail").val(event.description);//描述
+	 $("#startdate").val(time.startdate);
+	 if(event.end!=null&&time.stopdate!=null&&time.stopdate!=""){
+		 $("#end").prop("checked",true);
+		 $("#enddate").show();
+		 $("#stopdate").val(time.stopdate);
+	 }
+	
+}
+
+/****
+ * 分割时间段
+ * @param event
+ * return :
+ *    starttime
+ *    startdate
+ *    endtime
+ *    stopdate
+ */
+function getTaskDate(event){
+	console.log(event);
+	var data={};
+	//开始时间
+	var starttime=event.start._i;	
+	var arr = starttime.split(' ');
+	starttime = arr[arr.length - 1]; 
+	var startdate=arr[0];
+	data.starttime=starttime;
+	data.startdate=startdate;	
+	//截止时间
+	if(event.end!=null){
+		var endtime=event.end._i;
+		arr = endtime.split(' ');
+		endtime= arr[arr.length - 1]; 
+		var stopdate=arr[0];
+		data.endtime=endtime;
+		data.stopdate=stopdate;	
+	}else{
+		data.endtime="00:00:00";
+		data.stopdate="";	
+	}	
+	return data;	
+}
+
+/***
+ * 删除任务
+ * @param event
+ */
+function delTask(event){
+	var taskId=event.id;
+	var eventtitle=event.title;
+	$.ajax({
+		url:basepath+"/task/delTarget",
+		data:{taskId:taskId},
+		type:'POST',
+		dataType:'json',
+		success:function(data){
+			if(data.code==200){
+				toastrSuccess(data.msg,3000);
+				$("#calendar").fullCalendar("removeEvents",function(event){				
+					if(event.title==eventtitle){
+						return true;
+					}else{
+						return false;
+					}
+		       });
+			}else{
+				toastrError(data.msg,3000);
+			}			
+		},
+		error:function(){
+			toastrError("请求失败",3000);
+			}					   						
+		});	
 }

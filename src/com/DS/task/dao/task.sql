@@ -68,7 +68,7 @@
    * 得到日历表任务安排
    */
   #sql("getTaskCalendar")
-    select taskId as id,taskName as title,start, end from task where userId=#para(userId)
+    select taskId as id,taskName as title,start,description, end from task where userId=#para(userId)
   #end
   
   
@@ -78,10 +78,13 @@
 	     	set taskName=#para(taskName),
 	      #end         
            #if(start)
-            start=#(start) 
-           #end   
+            start=#para(start), 
+           #end           
             #if(end)
               end=#para(end),
            #end
+            #if(description)
+              description=#para(description)
+           #end 
        where taskId=#para(taskId)
   #end

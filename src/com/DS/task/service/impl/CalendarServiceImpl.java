@@ -6,12 +6,19 @@ import com.DS.task.service.CalendarService;
 
 public class CalendarServiceImpl implements CalendarService {
     public  TaskCalendarBean convert(Task task){
-    	TaskCalendarBean bean=new TaskCalendarBean();
+    	TaskCalendarBean bean=new TaskCalendarBean();   	
     	 bean.setId(task.getTaskId());
+    	 bean.setTitle(task.getTaskName());
 		 bean.setStart(task.getStart());
-		 bean.setEnd(task.getEnd());
-		 bean.setTitle(task.getTaskName());
-		 bean.setId(task.getUserId());
+		 if(task.getEnd()!=null){
+			 bean.setEnd(task.getEnd());
+		 }				
+		 if(task.getUserId()!=null){
+			 bean.setId(task.getUserId()); 
+		 }
+		 if(task.getDescription()!=null){
+			bean.setDescription(task.getDescription());
+		 }
     	 return bean;
     }
     

@@ -9,13 +9,14 @@
    <script type="text/javascript">
     var basepath= '${BASE_PATH}';
   </script> 
-    <sitemesh:head/> 
-      
+    <sitemesh:head/>   
+     <link href="${BASE_PATH}/css/toastr.min.css" type="text/css" rel="stylesheet">  
   </head>
   <body >
   <main>
     <sitemesh:body/>        
    </main>
-
+  <script src="${BASE_PATH}/js/toastr.min.js"></script><!--信息提示框-->
+  
   </body>
 </html>
