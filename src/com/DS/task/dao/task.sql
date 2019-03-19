@@ -70,3 +70,18 @@
   #sql("getTaskCalendar")
     select taskId as id,taskName as title,start, end from task where userId=#para(userId)
   #end
+  
+  
+ #sql("updateTaskCalendar")
+     update task 
+	     #if(taskName)
+	     	set taskName=#para(taskName),
+	      #end         
+           #if(start)
+            start=#(start) 
+           #end   
+            #if(end)
+              end=#para(end),
+           #end
+       where taskId=#para(taskId)
+  #end

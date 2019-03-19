@@ -49,7 +49,7 @@
 		<form class="form-inline">
 			<p>
 				<label>事务标题：</label>
-				<input type="text" class="form-control">
+				<input type="text" class="form-control" id="title">
 			</p>
 			<p>
 				<label>事务内容：</label>

@@ -3,9 +3,13 @@ import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import com.DS.bean.TaskCalendarBean;
 import com.DS.common.model.Project;
 import com.DS.common.model.ProjectTree;
+import com.DS.common.model.Task;
+import com.DS.task.service.CalendarService;
 import com.DS.task.service.TaskService;
+import com.DS.task.service.impl.CalendarServiceImpl;
 import com.DS.task.service.impl.TaskServiceImpl;
 import com.DS.task.vo.TaskVo;
 import com.DS.utils.common.ObjectUtil;
@@ -24,6 +28,9 @@ import com.jfinal.plugin.activerecord.SqlPara;
 public class TaskController extends BaseController{
 	@Inject(TaskServiceImpl.class)
 	private TaskService taskService;
+	
+	@Inject(CalendarServiceImpl.class)
+	private CalendarService calendarService;
 	
 	  public void goFullCalendar(){
     	  render("taskCalendar.jsp");
@@ -207,4 +214,33 @@ public class TaskController extends BaseController{
  		 List<Record> projectTree= Db.find(sql);		
  		 renderJson(projectTree);   	 
 	}
+     
+     
+     public void updateTaskCalendar(){
+    	 Task task=getModel(Task.class,"");	
+    	 Map<String,Object> paramMap=ObjectUtil.convertBeanToMap(task);	
+    	 SqlPara sql=Db.getSqlPara("task.updateTaskCalendar",paramMap);
+    	 int result=Db.update(sql);
+    	 if(result>0){
+    		 TaskCalendarBean bean=calendarService.convert(task); 
+    		 renderJson(bean);
+    	 }else{
+    		 renderJson(ajaxDoneError("操作失败"));
+    	 }
+
+     }
+     
+     public void addTaskCalendar(){
+    	 Record user = (Record)getSession().getAttribute("user");
+    	 Task task=getModel(Task.class,"");	
+    	 task.setUserId(user.get("id"));
+    	 task=calendarService.createTask(task);
+    	 if(task!=null){
+    		 TaskCalendarBean bean=calendarService.convert(task);    		
+    		 renderJson(bean);
+    	 }else{
+    		 renderJson(ajaxDoneError("操作失败"));
+    	 }
+     }
+     
 }

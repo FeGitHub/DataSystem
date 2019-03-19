@@ -228,51 +228,52 @@ $(function(){
 
 
 function simpleCreateTask(titleall,selDate){
-  var data={title:titleall, start:selDate,allDay:true,color:"#06c"};
-
- $("#calendar").fullCalendar("renderEvent",data,true);
-  /*$.ajax({
-			url:'http://localhost/fullcalendar/events.php',
-		   	data:{title:titleall, start:selDate},
+  var data={taskName:titleall, start:selDate};
+  $.ajax({
+			url:basepath+"/task/addTaskCalendar",
+		   	data:data,
 		   	type:'POST',
 		   	dataType:'json',
 		  	success:function(data){
+		  console.log("======="+data);
 		  	$("#calendar").fullCalendar("renderEvent",data,true);
 		  	},
 		  	error:function(){
 		  			alert("Failed");
 		  		}
 		   						
-			});*/
+			});
 }
  
 
 
 function createTask(){
-		var titledetail = $("#titledetail").val();
-		var startdate = $("#startdate").val();
-		var starttime = $("#starttime").val().split(" ").join("");
-		var enddate = $("#stopdate").val();
-		var endtime = $("#endtime").val().split(" ").join("");
-		var allDay = $("#isallday").val();
-        var data={title:"dd",start:"2019-3-12",end:"2019-3-16",allDay:true,color:"#06c"};
-        $("#calendar").fullCalendar("renderEvent",data,true);
-		//$("#calendar").fullCalendar("renderEvent",data,true);
-			/*				if(titledetail){
-										$.ajax({
-											url:'http://localhost/fullcalendar/detail.php',
-					   						data:{title:titledetail,sdate:startdate,stime:starttime,edate:enddate,etime:endtime,allDay:allDay},
-					   						type:'POST',
-					   						dataType:'json',
-					  						success:function(data){
-					  							$("#calendar").fullCalendar("renderEvent",data,true);
-					  						},
-					  						error:function(){
-					  							alert("Failed");
-					  						}
-					   						
-										});
-									}*/
+	var title = $("#title").val();
+	var titledetail = $("#titledetail").val();//标题
+	var startdate = $("#startdate").val();
+	var starttime = $("#starttime").val().split(" ").join("");
+	var enddate = $("#stopdate").val();
+	var endtime = $("#endtime").val().split(" ").join("");
+	var start=startdate+" "+starttime;
+	var end=enddate+" "+endtime;
+
+	//var allDay = $("#isallday").val();
+	var data={taskName:title,start:start,end:end,description:titledetail};
+	if(titledetail){
+			$.ajax({
+			url:basepath+"/task/addTaskCalendar",
+			data:data,
+			type:'POST',
+			dataType:'json',
+			success:function(data){
+			$("#calendar").fullCalendar("renderEvent",data,true);
+			},
+			error:function(){
+				alert("Failed");
+				}
+				   						
+				});
+			}
 }
 
 

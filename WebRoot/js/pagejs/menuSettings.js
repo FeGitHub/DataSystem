@@ -217,6 +217,9 @@ function zTreeOnRemove(event, treeId, treeNode) {
 	var indexNode=id.substring(id.length-2,id.length);
 	console.log("indexNode===="+parseInt(indexNode));
 	var pNode = treeNode.getParentNode();
+	if(pNode==null){
+		return;
+	}
 	var pNodeLength=pNode.children.length;
 	console.log("父节点的孩子数"+pNodeLength);
 	var diff=parseInt(pNodeLength)-parseInt(indexNode)+1;
