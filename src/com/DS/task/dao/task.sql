@@ -73,10 +73,8 @@
   
   
  #sql("updateTaskCalendar")
-     update task 
-	     #if(taskName)
-	     	set taskName=#para(taskName),
-	      #end         
+     update task 	    
+	       set taskName=#para(taskName),	      
            #if(start)
             start=#para(start), 
            #end           
@@ -84,7 +82,8 @@
               end=#para(end),
            #end
             #if(description)
-              description=#para(description)
+              description=#para(description),
            #end 
+              taskId=#para(taskId)
        where taskId=#para(taskId)
   #end

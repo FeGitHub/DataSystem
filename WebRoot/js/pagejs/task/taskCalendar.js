@@ -1,10 +1,19 @@
+/*****
+ * 具体配置可参考：https://blog.csdn.net/qw_xingzhe/article/details/44920943
+ */
 $(function(){ 
 		$("#calendar").fullCalendar({
-			theme: true,
+			theme: true,		
+			dragOpacity: 0.5, //Event被拖动时的不透明度
+            droppable: true,
+            editable:true,
+            eventStartEditable:true,
+            dragRevertDuration:500,          
 			events: {
 				url:basepath+"/task/getTaskCalendar",
 				error: function() {
-					$('#script-warning').show();
+					toastrError("资源请求失败",3000);
+					//$('#script-warning').show();
 				}
 			},
 			customButtons:{
@@ -127,6 +136,13 @@ $(function(){
 				}
 			},
 			
+			/****
+			 * 事件拖拽完成后
+			 */
+			eventDrop: function (event, dayDelta, revertFunc) {
+				     eventDrop(event);	
+				
+            },
 			
 			dayClick: function(date,allDay,jsEvent,view){
 				var selDate = $.fullCalendar.formatDate(date,"YYYY-MM-DD");
@@ -134,7 +150,6 @@ $(function(){
 					title:"新建事件",
 					content:"<textarea rows=5 class='taxt' placeholder='内容' id='eventall'></textarea><p>"+selDate+"</p>",
 					width:460,
-					//3
 					button:[{
 						value:"完整编辑",
 						callback:function(){
@@ -348,27 +363,7 @@ function initButton1(){
 }
 
 function button1Create(){
-   			var titledetail = $("#titledetail").val();
-								var startdate = $("#startdate").val();
-								var starttime = $("#starttime").val().split(" ").join("");
-								var enddate = $("#stopdate").val();
-								var endtime = $("#endtime").val().split(" ").join("");
-								var allDay = $("#isallday").val();
-							/*	if(titledetail){
-									$.ajax({
-										url:'http://localhost/fullcalendar/detail.php',
-				   						data:{title:titledetail,sdate:startdate,stime:starttime,edate:enddate,etime:endtime,allDay:allDay},
-				   						type:'POST',
-				   						dataType:'json',
-				  						success:function(data){
-				  							$("#calendar").fullCalendar("renderEvent",data,true);
-				  						},
-				  						error:function(){
-				  							alert("Failed");
-				  						}
-				   						
-									});
-								}*/
+	createTask();			
 }
 
 function InitDayClick(){
@@ -436,7 +431,7 @@ function InitDayClick(){
 
 
 function initEventClick(event){
-   var time=getTaskDate(event);
+   var time=getEventTime(event);
    showTaskData(event);
    $(".datepicker").datepicker({
 							language:"zh-CN",
@@ -508,7 +503,10 @@ function initEventClick(event){
 }
 
 
-
+/****
+ * 
+ * @returns 
+ */
 function getTaskAllData(){
 	var title = $("#title").val();//标题
 	var titledetail = $("#titledetail").val();//描述
@@ -517,12 +515,13 @@ function getTaskAllData(){
 	var enddate = $("#stopdate").val();
 	var endtime = $("#endtime").val().split(" ").join("");
 	var start=startdate+" "+starttime;//开始时间
+	//var allDay = $("#isallday").val();
 	var end;
+	var data={taskName:title,start:start,description:titledetail};
 	if($('#end').is(':checked')) {//截止时间
 		end=enddate+" "+endtime;
-	}
-	//var allDay = $("#isallday").val();
-	var data={taskName:title,start:start,end:end,description:titledetail};
+		data.end=end;
+	}	
 	return data;
 }
 
@@ -530,7 +529,7 @@ function getTaskAllData(){
  * 展示编辑数据
  */
 function showTaskData(event){
-	 var time=getTaskDate(event);
+	 var time=getEventTime(event);
 	 $("#title").val(event.title);//标题
 	 $("#titledetail").val(event.description);//描述
 	 $("#startdate").val(time.startdate);
@@ -543,36 +542,38 @@ function showTaskData(event){
 }
 
 /****
- * 分割时间段
+ * 分割任务中的时间段
  * @param event
  * return :
- *    starttime
- *    startdate
- *    endtime
- *    stopdate
+ *    start 详细开始时间
+ *    startdate 开始日期
+ *    starttime 开始时间点
+ *    
+ *    end  详细截止时间
+ *    stopdate  截止日期
+ *    endtime   截止时间点
  */
-function getTaskDate(event){
+function getEventTime(event){
 	console.log(event);
 	var data={};
-	//开始时间
-	var starttime=event.start._i;	
-	var arr = starttime.split(' ');
-	starttime = arr[arr.length - 1]; 
-	var startdate=arr[0];
+	var startdate = $.fullCalendar.formatDate(event.start,"YYYY-MM-DD");
+	var starttime = $.fullCalendar.formatDate(event.start,"HH:mm:ss");
+	var start = $.fullCalendar.formatDate(event.start,"YYYY-MM-DD HH:mm:ss");
+	var stopdate="";
+	var endtime ="00:00:00";
+	var end ="";
 	data.starttime=starttime;
 	data.startdate=startdate;	
-	//截止时间
+	data.start=start;
 	if(event.end!=null){
-		var endtime=event.end._i;
-		arr = endtime.split(' ');
-		endtime= arr[arr.length - 1]; 
-		var stopdate=arr[0];
-		data.endtime=endtime;
-		data.stopdate=stopdate;	
-	}else{
-		data.endtime="00:00:00";
-		data.stopdate="";	
+		 stopdate = $.fullCalendar.formatDate(event.end,"YYYY-MM-DD");
+		 endtime = $.fullCalendar.formatDate(event.end,"HH:mm:ss");
+		 end = $.fullCalendar.formatDate(event.end,"YYYY-MM-DD HH:mm:ss");			
 	}	
+	 data.stopdate=stopdate;	
+	 data.endtime=endtime;
+	 data.end=end;
+	 console.log(end);
 	return data;	
 }
 
@@ -604,6 +605,31 @@ function delTask(event){
 		},
 		error:function(){
 			toastrError("请求失败",3000);
+			}					   						
+		});	
+}
+
+/***
+ * 拖拽事件的具体实现
+ * @param event
+ */
+function eventDrop(event){
+	var time=getEventTime(event);
+	var data={taskId:event.id,start:time.start,taskName:event.title};
+	if(time.end!=""){
+		data.end=time.end;
+		console.log("test:"+time.end);
+	}
+	$.ajax({
+		url:basepath+"/task/updateTaskCalendar",
+		data:data,
+		type:'POST',
+		dataType:'json',
+		success:function(data){
+			
+		},
+		error:function(){
+		
 			}					   						
 		});	
 }
