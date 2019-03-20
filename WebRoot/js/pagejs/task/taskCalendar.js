@@ -36,7 +36,7 @@ $(function(){
 					}
 				},
 
-				button2:{
+	/*			button2:{
 					text:"查询",
 					click:function(){
 						$(".datepicker").datepicker({
@@ -63,7 +63,7 @@ $(function(){
 						}).showModal();
 
 					}
-				},
+				},*/
 				button3:{
 					text:"设置",
 					click:function(){
@@ -137,11 +137,10 @@ $(function(){
 			},
 			
 			/****
-			 * 事件拖拽完成后
+			 * 事件拖拽完成后触发
 			 */
 			eventDrop: function (event, dayDelta, revertFunc) {
-				     eventDrop(event);	
-				
+				     eventDrop(event);					
             },
 			
 			dayClick: function(date,allDay,jsEvent,view){
@@ -232,7 +231,11 @@ $(function(){
 
 
 
-
+/***
+ * 简易创建
+ * @param titleall
+ * @param selDate
+ */
 function simpleCreateTask(titleall,selDate){
   var data={taskName:titleall, start:selDate};
   $.ajax({
@@ -301,6 +304,7 @@ function editTask(event){
 
 
 function initButton1(){
+  clear();
   $(".datepicker").datepicker({
 							language:"zh-CN",
 							format:"yyyy-mm-dd",
@@ -367,6 +371,7 @@ function button1Create(){
 }
 
 function InitDayClick(){
+	            clear();
 				$(".datepicker").datepicker({
 								language:"zh-CN",
 								format:"yyyy-mm-dd",
@@ -432,6 +437,7 @@ function InitDayClick(){
 
 function initEventClick(event){
    var time=getEventTime(event);
+   clear();
    showTaskData(event);
    $(".datepicker").datepicker({
 							language:"zh-CN",
@@ -518,7 +524,7 @@ function getTaskAllData(){
 	//var allDay = $("#isallday").val();
 	var end;
 	var data={taskName:title,start:start,description:titledetail};
-	if($('#end').is(':checked')) {//截止时间
+	if($('#end').is(':checked')&&enddate!="") {//截止时间
 		end=enddate+" "+endtime;
 		data.end=end;
 	}	
@@ -554,7 +560,6 @@ function showTaskData(event){
  *    endtime   截止时间点
  */
 function getEventTime(event){
-	console.log(event);
 	var data={};
 	var startdate = $.fullCalendar.formatDate(event.start,"YYYY-MM-DD");
 	var starttime = $.fullCalendar.formatDate(event.start,"HH:mm:ss");
@@ -632,4 +637,22 @@ function eventDrop(event){
 		
 			}					   						
 		});	
+}
+
+function clear(){
+	 //去除选中
+	 $("#end").prop("checked",false);
+	 $("#isallday").prop("checked",false)
+	 $("#repeat").prop("checked",false)
+	 //隐藏相关
+	 $("#repeattype,#repeattime").hide();
+	 $("#enddate").hide();
+	 $("#starttime,#endtime").hide();
+	 //清除
+	 $("#title").val("");//标题
+	 $("#titledetail").val("");//描述
+	 $("#startdate").val("");
+	 $("#stopdate").val("");
+	 $("#participant").val("");
+	 
 }

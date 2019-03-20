@@ -13,7 +13,7 @@
 					        <input type="text" class="form-control keepPlace" name="taskName" id="taskName">
 					    </div>						    				       
 		               <div class="input-daterange input-group keepPlace">
-		               		<label>时间范围 &nbsp;&nbsp;&nbsp;</label>			                	       			                                
+		               		<label>添加时间 &nbsp;&nbsp;&nbsp;</label>			                	       			                                
 		                  	<span class="input-group-addon keepPlace"><i class="fa fa-calendar"></i></span>
 						    <input type="text" id="datetimepicker1" class="form-control quaryTime" name="startDates" style="width:180px;">
 						    <span class="input-group-addon">to</span>
@@ -30,7 +30,8 @@
         <tr>
             <th>任务名称</th>  
             <th>添加时间</th>
-            <th>完成指标</th>  
+            <th>完成指标</th>
+            <th>开始时间</th>     
             <th>截至时间</th>           
             <th>操作</th>            
         </tr>

@@ -22,9 +22,7 @@
                 </div>     
                 
                   <div class="form-group row">
-                  <label class="control-label col-md-3">完成指标</label>
-               
-                 
+                  <label class="control-label col-md-3">完成指标</label>                          
                   <div class="col-md-3">
                     <input class="form-control validate[required]" type="text" placeholder="填数值" name="goal">
                   </div>
@@ -39,24 +37,26 @@
                   </label>
                 </div>
                   </div>
-                </div>      
-                     
-                      <div class="form-group row">
-                         <label class="control-label col-md-3">最迟完成时间</label>
-                       <div class="col-md-3">
-                    <input  name="deadline" id="dateStr" class="form-control  form_date" placeholder="选择日期值" maxlength="20" type="text" readonly>                                                  
-                  </div> 
+                </div>  
+                     <div class="form-group row">
+                         <label class="control-label col-md-3">开始时间</label>
+                         <div class="col-md-3">
+                           <input  name="start"  class="form-control  form_date validate[required]" placeholder="选择日期值" maxlength="20" type="text" readonly>                                                  
+                         </div> 
+                      </div>                       
+                     <div class="form-group row">
+                         <label class="control-label col-md-3">完成时间</label>
+                         <div class="col-md-3">
+                           <input  name="end"  class="form-control  form_date" placeholder="选择日期值" maxlength="20" type="text" readonly>                                                  
+                         </div> 
                       </div>
-                      
-                     
+                                      
                       <div class="form-group row">
                  	 <label class="control-label col-md-3">任务描述</label>
                   		<div class="col-md-8">
                     		<textarea class="form-control" rows="4" placeholder="" name="description" id="description"></textarea>
                   		</div>
-                </div>       
-                     
-                     
+                </div>                                            
               </form>                  
             </div>
             <div class="tile-footer">
@@ -70,7 +70,6 @@
           </div>      
         </div>     
       </div>
-
     <script src="${BASE_PATH}/js/pagejs/task/createTarget.js"></script>
   </body>
 </html>

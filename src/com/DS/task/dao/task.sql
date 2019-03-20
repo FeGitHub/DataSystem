@@ -60,7 +60,10 @@
    * 得到用户当天需要完成的任务
    */
   #sql("getTodayTask")
-     select * from task where to_days(deadline) = to_days(now()) and userId=#para(userId)
+     select * from task where 1=1
+      and to_days(now())>=to_days(start) 
+      and to_days(now())<=to_days(end)       
+      and userId=#para(userId)
   #end
   
   
@@ -68,7 +71,7 @@
    * 得到日历表任务安排
    */
   #sql("getTaskCalendar")
-    select taskId as id,taskName as title,start,description, end from task where userId=#para(userId)
+    select taskId as id,taskName as title,start,description, end from task where userId=#para(userId) and start is not null
   #end
   
   

@@ -29,7 +29,8 @@ $(function(){
 		           { data: 'taskName' },	     		         
 		           { data: 'addTime'},
 		           { data: 'goal'},
-		           { data: 'deadline'},
+		           { data: 'start'},
+		           { data: 'end'},
 		           { data: null,//操作部分
 		         	  "render": function ( data, type, full, meta ) {            
 		           		 var str = "<span id="+full.taskId+">";  

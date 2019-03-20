@@ -41,14 +41,6 @@ public abstract class BaseTask<M extends BaseTask<M>> extends Model<M> implement
 		return getInt("goal");
 	}
 
-	public void setDeadline(java.util.Date deadline) {
-		set("deadline", deadline);
-	}
-	
-	public java.util.Date getDeadline() {
-		return get("deadline");
-	}
-
 	public void setDescription(java.lang.String description) {
 		set("description", description);
 	}

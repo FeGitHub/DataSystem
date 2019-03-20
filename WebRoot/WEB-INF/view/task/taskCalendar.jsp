@@ -150,7 +150,7 @@
 			</p>
 			<p>
 				<label>&nbsp;&nbsp;&nbsp;参与者：</label>
-				<textarea rows="3"></textarea>
+				<textarea rows="3" id="participant"></textarea>
 			</p>
 			<p></p>
 		</form>

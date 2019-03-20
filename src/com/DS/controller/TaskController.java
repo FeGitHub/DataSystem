@@ -94,8 +94,12 @@ public class TaskController extends BaseController{
 	 *  跳转到目标任务详情页面
 	 */
 	public void goTargetDetail(String taskId){
-		 Record record=Db.findFirst("select * from task where taskId="+getPara("taskId"));
-		 setAttr("vo",record);
+		 Task task=new Task();
+		 if(getPara("taskId")==null||"".equals(getPara("taskId"))){
+			 return;
+		 }
+		 task.findById(getPara("taskId"));		
+		 setAttr("vo",task);
 		 render("targetDetail.jsp");
 	}	
 	
@@ -105,6 +109,7 @@ public class TaskController extends BaseController{
 	 */
 	 public void createTarget(){		
 		  TaskVo vo=getBean(TaskVo.class,"");
+
 		  Record nowUser = (Record)getSession().getAttribute("user");
 		  Map<String,Object> paramMap=ObjectUtil.convertBeanToMap(vo);		
 		  paramMap.put("addTime",new Date());

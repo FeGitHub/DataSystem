@@ -28,12 +28,19 @@
                     <input class="form-control validate[required]" type="text" placeholder="${vo.goal}"  readonly>
                   </div>
                 </div>                                            
-                     
+                       
+                        <div class="form-group row">
+	                         <label class="control-label col-md-3">开始时间</label>
+	                       <div class="col-md-3">
+	                             <input class="form-control  form_date" placeholder="${vo.start}" maxlength="20" type="text" readonly>                                                  
+	                        </div> 
+                       </div> 
+                                            
                       <div class="form-group row">
-                         <label class="control-label col-md-3">最迟完成时间</label>
+                         <label class="control-label col-md-3">完成时间</label>
                        <div class="col-md-3">
-                    <input   id="dateStr" class="form-control  form_date" placeholder="${vo.deadline}" maxlength="20" type="text" readonly>                                                  
-                  </div> 
+                             <input   class="form-control  form_date" placeholder="${vo.end}" maxlength="20" type="text" readonly>                                                  
+                        </div> 
                       </div>                     
                      
                       <div class="form-group row">
