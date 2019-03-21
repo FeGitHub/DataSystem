@@ -9,6 +9,14 @@ import com.jfinal.kit.PathKit;
  * 
  *  @author jeff
  *  调用python的工具
+ *  ps:运行相关python文件失败的可能原因
+ *  1.没有配置相关的python开发环境或环境变量
+ *  2.没有导入相关python相关包
+ *  3.python文件是否混进tab制表符(https://www.cnblogs.com/heimanba/p/3783022.html)
+ *  
+ *  解决方案：单独在cmd下运行python文件
+ *  
+ *  https://jingyan.baidu.com/album/3f16e0031e87522591c10320.html?picindex=1
  */
 public class PythonByRuntime {
 	//private static String exe = "python";
@@ -16,7 +24,8 @@ public class PythonByRuntime {
 	private static String PY_RES_PATH=PathKit.getRootClassPath()+"\\py\\resources";//默认的python资源文件路径
 	public static void main(String[] args) throws IOException,InterruptedException {				
 		//runPython3(PY_ROOT_PATH,PY_RES_PATH,"house_data5.py");
-		runPython3("grade.py");
+		runPython3("house_data5.py");
+		//runPython3("hello.py");
     }
 	
 	/* 可使用，暂时弃用
@@ -54,7 +63,8 @@ public class PythonByRuntime {
         Process proc;
         try {
         	String exec="python "+PY_Path+PY_FileName+" "+PY_ResPath;
-        	System.out.println("执行语句："+exec);
+        	System.out.println("---------python执行语句-----------");
+        	System.out.println(exec);
             proc = Runtime.getRuntime().exec(exec);// 执行py文件
             //用输入输出流来截取结果
             BufferedReader in = new BufferedReader(new InputStreamReader(proc.getInputStream(),"GBK"));                  
@@ -63,9 +73,13 @@ public class PythonByRuntime {
                 System.out.println(line);
                 result.add(line);
             }
+            if(result.size()==0){         	     	
+                	 System.out.println("请检查python的环境是否配置，请用cmd单独运行下面文件");
+                	 System.out.println(PY_ROOT_PATH+PY_FileName);            	         
+           }
             in.close();
             proc.waitFor();
-            System.out.println("结束");
+            System.out.println("---------python执行结束----------");
         } catch (IOException e) {
             e.printStackTrace();
         } catch (InterruptedException e) {
@@ -86,7 +100,8 @@ public class PythonByRuntime {
         Process proc;
         try {
         	String exec="python "+PY_ROOT_PATH+PY_FileName+" "+PY_RES_PATH;
-        	System.out.println("执行语句："+exec);
+        	System.out.println("---------python执行语句-----------");
+        	System.out.println(exec);
             proc = Runtime.getRuntime().exec(exec);// 执行py文件
             //用输入输出流来截取结果
             BufferedReader in = new BufferedReader(new InputStreamReader(proc.getInputStream(),"GBK"));                  
@@ -95,9 +110,13 @@ public class PythonByRuntime {
                 System.out.println(line);
                 result.add(line);
             }
+            if(result.size()==0){           	
+            	 System.out.println("请检查python的环境是否配置，请用cmd单独运行下面文件");
+            	 System.out.println(PY_ROOT_PATH+PY_FileName);            	 
+            }
             in.close();
             proc.waitFor();
-            System.out.println("结束");
+            System.out.println("---------python执行结束----------");
         } catch (IOException e) {
             e.printStackTrace();
         } catch (InterruptedException e) {

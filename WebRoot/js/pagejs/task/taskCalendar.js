@@ -247,7 +247,7 @@ function simpleCreateTask(titleall,selDate){
 		  	$("#calendar").fullCalendar("renderEvent",data,true);
 		  	},
 		  	error:function(){
-		  			alert("Failed");
+		  		toastrError("资源请求失败",3000);
 		  		}		   						
 			});
 }
@@ -267,7 +267,7 @@ function createTask(){
 				   $("#calendar").fullCalendar("renderEvent",data,true);
 				},
 				error:function(){
-					alert("Failed");
+					toastrError("资源请求失败",3000);
 					}					   						
 				});
 }
@@ -297,7 +297,7 @@ function editTask(event){
 		   $("#calendar").fullCalendar("renderEvent",data,true);
 		},
 		error:function(){
-			alert("Failed");
+			toastrError("资源请求失败",3000);
 			}					   						
 		});	
 }
@@ -647,7 +647,6 @@ function clear(){
 	 //隐藏相关
 	 $("#repeattype,#repeattime").hide();
 	 $("#enddate").hide();
-	 $("#starttime,#endtime").hide();
 	 //清除
 	 $("#title").val("");//标题
 	 $("#titledetail").val("");//描述

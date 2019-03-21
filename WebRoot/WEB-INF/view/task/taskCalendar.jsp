@@ -28,7 +28,8 @@
 	<script src="${BASE_PATH}/js/pagejs/task/taskCalendar.js"></script>
 </head>
 <body>
-	<div id="calendar"></div>
+   <div class="title" style="background:white;">
+      <div id="calendar" style="padding-top:20px;"></div>
 	<div id="set" style="display:none" class="taxt">
 		<div id="slider"></div>
 		<div style="text-align: center" class="slidertext">
@@ -45,7 +46,7 @@
 		</select>
 		<p id="edittime"></p>
 	</div>
-	<div id="dialog-form" style="display:none">
+	<div id="dialog-form" style="display:none;">
 		<form class="form-inline">
 			<p>
 				<label>事务标题：</label>
@@ -186,5 +187,7 @@
 			</p>
 		</form>
 	</div>
+   </div>
+
 </body>
 </html>
