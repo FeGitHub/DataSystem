@@ -1,3 +1,62 @@
+	
+         /***下面是外部拖拽元素**/
+         
+         
+         body {
+		margin-top: 40px;
+		text-align: center;
+		font-size: 14px;
+		font-family: "Lucida Grande",Helvetica,Arial,Verdana,sans-serif;
+	}
+		
+	
+	/***拖拽框***/
+	#external-events {
+		float: left;
+		width: 150px;
+		height:746px;
+		padding: 0 20px;
+		border: 1px solid #ccc;
+		background: #eee;
+		text-align: left;
+		position: absolute;
+	} 
+		
+	#external-events h4 {
+		font-size: 16px;
+		margin-top: 0;
+		padding-top: 1em;
+	} 
+		
+	 #external-events .fc-event {
+		margin: 10px 0;
+		cursor: pointer;
+	} 
+		
+	 #external-events p {
+		margin: 1.5em 0;
+		font-size: 11px;
+		color: #666;
+		
+	} 
+		
+	/* #external-events p input {
+		margin: 0;
+		vertical-align: middle;
+	} */
+
+	/* #calendar {
+		float: right;
+		width: 900px;
+	} */
+	
+	
+	
+	/*下面是主修饰  */
+	
+
+	
+	
 		body{
 			margin:40px 10px;
 			padding:0;
@@ -49,3 +108,5 @@
 			right:5px;
 			width:80px;
 		}
+
+         

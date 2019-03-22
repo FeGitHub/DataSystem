@@ -2,18 +2,40 @@
  * 具体配置可参考：https://blog.csdn.net/qw_xingzhe/article/details/44920943
  */
 $(function(){ 
+	
+	$('#external-events .fc-event').each(function() {	
+		//添加数据
+		$(this).data('event', {
+			title: $.trim($(this).text()), 
+			stick: true 
+		});
+
+		// 使用 jQuery UI
+		$(this).draggable({
+			zIndex: 999,
+			revert: true,      // will cause the event to go back to its
+			revertDuration: 0  //  original position after the drag
+		});
+
+	});
+	
+	
 		$("#calendar").fullCalendar({
 			theme: true,		
 			dragOpacity: 0.5, //Event被拖动时的不透明度
             droppable: true,
             editable:true,
+            drop: function() {		
+				if ($('#drop-remove').is(':checked')) {
+					$(this).remove();
+				}
+			},
             eventStartEditable:true,
             dragRevertDuration:500,          
 			events: {
 				url:basepath+"/task/getTaskCalendar",
 				error: function() {
 					toastrError("资源请求失败",3000);
-					//$('#script-warning').show();
 				}
 			},
 			customButtons:{
@@ -30,7 +52,6 @@ $(function(){
 							},
 							cancelValue:"关闭",
 							cancel:function(){
-								//$("#ui-datepicker-div").remove();
 							}
 						}).showModal();
 					}
@@ -652,6 +673,6 @@ function clear(){
 	 $("#titledetail").val("");//描述
 	 $("#startdate").val("");
 	 $("#stopdate").val("");
-	 $("#participant").val("");
-	 
+	 $("#participant").val("");	 
 }
+

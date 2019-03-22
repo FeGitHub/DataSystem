@@ -19,7 +19,7 @@
 	<script src="${BASE_PATH}/plug/fullCalendar/fullcalendar/lib/jquery-ui.min.js"></script>
 	<script src="${BASE_PATH}/plug/fullCalendar/fullcalendar/lib/moment.min.js"></script>
 	<script src="${BASE_PATH}/plug/fullCalendar/fullcalendar/fullcalendar.js"></script>
-	<script src="${BASE_PATH}/plug/fullCalendar/jquery-ui-1.10.4.custom/js/jquery-ui-1.10.4.custom.min.js"></script>
+<%-- 	<script src="${BASE_PATH}/plug/fullCalendar/jquery-ui-1.10.4.custom/js/jquery-ui-1.10.4.custom.min.js"></script> --%>
 	<script src="${BASE_PATH}/plug/fullCalendar/artDialog/dist/dialog-min.js"></script>
 	<script src="${BASE_PATH}/plug/fullCalendar/bootstrap/js/bootstrap.min.js"></script>
 	<script src="${BASE_PATH}/plug/fullCalendar/wickedpicker/dist/wickedpicker.min.js"></script>
@@ -29,7 +29,25 @@
 </head>
 <body>
    <div class="title" style="background:white;">
-      <div id="calendar" style="padding-top:20px;"></div>
+   <!-- 拖拽框 -->
+   <div id='external-events'>
+			<h4>待分配任务</h4>
+			<div class='fc-event'>任务 1</div>
+			<div class='fc-event'>任务 2</div>
+			<div class='fc-event'>任务 3</div>
+			<div class='fc-event'>任务 4</div>
+			<div class='fc-event'>任务 5</div>
+			<p>
+				<input type='checkbox' id='drop-remove'  checked style="display:none;">
+				<!-- <label for='drop-remove'>分配后不再显示</label> -->
+			</p>
+		</div>   
+     
+     <!--日历--> 
+    <div id="calendar" style="padding-top:20px;"></div>
+
+    
+    <!--弹出框-->
 	<div id="set" style="display:none" class="taxt">
 		<div id="slider"></div>
 		<div style="text-align: center" class="slidertext">
@@ -188,6 +206,5 @@
 		</form>
 	</div>
    </div>
-
 </body>
 </html>

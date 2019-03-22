@@ -130,6 +130,6 @@
       </div>
     </div>
 </template>
-<script src="${BASE_PATH}/js/pagejs/qrtzTaskList.js"></script>
+<script src="${BASE_PATH}/js/pagejs/qrtz/qrtzTaskList.js"></script>
 </body>
 </html>

@@ -52,21 +52,21 @@
                   <div class="col-md-9">
                     <div class="form-check">
                       <label class="form-check-label">
-                        <input class="form-check-input" type="radio" name="period" value="once" checked>一次                                                    
+                        <input class="form-check-input" type="radio" name="period" value="once" checked onclick="showOrHide(this);">一次                                                    
                       </label>
                         <label class="form-check-label">
-                        	<input class="form-check-input" type="radio" name="period" value="day">每天
+                        	<input class="form-check-input" type="radio" name="period" value="day" onclick="showOrHide(this);">每天
                       </label>
                        <label class="form-check-label">
-                        <input class="form-check-input" type="radio" name="period" value="month">每月
+                        <input class="form-check-input" type="radio" name="period" value="month" onclick="showOrHide(this);">每月
                       </label>
                        <label class="form-check-label">
-                        <input class="form-check-input" type="radio" name="period" value="week" id="weekId">每星期
+                        <input class="form-check-input" type="radio" name="period" value="week" id="weekId" onclick="showOrHide(this);">每星期
                       </label>
                     </div>                 
                   </div>
                 </div>
-                 <div class="form-group row">
+                 <div class="form-group row" style="display:none" id="weekGroup">
                     <label for="exampleSelect1" class="col-md-3">指定星期</label>
                      <div class="col-md-8">
                      	<select name="weekType" class="form-control" id="weekType">                     
@@ -100,6 +100,6 @@
         </div>     
       </div>
     </main>
-    <script src="${BASE_PATH}/js/pagejs/createQuartz.js"></script>
+    <script src="${BASE_PATH}/js/pagejs/qrtz/createQuartz.js"></script>
   </body>
 </html>

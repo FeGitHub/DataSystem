@@ -60,7 +60,7 @@ function getAllJobList(){
 			var _html="";
 			if(data.code==200){
 				$.each(data.allJobList,function(i,item){
-					_html+= '<option value="'+item+'">'+item+'</option>';
+					_html+= '<option value="'+item+'">'+showText(item)+'</option>';
 				});
 				$("#jobClass").html(_html);								
 			}			
@@ -92,3 +92,45 @@ $("#submitBtn").click(function(){
 			});
 	 }
 });
+
+
+function  showText(classInfo){
+	var text="";
+	var pageName="com.DS.utils.quartz.jobs.";
+	switch(classInfo)
+	{
+	case pageName+"DBBackupJob":
+		text="备份数据库";
+	  break;
+	case pageName+"DeleteSqlFileJob":
+		text="删除冗余数据备份";
+	  break;
+	case pageName+"GetTodayNotify":
+		text="统计今日任务";
+	  break;
+	case pageName+"HelloJob":
+		text="测试hello";
+	  break;
+	case pageName+"RemindJob":
+		text="今日任务提醒";
+	  break;
+	case pageName+"SayHelloToEveryone":
+		text="测试群发用户信息";
+	  break;
+	case pageName+"TestPython":
+		text="测试python";
+	  break;
+	default:
+		text=classInfo;
+	}
+	return text;	
+}
+
+
+function showOrHide(obj){	
+	if($(obj).val()=="week"){
+		$("#weekGroup").show();
+	}else{
+		$("#weekGroup").hide();
+	}
+}
