@@ -90,20 +90,20 @@
         		<c:choose>
 					<c:when test="${not empty item.subMenuList}">
 						 <li class="treeview">
-						 	  <a class="app-menu__item" href="${item.url}" data-toggle="treeview">
+						 	  <a class="app-menu__item" href="${BASE_PATH}${item.url}" data-toggle="treeview">
 						 	  	<i class="${item.icon}"></i><span class="app-menu__label">${item.name}</span>
 	        		            <i class="treeview-indicator fa fa-angle-right"></i>
 						 	  </a>
 						 	   <ul class="treeview-menu">	
 							       <c:forEach items="${item.subMenuList}" var="subMenu"> 	       
-			            		       <li><a class="treeview-item" href="${subMenu.url}"><i class="icon fa fa-circle-o"></i>${subMenu.name}</a></li>
+			            		       <li><a class="treeview-item" href="${BASE_PATH}${subMenu.url}"><i class="icon fa fa-circle-o"></i>${subMenu.name}</a></li>
 							        </c:forEach> 
 		                       </ul>
 						 </li>
 					</c:when>
                     <c:otherwise>
 						<li>
-	        			<a class="app-menu__item menuUrl" href="${item.url}">
+	        			<a class="app-menu__item menuUrl" href="${BASE_PATH}${item.url}">
 	        		   <i class="${item.icon}"></i><span class="app-menu__label">${item.name}</span>
 	        	      </a>
 	                 </li>

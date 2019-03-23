@@ -6,18 +6,18 @@
 </head>
 <body>
 
-     <div class="tile">
+   <div class="tile">
     	 <div id="barnNegative" style="height:400px;"></div>
-    </div>  
-	  <div class="tile">
+    </div>   
+	 <div class="tile">
 	    	 <div id="main" style="height:400px;"></div>
-	    </div>      
+	    </div>    
  	<div class="tile">
     	  <div id="container" style="height:400px;"></div>
     </div> 
     <div class="tile">
     	 <div id="pieChart" style="height:400px;"></div>
-    </div>  
+    </div> 
     
     <!--http://echarts.baidu.com/-->
     <script src="${BASE_PATH}/js/plugjs/echarts.js"></script>

@@ -8,8 +8,10 @@ import com.DS.common.model.Project;
 import com.DS.common.model.ProjectTree;
 import com.DS.common.model.Task;
 import com.DS.task.service.CalendarService;
+import com.DS.task.service.ProjectTreeService;
 import com.DS.task.service.TaskService;
 import com.DS.task.service.impl.CalendarServiceImpl;
+import com.DS.task.service.impl.ProjectTreeServiceImpl;
 import com.DS.task.service.impl.TaskServiceImpl;
 import com.DS.task.vo.TaskVo;
 import com.DS.utils.common.ObjectUtil;
@@ -28,6 +30,10 @@ import com.jfinal.plugin.activerecord.SqlPara;
 public class TaskController extends BaseController{
 	@Inject(TaskServiceImpl.class)
 	private TaskService taskService;
+	
+	@Inject(ProjectTreeServiceImpl.class)
+	private ProjectTreeService projectTreeService;
+	
 	
 	@Inject(CalendarServiceImpl.class)
 	private CalendarService calendarService;
@@ -109,7 +115,6 @@ public class TaskController extends BaseController{
 	 */
 	 public void createTarget(){		
 		  TaskVo vo=getBean(TaskVo.class,"");
-
 		  Record nowUser = (Record)getSession().getAttribute("user");
 		  Map<String,Object> paramMap=ObjectUtil.convertBeanToMap(vo);		
 		  paramMap.put("addTime",new Date());
@@ -193,12 +198,9 @@ public class TaskController extends BaseController{
      public void getProjectTree(){
     	 Record user = (Record)getSession().getAttribute("user");
     	 String projectId=getPara("projectId");
-    	 Map<String,Object> paramMap=new HashMap<String,Object>();
-    	 paramMap.put("projectId", projectId);
-    	 paramMap.put("userId", user.get("id"));
-    	 SqlPara sql=Db.getSqlPara("projectTree.getProjectById",paramMap);
- 		 List<Record> projectTree= Db.find(sql);		
- 		 renderJson(projectTree);   	 
+    	 String userId=user.get("id")+"";
+    	 Map<String,Object> json=projectTreeService.getProjectTree(projectId, userId);
+ 		 renderJson(json);   	 
      }
      
      /****
@@ -240,6 +242,9 @@ public class TaskController extends BaseController{
 
      }
      
+     /****
+      * 添加日历任务
+      */
      public void addTaskCalendar(){
     	 Record user = (Record)getSession().getAttribute("user");
     	 Task task=getModel(Task.class,"");	
@@ -253,4 +258,16 @@ public class TaskController extends BaseController{
     	 }
      }
      
+     
+     /****
+      * 修改工程任务
+      */
+     public void updateProjectTask(){
+    	 ProjectTree projectTree=getModel(ProjectTree.class,"");
+    	 if(projectTree.update()){
+    		 renderJson(ajaxDoneSuccess("修改成功"));
+    	 }else{
+    		 renderJson(ajaxDoneError("修改失败"));
+    	 }
+     }
 }

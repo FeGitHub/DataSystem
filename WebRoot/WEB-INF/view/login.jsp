@@ -3,11 +3,9 @@
 <html>
   <head>
     <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
     <script src="${BASE_PATH}/js/jquery-3.3.1.min.js"></script> 
     	<script type="text/javascript" src="${BASE_PATH}/plug/layer/layer.js"></script><!--弹出框-->
-<link rel="stylesheet" type="text/css" href="${BASE_PATH}/plug/vali/css/main.css"><!--页面主体样式-->
+     <link rel="stylesheet" type="text/css" href="${BASE_PATH}/plug/vali/css/main.css"><!--页面主体样式-->
     <link rel="stylesheet" type="text/css" href="${BASE_PATH}/css/font-awesome.min.css">
     <title>登陆界面</title>
   </head>

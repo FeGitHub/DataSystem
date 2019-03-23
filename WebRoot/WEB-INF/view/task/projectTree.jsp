@@ -10,12 +10,38 @@
     <div class="tile">    	    	
     	    	 <button id="testBtn" type="button" class="btn btn-primary">输出树形数据</button>&nbsp;&nbsp;
     	    	 <button id="updateBtn" type="button" class="btn btn-primary">提交工程任务</button>
+    	    
+    	    	 
     </div>
-    <div class="tile">
-    	 <ul id="projectTree" class="ztree"></ul>
-    	 <input type="text" style="display:none;" id="projectId" value="${projectId}"> 
-    	 <input type="text" style="display:none;" id="nodeId">   	
-    </div> 
+     <div class="tile">   
+         	   <div class="bs-component">
+              <div class="progress mb-2">
+                <div class="progress-bar progress-bar-striped progress-bar-animated" role="progressbar" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100" style="width: 75%">剩余10天</div>
+              </div>
+            </div> 
+     </div>
+       <div class="tile">
+          <div class="overlay">
+              <div class="m-loader mr-4">
+                <svg class="m-circular" viewBox="25 25 50 50">
+                	<circle class="path" cx="50" cy="50" r="20" fill="none" stroke-width="4" stroke-miterlimit="10"/>
+                </svg>
+              </div>
+              <h3 class="l-text">Loading</h3>
+            </div>
+		    <div class="row">
+		    	<div class="col-md-6">	     
+		    	 <div id="pieChart" style="height:400px;"></div>
+		    	</div>	
+		    	<div class="col-md-6">  	  
+				    	 <ul id="projectTree" class="ztree"></ul>
+				    	 <input type="text" style="display:none;" id="projectId" value="${projectId}"> 
+				    	 <input type="text" style="display:none;" id="nodeId">   	          
+		    	</div>
+		    </div>
+    </div>
+    
+    
     <!--弹出框基本框架开始-->
 				<div class="modal" id="seeMethodModal">
 						<div class="modal-dialog modal-lg ptn" style="width:600px;"><!--修改这个width可以改变整个模态框的宽度-->
@@ -87,6 +113,8 @@
       </div>
     </div>
 </template>
+ <script src="${BASE_PATH}/js/plugjs/echarts.js"></script>
+    <script src="${BASE_PATH}/js/pagejs/demojs/eChartsDemo/walden.js"></script> <!--图标样式-->
     <script type="text/javascript" src="${BASE_PATH}/plug/ztree-bootstrap/js/jquery.ztree.core.js"></script>
     <script type="text/javascript" src="${BASE_PATH}/plug/ztree-bootstrap/js/jquery.ztree.excheck.js"></script>
     <script type="text/javascript" src="${BASE_PATH}/plug/ztree-bootstrap/js/jquery.ztree.exedit.js"></script>

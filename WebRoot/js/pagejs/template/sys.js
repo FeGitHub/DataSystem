@@ -2,6 +2,7 @@
  *  模板页面的js编写
  */
 
+
 //登出
 $("#loginOut").click(function(){
 		layer.confirm('您确定要退出吗？', {			

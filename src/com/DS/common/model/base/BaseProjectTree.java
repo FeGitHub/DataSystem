@@ -57,12 +57,12 @@ public abstract class BaseProjectTree<M extends BaseProjectTree<M>> extends Mode
 		return getStr("taskName");
 	}
 
-	public void setChecked(java.lang.String checked) {
-		set("checked", checked);
+	public void setSchedule(java.lang.String schedule) {
+		set("schedule", schedule);
 	}
 	
-	public java.lang.String getChecked() {
-		return getStr("checked");
+	public java.lang.String getSchedule() {
+		return getStr("schedule");
 	}
 
 	public void setOpen(java.lang.String open) {
@@ -95,6 +95,14 @@ public abstract class BaseProjectTree<M extends BaseProjectTree<M>> extends Mode
 	
 	public java.lang.String getDepiction() {
 		return getStr("depiction");
+	}
+
+	public void setUnderway(java.lang.String underway) {
+		set("underway", underway);
+	}
+	
+	public java.lang.String getUnderway() {
+		return getStr("underway");
 	}
 
 }

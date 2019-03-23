@@ -3,7 +3,7 @@
  */
 var setting;//ztree的设置
 var tree="projectTree";
-$(document).ready(function() {		
+$(document).ready(function() {
 	//设置	  
 	  setting = {
 	            view: {
@@ -34,8 +34,10 @@ $(document).ready(function() {
 			data:{"projectId":$("#projectId").val()},
 			dataType:"json",
 			success:function(data){		
-				   // console.log(data);
-					 $.fn.zTree.init($("#"+tree), setting, data); 			
+				    console.log(data);
+					 $.fn.zTree.init($("#"+tree), setting, data.projectTree);
+					 pieChart(parseInt(data.done),parseInt(data.undone),parseInt(data.underway));
+					 $(".overlay").remove();
 			}
 		});
   
@@ -70,6 +72,7 @@ function onClick(event, treeId, treeNode, clickFlag) {
 	var _html='<div>'+htm[0].outerHTML+'</div>';
 	$("#seeMethodModal .modal-body").html(_html);
 	$("#seeMethodModal").modal("show");	
+	
 	showData(treeNode)
 	activateDatetimepicker($('.form_date'));
 	$("#nodeId").val(treeNode.id);
@@ -87,24 +90,12 @@ $("body").on("click","#submitBtn",function(){
 	node.name=$("#taskName").val();
 	node.depiction=$("#depiction").val();
 	ztree.updateNode(node);
+	console.log("=====SSS====");
+	updateProjectTask(node);
 	$("#seeMethodModal").modal("hide");
 })
 
-      /****
-	     * function 激活时间输入框
-	     */
-	    function activateDatetimepicker($object){	    	
-	    	$object.datetimepicker({
-		         language:"zh-CN",
-		         bootcssVer:3,
-		         format: 'yyyy-mm-dd hh:ii:ss', 
-		         autoclose:true,
-		         todayHighlight: true,
-		         minView:0,		     
-		         weekStart:1
-		     }); 
-	    }
-
+     
 
 /***
  * 测试
@@ -199,11 +190,11 @@ function getZtreeNodesInfo(zTreeObj){
 	        	"endDate":MyNode[0].endDate,
 	        	"userId":MyNode[0].userId,
 	        	"depiction":MyNode[0].depiction,
-	        	"checked":MyNode[0].checked//选中的标志，表示已被处理
+	        	"schedule":MyNode[0].checked//选中的标志，表示已被处理
 	        	});
 	    }
 	    var ztreeJson = JSON.stringify(params);
-	    console.log(ztreeJson);
+	    //console.log(ztreeJson);
 	    return ztreeJson;
 }
 
@@ -263,3 +254,78 @@ function showData(treeNode){
 	   $("#endDate").val(treeNode.endDate);
 	   $("#depiction").val(treeNode.depiction);
 	}
+
+
+
+
+//饼状图
+function pieChart(done,undone,underway){
+	 var dom = document.getElementById("pieChart");
+	 var pieChart = echarts.init(dom);
+	 pieChart.showLoading({
+		  text : '正在加载数据'
+		});  //增加提示
+	 var app = {};
+	 option = null;
+	 option = {
+	     title : {
+	         text: '工程进度',
+	         subtext: '',
+	         x:'center'
+	     },
+	     tooltip : {
+	         trigger: 'item',
+	         formatter: "{a} <br/>{b} : {c} ({d}%)"
+	     },
+	     legend: {
+	         orient: 'vertical',
+	         left: 'left',
+	         data: ['已完成','未开始','进行中']
+	     },
+	     series : [
+	         {
+	             name: '工程进度',
+	             type: 'pie',
+	             radius : '55%',
+	             center: ['50%', '60%'],
+	             data:[
+	                 {value:done, name:'已完成'},
+	                 {value:undone, name:'未开始'},
+	                 {value:underway, name:'进行中'}                
+	             ],
+	             itemStyle: {
+	                 emphasis: {
+	                     shadowBlur: 10,
+	                     shadowOffsetX: 0,
+	                     shadowColor: 'rgba(0, 0, 0, 0.5)'
+	                 }
+	             }
+	         }
+	     ]
+	 };
+	 ;
+	 if (option && typeof option === "object") {
+		 pieChart.hideLoading();  //提示关闭
+		 pieChart.setOption(option, true);
+	 }
+}
+
+/****
+ * 更新工程任务
+ */
+function updateProjectTask(node){  
+	var data={"id":node.keyId,"startDate":node.startDate,"endDate":node.endDate,"taskName":node.name,"depiction":node.depiction,"schedule":node.checked};
+  	$.ajax({
+		url:basepath+"/task/updateProjectTask",
+		type:"post",
+		data:data,
+		dataType:"json",
+		success:function(data){	
+			if(data.code==200){
+				toastrSuccess(data.msg,2000);				
+			}else{
+				toastrError(data.msg,2000);
+			}		
+		}
+	});
+}
