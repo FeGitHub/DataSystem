@@ -1,54 +1,11 @@
 /********
  *  工程任务树
  */
-var setting;//ztree的设置
 var tree="projectTree";
-$(document).ready(function() {
-	//设置	  
-	  setting = {
-	            view: {
-	                addHoverDom: addHoverDom,
-	                removeHoverDom: removeHoverDom,
-	                selectedMulti: false
-	            },
-	            check: {
-	                enable: true
-	            },
-	            data: {
-	                simpleData: {
-	                    enable: true
-	                },	           
-	            },         
-	            edit: {
-	                enable: true
-	            },
-	            callback: {
-					beforeClick: beforeClick,//点击前最开始的事件
-					onClick: onClick,//点击后的事件
-					onRemove: zTreeOnRemove
-				}
-	        };
-	  $.ajax({
-			url:basepath+"/task/getProjectTree",
-			type:"post",
-			data:{"projectId":$("#projectId").val()},
-			dataType:"json",
-			success:function(data){		
-				    console.log(data);
-					 $.fn.zTree.init($("#"+tree), setting, data.projectTree);
-					 pieChart(parseInt(data.done),parseInt(data.undone),parseInt(data.underway));
-					 $(".overlay").remove();
-			}
-		});
-  
-   
+$(function() {
+	init();
 });
 
-
-function beforeClick(treeId, treeNode, clickFlag) {
-	/*var url=treeNode.url;
-	treeNode.url="wwww";*/
-}
 
 /****
  * function 激活时间输入框
@@ -90,7 +47,6 @@ $("body").on("click","#submitBtn",function(){
 	node.name=$("#taskName").val();
 	node.depiction=$("#depiction").val();
 	ztree.updateNode(node);
-	console.log("=====SSS====");
 	updateProjectTask(node);
 	$("#seeMethodModal").modal("hide");
 })
@@ -101,7 +57,7 @@ $("body").on("click","#submitBtn",function(){
  * 测试
  */
 $("#testBtn").click(function(){
-	 var zTreeObj = $.fn.zTree.getZTreeObj(tree);
+	  var zTreeObj = $.fn.zTree.getZTreeObj(tree);
 	  var ztreeJson=getZtreeNodesInfo(zTreeObj);
 });
 
@@ -130,39 +86,41 @@ function addHoverDom(treeId, treeNode) {
  * @param treeNode
  */
 function addNodeInfo(treeNode){
-	 var childrenSize;
-	 if(treeNode.children!=null){
-		 childrenSize=treeNode.children.length;		
-	 }else{
-		 childrenSize=0;
-	 }
-    if(childrenSize>=99){
-		 alert("子节点数太多");
-		 return;
-	 }
-	 var preCode=treeNode.id+"00";
-	 var nodeId=parseInt(preCode)+childrenSize+1;
 	 var zTree = $.fn.zTree.getZTreeObj(tree);
-	 var node=zTree.getNodeByParam('id',1);
-     zTree.addNodes(treeNode, {      
-    	 id:nodeId,
-         pId: treeNode.id,
-         name: "任务" + nodeId,
-         projectId:$("#projectId").val(),
-         userId:node.userId
-     });
+	 var nodeinfo={ 
+	         pId: treeNode.id,
+	         taskName: "新任务",
+	         projectId:$("#projectId").val(),
+	         userId:$("#userId").val()
+	     };		
+	  $.ajax({
+			url:basepath+"/task/addProjectTask",
+			type:"post",
+			data:nodeinfo,
+			dataType:"json",
+			success:function(data){		
+				if(data.code==200){
+					 nodeinfo.id=data.id;
+					 nodeinfo.name="新任务";
+					 zTree.addNodes(treeNode, nodeinfo);   		
+				}else{
+					toastrError(data.msg,2000);
+				}		  
+			}
+		});
+		
 }
 
 
 
 
 /****
- * 移除节点
+ * 
  * @param treeId
  * @param treeNode
  */
 function removeHoverDom(treeId, treeNode) {
-    $("#addBtn_" + treeNode.tId).unbind().remove();
+   // $("#addBtn_" + treeNode.tId).unbind().remove();
 };
 
 /****
@@ -182,7 +140,7 @@ function getZtreeNodesInfo(zTreeObj){
 	        	MyNode[0].pId=0;
 	        }
 	        params.push({ 
-	        	"cId": MyNode[0].id,
+	        	"id":MyNode[0].id,
 	        	"pId":MyNode[0].pId,
 	        	"taskName" :MyNode[0].name,
 	        	"projectId":MyNode[0].projectId,
@@ -220,27 +178,13 @@ $("#updateBtn").click(function(){
 	});	
 
 /****
- *  移除节点后对兄弟节点id的更新
+ * 
  * @param event
  * @param treeId
  * @param treeNode
  */
 function zTreeOnRemove(event, treeId, treeNode) {
-	var ztree=$.fn.zTree.getZTreeObj(treeId);
-	var id=treeNode.id.toString();	
-	var indexNode=id.substring(id.length-2,id.length);//删除的节点在原兄弟节点中的序号
-	var pNode = treeNode.getParentNode();
-	var pNodeLength=pNode.children.length;//删除后剩余的兄弟节点数
-	var diff=parseInt(pNodeLength)-parseInt(indexNode)+1;//应该被更新的兄弟节点数
-	var pNode;
-	var updateNode;
-	var updateId;
-	for(var i=1;i<=diff;i++){
-	  updateNode=parseInt(id)+parseInt(i);
-      pNode=ztree.getNodeByParam('id',updateNode);
-      updateId=parseInt(updateNode)-1;
-      pNode.id=updateId;    
-	}
+	
 }
 /***
  * 编辑数据回显
@@ -266,7 +210,7 @@ function pieChart(done,undone,underway){
 		  text : '正在加载数据'
 		});  //增加提示
 	 var app = {};
-	 option = null;
+	 var option = null;
 	 option = {
 	     title : {
 	         text: '工程进度',
@@ -314,7 +258,14 @@ function pieChart(done,undone,underway){
  * 更新工程任务
  */
 function updateProjectTask(node){  
-	var data={"id":node.keyId,"startDate":node.startDate,"endDate":node.endDate,"taskName":node.name,"depiction":node.depiction,"schedule":node.checked};
+	var data={
+			"id":node.id,
+			"startDate":node.startDate,
+			"endDate":node.endDate,
+			"taskName":node.name,
+			"depiction":node.depiction,
+			"schedule":node.checked
+			};
   	$.ajax({
 		url:basepath+"/task/updateProjectTask",
 		type:"post",
@@ -329,3 +280,43 @@ function updateProjectTask(node){
 		}
 	});
 }
+
+
+function init(){
+	//设置	  
+	 var setting = {
+	            view: {
+	                addHoverDom: addHoverDom,
+	                removeHoverDom: removeHoverDom,
+	                selectedMulti: false
+	            },
+	            check: {
+	                enable: true
+	            },
+	            data: {
+	                simpleData: {
+	                    enable: true
+	                },	           
+	            },         
+	            edit: {
+	                enable: true
+	            },
+	            callback: {
+					onClick: onClick,//点击后的事件
+					onRemove: zTreeOnRemove//删除节点后的事件
+				}
+	        };
+	  $.ajax({
+			url:basepath+"/task/getProjectTree",
+			type:"post",
+			data:{"projectId":$("#projectId").val()},
+			dataType:"json",
+			success:function(data){		
+				    console.log(data);
+					 $.fn.zTree.init($("#"+tree), setting, data.projectTree);
+					 pieChart(parseInt(data.done),parseInt(data.undone),parseInt(data.underway));
+					 $(".overlay").remove();
+			}
+		});
+}
+

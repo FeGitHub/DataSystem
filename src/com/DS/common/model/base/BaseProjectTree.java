@@ -25,14 +25,6 @@ public abstract class BaseProjectTree<M extends BaseProjectTree<M>> extends Mode
 		return getInt("pId");
 	}
 
-	public void setCId(java.lang.Integer cId) {
-		set("cId", cId);
-	}
-	
-	public java.lang.Integer getCId() {
-		return getInt("cId");
-	}
-
 	public void setUserId(java.lang.Integer userId) {
 		set("userId", userId);
 	}

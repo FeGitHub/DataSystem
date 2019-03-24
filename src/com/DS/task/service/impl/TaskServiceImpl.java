@@ -3,6 +3,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import com.DS.common.model.Project;
+import com.DS.common.model.ProjectTree;
 import com.DS.common.model.Task;
 import com.DS.task.service.TaskService;
 import com.DS.utils.common.DataTablesUtil;
@@ -84,23 +85,7 @@ public class TaskServiceImpl implements TaskService {
 		return r;
 	}
 
-    /****
-     * 创建新的工程任务
-     * return id 新创建的工程任务的id
-     */
-	@Override
-	public int createProject(Project project) {
-		Record record = new Record();
-		record.set("projectName", project.getProjectName());
-		record.set("userId", project.getUserId());
-		record.set("userName", project.getUserName());
-		record.set("planStartDate", project.getPlanStartDate());
-		record.set("plantFinshDate", project.getPlantFinshDate());
-		Db.save("project",record); 
-		int id=record.getInt("id");
-		return id;
-			
-	}
+
    
 	
 	/*****
@@ -112,14 +97,17 @@ public class TaskServiceImpl implements TaskService {
 		 delMap.put("projectId", projectId);
 		 SqlPara delProjectTree=Db.getSqlPara("projectTree.deleteAll", delMap);	
 		 SqlPara delProject=Db.getSqlPara("projectTree.deleteProject", delMap);	
-		  if(!Db.tx(() -> {
+		  boolean success=Db.tx(() -> {
 			  Db.update(delProjectTree);
 			  Db.update(delProject);			
 			  return true;
-			})){
+			});
+		  if(success){
+			  return 1;
+		  }else{
 			  return 0;
 		  }
-		   return 1;
+		  
 	}
    
 	/****

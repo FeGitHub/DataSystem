@@ -1,6 +1,3 @@
-/****
- * 备忘提醒页面的js
- */
 var remindTable;
 $(function(){	
 		$(".quaryTime").datetimepicker({
@@ -65,7 +62,7 @@ $(function(){
 	   }); 
 	   
 		/***
-	     * function 新增备忘事务
+	     * function 打开新增工程模态框
 	     */
 		$("body").on("click","#addBtn",function(){
 		   var htm = $($('#remindTemp').html());
@@ -76,11 +73,31 @@ $(function(){
 	   }); 
 		
 		/***
-	     * function 提交表单数据
+	     * function 新增工程请求
 	     */
 		$("body").on("click","#submitBtn",function(){			
-			if($("#remindForm").validationEngine('validate')){
-				 window.location.href=basepath+"/task/createProject?projectName="+$("#firstId").val()+"&planStartDate="+$("#secondId").val()+"&plantFinshDate="+$("#thirdId").val();				
+			if($("#remindForm").validationEngine('validate')){		
+				var data={
+						"projectName":$("#firstId").val(),
+						"planStartDate":$("#secondId").val(),
+                         "plantFinshDate":$("#thirdId").val(),
+						};
+				$.ajax({
+					url:basepath+"/task/createProject",
+					type:"post",
+					data:data,
+					dataType:"json",
+					success:function(data){
+						if(data.code==200){							
+							window.location.href=basepath+"/task/goProjectTree?projectId="+data.projectId;							
+						}else{							
+							toastrError(data.msg,3000);
+						}							
+					}
+				});		
+				
+				
+				
 			}
 	    }); 
 			

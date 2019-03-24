@@ -1,4 +1,5 @@
 package com.DS.controller;
+import java.text.NumberFormat;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
@@ -15,6 +16,7 @@ import com.DS.task.service.impl.ProjectTreeServiceImpl;
 import com.DS.task.service.impl.TaskServiceImpl;
 import com.DS.task.vo.TaskVo;
 import com.DS.utils.common.ObjectUtil;
+import com.DS.utils.common.TimeUtil;
 import com.DS.web.base.BaseController;
 import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONArray;
@@ -38,6 +40,9 @@ public class TaskController extends BaseController{
 	@Inject(CalendarServiceImpl.class)
 	private CalendarService calendarService;
 	
+	/***
+	 * 跳转到日历任务页面
+	 */
 	  public void goFullCalendar(){
     	  render("taskCalendar.jsp");
       }
@@ -89,10 +94,35 @@ public class TaskController extends BaseController{
 		render("createTarget.jsp");
 	}	
 	
-	
+	/****
+	 * 跳转到工程任务树页面
+	 */
 	public void goProjectTree(){
-		String projectId=getPara("projectId");
-		setAttr("projectId",projectId);
+		  Record nowUser = (Record)getSession().getAttribute("user");
+		 String projectId=getPara("projectId");
+		 Project project=new Project();
+ 		 project=project.findById(projectId); 		 
+         //工程总计划时间
+ 		 String suminfo=TimeUtil.getDatePoor(project.getPlantFinshDate(), project.getPlanStartDate());
+ 		 long projectTime=project.getPlantFinshDate().getTime()-project.getPlanStartDate().getTime();
+ 		 String remindinfo;
+ 	     if(TimeUtil.underway(project.getPlantFinshDate(), project.getPlanStartDate())){//目前在工程时间内
+ 	        long difftime=project.getPlantFinshDate().getTime()-new Date().getTime();
+ 	        remindinfo=TimeUtil.getDatePoor(project.getPlantFinshDate(), new Date());
+ 	    	NumberFormat numberFormat = NumberFormat.getInstance();   
+ 	    	numberFormat.setMaximumFractionDigits(2); 
+ 	    	String pct = numberFormat.format((float)difftime/(float)projectTime*100);
+ 	    	setAttr("remindDay","剩余"+remindinfo);
+ 	    	setAttr("pct",pct+"%"); 
+ 	     }else if(new Date().getTime()>project.getPlanStartDate().getTime()){
+ 	    	setAttr("remindDay","已结束");
+ 	    	setAttr("pct","0%"); 
+ 	     }else{
+ 	    	 setAttr("remindDay","此工程计划时间为"+suminfo+"，目前未到开始时间");
+ 	    	 setAttr("pct","100%");
+ 	     }
+ 	    setAttr("projectId",projectId);
+		setAttr("userId",nowUser.get("id"));
 		render("projectTree.jsp");
 	}	
 	
@@ -140,8 +170,6 @@ public class TaskController extends BaseController{
      
      
      public void goProjectList(){
-    	 String projectId=getPara("projectId");
-    	 setAttr("projectId",projectId);
       	 render("projectList.jsp");
         }
      
@@ -153,9 +181,14 @@ public class TaskController extends BaseController{
     	 Project project=getModel(Project.class,"");
     	 project.setUserId(user.getInt("id"));
     	 project.setUserName(user.getStr("account"));
-    	 int id=taskService.createProject(project);
-    	 setAttr("projectId",id);
-    	 render("newProjectTree.jsp");
+    	 int projectId=projectTreeService.createProject(project);
+    	 if(projectId>0){
+    		 Map<String,Object> result=new HashMap<String,Object>();
+    		 result.put("projectId", projectId) ; 
+    		 renderJson(ajaxDoneSuccess(result));
+    	 }else{
+    		 renderJson(ajaxDoneError("操作失败"));
+    	 } 	 
      }
      
      /****
@@ -199,8 +232,8 @@ public class TaskController extends BaseController{
     	 Record user = (Record)getSession().getAttribute("user");
     	 String projectId=getPara("projectId");
     	 String userId=user.get("id")+"";
-    	 Map<String,Object> json=projectTreeService.getProjectTree(projectId, userId);
- 		 renderJson(json);   	 
+    	 Map<String,Object> json=projectTreeService.getProjectTree(projectId, userId); 		
+    	 renderJson(json);   	 
      }
      
      /****
@@ -268,6 +301,20 @@ public class TaskController extends BaseController{
     		 renderJson(ajaxDoneSuccess("修改成功"));
     	 }else{
     		 renderJson(ajaxDoneError("修改失败"));
+    	 }
+     }
+     
+     /****
+      * 新增工程任务
+      */
+     public  void addProjectTask(){
+    	 Map<String,Object> map=new HashMap<String,Object>();
+    	 ProjectTree projectTree=getModel(ProjectTree.class,"");
+    	 if(projectTree.save()){
+    		 map.put("id", projectTree.getId());
+    		 renderJson(ajaxDoneSuccess(map));
+    	 }else{
+    		 renderJson(ajaxDoneError("新增失败"));
     	 }
      }
 }

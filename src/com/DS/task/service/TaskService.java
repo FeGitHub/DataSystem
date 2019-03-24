@@ -22,7 +22,7 @@ public interface TaskService {
     
     JSONArray getProjectGantt(String userId);
     
-    int createProject(Project project);
+  
     
     int deleteProject(String projectId);
     

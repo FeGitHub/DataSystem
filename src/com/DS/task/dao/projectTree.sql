@@ -19,9 +19,9 @@
  * 插入工程任务树详细信息
  */
 #sql("insertDataBatch")
-	insert into project_tree (cId,pId,taskName,userId,projectId,startDate,endDate,schedule,depiction) values
+	insert into project_tree (id,pId,taskName,userId,projectId,startDate,endDate,schedule,depiction) values
 	#for(x : cond)
-		(#para(x.cId),#para(x.pId),#para(x.taskName),#para(x.userId),#para(x.projectId),#para(x.startDate),#para(x.endDate),#para(x.schedule),#para(x.depiction)) #(for.last ? " ": ",")
+		(#para(x.id),#para(x.pId),#para(x.taskName),#para(x.userId),#para(x.projectId),#para(x.startDate),#para(x.endDate),#para(x.schedule),#para(x.depiction)) #(for.last ? " ": ",")
 	 #end
 #end
 
@@ -67,7 +67,7 @@
  * 获取用户的工程任务树信息
  */
 #sql("getProjectById")
-	select id as keyId,cId as id,pId,taskName as name,
+	select id,pId,taskName as name,
 	       projectId,open,schedule as checked,startDate,
 	       endDate,userId,depiction 
 	from project_tree 
@@ -87,7 +87,7 @@
 #sql("getProjectTreeTask")
 	select * 
 	from project_tree 
-	where cId 
+	where id 
 	not in (select distinct pId from project_tree where  userId=#para(userId)) 
 	and userId=#para(userId)
 	#if(dateLimit)
@@ -114,5 +114,5 @@
     COUNT( CASE WHEN  schedule='true' THEN id END ) AS done 	 	
     FROM
 	    project_tree  where userId =#para(userId) AND projectId =#para(projectId)
-	     AND cId not in (select distinct pId from project_tree where  userId=#para(userId) AND projectId =#para(projectId))  
+	     AND id not in (select distinct pId from project_tree where  userId=#para(userId) AND projectId =#para(projectId))  
 #end

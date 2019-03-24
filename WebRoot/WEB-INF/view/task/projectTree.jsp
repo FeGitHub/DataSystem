@@ -16,7 +16,7 @@
      <div class="tile">   
          	   <div class="bs-component">
               <div class="progress mb-2">
-                <div class="progress-bar progress-bar-striped progress-bar-animated" role="progressbar" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100" style="width: 75%">剩余10天</div>
+                <div class="progress-bar progress-bar-striped progress-bar-animated" role="progressbar" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100" style="width:${pct}">${remindDay}</div>
               </div>
             </div> 
      </div>
@@ -36,6 +36,7 @@
 		    	<div class="col-md-6">  	  
 				    	 <ul id="projectTree" class="ztree"></ul>
 				    	 <input type="text" style="display:none;" id="projectId" value="${projectId}"> 
+				    	 <input type="text" style="display:none;" id="userId" value="${userId}"> 
 				    	 <input type="text" style="display:none;" id="nodeId">   	          
 		    	</div>
 		    </div>
@@ -60,6 +61,7 @@
 					  </div>
 				</div>
 <!--弹出框主体框架结束-->
+
 <!--弹出框内容模板-->
 <template id="remindTemp">
     <div class="panel mbn" style="height:550px;">

@@ -2,8 +2,8 @@ package com.DS.task.service.impl;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-
 import com.DS.bean.TaskSchedule;
+import com.DS.common.model.Project;
 import com.DS.common.model.ProjectTree;
 import com.DS.task.service.ProjectTreeService;
 import com.jfinal.plugin.activerecord.Db;
@@ -67,5 +67,29 @@ public class ProjectTreeServiceImpl implements ProjectTreeService {
    	    taskSchedule.setUndone(undone);
 		return taskSchedule;
 	}
-
+    
+	
+    /****
+     * 创建新的工程任务
+     * return id 新创建的工程任务的id
+     */
+	@Override
+	public int createProject(Project project) {
+		ProjectTree projectTree=new ProjectTree();
+		boolean success=Db.tx(()->{
+			project.save();
+			Integer projectId=project.getId();			
+			projectTree.setUserId(project.getUserId());
+			projectTree.setTaskName(project.getProjectName());
+			projectTree.setPId(0);
+			projectTree.setProjectId(projectId);
+			projectTree.save();
+			return true;
+		});
+		if(success){
+			return project.getId();
+		}else{
+			return -1;		
+		}			
+	}
 }

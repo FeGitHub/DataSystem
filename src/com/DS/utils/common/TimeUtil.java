@@ -44,4 +44,59 @@ public class TimeUtil {
 		 int day=(int)diff;
 		 return day;
 	 }
+	    
+	    /***
+	     * 距离截止日期的时间
+	     * @param end
+	     * @param start
+	     * @return
+	     */
+	    public static int  remindDay(Date end,Date start){
+	    	 long diff=end.getTime()-start.getTime();
+	    	 if(diff<=0){
+	    		 diff=0;
+	    	 }else if(diff>0&&diff<=(1000 * 60 * 60 * 24)){
+	    		 diff=1;
+	    	 }else{
+	    		 diff=diff/(1000 * 60 * 60 * 24);
+	    	 }					
+			 int day=(int)diff;
+			 return day;
+		 }
+	    
+	    
+	   /****
+	    * 判断目前时间是否在计划时间段内
+	    * @param end
+	    * @param start
+	    * @return
+	    */
+	    public static boolean  underway(Date end,Date start){
+	    	Date now=new Date();
+	    	if(end.getTime()<start.getTime()){
+	    		return false;
+	    	}	    	
+	    	if(now.getTime()>=start.getTime()&&now.getTime()<=end.getTime()){
+	    		return true;
+	    	}else{
+	    		return false;
+	    	}
+	    }
+	    
+	    /****
+	     * 两个时间点之差(X天X小时X分)
+	     * @param endDate
+	     * @param nowDate
+	     * @return
+	     */
+	    public static String getDatePoor(Date endDate, Date nowDate) {	    	 
+	        long nd = 1000 * 24 * 60 * 60;
+	        long nh = 1000 * 60 * 60;
+	        long nm = 1000 * 60;	     
+	        long diff = endDate.getTime() - nowDate.getTime();	   
+	        long day = diff / nd;	     
+	        long hour = diff % nd / nh;     
+	        long min = diff % nd % nh / nm;
+	        return day + "天" + hour + "小时" + min + "分钟";
+	    }
 }
