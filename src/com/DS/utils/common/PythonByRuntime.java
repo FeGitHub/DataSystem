@@ -8,14 +8,15 @@ import org.apache.log4j.Logger;
 import com.jfinal.kit.PathKit;
 /****
  * 
- *  @author jeff
+ *  @author jeff  2019-3-25
  *  调用python的工具
  *  ps:运行相关python文件失败的可能原因
  *  1.没有配置相关的python开发环境或环境变量
  *  2.没有导入相关python相关包
  *  3.python文件是否混进tab制表符(https://www.cnblogs.com/heimanba/p/3783022.html)
+ *  4.python文件没有更新（真正运行的python的项目发布的相关文件夹内详细见控制台）
  *  
- *  解决方案：单独在cmd下运行python文件
+ *  解决方案：单独在cmd下运行python文件(推荐使用pycharm开发)
  *  
  *  https://jingyan.baidu.com/album/3f16e0031e87522591c10320.html?picindex=1
  */
@@ -24,10 +25,11 @@ public class PythonByRuntime {
 	//private static String exe = "python";
 	private static String PY_ROOT_PATH=PathKit.getRootClassPath()+"\\py\\";//默认的python脚本文件路径
 	private static String PY_RES_PATH=PathKit.getRootClassPath()+"\\py\\resources";//默认的python资源文件路径
+	private static String PY_MODEL_PATH=PathKit.getRootClassPath()+"\\py\\resources\\model";//默认的python资源文件路径
 	public static void main(String[] args) throws IOException,InterruptedException {				
 		//runPython3(PY_ROOT_PATH,PY_RES_PATH,"house_data5.py");
-		//runPython3("house_data5.py");
-		runPython3("grade.py");
+		runPython3("train_run_model.py");
+		//runPython3("grade.py");
     }
 	
 	/* 可使用，暂时弃用
@@ -101,7 +103,7 @@ public class PythonByRuntime {
 		List<String> result=new ArrayList<String>();
         Process proc;
         try {
-        	String exec="python "+PY_ROOT_PATH+PY_FileName+" "+PY_RES_PATH;
+        	String exec="python "+PY_ROOT_PATH+PY_FileName+" "+PY_RES_PATH+" "+PY_MODEL_PATH;
         	logger.info("---------python执行语句-----------");
         	logger.info(exec);
             proc = Runtime.getRuntime().exec(exec);// 执行py文件

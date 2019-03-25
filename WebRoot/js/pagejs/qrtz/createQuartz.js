@@ -120,6 +120,9 @@ function  showText(classInfo){
 	case pageName+"TestPython":
 		text="测试python";
 	  break;
+	case pageName+"PYML":
+		text="算法模型训练测试";
+	  break;
 	default:
 		text=classInfo;
 	}
