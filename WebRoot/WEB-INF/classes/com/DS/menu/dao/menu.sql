@@ -1,9 +1,15 @@
+/****
+ * 获取用户菜单数据
+ */
 #sql("selectMenuData")
-   select * from menu where pId!=0
+   select * from menu where pId!=0 order by CONVERT(id,SIGNED)
 #end
 
+/***
+ * 获取用户菜单的ztree树
+ */
 #sql("selectAllData")
-   select * from menu
+   select * from menu  order by CONVERT(id,SIGNED)
 #end
 
 #sql("deleteAll")

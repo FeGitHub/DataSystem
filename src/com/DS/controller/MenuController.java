@@ -3,6 +3,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import com.DS.common.model.Menu;
+import com.DS.common.model.ProjectTree;
 import com.DS.menu.service.MenuService;
 import com.DS.menu.service.impl.MenuServiceImpl;
 import com.DS.web.base.BaseController;
@@ -69,4 +70,16 @@ public class MenuController extends BaseController{
 			 map.put("menuTree", menuJsonArray);
 			 renderJson(map);
 	  }
+	  
+	  
+	 public void addMenuNode(){
+		 Menu menu=getModel(Menu.class,"");
+		 Map<String,Object> map=new HashMap<String,Object>();
+    	 if(menu.save()){
+    		 map.put("id", menu.getId());
+    		 renderJson(ajaxDoneSuccess(map));
+    	 }else{
+    		 renderJson(ajaxDoneError("新增失败"));
+    	 }
+	 }
 }

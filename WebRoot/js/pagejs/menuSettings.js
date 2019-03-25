@@ -9,8 +9,8 @@ var text="app-menu__icon fa fa-file-text";
 
 var testZNodes;//展示的节点信息
 var setting;//ztree的设置
-var newCount = 1;//新节点默认序号
 var switchFlag=1;//0--静态资源  1--数据库
+var tree="menuTree";
 $(document).ready(function() {	
 	//设置	  
 	initMenu();	
@@ -58,9 +58,9 @@ function initMenu(){
 			url:basepath+"/menu/getZtreeJsonFromDB",
 			type:"post",
 			dataType:"json",
-			success:function(ztree){
+			success:function(menu){
 				$(".overlay").remove();
-				$.fn.zTree.init($("#menuTree"), setting, ztree);  			
+				$.fn.zTree.init($("#menuTree"), setting, menu);  			
 			}
 		});   
 	}
@@ -130,22 +130,26 @@ function addHoverDomBtn(treeId, treeNode) {
  * @param treeNode
  */
 function addNodeInfo(treeNode){
-	 var childrenSize;
-	 if(treeNode.children!=null){
-		 childrenSize=treeNode.children.length;		
-	 }else{
-		 childrenSize=0;
-	 }
-	 var preCode=treeNode.id+"00";	 
-	 var nodeId=parseInt(preCode)+childrenSize+1;
-	 var zTree = $.fn.zTree.getZTreeObj("menuTree");
-     zTree.addNodes(treeNode, {
-        // id: (100 + newCount),
-    	 id:nodeId,
-         pId: treeNode.id,
-        // name: "new node" + (newCount++)
-         name: "new node" + nodeId
-     });
+	 var zTree = $.fn.zTree.getZTreeObj(tree);
+	 var nodeinfo={ 
+	         pId: treeNode.id,
+	         name: "新菜单",	        
+	     };		
+	  $.ajax({
+			url:basepath+"/menu/addMenuNode",
+			type:"post",
+			data:nodeinfo,
+			dataType:"json",
+			success:function(data){		
+				if(data.code==200){
+					 nodeinfo.id=data.id;
+					 nodeinfo.name="新菜单";
+					 zTree.addNodes(treeNode, nodeinfo);   		
+				}else{
+					toastrError(data.msg,2000);
+				}		  
+			}
+		});
 }
 
 /****
@@ -186,24 +190,24 @@ function paramToZtreeBootstrap(){
 	  var zNodes5 =[
 	                {id:1, pId:0, name:"菜单编辑",open:true,checked:false},
 	                
-	                {id:101, pId:1, name:"首页",icon:dashboard,open:true,checked:false},
+	                {id:2, pId:1, name:"首页",icon:dashboard,open:true,checked:false},
 	                
-	            	{id:102, pId:1, name:"数据表格",icon:laptop,open:true,checked:false},
-		           	{id:10201, pId:102, name:"备忘提醒", url:"/remind/goRemindList",checked:false},
-		           	{id:10202, pId:102, name:"调度任务",url:"/qrtz/goQrtzTaskList",checked:false},
+	            	{id:3, pId:1, name:"数据表格",icon:laptop,open:true,checked:false},
+		           	{id:4, pId:3, name:"备忘提醒", url:"/remind/goRemindList",checked:false},
+		           	{id:5, pId:3, name:"调度任务",url:"/qrtz/goQrtzTaskList",checked:false},
 		           	
-		           	{id:103, pId:1, name:"测试区域",icon:edit, open:true,checked:false},
-		           	{id:10301, pId:103, name:"测试页面", url:"/test/goTestPage",checked:false},
+		           	{id:6, pId:1, name:"测试区域",icon:edit, open:true,checked:false},
+		           	{id:7, pId:6, name:"测试页面", url:"/test/goTestPage",checked:false},
 		    
-		           	{id:104, pId:1, name:"案例页面", icon:list,open:true,checked:false},
-		           	{id:10401, pId:104, name:"Ztree-bootstrap", url:"/demo/goTreePage",checked:false},
-		           	{id:10402, pId:104, name:"ECharts", url:"/demo/goEChartsPage",checked:false},
+		           	{id:8, pId:1, name:"案例页面", icon:list,open:true,checked:false},
+		           	{id:9, pId:8, name:"Ztree-bootstrap", url:"/demo/goTreePage",checked:false},
+		           	{id:10, pId:8, name:"ECharts", url:"/demo/goEChartsPage",checked:false},
 		           	
-		           	{id:105, pId:1, name:"任务模块",icon:text, open:true,checked:false},
-		           	{id:10501, pId:105, name:"工程任务", url:"/task/goTaskList",checked:false},
+		           	{id:11, pId:1, name:"任务模块",icon:text, open:true,checked:false},
+		           	{id:12, pId:11, name:"工程任务", url:"/task/goTaskList",checked:false},
 		           	
-		           	{id:106, pId:1, name:"系统设置",icon:text, open:true,checked:false},
-		           	{id:10601, pId:106, name:"菜单设置", url:"/menu/goMenu",checked:false},
+		           	{id:13, pId:1, name:"系统设置",icon:text, open:true,checked:false},
+		           	{id:14, pId:13, name:"菜单设置", url:"/menu/goMenu",checked:false},
 		           	];
 	  testZNodes=zNodes5;	  
 
@@ -211,7 +215,7 @@ function paramToZtreeBootstrap(){
   
 
 function zTreeOnRemove(event, treeId, treeNode) {
-	var ztree=$.fn.zTree.getZTreeObj(treeId);
+	/*var ztree=$.fn.zTree.getZTreeObj(treeId);
 	var id=treeNode.id.toString();
 	console.log("indexNode===="+id);
 	var indexNode=id.substring(id.length-2,id.length);
@@ -235,5 +239,5 @@ function zTreeOnRemove(event, treeId, treeNode) {
       pNode.id=updateId;
       console.log("pNode.id=="+pNode.id);
       console.log("=========");
-	}
+	}*/
 }      

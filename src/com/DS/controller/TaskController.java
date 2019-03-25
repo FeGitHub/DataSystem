@@ -317,4 +317,18 @@ public class TaskController extends BaseController{
     		 renderJson(ajaxDoneError("新增失败"));
     	 }
      }
+     
+     /****
+      * 删除工程任务
+      */
+     public  void delProjectTask(){
+    	 ProjectTree projectTree=getModel(ProjectTree.class,"");
+    	 if(projectTree.delete()){   		
+    		 renderJson(ajaxDoneSuccess("删除成功"));
+    	 }else{
+    		 renderJson(ajaxDoneError("删除失败"));
+    	 }
+     }
+     
+     
 }

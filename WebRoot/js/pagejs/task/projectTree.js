@@ -23,13 +23,18 @@ function activateDatetimepicker($object){
 }
 
 
-
+/*****
+ * 点击节点打开编辑框
+ * @param event
+ * @param treeId
+ * @param treeNode
+ * @param clickFlag
+ */
 function onClick(event, treeId, treeNode, clickFlag) {
     var htm = $($('#remindTemp').html());
 	var _html='<div>'+htm[0].outerHTML+'</div>';
 	$("#seeMethodModal .modal-body").html(_html);
-	$("#seeMethodModal").modal("show");	
-	
+	$("#seeMethodModal").modal("show");		
 	showData(treeNode)
 	activateDatetimepicker($('.form_date'));
 	$("#nodeId").val(treeNode.id);
@@ -46,8 +51,31 @@ $("body").on("click","#submitBtn",function(){
 	node.endDate=$("#endDate").val();
 	node.name=$("#taskName").val();
 	node.depiction=$("#depiction").val();
-	ztree.updateNode(node);
-	updateProjectTask(node);
+	var data={
+			"id":node.id,
+			"startDate":node.startDate,
+			"endDate":node.endDate,
+			"taskName":node.name,
+			"depiction":node.depiction,
+			"schedule":node.checked
+			};
+  	$.ajax({
+		url:basepath+"/task/updateProjectTask",
+		type:"post",
+		data:data,
+		dataType:"json",
+		success:function(data){	
+			if(data.code==200){
+				ztree.updateNode(node);
+				toastrSuccess(data.msg,2000);				
+			}else{
+				toastrError(data.msg,2000);
+			}		
+		}
+	});
+	
+	
+	
 	$("#seeMethodModal").modal("hide");
 })
 
@@ -184,6 +212,20 @@ $("#updateBtn").click(function(){
  * @param treeNode
  */
 function zTreeOnRemove(event, treeId, treeNode) {
+	console.log(treeNode.id);
+	$.ajax({
+		url:basepath+"/task/delProjectTask",
+		type:"post",
+		data:{"id":treeNode.id},
+		dataType:"json",
+		success:function(data){	
+			if(data.code==200){
+				toastrSuccess(data.msg,2000);				
+			}else{
+				toastrError(data.msg,2000);
+			}		
+		}
+	});
 	
 }
 /***
