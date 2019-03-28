@@ -8,11 +8,12 @@ import com.jfinal.kit.Prop;
 import com.jfinal.kit.PropKit;
 import java.util.Date;
 import java.util.Properties;
+import java.util.Random;
 /***
  * 
  * @author jeff
  * 发送邮件的工具类
- *
+ * 发送失败的原因很常是因为被判定成垃圾邮件(最好接收方和发送方都是同种类型的邮箱)
  */
 public class MailUtil {
     public static String myEmailAccount = "*************";//发送方邮件地址
@@ -54,12 +55,16 @@ public class MailUtil {
      * @param receiveMail
      * @return
      * @throws Exception
-     */
+     */ 
     public static MimeMessage createMimeMessage(Session session,MailBean mail) throws Exception {       
-        MimeMessage message = new MimeMessage(session);     
+        MimeMessage message = new MimeMessage(session);   
+       //防止成为垃圾邮件，披上outlook的马甲 
+        message.addHeader("X-Mailer","Microsoft Outlook Express 6.00.2900.2869");
+        message.addRecipients(MimeMessage.RecipientType.CC,  InternetAddress.parse(myEmailAccount));
+        message.addRecipients(MimeMessage.RecipientType.TO,  InternetAddress.parse(receiveMailAccount));
         message.setFrom(new InternetAddress(myEmailAccount, mail.getSenderName(), "UTF-8"));
-        message.setRecipient(MimeMessage.RecipientType.TO, new InternetAddress(receiveMailAccount, mail.getReceiveName(), "UTF-8"));
-        message.setSubject(mail.getSubject(), "UTF-8");
+       // message.setRecipient(MimeMessage.RecipientType.TO, new InternetAddress(receiveMailAccount, mail.getReceiveName(), "UTF-8"));
+        message.setSubject(mail.getSubject(), "UTF-8");   
         message.setContent(mail.getContent(), "text/html;charset=UTF-8");
         message.setSentDate(new Date());
         message.saveChanges();
@@ -67,10 +72,13 @@ public class MailUtil {
     }
     
     public  static void main(String[] args){
-    	MailBean mail=new MailBean("2498082473@qq.com","系统提示");
-    	mail.setReceiveName("用户");
-    	mail.setSenderName("系统");   	
-    	mail.setContent("信息内容");    
+   	 Random random = new Random();
+	 int randomNum = random.nextInt(1000000);
+     String randomCode = String.format("%06d", randomNum);
+     MailBean mail=new MailBean("2498082473@qq.com","系统验证码");
+     mail.setReceiveName("用户");
+     mail.setSenderName("PAMS");
+     mail.setContent("<h2>"+randomCode+"</h2>");  
     	try {
 			sendMail(mail);
 		} catch (Exception e) {		

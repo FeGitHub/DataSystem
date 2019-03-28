@@ -5,6 +5,7 @@ import java.util.Map;
 import com.DS.common.model.Remind;
 import com.DS.remind.service.RemindService;
 import com.DS.remind.service.impl.RemindServiceImpl;
+import com.DS.remind.vo.RemindVo;
 import com.DS.utils.common.ObjectUtil;
 import com.DS.web.base.BaseController;
 import com.jfinal.aop.Inject;
@@ -31,13 +32,10 @@ public class RemindController extends BaseController {
 	 * 获取预警规则信息
 	 */
 	public void getRemindDetails(){	
-		Record user = (Record)getSession().getAttribute("user");
-		DivPageCondition=getDivPageCondition();
-		DivPageCondition.put("startDates", getPara("startDates"));
-		DivPageCondition.put("endDates", getPara("endDates"));
-		DivPageCondition.put("taskName", getPara("taskName"));	
-		DivPageCondition.put("userId", user.get("id"));	
-        renderJson(remindService.getRemindDetails(DivPageCondition));
+		RemindVo vo=getBean(RemindVo.class,"");
+		Map<String,Object> limit=ObjectUtil.convertBeanToMap(vo);
+		limit=getDivPageParam(limit);
+        renderJson(remindService.getRemindDetails(limit));
 		
 	}
 	

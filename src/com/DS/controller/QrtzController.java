@@ -1,4 +1,5 @@
 package com.DS.controller;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import com.DS.bean.QuartzTaskBean;
@@ -21,9 +22,10 @@ public class QrtzController extends BaseController{
 	 * 三表连接：qrtz_job_details,qrtz_triggers,qrtz_cron_triggers
 	 */
 	public void getJobDetails(){
-		DivPageCondition=getDivPageCondition();//基本分页参数
-		DivPageCondition.put("jobName", getPara("jobName"));
-		Map<String, Object> map=quartzService.getQuartzList(DivPageCondition);
+		Map<String,Object> limit=new HashMap<String,Object>();
+		limit.put("jobName", getPara("jobName"));
+		limit=getDivPageParam(limit);//基本分页参数		
+		Map<String, Object> map=quartzService.getQuartzList(limit);
         renderJson(ajaxDoneSuccess(map));
 	}
 	

@@ -6,7 +6,7 @@
 
 #sql("deleteAll")
 	delete  from project_tree where 1=1
-	and projectId=#para(projectId)
+	and projectId=#para(projectId) 
 #end
 
 

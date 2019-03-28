@@ -14,6 +14,8 @@ import com.DS.task.service.TaskService;
 import com.DS.task.service.impl.CalendarServiceImpl;
 import com.DS.task.service.impl.ProjectTreeServiceImpl;
 import com.DS.task.service.impl.TaskServiceImpl;
+import com.DS.task.vo.ProjectListVo;
+import com.DS.task.vo.TaskListVo;
 import com.DS.task.vo.TaskVo;
 import com.DS.utils.common.ObjectUtil;
 import com.DS.utils.common.TimeUtil;
@@ -59,11 +61,10 @@ public class TaskController extends BaseController{
         * 获取任务列表详情
         */
        public void getTargetList(){	
-   		DivPageCondition=getDivPageCondition();
-   		DivPageCondition.put("startDates", getPara("startDates"));
-   		DivPageCondition.put("endDates", getPara("endDates"));
-   		DivPageCondition.put("taskName", getPara("taskName"));				
-        renderJson(taskService.getTargetTaskList(DivPageCondition));
+    	TaskListVo vo=getBean(TaskListVo.class,"");
+   		Map<String,Object> limit=ObjectUtil.convertBeanToMap(vo);
+   		limit=getDivPageParam(limit);		
+        renderJson(taskService.getTargetTaskList(limit));
    		
    	}
        
@@ -101,7 +102,7 @@ public class TaskController extends BaseController{
 		  Record nowUser = (Record)getSession().getAttribute("user");
 		 String projectId=getPara("projectId");
 		 Project project=new Project();
- 		 project=project.findById(projectId); 		 
+ 		 project=project.findById(projectId); 		  
          //工程总计划时间
  		 String suminfo=TimeUtil.getDatePoor(project.getPlantFinshDate(), project.getPlanStartDate());
  		 long projectTime=project.getPlantFinshDate().getTime()-project.getPlanStartDate().getTime();
@@ -216,13 +217,10 @@ public class TaskController extends BaseController{
       * 获取工程任务列表数据
       */
      public void getProjectList(){
-    	 Record user = (Record)getSession().getAttribute("user");
-    	 DivPageCondition=getDivPageCondition();
-    	 DivPageCondition.put("userId", user.get("id"));
-    	 DivPageCondition.put("projectName", getPara("projectName")); 
-    	 DivPageCondition.put("startDates", getPara("startDates"));
- 		 DivPageCondition.put("endDates", getPara("endDates"));
-		 renderJson(taskService.getProjectList(DivPageCondition));
+    	 ProjectListVo vo=getBean(ProjectListVo.class,"");
+ 		 Map<String,Object> limit=ObjectUtil.convertBeanToMap(vo);
+ 		 limit=getDivPageParam(limit);   	
+		 renderJson(taskService.getProjectList(limit));
      }
      
      /*****

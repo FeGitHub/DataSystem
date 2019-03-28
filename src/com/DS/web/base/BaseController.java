@@ -14,7 +14,7 @@ public abstract class BaseController extends Controller{
 	protected Map<String,Object> DivPageCondition=new HashMap<String,Object>();//分页约束条件
 	
 	protected  int start;//开始展示的数据
-	protected  int length;//每页展示数据条数
+	protected  int length;//每页展示数据条数 
 	
 	
 	protected Map<String,Object> ajaxDoneSuccess(String message){
@@ -49,10 +49,27 @@ public abstract class BaseController extends Controller{
 		return resultMap;
 	}
 	/****
-	 * 得到dataTables基本的分页约束条件
+	 * 基本分页参数
 	 * @return
 	 */
 	 public Map<String,Object> getDivPageCondition(){
+		    Record nowUser = (Record)getSession().getAttribute("user");
+		    String userId=nowUser.get("id")+"";		 
+			start=Integer.parseInt(getPara("start"));  
+			length=Integer.parseInt(getPara("length"));	
+			DivPageCondition.put("userId", userId);
+			DivPageCondition.put("start", start);
+			DivPageCondition.put("length", length);	
+			return DivPageCondition;
+	 }
+	 
+	 /****
+	  * 将用户的参数限制和基本分页参数限制结合
+	  * @param param
+	  * @return
+	  */
+	 public Map<String,Object> getDivPageParam(Map<String,Object> param){
+		   
 		    Record nowUser = (Record)getSession().getAttribute("user");
 		    String userId=nowUser.get("id")+"";		 
 			start=Integer.parseInt(getPara("start"));
@@ -60,7 +77,8 @@ public abstract class BaseController extends Controller{
 			DivPageCondition.put("userId", userId);
 			DivPageCondition.put("start", start);
 			DivPageCondition.put("length", length);	
-			return DivPageCondition;
+			param.putAll(DivPageCondition);
+			return param;
 	 }
 	 
 }

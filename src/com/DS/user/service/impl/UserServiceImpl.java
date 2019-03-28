@@ -4,6 +4,7 @@ import java.util.Map;
 import com.DS.common.model.User;
 import com.DS.user.service.UserService;
 import com.DS.user.vo.UserVo;
+import com.DS.utils.common.DataTablesUtil;
 import com.DS.utils.common.ObjectUtil;
 import com.DS.utils.common.SecretUtil;
 import com.jfinal.plugin.activerecord.Db;
@@ -30,6 +31,18 @@ public class UserServiceImpl implements UserService {
 	    User dao=new User();
 	    List<User> userList=dao.find(sql);	    
 		return userList;
+	}
+  
+	
+	/****
+	 * 获取用户分页列表
+	 */
+	@Override
+	public Map<String, Object> getUserList(Map<String,Object> cond) {
+		SqlPara sqlShow = Db.getSqlPara("user.getUserList",cond);
+		SqlPara sqlTotal = Db.getSqlPara("user.getUserListSize",cond);      
+		Map<String,Object> map=DataTablesUtil.getPageData(sqlShow, sqlTotal);
+		return map;
 	}
 
 }

@@ -9,7 +9,6 @@ import com.DS.controller.QrtzController;
 import com.DS.controller.RemindController;
 import com.DS.controller.RemoteHTTPAction;
 import com.DS.controller.TaskController;
-import com.DS.controller.TestController;
 import com.DS.controller.UserController;
 import com.DS.controller.indexController;
 import com.jfinal.config.Routes;
@@ -25,8 +24,7 @@ public class _MappingRoute {
 	        me.add("/user",UserController.class);//用户
 	        me.add("/RemoteAction",RemoteHTTPAction.class);//提供给远程调用的action
 	        me.add("/qrtz",QrtzController.class);//提供给远程调用的action
-	        me.add("/remind",RemindController.class);//备忘提醒的相关处理
-	        me.add("/test",TestController.class);
+	        me.add("/remind",RemindController.class);//备忘提醒的相关处理	      
 	        me.add("/task",TaskController.class);
 	        me.add("/demo",DemoController.class);
 	        me.add("/menu",MenuController.class);

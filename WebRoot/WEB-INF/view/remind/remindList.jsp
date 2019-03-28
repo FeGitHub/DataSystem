@@ -112,7 +112,7 @@
     </div>
 </template>
 <!--弹出框内容模板-->
-<script src="${BASE_PATH}/js/pagejs/remindList.js"></script>
+<script src="${BASE_PATH}/js/pagejs/remind/remindList.js"></script>
 <script src="${BASE_PATH}/js/validation/lang/jquery.validationEngine-zh_CN.js"></script>
 <script src="${BASE_PATH}/js/validation/jquery.validationEngine.min.js"></script>	
 </body>

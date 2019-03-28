@@ -1,5 +1,6 @@
 package com.DS.user.service;
 import java.util.List;
+import java.util.Map;
 import com.DS.common.model.User;
 import com.DS.user.vo.UserVo;
 /***
@@ -21,5 +22,5 @@ public interface UserService {
     */
    List<User> getAllUser();
    
-   
+   Map<String, Object> getUserList(Map<String,Object> cond);
 }

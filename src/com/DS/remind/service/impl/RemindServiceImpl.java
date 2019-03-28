@@ -13,7 +13,10 @@ import com.jfinal.plugin.activerecord.SqlPara;
  * 备忘提醒服务层实现类
  */
 public class RemindServiceImpl implements RemindService {
-
+   
+	/****
+	 * 获取备忘提醒数据列表
+	 */
 	@Override
 	public Map<String, Object> getRemindDetails(Map<String,Object> cond) {
 		  SqlPara sqlShow = Db.getSqlPara("remind.getRemindDetails",cond);
