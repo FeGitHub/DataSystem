@@ -1,6 +1,8 @@
 package com.DS.interceptor;
 import java.util.List;
 import javax.servlet.http.HttpSession;
+
+import com.DS.common.model.User;
 import com.DS.menu.service.MenuService;
 import com.DS.menu.service.impl.MenuServiceImpl;
 import com.DS.notification.service.NotificationService;
@@ -31,9 +33,15 @@ public class LoginInterceptor implements Interceptor{
 			inv.getController().redirect("/");
 		}
 		else{
-			Record user = (Record)session.getAttribute("user");
+			User user = (User)session.getAttribute("user");
 			if(user!= null) {
-				 JSONArray menu=menuService.getTreeMenu();  
+				 JSONArray menu=null;
+				 if(session.getAttribute("menu")==null){
+					 menu=menuService.getTreeMenu(); 
+					 session.setAttribute("menu", menu);			
+				 }else{
+					 menu=(JSONArray) session.getAttribute("menu");					
+				 }
 				 List<Record> notifications=notificationService.getNotification(user.getStr("id"));
 				 long notificationSize=notificationService.getNotificationSize(user.getStr("id"));
 				 controller.setAttr("notificationSize", notificationSize);

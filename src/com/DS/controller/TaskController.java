@@ -8,6 +8,7 @@ import com.DS.bean.TaskCalendarBean;
 import com.DS.common.model.Project;
 import com.DS.common.model.ProjectTree;
 import com.DS.common.model.Task;
+import com.DS.common.model.User;
 import com.DS.task.service.CalendarService;
 import com.DS.task.service.ProjectTreeService;
 import com.DS.task.service.TaskService;
@@ -99,7 +100,7 @@ public class TaskController extends BaseController{
 	 * 跳转到工程任务树页面
 	 */
 	public void goProjectTree(){
-		  Record nowUser = (Record)getSession().getAttribute("user");
+		 User nowUser = (User)getSession().getAttribute("user");
 		 String projectId=getPara("projectId");
 		 Project project=new Project();
  		 project=project.findById(projectId); 		  
@@ -115,6 +116,7 @@ public class TaskController extends BaseController{
  	    	String pct = numberFormat.format((float)difftime/(float)projectTime*100);
  	    	setAttr("remindDay","剩余"+remindinfo);
  	    	setAttr("pct",pct+"%"); 
+ 	    	setAttr("pnum",pct); 
  	     }else if(new Date().getTime()>project.getPlanStartDate().getTime()){
  	    	setAttr("remindDay","已结束");
  	    	setAttr("pct","0%"); 
@@ -123,7 +125,7 @@ public class TaskController extends BaseController{
  	    	 setAttr("pct","100%");
  	     }
  	    setAttr("projectId",projectId);
-		setAttr("userId",nowUser.get("id"));
+		setAttr("userId",nowUser.getId()+"");
 		render("projectTree.jsp");
 	}	
 	
@@ -146,10 +148,10 @@ public class TaskController extends BaseController{
 	 */
 	 public void createTarget(){		
 		  TaskVo vo=getBean(TaskVo.class,"");
-		  Record nowUser = (Record)getSession().getAttribute("user");
+		  User nowUser = (User)getSession().getAttribute("user");
 		  Map<String,Object> paramMap=ObjectUtil.convertBeanToMap(vo);		
 		  paramMap.put("addTime",new Date());
-		  paramMap.put("userId",nowUser.get("id"));
+		  paramMap.put("userId",nowUser.getId());
 		  SqlPara insertSql=Db.getSqlPara("task.insertData",paramMap);
 		  int result=Db.update(insertSql);
 		  if(result>0){
@@ -163,8 +165,8 @@ public class TaskController extends BaseController{
 	  * 获取用户的工程任务甘特图
 	  */
      public void getProjectGantt(){
-    	 Record user = (Record)getSession().getAttribute("user");
-    	 JSONArray r=taskService.getProjectGantt(user.get("id")+"");
+    	 User user = (User)getSession().getAttribute("user");
+    	 JSONArray r=taskService.getProjectGantt(user.getId()+"");
     	 renderJson(r);
      }
      
@@ -178,10 +180,10 @@ public class TaskController extends BaseController{
       * 创建新的工程
       */
      public void createProject(){   	 
-    	 Record user = (Record)getSession().getAttribute("user");
+    	 User user = (User)getSession().getAttribute("user");
     	 Project project=getModel(Project.class,"");
-    	 project.setUserId(user.getInt("id"));
-    	 project.setUserName(user.getStr("account"));
+    	 project.setUserId(user.getId());
+    	 project.setUserName(user.getAccount());
     	 int projectId=projectTreeService.createProject(project);
     	 if(projectId>0){
     		 Map<String,Object> result=new HashMap<String,Object>();
@@ -227,9 +229,9 @@ public class TaskController extends BaseController{
       * 获取用户的工程任务树的数据
       */
      public void getProjectTree(){
-    	 Record user = (Record)getSession().getAttribute("user");
+    	 User user = (User)getSession().getAttribute("user");
     	 String projectId=getPara("projectId");
-    	 String userId=user.get("id")+"";
+    	 String userId=user.getId()+"";
     	 Map<String,Object> json=projectTreeService.getProjectTree(projectId, userId); 		
     	 renderJson(json);   	 
      }
@@ -250,9 +252,9 @@ public class TaskController extends BaseController{
       * 获取日历任务信息
       */
      public void getTaskCalendar(){
-		 Record user = (Record)getSession().getAttribute("user");
+		 User user = (User)getSession().getAttribute("user");
 		 Map<String,Object> paramMap=new HashMap<String,Object>();
-    	 paramMap.put("userId", user.get("id"));
+    	 paramMap.put("userId", user.getId());
     	 SqlPara sql=Db.getSqlPara("task.getTaskCalendar",paramMap);
  		 List<Record> projectTree= Db.find(sql);		
  		 renderJson(projectTree);   	 
@@ -277,9 +279,9 @@ public class TaskController extends BaseController{
       * 添加日历任务
       */
      public void addTaskCalendar(){
-    	 Record user = (Record)getSession().getAttribute("user");
+    	 User user = (User)getSession().getAttribute("user");
     	 Task task=getModel(Task.class,"");	
-    	 task.setUserId(user.get("id"));
+    	 task.setUserId(user.getId());
     	 task=calendarService.createTask(task);
     	 if(task!=null){
     		 TaskCalendarBean bean=calendarService.convert(task);    		

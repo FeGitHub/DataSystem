@@ -2,6 +2,8 @@ package com.DS.controller;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
+
+import com.DS.common.model.User;
 import com.DS.file.service.FileService;
 import com.DS.file.service.impl.FileServiceImpl;
 import com.DS.notification.service.NotificationService;
@@ -69,8 +71,8 @@ public class DemoController extends BaseController {
       }
 	  
 	  public void goMailBox(){
-		  Record user=(Record)getSession().getAttribute("user");
-		  long endPageNumber=notificationService.getNotificationSize(user.getStr("id"));
+		  User user=(User)getSession().getAttribute("user");
+		  long endPageNumber=notificationService.getNotificationSize(user.getId()+"");
 		  endPageNumber=(long) Math.floor(endPageNumber/5);
 		  if(endPageNumber==0){
 			  endPageNumber=endPageNumber+1;
@@ -83,8 +85,8 @@ public class DemoController extends BaseController {
 	   * 加载通知信息列表
 	   */
 	  public void loadNotifyList(){		  
-	      Record user=(Record)getSession().getAttribute("user");
-	      Map<String, Object> map=notificationService.loadNotifyList(user.getStr("id"), getPara("pageNumber"));
+	      User user=(User)getSession().getAttribute("user");
+	      Map<String, Object> map=notificationService.loadNotifyList(user.getId()+"", getPara("pageNumber"));
 	      renderJson(ajaxDoneSuccess(map));
 	  }
 	  

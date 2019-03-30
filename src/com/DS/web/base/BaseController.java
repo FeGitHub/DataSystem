@@ -1,6 +1,8 @@
 package com.DS.web.base;
 import java.util.HashMap;
 import java.util.Map;
+
+import com.DS.common.model.User;
 import com.jfinal.core.Controller;
 import com.jfinal.plugin.activerecord.Record;
 /****
@@ -53,8 +55,8 @@ public abstract class BaseController extends Controller{
 	 * @return
 	 */
 	 public Map<String,Object> getDivPageCondition(){
-		    Record nowUser = (Record)getSession().getAttribute("user");
-		    String userId=nowUser.get("id")+"";		 
+		    User nowUser = (User)getSession().getAttribute("user");
+		    String userId=nowUser.getId()+"";		 
 			start=Integer.parseInt(getPara("start"));  
 			length=Integer.parseInt(getPara("length"));	
 			DivPageCondition.put("userId", userId);
@@ -68,10 +70,9 @@ public abstract class BaseController extends Controller{
 	  * @param param
 	  * @return
 	  */
-	 public Map<String,Object> getDivPageParam(Map<String,Object> param){
-		   
-		    Record nowUser = (Record)getSession().getAttribute("user");
-		    String userId=nowUser.get("id")+"";		 
+	 public Map<String,Object> getDivPageParam(Map<String,Object> param){		   
+		    User nowUser = (User)getSession().getAttribute("user");
+		    String userId=nowUser.getId()+"";		 
 			start=Integer.parseInt(getPara("start"));
 			length=Integer.parseInt(getPara("length"));	
 			DivPageCondition.put("userId", userId);

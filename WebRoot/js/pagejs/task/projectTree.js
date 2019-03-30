@@ -3,7 +3,9 @@
  */
 var tree="projectTree";
 $(function() {
-	init();
+	initTable();
+	initShowProgess();
+
 });
 
 
@@ -73,9 +75,6 @@ $("body").on("click","#submitBtn",function(){
 			}		
 		}
 	});
-	
-	
-	
 	$("#seeMethodModal").modal("hide");
 })
 
@@ -206,13 +205,13 @@ $("#updateBtn").click(function(){
 	});	
 
 /****
- * 
+ * 删除节点
  * @param event
  * @param treeId
  * @param treeNode
  */
 function zTreeOnRemove(event, treeId, treeNode) {
-	console.log(treeNode.id);
+	//console.log(treeNode.id);
 	$.ajax({
 		url:basepath+"/task/delProjectTask",
 		type:"post",
@@ -323,8 +322,10 @@ function updateProjectTask(node){
 	});
 }
 
-
-function init(){
+/****
+ * 初始化数据表格
+ */
+function initTable(){
 	//设置	  
 	 var setting = {
 	            view: {
@@ -354,11 +355,31 @@ function init(){
 			data:{"projectId":$("#projectId").val()},
 			dataType:"json",
 			success:function(data){		
-				    console.log(data);
+				    //console.log(data);
 					 $.fn.zTree.init($("#"+tree), setting, data.projectTree);
 					 pieChart(parseInt(data.done),parseInt(data.undone),parseInt(data.underway));
 					 $(".overlay").remove();
 			}
 		});
+}
+
+
+/***
+ * 展示剩余进度时间
+ */
+function showProgess(){
+	layer.msg($("#progress").data("msg"));
+
+}
+
+
+/***
+ * 初始化任务进度条
+ */
+function initShowProgess(){
+   if(parseInt($("#progress").data("pnum"))>8){
+	   var msg=$("#progress").data("msg");
+	   $("#progress").text(msg);
+   }
 }
 

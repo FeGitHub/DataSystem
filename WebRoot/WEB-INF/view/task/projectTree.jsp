@@ -7,16 +7,15 @@
   <link rel="stylesheet" href="${BASE_PATH}/plug/ztree-bootstrap/css/bootstrapStyle/bootstrapStyle.css" type="text/css"> 
 </head>
 <body>
-    <div class="tile">    	    	
+    <div class="tile">
+                 <button id="popBtn" onclick="showProgess(this)" type="button" class="btn btn-primary">弹出</button>&nbsp;&nbsp;    	    	
     	    	 <button id="testBtn" type="button" class="btn btn-primary">输出树形数据</button>&nbsp;&nbsp;
-    	    	 <button id="updateBtn" type="button" class="btn btn-primary">提交工程任务</button>
-    	    
-    	    	 
+    	    	 <button id="updateBtn" type="button" class="btn btn-primary">提交工程任务</button>  	       	    	 
     </div>
      <div class="tile">   
          	   <div class="bs-component">
-              <div class="progress mb-2">
-                <div class="progress-bar progress-bar-striped progress-bar-animated" role="progressbar" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100" style="width:${pct}">${remindDay}</div>
+              <div class="progress mb-2" onclick="showProgess(this)">
+                <div id="progress"  class="progress-bar progress-bar-striped progress-bar-animated" role="progressbar" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100"  data-msg="${remindDay}" data-pnum="${pnum}" style="width:${pct}"></div>              
               </div>
             </div> 
      </div>
@@ -41,9 +40,7 @@
 		    	</div>
 		    </div>
     </div>
-    
-    
-    <!--弹出框基本框架开始-->
+
 				<div class="modal" id="seeMethodModal">
 						<div class="modal-dialog modal-lg ptn" style="width:600px;"><!--修改这个width可以改变整个模态框的宽度-->
 						    <div class="modal-content" >
@@ -60,9 +57,6 @@
 					    </div>
 					  </div>
 				</div>
-<!--弹出框主体框架结束-->
-
-<!--弹出框内容模板-->
 <template id="remindTemp">
     <div class="panel mbn" style="height:550px;">
        <div class="panel-body" >
@@ -115,13 +109,13 @@
       </div>
     </div>
 </template>
- <script src="${BASE_PATH}/js/plugjs/echarts.js"></script>
+    <script src="${BASE_PATH}/js/plugjs/echarts.js"></script>
     <script src="${BASE_PATH}/js/pagejs/demojs/eChartsDemo/walden.js"></script> <!--图标样式-->
     <script type="text/javascript" src="${BASE_PATH}/plug/ztree-bootstrap/js/jquery.ztree.core.js"></script>
     <script type="text/javascript" src="${BASE_PATH}/plug/ztree-bootstrap/js/jquery.ztree.excheck.js"></script>
     <script type="text/javascript" src="${BASE_PATH}/plug/ztree-bootstrap/js/jquery.ztree.exedit.js"></script>
-    <script src="${BASE_PATH}/js/validation/lang/jquery.validationEngine-zh_CN.js"></script>
-    <script src="${BASE_PATH}/js/validation/jquery.validationEngine.min.js"></script>	
+<%--     <script src="${BASE_PATH}/js/validation/lang/jquery.validationEngine-zh_CN.js"></script>
+    <script src="${BASE_PATH}/js/validation/jquery.validationEngine.min.js"></script>	 --%>
     <script type="text/javascript" src="${BASE_PATH}/js/pagejs/task/projectTree.js"></script>
 </body>
 </html>

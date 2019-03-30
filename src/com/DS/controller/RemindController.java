@@ -3,6 +3,7 @@ import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
 import com.DS.common.model.Remind;
+import com.DS.common.model.User;
 import com.DS.remind.service.RemindService;
 import com.DS.remind.service.impl.RemindServiceImpl;
 import com.DS.remind.vo.RemindVo;
@@ -45,9 +46,9 @@ public class RemindController extends BaseController {
 	public void updateRemindDetail(){	
 		int result;
 		Remind  record = getModel(Remind.class,"");	
-		Record user = (Record)getSession().getAttribute("user");
-		record.setUserId(user.get("id"));
-		record.setUserName(user.get("userName"));
+		User user = (User)getSession().getAttribute("user");
+		record.setUserId(user.getId());
+		record.setUserName(user.getAccount());
 		if(record.getStr("id")!=""&&record.getStr("id")!=null){
 			Map<String,Object> paramMap=ObjectUtil.convertBeanToMap(record);
 		    SqlPara updateSql=Db.getSqlPara("remind.updateData", paramMap);
