@@ -26,8 +26,8 @@ public class DSConfig extends JFinalConfig {
        PropKit.use("DB.properties");
 	   me.setDevMode(PropKit.getBoolean("devMode", true));
 	   me.setInjectDependency(true);//依赖注入
-	 /*  me.setBaseUploadPath("upload");
-	   me.setBaseDownloadPath("C:/");*/       
+	   me.setBaseUploadPath("PAMS_upload");//默认上传文件路径(项目中，第一次上传时会自动创建)
+	  // me.setBaseDownloadPath("PAMS_load");//默认下载路径    
     }
     /***
      * @Description 配置访问路由
@@ -35,7 +35,7 @@ public class DSConfig extends JFinalConfig {
      */
     public void configRoute(Routes me) {
         me.setBaseViewPath("/WEB-INF/view/"); //默认视图路径
-        _MappingRoute.mapping(me);
+        _MappingRoute.mapping(me);//路由映射
     }
     
     @Override
@@ -65,12 +65,18 @@ public class DSConfig extends JFinalConfig {
         me.addGlobalActionInterceptor(new LoginInterceptor());
     }
     
+    /***
+     * 插件助手配置
+     */
     public void configHandler(Handlers me) {
     	  me.add(new UrlSkipHandler("/api.*", false));//除去对hessian的影响
-    	  me.add(new ContextPathHandler("BASE_PATH"));
+    	  me.add(new ContextPathHandler("BASE_PATH"));//设置项目路径变量
     }
     
-   
+    /***
+     * 创建Druid连接
+     * @return
+     */
     public static DruidPlugin createDruidPlugin() {
     	 PropKit.use("DB.properties");
     	 String password=PropKit.get("password").trim();

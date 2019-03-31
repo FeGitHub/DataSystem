@@ -14,6 +14,7 @@ import java.util.Random;
  * @author jeff
  * 发送邮件的工具类
  * 发送失败的原因很常是因为被判定成垃圾邮件(最好接收方和发送方都是同种类型的邮箱)
+ * 本人用某易邮箱发某讯邮箱时常被某易拦截，发给同类型邮箱就不会 ╮(╯ ▽ ╰)╭
  */
 public class MailUtil {
     public static String myEmailAccount = "*************";//发送方邮件地址
@@ -22,6 +23,10 @@ public class MailUtil {
     public static String receiveMailAccount ="************";
     
     
+    /****
+     * 初始化基本配置信息
+     * @param mailAccount
+     */
     public static void initConfig(String mailAccount){
     	Prop p =PropKit.use("config.properties");
     	myEmailAccount=p.get("myEmailAccount");

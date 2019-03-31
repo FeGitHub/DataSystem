@@ -1,4 +1,5 @@
 package com.DS.config;
+import com.DS.controller.AnalyseController;
 import com.DS.controller.DemoController;
 import com.DS.controller.ExcelController;
 import com.DS.controller.FileController;
@@ -30,5 +31,6 @@ public class _MappingRoute {
 	        me.add("/menu",MenuController.class);
 	        me.add("/file",FileController.class);
 	        me.add("/excel",ExcelController.class);
+	        me.add("/analyse",AnalyseController.class);
 	}
 }

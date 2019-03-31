@@ -4,10 +4,13 @@ import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.nio.channels.FileChannel;
+import java.util.List;
 import java.util.UUID;
 import com.DS.file.service.FileService;
+import com.DS.utils.common.CSVUtil;
 import com.jfinal.kit.Prop;
 import com.jfinal.kit.PropKit;
+import com.jfinal.plugin.activerecord.Record;
 
 public class FileServiceImpl implements FileService {
 		/****
@@ -59,6 +62,22 @@ public class FileServiceImpl implements FileService {
 		    }	 
 		  return copyfile;
 	}
+ 
+	
+	/****
+	 * 读取csv文件信息
+	 */
+	@Override
+	public List<Record> readCSV(File csv) {
+		List<Record> data=null;
+		try {
+			 data=CSVUtil.ReadCSV(csv);
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		csv.delete();//删除读取文件
+		return data;
+	  }
 	  
 	}
 

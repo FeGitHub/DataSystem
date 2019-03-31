@@ -1,10 +1,15 @@
 package com.DS.controller;
 import java.io.File;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
 import com.DS.file.service.FileService;
 import com.DS.file.service.impl.FileServiceImpl;
 import com.DS.web.base.BaseController;
 import com.jfinal.aop.Inject;
 import com.jfinal.kit.PathKit;
+import com.jfinal.plugin.activerecord.Record;
 import com.jfinal.upload.UploadFile;
 /****
  * 用于处理文件操作的控制器
@@ -29,7 +34,7 @@ public class FileController extends BaseController{
 	  } 
 	  
 	  /****
-	   * 上传文件资源到服务器（服务器任意位置）
+	   * 上传文件资源到服务器（自定义位置）
 	   */
 	  public void uploadFile() 
 	  {   		  
@@ -54,6 +59,22 @@ public class FileController extends BaseController{
 		  System.out.println(path);*/
 		  renderJson(ajaxDoneSuccess("文件上传成功"));
 	  }
-	  		  
+	  
+	
+	  /****
+	   * 读取csv文件信息
+	   */
+	  public void readCSV(){
+		  UploadFile uploadFile = this.getFile();//获取前台上传文件对象 
+		  File file = uploadFile.getFile();//获取文件对象 
+		  List<Record> data=fileService.readCSV(file);
+		  Map<String,Object> map=new HashMap<String,Object>();
+		  map.put("csv", data);
+		  if(data!=null){
+			  renderJson(ajaxDoneSuccess(map));
+		  }else{
+			  renderJson(ajaxDoneError("文件读取失败"));
+		  }
+	  }
 	 
 }

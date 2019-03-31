@@ -30,6 +30,10 @@ function userCheck(ths) {
     }
 }
 
+/****
+ * 获取选中列
+ * @returns {Array}
+ */
   function queryCheckedValue(){
 	var ids = [];	
 	$("input:checkbox[name='itemBox']:checked").each(function(i) {
@@ -69,7 +73,9 @@ $("#delBtn").click(function(){
 
 
 
-
+/****
+ * 刷新
+ */
 $("#refreshBtn").click(function(){
 	loadMailBox(true);
 });
@@ -86,7 +92,8 @@ $("#refreshBtn").click(function(){
 		      dataType:"json",
 		      data:{"pageNumber":pageNumber},
 		      success:function(data){	
-		    	  if(data.code==200){   		   
+		    	  if(data.code==200){  
+		    		     //console.log(data.info);
 		    		     var _html = template(data.info);	
 		    		     $("#tb").empty();
 		    			 $("#tb").html(_html);
@@ -108,9 +115,12 @@ $("#refreshBtn").click(function(){
 		  });				
 	}
 	
+	/****
+	 * 前一页
+	 */
 	$("#prevId").click(function(){
 		var pageNumber=parseInt($("#pageNumberId").val())-1;
-		console.log("prevId:"+pageNumber);
+		//console.log("prevId:"+pageNumber);
 		if(pageNumber>0){
 			$("#pageNumberId").val(pageNumber);
 			loadMailBox(false);
@@ -118,10 +128,13 @@ $("#refreshBtn").click(function(){
 		
 	});
 	
+	/****
+	 * 下一页
+	 */
 	$("#nextId").click(function(){
 		var pageNumber=parseInt($("#pageNumberId").val())+1;
 		var endpageNumber=$("#endPageNumberId").val();
-		console.log("nextId:"+pageNumber);
+		//console.log("nextId:"+pageNumber);
 		if(pageNumber<=endpageNumber){
 			$("#pageNumberId").val(pageNumber);
 			loadMailBox(false);

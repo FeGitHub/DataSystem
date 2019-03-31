@@ -33,6 +33,9 @@ public abstract class BaseController extends Controller{
 	protected Map<String,Object> ajaxDoneSuccess(Map<String,Object> map){
 		resultMap=map;
 		resultMap.put("code", "200");
+		if(resultMap.get("msg")==null){
+			resultMap.put("msg", "操作成功");
+		}
 		return resultMap;
 	}
 	protected Map<String,Object> ajaxDoneError(String message){
@@ -48,6 +51,9 @@ public abstract class BaseController extends Controller{
 	protected Map<String,Object> ajaxDoneError(Map<String,Object> map){
 		resultMap=map;
 		resultMap.put("code", "409");
+		if(resultMap.get("msg")==null){
+			resultMap.put("msg", "操作失败");
+		}
 		return resultMap;
 	}
 	/****

@@ -1,14 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>  
 <decorators defaultdir="/layouts/">  
  <!-- 不需要过滤的请求 -->  
+ 
  <excludes>  
   <pattern>/static/*</pattern>  
   <pattern>/login/*</pattern> 
-  
+  <pattern>/go/*</pattern> 
  </excludes>  
+ 
  <!-- 定义装饰器要过滤的页面 -->  
- <decorator name="global" page="global.jsp">  
-       <pattern>/go/*</pattern> 
+ <decorator name="global" page="global.jsp">      
        <pattern>/login/*</pattern> 
        <pattern>/user/*</pattern> 
        <pattern>/qrtz/*</pattern> 
@@ -17,16 +18,15 @@
        <pattern>/remind/*</pattern>      
        <pattern>/demo/*</pattern>  
        <pattern>/task/*</pattern>   
-       <pattern>/menu/*</pattern>   
-        
+       <pattern>/menu/*</pattern>
+       <pattern>/analyse/*</pattern>             
  </decorator>     
  
  <decorator name="notitle" page="notitle.jsp">    
        <pattern>/demo/goGant</pattern>   
  </decorator>    
  
-  <decorator name="self" page="self.jsp">    
-        <pattern>/test/*</pattern> 
+  <decorator name="self" page="self.jsp">           
          <pattern>/task/goFullCalendar</pattern>      
  </decorator>   
 </decorators> 

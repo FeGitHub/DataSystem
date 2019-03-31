@@ -8,14 +8,14 @@
 </head>
 <body>
     <div class="tile">
-           <div class="overlay">
+          <div class="overlay">
               <div class="m-loader mr-4">
                 <svg class="m-circular" viewBox="25 25 50 50">
                 	<circle class="path" cx="50" cy="50" r="20" fill="none" stroke-width="4" stroke-miterlimit="10"/>
                 </svg>
               </div>
-              <h3 class="l-text">Loading</h3>
-            </div>       
+              <h3 class="l-text">加载中</h3>
+            </div>    
     	 <ul id="menuTree" class="ztree"></ul>
     	 <button id="updateMenuBtn" type="button" class="btn btn-primary">保存</button>
     	 <button id="testMenuBtn" type="button" class="btn btn-primary">测试</button>

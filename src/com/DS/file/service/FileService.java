@@ -1,5 +1,8 @@
 package com.DS.file.service;
 import java.io.File;
+import java.util.List;
+
+import com.jfinal.plugin.activerecord.Record;
 
 /****
  * 文件操作服务层
@@ -20,4 +23,7 @@ public interface FileService {
     * @return
     */
    public File uploadFile(File file);
+   
+   
+   public List<Record> readCSV(File csv);
 }

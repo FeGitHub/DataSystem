@@ -1,6 +1,3 @@
-/********
- * testZNodes:每一个节点的信息，父id,自身id，自身节点名
- */
 var dashboard="app-menu__icon fa fa-dashboard";
 var laptop= "app-menu__icon fa fa-laptop";
 var edit="app-menu__icon fa fa-edit";
@@ -54,11 +51,12 @@ function initMenu(){
 		paramToZtreeBootstrap();
 		$.fn.zTree.init($("#menuTree"), setting, testZNodes);   
 	}else{
+	
 		$.ajax({
 			url:basepath+"/menu/getZtreeJsonFromDB",
 			type:"post",
 			dataType:"json",
-			success:function(menu){
+			success:function(menu){				
 				$(".overlay").remove();
 				$.fn.zTree.init($("#menuTree"), setting, menu);  			
 			}

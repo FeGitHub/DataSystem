@@ -11,6 +11,7 @@ import java.util.List;
 
 import org.junit.Test;
 
+import com.jfinal.plugin.activerecord.Record;
 import com.univocity.parsers.csv.CsvFormat;
 import com.univocity.parsers.csv.CsvParser;
 import com.univocity.parsers.csv.CsvParserSettings;
@@ -51,7 +52,7 @@ public class CSVUtil {
     }
 	
 	/****
-	 * 读取CSV数据
+	 * 根据路径读取CSV数据
 	 * @param filePath
 	 * @throws IOException
 	 */
@@ -73,6 +74,39 @@ public class CSVUtil {
         	}
         }
 }
+	
+	/****
+	 * csv文件信息读取
+	 * @param file
+	 * @throws IOException
+	 */
+	public static List<Record> ReadCSV(File file) throws IOException {
+		List<Record> resultList=new ArrayList<Record>();
+        InputStream in = new FileInputStream(file);
+        InputStreamReader reader = new InputStreamReader(in, "UTF-8");
+        CsvParserSettings settings = new CsvParserSettings();
+        settings.getFormat().setLineSeparator("\n");
+        CsvParser parser = new CsvParser(settings);
+        //读取数据到列表
+        List<String[]> allRows = parser.parseAll(reader);
+       //处理读取到的数据
+        String[] rowdata=null;
+        for(int i=0;i<allRows.size();i++){
+        	rowdata=allRows.get(i);
+        	Record record=new Record();
+        	for(int j=0;j<rowdata.length;j++){
+        		record.set(j+"_column", rowdata[j]);
+        		System.out.print(rowdata[j]+" ");
+        	}
+        	resultList.add(record);
+        	System.out.println("");
+        }
+        return resultList;
+}
+	
+
+	
+	
 	@Test
 	public void testReadCSV(){
 		try {
@@ -82,6 +116,11 @@ public class CSVUtil {
 			e.printStackTrace();
 		}
 	}
+	
+	
+	
+	
+	
 	//@Test
 	public void testCreateCSVFile(){
 		String[] heads={"name","age","like"};

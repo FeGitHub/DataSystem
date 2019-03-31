@@ -1,17 +1,19 @@
 package com.DS.utils.common;
 import java.io.File;
+import java.io.IOException;
 import java.util.ArrayList;
 /***
  * @author jeff
  * 文件处理工具类
  */
 public class FileUtil {
-   /* public static void main(String[] args) {
-        String path="F:/MysqlBackup";//注意斜杆方向
+    public static void main(String[] args) {
+       /* String path="F:/MysqlBackup";//注意斜杆方向
         getFilePaths(path);       
         path="F:/MysqlBackup/mysql常用命令.txt";
-        deleteFile(path);
-    }   */
+        deleteFile(path);*/
+    	isDiskExist("W:\\");
+    }   
     /***
      * 
      * @param path 文件路径
@@ -70,9 +72,29 @@ public class FileUtil {
     public static boolean isDiskExist(String diskPath){
     	File f = new File(diskPath);
     	if(f.exists()){
-    		return true;
+    		System.out.println("磁盘存在");
+    		   return true;
     		}else{
+    			System.out.println("磁盘不存在");
     		return false;
     		}   	 
       }
+    
+    
+    /****
+     * 确认配置文件路径是否存在
+     * @param diskPath
+     * @return
+     */
+    public static void checkedPath(String diskPath) {
+    	  File file=new File(diskPath);  
+    	    if(!file.exists())  
+    	    {  
+    	        file .mkdir(); 
+				System.out.println(diskPath+"--文件夹不存在,已创建");  
+    	    } else{
+    	    	System.out.println(diskPath+"--文件夹已存在");
+    	    }
+  
+    }
 }

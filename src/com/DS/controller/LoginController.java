@@ -10,7 +10,6 @@ import com.DS.web.base.BaseController;
 import com.jfinal.aop.Clear;
 import com.jfinal.aop.Inject;
 import com.jfinal.plugin.activerecord.Db;
-import com.jfinal.plugin.activerecord.Record;
 import com.jfinal.plugin.activerecord.SqlPara;
 /****
  * 
@@ -37,14 +36,9 @@ public class LoginController extends BaseController{
        } 	
        if(user!=null&&user.getPassword().equals(password)){
     	     //用户信息
-    	     setSessionAttr("user", user);  
-    	     //菜单信息   	
-    	    /* JSONArray menu=menuService.getTreeMenu();
-    	     JSONObject hash = new JSONObject();
-			 hash.put("menuTree", menu);	
-			 setSessionAttr("menuTree", hash);*/  			
+    	     setSessionAttr("user", user);      	   			
     	     Map<String,Object> map=new HashMap<String,Object>();
-    	     map.put("url", "/go/goMenu");
+    	     map.put("url", "/user/goMenu");
     	     renderJson(ajaxDoneSuccess(map));
        }else{
     	     renderJson(ajaxDoneError("账号或密码出错"));

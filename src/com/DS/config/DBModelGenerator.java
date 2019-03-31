@@ -35,7 +35,7 @@ public class DBModelGenerator {
 		generator.setDialect(new MysqlDialect());		
 		
 		/****
-		 * 注释下面这句生成全部表，否则生成指定表对应的model
+		 * 注释下面这句生成全部表，否则生成指定表对应的model--jeff
 		 */
 		generator.setMetaBuilder(new MyMetaBulider(getDataSource()));
 		

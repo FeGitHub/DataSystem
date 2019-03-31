@@ -76,5 +76,9 @@ public class UserController extends BaseController {
 			renderJson(ajaxDoneError("修改成功"));
 		}
 	}
-
+    
+	
+	 public void goMenu(){					
+	 	 render("main.jsp");
+	 }
 }
