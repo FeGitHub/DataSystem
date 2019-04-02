@@ -90,3 +90,11 @@
               taskId=#para(taskId)
        where taskId=#para(taskId)
   #end
+  
+  
+  /***
+   * 获取用户的未分配任务
+   */
+  #sql("getUndisTasks")
+     select * from task where start is null and userId=#para(userId) limit 10
+  #end

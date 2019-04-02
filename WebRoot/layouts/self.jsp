@@ -17,11 +17,11 @@
      <link href="${BASE_PATH}/css/toastr.min.css" type="text/css" rel="stylesheet">  
   </head>
   <body >
-  <header class="app-header"><a class="app-header__logo" href="index.html"></a>
+  <header class="app-header"><a class="app-header__logo" href="/"></a>
       <a class="app-sidebar__toggle" href="#" data-toggle="sidebar" aria-label="Hide Sidebar"></a>   
        <ul class="app-nav">
         <li class="app-search">
-          <input class="app-search__input" type="search" placeholder="Search">
+          <input class="app-search__input" type="search" placeholder="搜索">
           <button class="app-search__button"><i class="fa fa-search"></i></button>
         </li>        
       </ul>

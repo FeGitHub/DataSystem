@@ -5,6 +5,9 @@ import com.DS.common.model.Task;
 import com.DS.task.service.CalendarService;
 
 public class CalendarServiceImpl implements CalendarService {
+	/****
+	 * 将task类型转换成TaskCalendarBean
+	 */
     public  TaskCalendarBean convert(Task task){
     	TaskCalendarBean bean=new TaskCalendarBean();   	
     	 bean.setId(task.getTaskId());
@@ -13,9 +16,6 @@ public class CalendarServiceImpl implements CalendarService {
 		 if(task.getEnd()!=null){
 			 bean.setEnd(task.getEnd());
 		 }				
-		 if(task.getUserId()!=null){
-			 bean.setId(task.getUserId()); 
-		 }
 		 if(task.getDescription()!=null){
 			bean.setDescription(task.getDescription());
 		 }

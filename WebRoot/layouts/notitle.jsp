@@ -9,7 +9,7 @@
 			<sitemesh:title/>
     </title>      
     <link rel="stylesheet" type="text/css" href="${BASE_PATH}/plug/vali/css/main.css"><!--页面主体样式-->
-   	    <%@ include file="/WEB-INF/view/component/head.jsp" %>  
+   	    <%@ include file="/WEB-INF/res/head.jsp" %>  
    	     <sitemesh:head/> 
   </head>
   <body class="app sidebar-mini rtl">
@@ -123,6 +123,6 @@
       </div>           
       <sitemesh:body/>       
     </main>   
-	<%@ include file="/WEB-INF/view/component/footer.jsp" %>        
+	<%@ include file="/WEB-INF/res/footer.jsp" %>        
   </body>
 </html>

@@ -12,8 +12,7 @@
 	<link href="${BASE_PATH}/plug/fullCalendar/fullcalendar/lib/cupertino/jquery-ui.min.css" rel="stylesheet">
 	<link href="${BASE_PATH}/plug/fullCalendar/artDialog/css/ui-dialog.css" rel="stylesheet">
 	<link href="${BASE_PATH}/plug/fullCalendar/wickedpicker/dist/wickedpicker.min.css" rel="stylesheet">
-	<link href="${BASE_PATH}/css/pagecss/task/taskCalendar.css" rel="stylesheet">
-			
+	<link href="${BASE_PATH}/css/pagecss/task/taskCalendar.css" rel="stylesheet">			
 	<script src="${BASE_PATH}/plug/fullCalendar/jquery-ui-1.10.4.custom/js/jquery-1.10.2.js"></script>
 	<script src="${BASE_PATH}/plug/fullCalendar/fullcalendar/lib/jquery.min.js"></script>
 	<script src="${BASE_PATH}/plug/fullCalendar/fullcalendar/lib/jquery-ui.min.js"></script>
@@ -32,11 +31,15 @@
    <!-- 拖拽框 -->
    <div id='external-events'>
 			<h4>待分配任务</h4>
-			<div class='fc-event'>任务 1</div>
+			<div id="taskItems">
+			
+			</div>
+			<input type="text" id="itemId" style="display:none;" value="" />
+			<!-- <div class='fc-event'>任务 1</div>
 			<div class='fc-event'>任务 2</div>
 			<div class='fc-event'>任务 3</div>
 			<div class='fc-event'>任务 4</div>
-			<div class='fc-event'>任务 5</div>
+			<div class='fc-event'>任务 5</div> -->		
 			<p>
 				<input type='checkbox' id='drop-remove'  checked style="display:none;">
 				<!-- <label for='drop-remove'>分配后不再显示</label> -->

@@ -2,12 +2,14 @@ package com.DS.controller;
 
 import java.io.File;
 import java.util.ArrayList;
+import java.util.List;
 
 import com.DS.bean.FinanceExcelBean;
 import com.DS.excel.service.ExcelService;
 import com.DS.excel.service.impl.ExcelServiceImpl;
 import com.DS.file.service.FileService;
 import com.DS.file.service.impl.FileServiceImpl;
+import com.DS.utils.common.PythonByRuntime;
 import com.DS.web.base.BaseController;
 import com.jfinal.aop.Inject;
 import com.jfinal.upload.UploadFile;
@@ -31,9 +33,12 @@ public class AnalyseController extends BaseController {
    	  render("analyse.jsp");
      }
 	 
+	 /*****
+	  * 跳转到csv信息读取展示页面
+	  */
 	 public void goCsvData(){
 	   	  render("csvdata.jsp");
-	     }
+	    }
 		 
 	 
 	 public void getDataFromExcel(){
@@ -46,5 +51,10 @@ public class AnalyseController extends BaseController {
 		  for(FinanceExcelBean bean:DBList){
 			  System.out.println(bean.getMonenyValue());
 		  }
+	 }
+	 
+	 public void regression(){
+		 List<String> result=PythonByRuntime.runPython3("house_data5.py");
+		 renderJson(result);
 	 }
 }

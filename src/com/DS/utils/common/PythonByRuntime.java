@@ -28,7 +28,7 @@ public class PythonByRuntime {
 	private static String PY_MODEL_PATH=PathKit.getRootClassPath()+"\\py\\resources\\model";//默认的python资源文件路径
 	public static void main(String[] args) throws IOException,InterruptedException {				
 		//runPython3(PY_ROOT_PATH,PY_RES_PATH,"house_data5.py");
-		runPython3("train_run_model.py");
+		runPython3("house_data5.py");
 		//runPython3("grade.py");
     }
 	

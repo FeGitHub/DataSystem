@@ -260,17 +260,26 @@ public class TaskController extends BaseController{
  		 renderJson(projectTree);   	 
 	}
      
-     
+     /***
+      * 更新任务
+      */
      public void updateTaskCalendar(){
-    	 Task task=getModel(Task.class,"");	
+    	 Task task=getModel(Task.class,"");
+    	 if(task.getTaskId()==null){
+    		 renderJson(ajaxDoneError("更新主键为null"));
+    		 return;   		 
+    	 }
     	 Map<String,Object> paramMap=ObjectUtil.convertBeanToMap(task);	
     	 SqlPara sql=Db.getSqlPara("task.updateTaskCalendar",paramMap);
     	 int result=Db.update(sql);
     	 if(result>0){
     		 TaskCalendarBean bean=calendarService.convert(task); 
-    		 renderJson(bean);
+    		 Map<String,Object> map=new HashMap<String,Object>();
+    		 map.put("task", bean);
+    		 map.put("msg", "更新成功");
+    		 renderJson(ajaxDoneSuccess(map));
     	 }else{
-    		 renderJson(ajaxDoneError("操作失败"));
+    		 renderJson(ajaxDoneError("更新失败"));
     	 }
 
      }
@@ -284,8 +293,11 @@ public class TaskController extends BaseController{
     	 task.setUserId(user.getId());
     	 task=calendarService.createTask(task);
     	 if(task!=null){
-    		 TaskCalendarBean bean=calendarService.convert(task);    		
-    		 renderJson(bean);
+    		 TaskCalendarBean bean=calendarService.convert(task); 
+    		 Map<String,Object> map=new HashMap<String,Object>();
+    		 map.put("task", bean);
+    		 map.put("msg", "成功新建");
+    		 renderJson(ajaxDoneSuccess(map));
     	 }else{
     		 renderJson(ajaxDoneError("操作失败"));
     	 }
@@ -330,5 +342,17 @@ public class TaskController extends BaseController{
     	 }
      }
      
+     /***
+      * 获取用户未分配的任务
+      */
+     public void getUndisTasks(){
+    	 User user = (User)getSession().getAttribute("user");
+    	 Map<String,Object> cond=new HashMap<String,Object>();
+    	 cond.put("userId", user.getId());
+    	 SqlPara sql = Db.getSqlPara("task.getUndisTasks",cond);	
+    	 Task dao=new Task();
+    	 List<Task> tasks=dao.find(sql);
+    	 renderJson(tasks);
+      }
      
 }

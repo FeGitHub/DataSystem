@@ -95,16 +95,6 @@ $(function () {
            
       
       function  initCSV(csv){
-    	   /* var rows=csv.length;
-		    for(var i=0;i<rows;i++){	    	
-		      var count=Object.keys(csv[i]).length;	      
-		      var text="";
-		      for(var j=0;j<count;j++){
-		    	  var key=j+"_column";
-		    	  text+=csv[i][key]+" ";	    	 
-		      }	    
-		       console.log(text);		       		       
-		    }	*/
 		    layer.open({
 		    	   type: 2,
 		    	   area: ['700px', '450px'],
@@ -122,5 +112,50 @@ $(function () {
       
       
     $("#testBtn").click(function(){
-    	
+    	var id=layer.msg('数据处理中', {
+    		  icon: 16
+    		  ,shade: 0.01,
+    		  time:false //取消自动关闭
+    		});
+    	$.ajax({
+			url: basepath+"/analyse/regression",
+			type: "POST",	
+			dataType:"json",
+			success: function (data) {
+				layer.close(id);
+				showResult(data);
+			
+			},
+			error: function () {
+				layer.close(id);
+				toastrError("请求失败");
+			}
+		});	
     });
+    
+    /***
+     * 展示分析结果
+     */
+    function showResult(data){
+       var _html="<center>";  	  
+   	   if(data!=null){
+   		  _html+="<h2>数据处理完成</h2>";  
+   		 for(var i=0;i<data.length;i++){
+   	   	   _html+="<p>"+data[i]+"</p>";
+   	   	 } 		
+   	   }else{
+   		 _html+="<h2>无任何分析数据</h2>";  
+   	   } 	
+   	    _html+="</center>";
+	   	layer.open({
+	   	type: 1,
+	   	title: '数据分析结果',
+	   	shadeClose: true,
+	   	shade: 0.8,
+	   	skin: 'layer_bg',  
+	   	area: ['500px', '300px'],
+	   	content: _html,  
+	   });
+       
+    }
+     

@@ -3,6 +3,7 @@
 <head>
     <meta charset="utf-8">
     <title>数据分析</title>
+    <link rel="stylesheet" href="${BASE_PATH}/css/pagecss/analyse/analyse.css">
 </head>
 <body>   	    	   
 	    

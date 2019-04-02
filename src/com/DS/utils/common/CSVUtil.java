@@ -8,9 +8,7 @@ import java.io.InputStreamReader;
 import java.io.Writer;
 import java.util.ArrayList;
 import java.util.List;
-
 import org.junit.Test;
-
 import com.jfinal.plugin.activerecord.Record;
 import com.univocity.parsers.csv.CsvFormat;
 import com.univocity.parsers.csv.CsvParser;
@@ -18,6 +16,11 @@ import com.univocity.parsers.csv.CsvParserSettings;
 import com.univocity.parsers.csv.CsvWriter;
 import com.univocity.parsers.csv.CsvWriterSettings;
 
+/****
+ * 
+ * @author jeff
+ * csv文件操作工具
+ */
 public class CSVUtil {
 	
 	/****
@@ -96,10 +99,10 @@ public class CSVUtil {
         	Record record=new Record();
         	for(int j=0;j<rowdata.length;j++){
         		record.set(j+"_column", rowdata[j]);
-        		System.out.print(rowdata[j]+" ");
+        		//System.out.print(rowdata[j]+" ");
         	}
         	resultList.add(record);
-        	System.out.println("");
+        	//System.out.println("");
         }
         return resultList;
 }
