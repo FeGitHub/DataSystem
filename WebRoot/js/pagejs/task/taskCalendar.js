@@ -325,7 +325,7 @@ function update(event){
 		toastrError("id为null",3000);
 		return;
 	}
-	$.ajax({
+	$.ajax({//更新数据库资源
 		url:basepath+"/task/updateTaskCalendar",
 		data:task,
 		type:'POST', 
@@ -334,7 +334,7 @@ function update(event){
 			if(data.code==200){
 				toastrSuccess(data.msg,2000);
 				event=changeViewTask(event,task);
-			    $("#calendar").fullCalendar("updateEvent",event);
+			    $("#calendar").fullCalendar("updateEvent",event);//更新视图资源
 			} else{
 				toastrError(data.msg,2000);
 			}
@@ -596,7 +596,6 @@ function changeViewTask(event,task){
  * 展示编辑数据
  */
 function showTaskData(event){
-	 console.log(event.id);
 	 var time=getEventTime(event);
 	 $("#title").val(event.title);//标题
 	 $("#titledetail").val(event.description);//描述

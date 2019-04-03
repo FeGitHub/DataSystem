@@ -1,10 +1,8 @@
 package com.DS.web.base;
 import java.util.HashMap;
 import java.util.Map;
-
 import com.DS.common.model.User;
 import com.jfinal.core.Controller;
-import com.jfinal.plugin.activerecord.Record;
 /****
  * 
  * @author jeff
@@ -39,18 +37,18 @@ public abstract class BaseController extends Controller{
 		return resultMap;
 	}
 	protected Map<String,Object> ajaxDoneError(String message){
-		resultMap.put("code", "409");
+		resultMap.put("code", "400");
 		resultMap.put("msg",message);
 		return resultMap;
 	}
 	protected Map<String,Object> ajaxDoneError(){
-		resultMap.put("code", "409");
+		resultMap.put("code", "400");
 		resultMap.put("msg","操作失败");
 		return resultMap;
 	}
 	protected Map<String,Object> ajaxDoneError(Map<String,Object> map){
 		resultMap=map;
-		resultMap.put("code", "409");
+		resultMap.put("code", "400");
 		if(resultMap.get("msg")==null){
 			resultMap.put("msg", "操作失败");
 		}

@@ -1,9 +1,15 @@
 <%@ page language="java" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
-<html lang="en">
+<html>
   <head>   
-    <title>创建调度任务</title>
-      <link rel="stylesheet" href="${BASE_PATH}/plug/ztree-bootstrap/css/bootstrapStyle/bootstrapStyle.css" type="text/css">
+    <title>创建调度任务</title> 
+    <link rel='stylesheet' href='${BASE_PATH}/plug/score/css/font-awesome-3.2.1.css'>
+    <link rel="stylesheet" href="${BASE_PATH}/plug/score/css/prism.css">
+    <link rel='stylesheet' href='${BASE_PATH}/plug/score/css/jQuery.score.css'>
+    <link rel='stylesheet' href='${BASE_PATH}/plug/score/css/style.css'>
+    <script src="${BASE_PATH}/plug/score/js/prism.js"></script>
+    <script src="${BASE_PATH}/plug/score/js/jQuery.score.js"></script>
+    <script src="${BASE_PATH}/plug/score/js/application.js"></script>
   </head>
   <body >    
     <main >   
@@ -20,28 +26,26 @@
                     <input class="form-control validate[required]" type="text" placeholder="" name="taskName">
                   </div>
                 </div>     
-                
+              
                   <div class="form-group row">
                   <label class="control-label col-md-3">完成指标</label>                          
                   <div class="col-md-3">
                     <input class="form-control validate[required]" type="text" placeholder="填数值" name="goal">
-                  </div>
+                  </div>                 
+	                  <div class="col-md-3">
+	                      <div class="toggle-flip">
+			                  <label>
+			                    <input type="checkbox" id="change"><span class="flip-indecator" data-toggle-on="立即分配" data-toggle-off="暂不分配" style="width:100px;"></span>
+			                  </label>
+	                      </div>
+	                 </div> 	                            
                 </div>                               
-                    
-                  <div class="form-group row">
-                  <label class="control-label col-md-3">立即启动</label>
-                  <div class="col-md-3">
-                      <div class="toggle-flip">
-                  <label>
-                    <input type="checkbox"><span class="flip-indecator" data-toggle-on="启动" data-toggle-off="关闭"></span>
-                  </label>
-                </div>
-                  </div>
-                </div>  
+           
+                <div id="show" style="display:none">
                      <div class="form-group row">
                          <label class="control-label col-md-3">开始时间</label>
                          <div class="col-md-3">
-                           <input  name="start"  class="form-control  form_date validate[required]" placeholder="选择日期值" maxlength="20" type="text" readonly>                                                  
+                           <input  name="start"  class="form-control  form_date" placeholder="选择日期值" maxlength="20" type="text" readonly>                                                  
                          </div> 
                       </div>                       
                      <div class="form-group row">
@@ -49,14 +53,22 @@
                          <div class="col-md-3">
                            <input  name="end"  class="form-control  form_date" placeholder="选择日期值" maxlength="20" type="text" readonly>                                                  
                          </div> 
+                      </div>                      
                       </div>
-                                      
+                  <!--  -->               
                       <div class="form-group row">
                  	 <label class="control-label col-md-3">任务描述</label>
                   		<div class="col-md-8">
                     		<textarea class="form-control" rows="4" placeholder="" name="description" id="description"></textarea>
                   		</div>
-                </div>                                            
+                </div>     
+                 <div class="form-group row">
+                  <label class="control-label col-md-3">任务等级</label>
+                  <div class="col-md-8">
+                     <ul id="star"></ul>
+                     <input type="text" id="score" style="display:none;" name="score">
+                  </div>
+                </div>                                         
               </form>                  
             </div>
             <div class="tile-footer">

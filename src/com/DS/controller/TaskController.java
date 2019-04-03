@@ -1,4 +1,4 @@
-package com.DS.controller;
+ package com.DS.controller;
 import java.text.NumberFormat;
 import java.util.Date;
 import java.util.HashMap;
@@ -17,7 +17,6 @@ import com.DS.task.service.impl.ProjectTreeServiceImpl;
 import com.DS.task.service.impl.TaskServiceImpl;
 import com.DS.task.vo.ProjectListVo;
 import com.DS.task.vo.TaskListVo;
-import com.DS.task.vo.TaskVo;
 import com.DS.utils.common.ObjectUtil;
 import com.DS.utils.common.TimeUtil;
 import com.DS.web.base.BaseController;
@@ -132,12 +131,12 @@ public class TaskController extends BaseController{
 	/**
 	 *  跳转到目标任务详情页面
 	 */
-	public void goTargetDetail(String taskId){
+	public void goTargetDetail(){
 		 Task task=new Task();
 		 if(getPara("taskId")==null||"".equals(getPara("taskId"))){
 			 return;
 		 }
-		 task.findById(getPara("taskId"));		
+		 task=task.findById(getPara("taskId"));		
 		 setAttr("vo",task);
 		 render("targetDetail.jsp");
 	}	
@@ -147,14 +146,11 @@ public class TaskController extends BaseController{
 	 * 创建目标任务
 	 */
 	 public void createTarget(){		
-		  TaskVo vo=getBean(TaskVo.class,"");
+		  Task vo=getModel(Task.class,"");
 		  User nowUser = (User)getSession().getAttribute("user");
-		  Map<String,Object> paramMap=ObjectUtil.convertBeanToMap(vo);		
-		  paramMap.put("addTime",new Date());
-		  paramMap.put("userId",nowUser.getId());
-		  SqlPara insertSql=Db.getSqlPara("task.insertData",paramMap);
-		  int result=Db.update(insertSql);
-		  if(result>0){
+		  vo.setUserId(nowUser.getId());
+		  boolean result=vo.save();
+		  if(result){
 				renderJson(ajaxDoneSuccess("操作成功"));
 			}else{
 				renderJson(ajaxDoneError("操作失败"));
@@ -261,7 +257,7 @@ public class TaskController extends BaseController{
 	}
      
      /***
-      * 更新任务
+      * 更新日历任务
       */
      public void updateTaskCalendar(){
     	 Task task=getModel(Task.class,"");
@@ -283,6 +279,19 @@ public class TaskController extends BaseController{
     	 }
 
      }
+     
+     public void updateTask(){
+    	 Task task=getModel(Task.class,"");
+    	 boolean result=task.update();
+    	 if(result){
+    		 renderJson(ajaxDoneSuccess("更新成功"));
+    	 }else{
+    		 renderJson(ajaxDoneError("更新失败"));
+    	 }
+     }
+     
+     
+     
      
      /****
       * 添加日历任务

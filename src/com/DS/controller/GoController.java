@@ -13,7 +13,9 @@ public class GoController extends BaseController{
 		render("csvdata.jsp");
 	}
 		
-		      
+	public void goDemo(){
+		render("demo.jsp");
+	}	      
 	    
 }
 

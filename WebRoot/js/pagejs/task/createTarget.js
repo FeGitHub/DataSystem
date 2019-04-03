@@ -1,11 +1,7 @@
 /****
  *  创建目标任务的页面js
  */
-$(function(){	
-	 $('#taskForm').validationEngine({   
-			promptPosition: 'centerReight',
-			scroll:false
-		});		
+$(function(){		
 		$(".form_date").datetimepicker({
 	        language:"zh-CN",
 	        bootcssVer:3,
@@ -13,18 +9,25 @@ $(function(){
 	        autoclose:true,
 	        todayHighlight: true,
 	        minuteStep: 1,
-	       // startDate:new Date(),//过往时间不可以填
+	        startDate:new Date(),//过往时间不可以填
 	        weekStart:1
 	    }); 
+		  $('#star').score({
+		        fontAwesome: true,
+		        score: 1,
+		        click: function(score, event){
+		        	$("#score").val(score);
+		            //alert('Class Name: '+this.className+'\n' + 'Score: '+score+'\n' + 'Event Type: '+event.type+'\n');
+		        },
+		    });
 });
 
 
 
 /***
- * 新增工程任务
+ * 新增任务
  */
 $("#submitBtn").click(function(){
-	//console.log("==="+$("#taskForm").serialize());
 	 if($("#taskForm").validationEngine('validate')){
 		 $.ajax({
 				url:basepath+"/task/createTarget",
@@ -46,7 +49,16 @@ $("#submitBtn").click(function(){
 });
 
 
-
+/****
+ * 展开或隐藏时间框
+ */
+$("#change").click(function(){
+	if($(this).is(":checked")){
+		 $("#show").show();
+	}else{
+		$("#show").hide();
+	}
+});
 
 
 

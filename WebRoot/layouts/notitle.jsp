@@ -103,9 +103,19 @@
 					</c:when>
                     <c:otherwise>
 						<li>
-	        			<a class="app-menu__item menuUrl" href="${BASE_PATH}${item.url}">
-	        		   <i class="${item.icon}"></i><span class="app-menu__label">${item.name}</span>
-	        	      </a>
+	        			<li>
+						   <c:choose>
+						        	<c:when test="${not empty item.url}">
+						        	       <a class="app-menu__item menuUrl" href="${BASE_PATH}${item.url}">     <i class="${item.icon}"></i><span class="app-menu__label">${item.name}</span>
+	        	                           </a>
+						        	</c:when>
+						        	<c:otherwise>
+						        	      <a class="app-menu__item menuUrl" href="javascript:void(0)">
+						        	           <i class="${item.icon}"></i><span class="app-menu__label">${item.name}</span>
+	        	                           </a>
+						        	</c:otherwise>
+						    </c:choose>	        				         
+	                 </li>
 	                 </li>
                     </c:otherwise>
                  </c:choose>

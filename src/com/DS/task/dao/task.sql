@@ -36,7 +36,7 @@
 	#end
 	
     #sql("insertData")
-		insert into task (taskName,addTime,goal,deadline,description,userId) values (#para(taskName),#para(addTime),#para(goal),#para(deadline),#para(description),#para(userId))
+		insert into task (taskName,addTime,goal,description,userId) values (#para(taskName),#para(addTime),#para(goal),#para(description),#para(userId))
 	#end	
 	
 	#sql("delById")
