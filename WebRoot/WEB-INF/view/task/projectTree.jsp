@@ -4,7 +4,7 @@
 <head>
     <title>工程任务树</title>
     <meta http-equiv="content-type" content="text/html; charset=UTF-8">
-  <link rel="stylesheet" href="${BASE_PATH}/plug/ztree-bootstrap/css/bootstrapStyle/bootstrapStyle.css" type="text/css"> 
+   <link rel="stylesheet" href="${BASE_PATH}/plug/ztree-bootstrap/css/bootstrapStyle/bootstrapStyle.css" type="text/css">
 </head>
 <body>
     <div class="tile">
@@ -114,8 +114,6 @@
     <script type="text/javascript" src="${BASE_PATH}/plug/ztree-bootstrap/js/jquery.ztree.core.js"></script>
     <script type="text/javascript" src="${BASE_PATH}/plug/ztree-bootstrap/js/jquery.ztree.excheck.js"></script>
     <script type="text/javascript" src="${BASE_PATH}/plug/ztree-bootstrap/js/jquery.ztree.exedit.js"></script>
-<%--     <script src="${BASE_PATH}/js/validation/lang/jquery.validationEngine-zh_CN.js"></script>
-    <script src="${BASE_PATH}/js/validation/jquery.validationEngine.min.js"></script>	 --%>
     <script type="text/javascript" src="${BASE_PATH}/js/pagejs/task/projectTree.js"></script>
 </body>
 </html>

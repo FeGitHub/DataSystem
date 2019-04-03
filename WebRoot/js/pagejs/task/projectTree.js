@@ -208,7 +208,7 @@ $("#updateBtn").click(function(){
  * 删除节点
  * @param event
  * @param treeId
- * @param treeNode
+ * @param treeNode  
  */
 function zTreeOnRemove(event, treeId, treeNode) {
 	//console.log(treeNode.id);
@@ -322,6 +322,22 @@ function updateProjectTask(node){
 	});
 }
 
+/***
+ * 处理根节点不能删除
+ * @param treeId
+ * @param treeNode
+ * @returns {Boolean}
+ */
+function setRemoveBtn(treeId, treeNode) { 
+    if(treeNode.level == 0) {
+        return false;
+    }
+    else {
+        return true;
+    }
+}
+
+
 /****
  * 初始化数据表格
  */
@@ -342,7 +358,8 @@ function initTable(){
 	                },	           
 	            },         
 	            edit: {
-	                enable: true
+	                enable: true,
+	                showRemoveBtn: setRemoveBtn
 	            },
 	            callback: {
 					onClick: onClick,//点击后的事件
