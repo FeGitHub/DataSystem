@@ -50,6 +50,14 @@ public class TaskController extends BaseController{
     	  render("taskCalendar.jsp");
       }
 	
+	  /***
+		 * 跳转到日历任务页面
+		 */
+		  public void goTestFullCalendar(){
+	    	  render("test_taskCalendar.jsp");
+	      }
+	  
+	  
 	
 	  /***
 	   *  跳转到任务列表

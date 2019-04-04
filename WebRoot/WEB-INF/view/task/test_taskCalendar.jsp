@@ -3,8 +3,8 @@
 <html>
 <head>
 	<meta charset="UTF-8" name="viewport" content="width=device-width,initial-scale=1.0">
-	<title>fullcalendar-日程管理</title>
-	<link href="${BASE_PATH}/plug/fullCalendar/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+	<title>测试--日历任务</title>
+<%-- 	<link href="${BASE_PATH}/plug/fullCalendar/bootstrap/css/bootstrap.min.css" rel="stylesheet"> --%>
 	<link href="${BASE_PATH}/plug/fullCalendar/fullcalendar/fullcalendar.min.css" rel="stylesheet">
 	<link href="${BASE_PATH}/plug/fullCalendar/fullcalendar/fullcalendar.print.min.css" rel="stylesheet" media="print">
 	<link href="${BASE_PATH}/plug/fullCalendar/jquery-ui-1.10.4.custom/css/base/jquery-ui-1.10.4.custom.min.css" rel="stylesheet">
@@ -12,42 +12,27 @@
 	<link href="${BASE_PATH}/plug/fullCalendar/fullcalendar/lib/cupertino/jquery-ui.min.css" rel="stylesheet">
 	<link href="${BASE_PATH}/plug/fullCalendar/artDialog/css/ui-dialog.css" rel="stylesheet">
 	<link href="${BASE_PATH}/plug/fullCalendar/wickedpicker/dist/wickedpicker.min.css" rel="stylesheet">
-	<link href="${BASE_PATH}/css/pagecss/task/taskCalendar.css" rel="stylesheet">			
+	 <link href="${BASE_PATH}/css/pagecss/task/test_taskCalendar.css" rel="stylesheet">		
 	<script src="${BASE_PATH}/plug/fullCalendar/jquery-ui-1.10.4.custom/js/jquery-1.10.2.js"></script>
-	<script src="${BASE_PATH}/plug/fullCalendar/fullcalendar/lib/jquery.min.js"></script>
+<%-- 	<script src="${BASE_PATH}/plug/fullCalendar/fullcalendar/lib/jquery.min.js"></script> --%>
 	<script src="${BASE_PATH}/plug/fullCalendar/fullcalendar/lib/jquery-ui.min.js"></script>
 	<script src="${BASE_PATH}/plug/fullCalendar/fullcalendar/lib/moment.min.js"></script>
 	<script src="${BASE_PATH}/plug/fullCalendar/fullcalendar/fullcalendar.js"></script>
+	
 <%-- 	<script src="${BASE_PATH}/plug/fullCalendar/jquery-ui-1.10.4.custom/js/jquery-ui-1.10.4.custom.min.js"></script> --%>
 	<script src="${BASE_PATH}/plug/fullCalendar/artDialog/dist/dialog-min.js"></script>
 	<script src="${BASE_PATH}/plug/fullCalendar/bootstrap/js/bootstrap.min.js"></script>
 	<script src="${BASE_PATH}/plug/fullCalendar/wickedpicker/dist/wickedpicker.min.js"></script>
 	<script src="${BASE_PATH}/plug/fullCalendar/bootstrap-datepicker/dist/js/bootstrap-datepicker.min.js"></script>
 	<script src="${BASE_PATH}/plug/fullCalendar/bootstrap-datepicker/dist/locales/bootstrap-datepicker.zh-CN.min.js"></script>
-	<script src="${BASE_PATH}/js/pagejs/task/taskCalendar.js"></script>
+	<script src="${BASE_PATH}/js/pagejs/task/test_taskCalendar.js"></script>
 </head>
 <body>
    <div class="title" style="background:white;">
    <!-- 拖拽框 -->
-   <div id='external-events' style="width:174px;">
-			<h4>待分配任务</h4>
-			<div id="taskItems">
-			
-			</div>
-			<input type="text" id="itemId" style="display:none;" value="" />
-			<!-- <div class='fc-event'>任务 1</div>
-			<div class='fc-event'>任务 2</div>
-			<div class='fc-event'>任务 3</div>
-			<div class='fc-event'>任务 4</div>
-			<div class='fc-event'>任务 5</div> -->		
-			<p>
-				<input type='checkbox' id='drop-remove'  checked style="display:none;">
-				<!-- <label for='drop-remove'>分配后不再显示</label> -->
-			</p>
-		</div>   
      
      <!--日历--> 
-    <div id="calendar" style="padding-top:20px;margin-left:300px;"></div>
+    <div id="calendar" style="padding:20px;"></div>
 
     
     <!--弹出框-->

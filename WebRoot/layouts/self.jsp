@@ -43,11 +43,11 @@
     </aside> --%>
  
   <main  class="app-content">
-       <div class="app-title">
+      <div class="app-title">
         <div>
           <h1><i class="fa fa-dashboard"></i></h1>
         </div>   
-      </div>
+      </div> 
     <sitemesh:body/>        
    </main>
   <script src="${BASE_PATH}/js/toastr.min.js"></script><!--信息提示框-->

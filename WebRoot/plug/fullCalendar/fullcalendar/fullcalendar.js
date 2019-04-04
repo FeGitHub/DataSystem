@@ -15211,6 +15211,7 @@ fcViews.list = {
 		buttonText: 'list', // text to display for English
 		listDayFormat: 'LL', // like "January 1, 2016"
 		noEventsMessage: 'No events to display'
+		
 	}
 };
 
