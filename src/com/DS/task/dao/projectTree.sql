@@ -4,7 +4,7 @@
 
 
 
-#sql("deleteAll")
+#sql("deleteProjectTask")
 	delete  from project_tree where 1=1
 	and projectId=#para(projectId) 
 #end
@@ -15,6 +15,7 @@
    delete from project where id=#para(projectId)
 #end
 
+
 /****
  * 插入工程任务树详细信息
  */
@@ -24,6 +25,11 @@
 		(#para(x.id),#para(x.pId),#para(x.taskName),#para(x.userId),#para(x.projectId),#para(x.startDate),#para(x.endDate),#para(x.schedule),#para(x.depiction)) #(for.last ? " ": ",")
 	 #end
 #end
+
+#sql("deleteTaskByProject")
+  delete from task where taskId in (select taskId from project_tree where projectId=#para(projectId))
+#end
+
 
 /****
  * 获取用户的工程分页数据
@@ -115,4 +121,36 @@
     FROM
 	    project_tree  where userId =#para(userId) AND projectId =#para(projectId)
 	     AND id not in (select distinct pId from project_tree where  userId=#para(userId) AND projectId =#para(projectId))  
+#end
+
+
+/***
+ * 得到节点的孩子节点个数(只计算一级节点) 
+ */
+#sql("getChildsOfNode")
+  select count(1) as size from project_tree where pId=#para(pId)
+#end
+
+
+/***
+ * 删除工程任务的相对目标任务
+ */
+#sql("deleteTasksByProjectTasks")
+ delete from task where taskId in (
+   select taskId from project_tree where id in(
+      #for(id:ids)
+         #(for.index > 0 ? ", " : "")#(id)
+      #end
+   )
+)
+#end
+
+
+
+#sql("delProjectTasks")
+delete  from project_tree where id in(
+      #for(id:ids)
+         #(for.index > 0 ? ", " : "")#(id)
+      #end
+   )
 #end

@@ -12,9 +12,9 @@ import com.DS.common.model.Task;
 import com.DS.common.model.User;
 import com.DS.remind.service.RemindService;
 import com.DS.remind.service.impl.RemindServiceImpl;
-import com.DS.task.service.ProjectTreeService;
+import com.DS.task.service.ProjectService;
 import com.DS.task.service.TaskService;
-import com.DS.task.service.impl.ProjectTreeServiceImpl;
+import com.DS.task.service.impl.ProjectServiceImpl;
 import com.DS.task.service.impl.TaskServiceImpl;
 import com.DS.user.service.UserService;
 import com.DS.user.service.impl.UserServiceImpl;
@@ -35,7 +35,7 @@ public class GetTodayNotify implements Job{
 		UserService userService=new UserServiceImpl();
 		RemindService remindService=new RemindServiceImpl();
 		TaskService taskService=new TaskServiceImpl();
-		ProjectTreeService projectTreeService=new ProjectTreeServiceImpl();
+		ProjectService projectTreeService=new ProjectServiceImpl();
 		List<User> users=userService.getAllUser();
 		String userId=null;
 		for(User user:users){

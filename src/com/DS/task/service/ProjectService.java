@@ -10,7 +10,7 @@ import com.DS.common.model.ProjectTree;
  * @author jeff
  * 工程任务树服务层接口
  */
-public interface ProjectTreeService {
+public interface ProjectService {
 	
 	/***
 	 * 得到用户今日的工程任务
@@ -41,4 +41,15 @@ public interface ProjectTreeService {
      * @return
      */
     int createProject(Project project);
+    
+    
+    ProjectTree addProjectTask(ProjectTree projectTree);
+    
+    boolean isNodeHaveChild(int pId);
+    
+   
+    
+    ProjectTree updateProjectTask(ProjectTree projectTree,int taskId);
+    
+    boolean delProjectTasks(List<String> ids,int pId);
 }

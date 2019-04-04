@@ -12,9 +12,9 @@ import com.DS.common.model.Task;
 import com.DS.notification.service.NotificationService;
 import com.DS.remind.service.RemindService;
 import com.DS.remind.service.impl.RemindServiceImpl;
-import com.DS.task.service.ProjectTreeService;
+import com.DS.task.service.ProjectService;
 import com.DS.task.service.TaskService;
-import com.DS.task.service.impl.ProjectTreeServiceImpl;
+import com.DS.task.service.impl.ProjectServiceImpl;
 import com.DS.task.service.impl.TaskServiceImpl;
 import com.DS.utils.common.MailUtil;
 import com.DS.utils.common.ObjectUtil;
@@ -35,8 +35,8 @@ public class NotificationServiceImpl implements NotificationService {
     @Inject(TaskServiceImpl.class)
     TaskService taskService;
     
-    @Inject(ProjectTreeServiceImpl.class)
-    ProjectTreeService projectTreeService;
+    @Inject(ProjectServiceImpl.class)
+    ProjectService projectTreeService;
     
 	/****
 	 * 用户通知信息栏的信息

@@ -2,8 +2,6 @@ package com.DS.task.service.impl;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import com.DS.common.model.Project;
-import com.DS.common.model.ProjectTree;
 import com.DS.common.model.Task;
 import com.DS.task.service.TaskService;
 import com.DS.utils.common.DataTablesUtil;
@@ -89,17 +87,19 @@ public class TaskServiceImpl implements TaskService {
    
 	
 	/*****
-	 * 删除工程任务
+	 * 删除整个工程
 	 */
 	@Override
 	public int deleteProject(String projectId) {
 		 Map<String,Object> delMap=new HashMap<String,Object>();
 		 delMap.put("projectId", projectId);
-		 SqlPara delProjectTree=Db.getSqlPara("projectTree.deleteAll", delMap);	
+		 SqlPara delProjectTree=Db.getSqlPara("projectTree.deleteProjectTask", delMap);	
 		 SqlPara delProject=Db.getSqlPara("projectTree.deleteProject", delMap);	
-		  boolean success=Db.tx(() -> {
+		 SqlPara delTask=Db.getSqlPara("projectTree.deleteTaskByProject", delMap);	
+		  boolean success=Db.tx(() -> {			 			 
+			  Db.update(delTask);	
 			  Db.update(delProjectTree);
-			  Db.update(delProject);			
+			  Db.update(delProject);	
 			  return true;
 			});
 		  if(success){

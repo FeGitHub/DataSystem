@@ -13,6 +13,9 @@
         #if(taskName)
             and taskName like concat('%', #para(taskName), '%')
         #end 
+         #if(taskType)
+            and taskType =#para(taskType)
+        #end 
         order by addTime desc
         #if(start)
         	  limit #para(start),#para(length)
@@ -32,7 +35,10 @@
         #end
         #if(taskName)
             and taskName like concat('%', #para(taskName), '%')
-        #end      
+        #end   
+         #if(taskType)
+            and taskType =#para(taskType)
+        #end 
 	#end
 	
     #sql("insertData")
@@ -98,3 +104,12 @@
   #sql("getUndisTasks")
      select * from task where start is null and userId=#para(userId) limit 10
   #end
+  
+/***
+ * 更新任务类型
+ */  
+#sql("updateTaskType")
+   update task set taskType=#para(taskType) where taskId=(select taskId from project_Tree where id=#para(id))
+#end
+
+

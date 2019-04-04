@@ -81,4 +81,12 @@ public abstract class BaseTask<M extends BaseTask<M>> extends Model<M> implement
 		return getInt("score");
 	}
 
+	public void setTaskType(java.lang.Integer taskType) {
+		set("taskType", taskType);
+	}
+	
+	public java.lang.Integer getTaskType() {
+		return getInt("taskType");
+	}
+
 }

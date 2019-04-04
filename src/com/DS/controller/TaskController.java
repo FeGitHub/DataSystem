@@ -1,5 +1,6 @@
  package com.DS.controller;
 import java.text.NumberFormat;
+import java.util.Arrays;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
@@ -10,10 +11,10 @@ import com.DS.common.model.ProjectTree;
 import com.DS.common.model.Task;
 import com.DS.common.model.User;
 import com.DS.task.service.CalendarService;
-import com.DS.task.service.ProjectTreeService;
+import com.DS.task.service.ProjectService;
 import com.DS.task.service.TaskService;
 import com.DS.task.service.impl.CalendarServiceImpl;
-import com.DS.task.service.impl.ProjectTreeServiceImpl;
+import com.DS.task.service.impl.ProjectServiceImpl;
 import com.DS.task.service.impl.TaskServiceImpl;
 import com.DS.task.vo.ProjectListVo;
 import com.DS.task.vo.TaskListVo;
@@ -35,8 +36,8 @@ public class TaskController extends BaseController{
 	@Inject(TaskServiceImpl.class)
 	private TaskService taskService;
 	
-	@Inject(ProjectTreeServiceImpl.class)
-	private ProjectTreeService projectTreeService;
+	@Inject(ProjectServiceImpl.class)
+	private ProjectService projectService;
 	
 	
 	@Inject(CalendarServiceImpl.class)
@@ -62,6 +63,7 @@ public class TaskController extends BaseController{
         */
        public void getTargetList(){	
     	TaskListVo vo=getBean(TaskListVo.class,"");
+    	vo.setTaskType("1");//普通任务列表
    		Map<String,Object> limit=ObjectUtil.convertBeanToMap(vo);
    		limit=getDivPageParam(limit);		
         renderJson(taskService.getTargetTaskList(limit));
@@ -180,7 +182,7 @@ public class TaskController extends BaseController{
     	 Project project=getModel(Project.class,"");
     	 project.setUserId(user.getId());
     	 project.setUserName(user.getAccount());
-    	 int projectId=projectTreeService.createProject(project);
+    	 int projectId=projectService.createProject(project);
     	 if(projectId>0){
     		 Map<String,Object> result=new HashMap<String,Object>();
     		 result.put("projectId", projectId) ; 
@@ -228,12 +230,12 @@ public class TaskController extends BaseController{
     	 User user = (User)getSession().getAttribute("user");
     	 String projectId=getPara("projectId");
     	 String userId=user.getId()+"";
-    	 Map<String,Object> json=projectTreeService.getProjectTree(projectId, userId); 		
+    	 Map<String,Object> json=projectService.getProjectTree(projectId, userId); 		
     	 renderJson(json);   	 
      }
      
      /****
-      * 删除工程任务
+      * 删除工程
       */
      public  void delProject(){
     	 String projectId=getPara("projectId");
@@ -317,8 +319,16 @@ public class TaskController extends BaseController{
       * 修改工程任务
       */
      public void updateProjectTask(){
+    	 User user = (User)getSession().getAttribute("user");
     	 ProjectTree projectTree=getModel(ProjectTree.class,"");
-    	 if(projectTree.update()){
+    	 if(projectTree.getId()==null){
+    		 renderJson(ajaxDoneError("修改失败，主键为NULL"));
+    		 return;
+    	 }
+    	 ProjectTree temp=projectTree.findById(projectTree.getId()); 
+    	 projectTree.setUserId(user.getId());
+    	 projectTree=projectService.updateProjectTask(projectTree, temp.getTaskId());
+    	 if(projectTree!=null){
     		 renderJson(ajaxDoneSuccess("修改成功"));
     	 }else{
     		 renderJson(ajaxDoneError("修改失败"));
@@ -331,7 +341,8 @@ public class TaskController extends BaseController{
      public  void addProjectTask(){
     	 Map<String,Object> map=new HashMap<String,Object>();
     	 ProjectTree projectTree=getModel(ProjectTree.class,"");
-    	 if(projectTree.save()){
+    	 projectTree=projectService.addProjectTask(projectTree);
+    	 if(projectTree!=null){
     		 map.put("id", projectTree.getId());
     		 renderJson(ajaxDoneSuccess(map));
     	 }else{
@@ -343,8 +354,15 @@ public class TaskController extends BaseController{
       * 删除工程任务
       */
      public  void delProjectTask(){
-    	 ProjectTree projectTree=getModel(ProjectTree.class,"");
-    	 if(projectTree.delete()){   		
+    	 String pId=getPara("pId");
+    	 String ids=getPara("ids");
+    	 if(pId==null||ids==null){
+    		 renderJson(ajaxDoneError("删除失败，相关主键为NULL"));
+    		 return;
+    	 }
+    	 List<String> list = Arrays.asList(ids.split(","));
+    	 boolean success=projectService.delProjectTasks(list, Integer.parseInt(pId)); 
+    	 if(success){   		
     		 renderJson(ajaxDoneSuccess("删除成功"));
     	 }else{
     		 renderJson(ajaxDoneError("删除失败"));

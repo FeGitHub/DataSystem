@@ -40,6 +40,7 @@ function onClick(event, treeId, treeNode, clickFlag) {
 	showData(treeNode)
 	activateDatetimepicker($('.form_date'));
 	$("#nodeId").val(treeNode.id);
+	
 }
 
 /****
@@ -211,11 +212,13 @@ $("#updateBtn").click(function(){
  * @param treeNode  
  */
 function zTreeOnRemove(event, treeId, treeNode) {
-	//console.log(treeNode.id);
+	var ids=getAllChildrenNodesStr(treeNode);
+	var pNode = treeNode.getParentNode();
+	var pId=pNode.id;
 	$.ajax({
 		url:basepath+"/task/delProjectTask",
 		type:"post",
-		data:{"id":treeNode.id},
+		data:{"pId":pId,"ids":ids},
 		dataType:"json",
 		success:function(data){	
 			if(data.code==200){
@@ -363,7 +366,8 @@ function initTable(){
 	            },
 	            callback: {
 					onClick: onClick,//点击后的事件
-					onRemove: zTreeOnRemove//删除节点后的事件
+					//onRemove: zTreeOnRemove,//删除节点后的事件
+					beforeRemove: beforeRemove
 				}
 	        };
 	  $.ajax({
@@ -390,6 +394,25 @@ function showProgess(){
 }
 
 
+function beforeRemove(treeId, treeNode) {
+	var ids=getAllChildrenNodesStr(treeNode);
+	var pNode = treeNode.getParentNode();
+	var pId=pNode.id;
+	var msg="您确定要删除"+treeNode.name+"吗？";
+	layer.confirm(msg, {			
+	    btn: ['确定', '取消'], //按钮
+	    skin: 'btnClass',
+	    icon: 2,
+	    title: "提示",
+}, function () {
+   layer.closeAll('dialog');         
+   remove(ids,pId,treeNode);  
+});
+	return false;
+}
+
+
+
 /***
  * 初始化任务进度条
  */
@@ -400,3 +423,51 @@ function initShowProgess(){
    }
 }
 
+
+//递归，获取所有子节点
+function getAllChildrenNodes(treeNode,result){
+      if (treeNode.isParent) {
+        var childrenNodes = treeNode.children;
+        if (childrenNodes) {
+            for (var i = 0; i < childrenNodes.length; i++) {
+                result += ',' + childrenNodes[i].id;
+                result = getAllChildrenNodes(childrenNodes[i], result);
+            }
+        }
+    }
+    return result;
+}
+
+/***
+ * 得到叶子节点字符串
+ * @returns 
+ */
+function getAllChildrenNodesStr(treeNode){
+	var str ='' ;
+    str = getAllChildrenNodes(treeNode,str);
+    str = str + ',' + treeNode.id;
+    str = str.substr(1);
+    console.log("str:"+str);
+    return str;
+}
+
+
+function remove(ids,pId,treeNode){
+	var zTreeObj = $.fn.zTree.getZTreeObj(tree);
+	$.ajax({
+		url:basepath+"/task/delProjectTask",
+		type:"post",
+		data:{"pId":pId,"ids":ids},
+		dataType:"json",
+		success:function(data){	
+			if(data.code==200){
+				toastrSuccess(data.msg,2000);
+				zTreeObj.removeNode(treeNode);
+			}else{
+				toastrError(data.msg,2000);
+			}		
+		} 
+	});
+	
+
+}

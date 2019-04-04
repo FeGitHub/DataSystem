@@ -2,11 +2,20 @@ package com.DS.task.vo;
 
 public class TaskListVo {
 	private String startDates;
-	   private String endDates;
-	   private String taskName;
+	private String endDates;
+	private String taskName;
+	private String taskType;
+	
+	
    public String getStartDates() {
 		return startDates;
 	}
+	public String getTaskType() {
+	return taskType;
+}
+public void setTaskType(String taskType) {
+	this.taskType = taskType;
+}
 	public void setStartDates(String startDates) {
 		this.startDates = startDates;
 	}

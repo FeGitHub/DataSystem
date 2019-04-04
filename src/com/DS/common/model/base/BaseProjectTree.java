@@ -97,4 +97,12 @@ public abstract class BaseProjectTree<M extends BaseProjectTree<M>> extends Mode
 		return getStr("underway");
 	}
 
+	public void setTaskId(java.lang.Integer taskId) {
+		set("taskId", taskId);
+	}
+	
+	public java.lang.Integer getTaskId() {
+		return getInt("taskId");
+	}
+
 }
