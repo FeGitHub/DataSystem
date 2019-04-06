@@ -26,80 +26,10 @@ $(function(){
 				}
 			},
 			customButtons:{
-				button1:{
-					text:"新建",
-					click:function(){
-						initButton1();					
-						dialog({
-							title:"新建日程",
-							content:$("#dialog-form"),
-							okValue:"确定",
-							ok:function(){
-					           button1Create();
-							},
-							cancelValue:"关闭",
-							cancel:function(){
-							}
-						}).showModal();
-					}
-				},
-
-	/*			button2:{
-					text:"查询",
-					click:function(){
-						$(".datepicker").datepicker({
-							language:"zh-CN",
-							format:"yyyy-mm-dd",
-							todayHighlight:true,
-							autoclose:true,
-							weekStart:0
-						});
-						dialog({
-							title:"查询",
-							content:$("#search"),
-							okValue:"查询",
-							ok:function(){
-								$("#ui-datepicker-div").remove();
-							},
-							button:[{
-								value:"打印"
-							}],
-							cancelValue:"返回",
-							cancel:function(){
-								$("#ui-datepicker-div").remove();
-							}
-						}).showModal();
-
-					}
-				},*/
 				button3:{
-					text:"设置",
+					text:"任务分配",
 					click:function(){
-						$("#slider").slider({
-							range:true,
-							min:0,
-							max:24,
-							values:[8,18],
-							slide: function( event, ui ) {
-				        		$( "#amount" ).val(ui.values[ 0 ] + ":00 - " + ui.values[ 1 ]+":00");
-				        		
-				      		}
-						});
-						$( "#amount" ).val($( "#slider" ).slider( "values", 0 ) +
-                        ":00 - " + $( "#slider" ).slider( "values", 1 )+":00");
-						dialog({
-							title:"设置时间段",
-							content:$("#set"),
-							okValue:"确定",
-							ok:function(){
-								var minTime = $( "#slider" ).slider( "values", 0 )+":00:00";
-				      			var maxTime = $( "#slider" ).slider( "values", 1 )+":00:00";
-				      			$("#calendar").fullCalendar("option","minTime",minTime);
-				      			$("#calendar").fullCalendar("option","maxTime",maxTime);
-							},
-							cancelValue:"关闭",
-							cancel:function(){}
-						}).showModal();
+						window.location.href=basepath+"/task/goTaskCalendar";
 					}
 				}
 			},
@@ -161,7 +91,7 @@ $(function(){
             		$("#itemId").val("");
             	}					
 			 },
-			dayClick: function(date,allDay,jsEvent,view){
+/*			dayClick: function(date,allDay,jsEvent,view){
 				var selDate = $.fullCalendar.formatDate(date,"YYYY-MM-DD");
 				var d = dialog({
 					title:"新建事件",
@@ -202,13 +132,9 @@ $(function(){
 				});
 				d.showModal();
 				
-			},
+			},*/
 			
-			
-			/****
-			 * 事务点击时间
-			 */
-			eventClick:function(event,jsEvent,view){				
+/*			eventClick:function(event,jsEvent,view){				
 				var editstarttime = $.fullCalendar.formatDate(event.start,"YYYY-MM-DD HH:mm:ss");
 				$("#edittitle").html(event.title);
 				var eventtitle = event.title;
@@ -254,7 +180,7 @@ $(function(){
 						clear();
 					}
 				}).showModal();
-			}
+			}*/
 		
 		});
 	});

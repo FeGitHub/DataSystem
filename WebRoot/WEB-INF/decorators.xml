@@ -27,6 +27,6 @@
  </decorator>    
  
   <decorator name="self" page="self.jsp">           
-         <pattern>/task/goFullCalendar</pattern>      
+         <pattern>/task/goTaskCalendar</pattern>      
  </decorator>   
 </decorators> 

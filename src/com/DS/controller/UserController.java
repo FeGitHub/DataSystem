@@ -1,7 +1,6 @@
 package com.DS.controller;
 import java.util.Map;
 import javax.servlet.http.HttpSession;
-
 import com.DS.common.model.User;
 import com.DS.user.service.UserService;
 import com.DS.user.service.impl.UserServiceImpl;
@@ -79,6 +78,16 @@ public class UserController extends BaseController {
     
 	
 	 public void goMenu(){					
-	 	 render("main.jsp");
+	 	// render("main.jsp");
+		 render("user_taskCalendar.jsp");
 	 }
+	 
+	  /***
+			 * 跳转到日历任务页面
+			 */
+			  public void goUserTaskCalendar(){
+		    	  render("user_taskCalendar.jsp");
+		      }
+		  
+		  
 }

@@ -3,7 +3,7 @@
 <html>
 <head>
 	<meta charset="UTF-8" name="viewport" content="width=device-width,initial-scale=1.0">
-	<title>fullcalendar-日程管理</title>
+	<title>日程管理</title>
 	<link href="${BASE_PATH}/plug/fullCalendar/bootstrap/css/bootstrap.min.css" rel="stylesheet">
 	<link href="${BASE_PATH}/plug/fullCalendar/fullcalendar/fullcalendar.min.css" rel="stylesheet">
 	<link href="${BASE_PATH}/plug/fullCalendar/fullcalendar/fullcalendar.print.min.css" rel="stylesheet" media="print">
