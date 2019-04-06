@@ -1,5 +1,6 @@
 /********
  *  工程任务树
+ *  
  */
 var tree="projectTree";
 $(function() {
@@ -60,7 +61,8 @@ $("body").on("click","#submitBtn",function(){
 			"endDate":node.endDate,
 			"taskName":node.name,
 			"depiction":node.depiction,
-			"schedule":node.checked
+			"schedule":node.schedule,
+			"underway":node.underway
 			};
   	$.ajax({
 		url:basepath+"/task/updateProjectTask",
@@ -155,7 +157,7 @@ function removeHoverDom(treeId, treeNode) {
  *得到树形节点的信息
  */
 function getZtreeNodesInfo(zTreeObj){
-	   var nodes = zTreeObj.getNodes();//当前数的节点信息
+	   var nodes = zTreeObj.getNodes();//当前树的节点信息
 	   var act=zTreeObj.transformToArray(nodes);//转换成数组
 	   var MyNode="";//用于被遍历的节点的载体
 	   var str="";//最终拼接的信息	  
@@ -176,7 +178,8 @@ function getZtreeNodesInfo(zTreeObj){
 	        	"endDate":MyNode[0].endDate,
 	        	"userId":MyNode[0].userId,
 	        	"depiction":MyNode[0].depiction,
-	        	"schedule":MyNode[0].checked//选中的标志，表示已被处理
+	        	"schedule":MyNode[0].schedule,
+	        	"underway":MyNode[0].underway
 	        	});
 	    }
 	    var ztreeJson = JSON.stringify(params);
@@ -247,7 +250,7 @@ function showData(treeNode){
 
 
 //饼状图
-function pieChart(done,undone,underway){
+function pieChart(undone,underway,done){
 	 var dom = document.getElementById("pieChart");
 	 var pieChart = echarts.init(dom);
 	 pieChart.showLoading({
@@ -263,12 +266,14 @@ function pieChart(done,undone,underway){
 	     },
 	     tooltip : {
 	         trigger: 'item',
-	         formatter: "{a} <br/>{b} : {c} ({d}%)"
+	         formatter: "{a} <br/>{b} : {c} ({d}%)",
+	         enterable: true
+	              
 	     },
 	     legend: {
 	         orient: 'vertical',
 	         left: 'left',
-	         data: ['已完成','未开始','进行中']
+	         data: ['未开始','进行中','已完成']
 	     },
 	     series : [
 	         {
@@ -276,10 +281,11 @@ function pieChart(done,undone,underway){
 	             type: 'pie',
 	             radius : '55%',
 	             center: ['50%', '60%'],
-	             data:[
-	                 {value:done, name:'已完成'},
+	             data:[	                    
 	                 {value:undone, name:'未开始'},
-	                 {value:underway, name:'进行中'}                
+	                 {value:underway, name:'进行中'},
+	                 {value:done, name:'已完成'}
+	              
 	             ],
 	             itemStyle: {
 	                 emphasis: {
@@ -295,6 +301,9 @@ function pieChart(done,undone,underway){
 	 if (option && typeof option === "object") {
 		 pieChart.hideLoading();  //提示关闭
 		 pieChart.setOption(option, true);
+		 pieChart.on('click',function(a,b){
+			 showchecked(parseInt(a.dataIndex));
+			 })
 	 }
 }
 
@@ -308,8 +317,10 @@ function updateProjectTask(node){
 			"endDate":node.endDate,
 			"taskName":node.name,
 			"depiction":node.depiction,
-			"schedule":node.checked
+			"schedule":node.schedule,
+			"underway":node.underway
 			};
+	console.log(data);
   	$.ajax({
 		url:basepath+"/task/updateProjectTask",
 		type:"post",
@@ -378,7 +389,7 @@ function initTable(){
 			success:function(data){		
 				    //console.log(data);
 					 $.fn.zTree.init($("#"+tree), setting, data.projectTree);
-					 pieChart(parseInt(data.done),parseInt(data.undone),parseInt(data.underway));
+					 pieChart(parseInt(data.undone),parseInt(data.underway),parseInt(data.done));
 					 $(".overlay").remove();
 			}
 		});
@@ -467,7 +478,22 @@ function remove(ids,pId,treeNode){
 				toastrError(data.msg,2000);
 			}		
 		} 
-	});
-	
+	}); 
+}
 
+/****
+ * 
+ * @param way
+ */
+function showchecked(way){
+	   var zTreeObj = $.fn.zTree.getZTreeObj(tree);
+	   var nodes = zTreeObj.getNodes();//当前树的节点信息
+	   var act=zTreeObj.transformToArray(nodes);//转换成数组
+	   for (var i=0, l=act.length; i < l; i++) {
+		   if(act[i].way==way&&!act[i].isParent){
+			   zTreeObj.checkNode(act[i], true, false,false);
+		   }else{
+			   zTreeObj.checkNode(act[i], false, false,false);
+		   }	  		 
+	   }
 }

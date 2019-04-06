@@ -74,8 +74,12 @@
  */
 #sql("getProjectById")
 	select id,pId,taskName as name,
-	       projectId,open,schedule as checked,startDate,
-	       endDate,userId,depiction 
+	       projectId,open,schedule,startDate,
+	       endDate,userId,depiction,underway,
+	       case
+		     when schedule='true'  then 2
+			 when schedule='false'  and underway ='true'  then 1 else 0
+	       END  as way
 	from project_tree 
 	where projectId=#para(projectId)
 	and userId=#para(userId)

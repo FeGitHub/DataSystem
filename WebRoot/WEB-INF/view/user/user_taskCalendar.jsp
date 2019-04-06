@@ -7,17 +7,17 @@
 	<link href="${BASE_PATH}/plug/fullCalendar/fullcalendar/fullcalendar.min.css" rel="stylesheet">
 	<link href="${BASE_PATH}/plug/fullCalendar/fullcalendar/fullcalendar.print.min.css" rel="stylesheet" media="print">
 	<link href="${BASE_PATH}/plug/fullCalendar/jquery-ui-1.10.4.custom/css/base/jquery-ui-1.10.4.custom.min.css" rel="stylesheet">
-	<link href="${BASE_PATH}/plug/fullCalendar/bootstrap-datepicker/dist/css/bootstrap-datepicker.min.css" rel="stylesheet">
+<%-- 	<link href="${BASE_PATH}/plug/fullCalendar/bootstrap-datepicker/dist/css/bootstrap-datepicker.min.css" rel="stylesheet"> --%>
 	<link href="${BASE_PATH}/plug/fullCalendar/fullcalendar/lib/cupertino/jquery-ui.min.css" rel="stylesheet">
-	<link href="${BASE_PATH}/plug/fullCalendar/artDialog/css/ui-dialog.css" rel="stylesheet">
-	<link href="${BASE_PATH}/plug/fullCalendar/wickedpicker/dist/wickedpicker.min.css" rel="stylesheet">
+	<%-- <link href="${BASE_PATH}/plug/fullCalendar/artDialog/css/ui-dialog.css" rel="stylesheet">
+	<link href="${BASE_PATH}/plug/fullCalendar/wickedpicker/dist/wickedpicker.min.css" rel="stylesheet"> --%>
 	<link href="${BASE_PATH}/css/pagecss/user/user_taskCalendar.css" rel="stylesheet">		
-	<script src="${BASE_PATH}/plug/fullCalendar/jquery-ui-1.10.4.custom/js/jquery-1.10.2.js"></script>
+<%-- 	<script src="${BASE_PATH}/plug/fullCalendar/jquery-ui-1.10.4.custom/js/jquery-1.10.2.js"></script> --%>
 	<script src="${BASE_PATH}/plug/fullCalendar/fullcalendar/lib/jquery-ui.min.js"></script>
 	<script src="${BASE_PATH}/plug/fullCalendar/fullcalendar/lib/moment.min.js"></script>
 	<script src="${BASE_PATH}/plug/fullCalendar/fullcalendar/fullcalendar.js"></script>
-	<script src="${BASE_PATH}/plug/fullCalendar/artDialog/dist/dialog-min.js"></script>
-	<script src="${BASE_PATH}/plug/fullCalendar/bootstrap/js/bootstrap.min.js"></script>
+	<%-- <script src="${BASE_PATH}/plug/fullCalendar/artDialog/dist/dialog-min.js"></script> --%>
+<%-- 	<script src="${BASE_PATH}/plug/fullCalendar/bootstrap/js/bootstrap.min.js"></script> --%>
 	<script src="${BASE_PATH}/plug/fullCalendar/wickedpicker/dist/wickedpicker.min.js"></script>
 	<script src="${BASE_PATH}/plug/fullCalendar/bootstrap-datepicker/dist/js/bootstrap-datepicker.min.js"></script>
 	<script src="${BASE_PATH}/plug/fullCalendar/bootstrap-datepicker/dist/locales/bootstrap-datepicker.zh-CN.min.js"></script>

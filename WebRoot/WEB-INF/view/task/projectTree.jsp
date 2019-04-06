@@ -10,7 +10,7 @@
     <div class="tile">
                  <button id="popBtn" onclick="showProgess(this)" type="button" class="btn btn-primary">弹出</button>&nbsp;&nbsp;    	    	
     	    	 <button id="testBtn" type="button" class="btn btn-primary">输出树形数据</button>&nbsp;&nbsp;
-    	    	 <button id="updateBtn" type="button" class="btn btn-primary">提交工程任务</button>  	       	    	 
+    	    	<!--  <button id="updateBtn" type="button" class="btn btn-primary">提交工程任务</button>   -->	       	    	 
     </div>
      <div class="tile">   
          	   <div class="bs-component">
