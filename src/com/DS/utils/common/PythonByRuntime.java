@@ -28,7 +28,8 @@ public class PythonByRuntime {
 	private static String PY_MODEL_PATH=PathKit.getRootClassPath()+"\\py\\resources\\model";//默认的python资源文件路径
 	public static void main(String[] args) throws IOException,InterruptedException {				
 		//runPython3(PY_ROOT_PATH,PY_RES_PATH,"house_data5.py");
-		runPython3("house_data5.py");
+		//runPython3("train_build_model.py");
+		runPython3("train_run_model.py","90,70,10");
 		//runPython3("grade.py");
     }
 	
@@ -64,31 +65,8 @@ public class PythonByRuntime {
 	 */
 	public static List<String> runPython3(String PY_Path,String PY_ResPath,String PY_FileName){
 		List<String> result=new ArrayList<String>();
-        Process proc;
-        try {
-        	String exec="python "+PY_Path+PY_FileName+" "+PY_ResPath;
-        	logger.info("---------python执行语句-----------");
-        	logger.info(exec);
-            proc = Runtime.getRuntime().exec(exec);// 执行py文件
-            //用输入输出流来截取结果
-            BufferedReader in = new BufferedReader(new InputStreamReader(proc.getInputStream(),"GBK"));                  
-            String line =null;
-            while ((line=in.readLine() )!= null) {        
-            	logger.info(line);
-                result.add(line);
-            }
-            if(result.size()==0){         	     	
-            	logger.info("请检查python的环境是否配置，请用cmd单独运行下面文件");
-            	logger.info(PY_ROOT_PATH+PY_FileName);            	         
-           }
-            in.close();
-            proc.waitFor();
-            logger.info("---------python执行结束----------");
-        } catch (IOException e) {
-            e.printStackTrace();
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
+		String exec="python "+PY_Path+PY_FileName+" "+PY_ResPath;
+		result= cmdRunPython(exec);
         return result;
     }
 	
@@ -101,31 +79,50 @@ public class PythonByRuntime {
 	 */
 	public static List<String> runPython3(String PY_FileName){
 		List<String> result=new ArrayList<String>();
-        Process proc;
-        try {
-        	String exec="python "+PY_ROOT_PATH+PY_FileName+" "+PY_RES_PATH+" "+PY_MODEL_PATH;
-        	logger.info("---------python执行语句-----------");
-        	logger.info(exec);
-            proc = Runtime.getRuntime().exec(exec);// 执行py文件
-            //用输入输出流来截取结果
-            BufferedReader in = new BufferedReader(new InputStreamReader(proc.getInputStream(),"GBK"));                  
-            String line =null;
-            while ((line=in.readLine() )!= null) {        
-            	logger.info(line);
-                result.add(line);
-            }
-            if(result.size()==0){           	
-            	logger.info("请检查python的环境是否配置，请用cmd单独运行下面文件");
-            	logger.info(PY_ROOT_PATH+PY_FileName);            	 
-            }
-            in.close();
-            proc.waitFor();
-            logger.info("---------python执行结束----------");
-        } catch (IOException e) {
-            e.printStackTrace();
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
-        return result;
+		String exec="python "+PY_ROOT_PATH+PY_FileName+" "+PY_RES_PATH+" "+PY_MODEL_PATH;
+		result= cmdRunPython(exec);
+		return result;
     }
+	
+	/***
+	 * 
+	 * @param PY_FileName
+	 * @param argStr python 执行的第三参数
+	 * @return
+	 */
+	public static List<String> runPython3(String PY_FileName,String argStr){
+		List<String> result=new ArrayList<String>();
+		String exec="python "+PY_ROOT_PATH+PY_FileName+" "+PY_RES_PATH+" "+PY_MODEL_PATH+" "+argStr;
+		result= cmdRunPython(exec);
+		return result;
+    }
+	
+	
+	private static List<String> cmdRunPython(String exec){
+		List<String> result=new ArrayList<String>();
+        Process proc;
+		 try {	        	
+	        	logger.info("---------python执行语句-----------");
+	        	logger.info(exec);
+	            proc = Runtime.getRuntime().exec(exec);// 执行py文件
+	            //用输入输出流来截取结果
+	            BufferedReader in = new BufferedReader(new InputStreamReader(proc.getInputStream(),"GBK"));                  
+	            String line =null;
+	            while ((line=in.readLine() )!= null) {        
+	            	logger.info(line);
+	                result.add(line);
+	            }
+	            if(result.size()==0){           	
+	            	logger.info("请检查python的环境是否配置，请用cmd单独运行下面文件");	                      	 
+	            }
+	            in.close();
+	            proc.waitFor();
+	            logger.info("---------python执行结束----------");
+	        } catch (IOException e) {
+	            e.printStackTrace();
+	        } catch (InterruptedException e) {
+	            e.printStackTrace();
+	        }
+	        return result;
+	}
 }

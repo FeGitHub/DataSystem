@@ -9,11 +9,15 @@ from sys import argv
 
 
 def load_and_predict(single_test_feat):
-    MODEL_FILE=argv[2]+"\\demo_model.m"
+    MODEL_FILE=argv[2]+"\\project_model.m"
     linear_reg_model = joblib.load(MODEL_FILE)
     y_pred = linear_reg_model.predict([single_test_feat])
-    print('预测:', y_pred)
+    print('完成时间误差预测:', y_pred)
 
 
 if __name__ == '__main__':
-    load_and_predict([70, 1, 0])
+    arg=argv[3]
+    arr = arg.split(',')
+    arr=list(map(int,arr))
+    print(arr)
+    load_and_predict(arr)
