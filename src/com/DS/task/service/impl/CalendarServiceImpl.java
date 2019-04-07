@@ -1,9 +1,7 @@
 package com.DS.task.service.impl;
-
 import com.DS.bean.TaskCalendarBean;
 import com.DS.common.model.Task;
 import com.DS.task.service.CalendarService;
-
 public class CalendarServiceImpl implements CalendarService {
 	/****
 	 * 将task类型转换成TaskCalendarBean

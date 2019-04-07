@@ -16,7 +16,7 @@
                 	<circle class="path" cx="50" cy="50" r="20" fill="none" stroke-width="4" stroke-miterlimit="10"/>
                 </svg>
               </div>
-              <h3 class="l-text">Loading</h3>
+              <h3 class="l-text">加载中</h3>
             </div>
           <!--  -->
             <h3 class="tile-title"></h3>

@@ -43,7 +43,12 @@ $(function(){
 						}).showModal();
 					}
 				},
-
+				button2:{
+					text:"返回首页",
+					click:function(){
+						window.location.href=basepath+"/user/goMenu";
+					}
+				},
 	/*			button2:{
 					text:"查询",
 					click:function(){
@@ -101,7 +106,7 @@ $(function(){
 							cancel:function(){}
 						}).showModal();
 					}
-				}
+				}			
 			},
 			header: {
 				left: 'prev,next today button3',
@@ -206,7 +211,7 @@ $(function(){
 			
 			
 			/****
-			 * 事务点击时间
+			 * 事务点击事件
 			 */
 			eventClick:function(event,jsEvent,view){				
 				var editstarttime = $.fullCalendar.formatDate(event.start,"YYYY-MM-DD HH:mm:ss");

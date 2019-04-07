@@ -2,6 +2,9 @@
  * 具体配置可参考：https://blog.csdn.net/qw_xingzhe/article/details/44920943
  */
 $(function(){ 
+	var index = layer.load(1, {
+		  shade: [0.1,'#fff'] //0.1透明度的白色背景
+		});
 	    displayTask();  
 		$("#calendar").fullCalendar({
 			theme: true,		
@@ -21,8 +24,13 @@ $(function(){
             dragRevertDuration:500,          
 			events: {
 				url:basepath+"/task/getTaskCalendar",
+				success:function(){
+					layer.closeAll();
+				},
 				error: function() {
 					toastrError("资源请求失败",3000);
+					layer.closeAll();
+					
 				}
 			},
 			customButtons:{
@@ -133,54 +141,27 @@ $(function(){
 				d.showModal();
 				
 			},*/
-			
-/*			eventClick:function(event,jsEvent,view){				
-				var editstarttime = $.fullCalendar.formatDate(event.start,"YYYY-MM-DD HH:mm:ss");
-				$("#edittitle").html(event.title);
+			 
+			/***
+			 *  事务点击事件
+			 */
+			eventClick:function(event,jsEvent,view){				
+				var starttime = $.fullCalendar.formatDate(event.start,"YYYY-MM-DD HH:mm:ss");				
 				var eventtitle = event.title;
-				if(event.end){
-					var editendtime = $.fullCalendar.formatDate(event.end,"YYYY-MM-DD HH:mm:ss");
-					$("#edittime").html(editstarttime+"  至  "+editendtime);
-				}else{
-					$("#edittime").html(editstarttime);
-				};		
-				dialog({
-					title:"编辑日程",
-					content:$("#edit"),
-					okValue:"编辑",
-					ok:function(){
-						initEventClick(event);
-						dialog({
-							title:"新建日程",
-							content:$("#dialog-form"),
-							okValue:"确定",
-							ok:function(){
-						        update(event);
-						        clear();
-							},
-							cancelValue:"关闭",
-							cancel:function(){
-								clear();
-								//$("#ui-datepicker-div").remove();
-							}
-						}).showModal();					
-					},
-
-					//事件删除
-					button:[{
-						value:"删除",
-						callback:function(){
-							delTask(event);
-						}
-					}],
-
-					//取消操作
-					cancelValue:"取消",
-					cancel:function(){
-						clear();
-					}
-				}).showModal();
-			}*/
+				var description = event.description;
+				var tips=""+eventtitle+"<br>"
+				    tips+=""+starttime+"<br>"
+			    if(event.end!=null){
+			    	    var endtime = $.fullCalendar.formatDate(event.end,"YYYY-MM-DD HH:mm:ss");
+						 tips+=""+endtime+"<br>"
+			    }
+				if(description!=null){
+					 tips+=description
+				}
+				layer.tips(tips, $(this), { 
+					  tips: [1, '#78BA32']
+					});
+			}
 		
 		});
 	});

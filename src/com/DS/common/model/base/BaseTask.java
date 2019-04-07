@@ -89,4 +89,20 @@ public abstract class BaseTask<M extends BaseTask<M>> extends Model<M> implement
 		return getInt("taskType");
 	}
 
+	public void setAllDay(java.lang.Integer allDay) {
+		set("allDay", allDay);
+	}
+	
+	public java.lang.Integer getAllDay() {
+		return getInt("allDay");
+	}
+
+	public void setUnderway(java.lang.Integer underway) {
+		set("underway", underway);
+	}
+	
+	public java.lang.Integer getUnderway() {
+		return getInt("underway");
+	}
+
 }

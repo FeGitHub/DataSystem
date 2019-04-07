@@ -345,6 +345,7 @@ public class TaskController extends BaseController{
     	 projectTree=projectService.addProjectTask(projectTree);
     	 if(projectTree!=null){
     		 map.put("id", projectTree.getId());
+    		 map.put("msg", "新增成功");
     		 renderJson(ajaxDoneSuccess(map));
     	 }else{
     		 renderJson(ajaxDoneError("新增失败"));

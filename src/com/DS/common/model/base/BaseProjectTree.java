@@ -49,14 +49,6 @@ public abstract class BaseProjectTree<M extends BaseProjectTree<M>> extends Mode
 		return getStr("taskName");
 	}
 
-	public void setSchedule(java.lang.String schedule) {
-		set("schedule", schedule);
-	}
-	
-	public java.lang.String getSchedule() {
-		return getStr("schedule");
-	}
-
 	public void setOpen(java.lang.String open) {
 		set("open", open);
 	}
@@ -81,20 +73,20 @@ public abstract class BaseProjectTree<M extends BaseProjectTree<M>> extends Mode
 		return get("endDate");
 	}
 
-	public void setDepiction(java.lang.String depiction) {
-		set("depiction", depiction);
+	public void setDescription(java.lang.String description) {
+		set("description", description);
 	}
 	
-	public java.lang.String getDepiction() {
-		return getStr("depiction");
+	public java.lang.String getDescription() {
+		return getStr("description");
 	}
 
-	public void setUnderway(java.lang.String underway) {
+	public void setUnderway(java.lang.Integer underway) {
 		set("underway", underway);
 	}
 	
-	public java.lang.String getUnderway() {
-		return getStr("underway");
+	public java.lang.Integer getUnderway() {
+		return getInt("underway");
 	}
 
 	public void setTaskId(java.lang.Integer taskId) {

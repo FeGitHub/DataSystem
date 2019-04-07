@@ -95,7 +95,7 @@ public class GetTodayNotify implements Job{
 			n.setSender("工程系统");
 			n.setUserId(item.getUserId()+"");
 			n.setSubject(item.getTaskName());
-			n.setContent(item.getDepiction());
+			n.setContent(item.getDescription());
 			n.setOperatetime(new Date());
 			n.setCreateType(3);
 			resultList.add(n);			

@@ -106,10 +106,11 @@ public class ProjectServiceImpl implements ProjectService {
 	Task projectTreeToTask(ProjectTree projectTree){
 		Task task=new Task();
 		task.setTaskName(projectTree.getTaskName());
-		task.setDescription(projectTree.getDepiction());
+		task.setDescription(projectTree.getDescription());
 		task.setStart(projectTree.getStartDate());
 		task.setEnd(projectTree.getEndDate());
 		task.setUserId(projectTree.getUserId());
+		task.setUnderway(projectTree.getUnderway());
 		return task;
 	}
 	

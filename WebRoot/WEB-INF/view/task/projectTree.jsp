@@ -26,7 +26,7 @@
                 	<circle class="path" cx="50" cy="50" r="20" fill="none" stroke-width="4" stroke-miterlimit="10"/>
                 </svg>
               </div>
-              <h3 class="l-text">Loading</h3>
+              <h3 class="l-text">加载中</h3>
             </div>
 		    <div class="row">
 		    	<div class="col-md-6">	     
@@ -48,11 +48,11 @@
 						        <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">×</span><span class="sr-only">Close</span></button>
 						        <h4 class="modal-title"></h4>
 						      </div>
-						      <div class="modal-body" style="height:350px;overflow:hidden;"><!--改变这个高度可以改变整个模态框的高度，但是内部元素可能撑破-->
+						      <div class="modal-body" style="height:400px;overflow:hidden;"><!--改变这个高度可以改变整个模态框的高度，但是内部元素可能撑破-->
 						      </div>	
 						      <div class="modal-footer">
                 				<button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
-               					 <button type="button" class="btn btn-primary" id="submitBtn">保存</button>
+               					 <button type="button" class="btn btn-primary" id="updateBtn">保存</button>
             				</div>     
 					    </div>
 					  </div>
@@ -98,8 +98,29 @@
               	<td>
 	              	<div class="row">
 		              	<div class="col-sm-12">
-		              		  <textarea class="form-control validate[required]" rows="3" name="depiction" id="depiction"></textarea>    
+		              		  <textarea class="form-control validate[required]" rows="3" name="description" id="description"></textarea>    
 		              	</div>                    	
+	                 </div>	  
+              	</td>              	
+            </tr>    
+            
+            <tr>
+				<td class="va-m" width="30%"><span>工程进度</span></td>
+              	<td>
+	              	<div class="row">
+				          <div class="col-sm-12">	                                     
+			                     <div class="animated-radio-button">
+						               <label>
+						                   <input type="radio" name="underway" value="0"><span class="label-text">未开始</span>
+						               </label>
+						                <label>
+						                   <input type="radio" name="underway" value="1"><span class="label-text">进行中</span>
+						                </label>
+						                <label>
+						                    <input type="radio" name="underway" value="2"><span class="label-text">已完成</span>
+						                </label>
+			                       </div>
+				           </div>	                  	
 	                 </div>	  
               	</td>              	
             </tr>                     		

@@ -47,21 +47,21 @@ function onClick(event, treeId, treeNode, clickFlag) {
 /****
  * 节点信息的详细修改
  */
-$("body").on("click","#submitBtn",function(){
+$("body").on("click","#updateBtn",function(){
 	var nodeId=$("#nodeId").val();
 	var ztree=$.fn.zTree.getZTreeObj(tree);
 	var node=ztree.getNodeByParam('id',nodeId);
 	node.startDate=$("#startDate").val();
 	node.endDate=$("#endDate").val();
 	node.name=$("#taskName").val();
-	node.depiction=$("#depiction").val();
+	node.description=$("#description").val();
+	node.underway=$("input[name='underway']:checked").val();
 	var data={
 			"id":node.id,
 			"startDate":node.startDate,
 			"endDate":node.endDate,
 			"taskName":node.name,
-			"depiction":node.depiction,
-			"schedule":node.schedule,
+			"description":node.description,
 			"underway":node.underway
 			};
   	$.ajax({
@@ -132,7 +132,8 @@ function addNodeInfo(treeNode){
 				if(data.code==200){
 					 nodeinfo.id=data.id;
 					 nodeinfo.name="新任务";
-					 zTree.addNodes(treeNode, nodeinfo);   		
+					 zTree.addNodes(treeNode, nodeinfo);   	
+					 toastrSuccess(data.msg,2000);		
 				}else{
 					toastrError(data.msg,2000);
 				}		  
@@ -177,20 +178,18 @@ function getZtreeNodesInfo(zTreeObj){
 	        	"startDate":MyNode[0].startDate,
 	        	"endDate":MyNode[0].endDate,
 	        	"userId":MyNode[0].userId,
-	        	"depiction":MyNode[0].depiction,
-	        	"schedule":MyNode[0].schedule,
+	        	"description":MyNode[0].description,
 	        	"underway":MyNode[0].underway
 	        	});
 	    }
 	    var ztreeJson = JSON.stringify(params);
-	    //console.log(ztreeJson);
 	    return ztreeJson;
 }
 
 /****
  * 更新工程树
  */
-$("#updateBtn").click(function(){
+/*$("#updateBtn").click(function(){
 	  var zTreeObj = $.fn.zTree.getZTreeObj(tree);
 	  var pTaskJson=getZtreeNodesInfo(zTreeObj);
 	  	$.ajax({
@@ -206,7 +205,7 @@ $("#updateBtn").click(function(){
 			}		
 		}
 	});
-	});	
+	});	*/
 
 /****
  * 删除节点
@@ -241,9 +240,10 @@ function zTreeOnRemove(event, treeId, treeNode) {
  */
 function showData(treeNode){
 	   $("#taskName").val(treeNode.name);
-	   $("#startDate").val(treeNode.startDate);
+	   $("#startDate").val(treeNode.startDate); 
 	   $("#endDate").val(treeNode.endDate);
-	   $("#depiction").val(treeNode.depiction);
+	   $("#description").val(treeNode.description);
+	   $(":radio[name='underway'][value='" + treeNode.underway + "']").prop("checked", "checked");
 	}
 
 
@@ -310,14 +310,13 @@ function pieChart(undone,underway,done){
 /****
  * 更新工程任务
  */
-function updateProjectTask(node){  
+/*function updateProjectTask(node){  
 	var data={
 			"id":node.id,
 			"startDate":node.startDate,
 			"endDate":node.endDate,
 			"taskName":node.name,
-			"depiction":node.depiction,
-			"schedule":node.schedule,
+			"description":node.description,
 			"underway":node.underway
 			};
 	console.log(data);
@@ -335,6 +334,7 @@ function updateProjectTask(node){
 		}
 	});
 }
+*/
 
 /***
  * 处理根节点不能删除
@@ -490,7 +490,7 @@ function showchecked(way){
 	   var nodes = zTreeObj.getNodes();//当前树的节点信息
 	   var act=zTreeObj.transformToArray(nodes);//转换成数组
 	   for (var i=0, l=act.length; i < l; i++) {
-		   if(act[i].way==way&&!act[i].isParent){
+		   if(act[i].underway==way&&!act[i].isParent){
 			   zTreeObj.checkNode(act[i], true, false,false);
 		   }else{
 			   zTreeObj.checkNode(act[i], false, false,false);

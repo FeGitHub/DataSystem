@@ -20,9 +20,9 @@
  * 插入工程任务树详细信息
  */
 #sql("insertDataBatch")
-	insert into project_tree (id,pId,taskName,userId,projectId,startDate,endDate,schedule,depiction) values
+	insert into project_tree (id,pId,taskName,userId,projectId,startDate,endDate,description) values
 	#for(x : cond)
-		(#para(x.id),#para(x.pId),#para(x.taskName),#para(x.userId),#para(x.projectId),#para(x.startDate),#para(x.endDate),#para(x.schedule),#para(x.depiction)) #(for.last ? " ": ",")
+		(#para(x.id),#para(x.pId),#para(x.taskName),#para(x.userId),#para(x.projectId),#para(x.startDate),#para(x.endDate),#para(x.description)) #(for.last ? " ": ",")
 	 #end
 #end
 
@@ -74,21 +74,11 @@
  */
 #sql("getProjectById")
 	select id,pId,taskName as name,
-	       projectId,open,schedule,startDate,
-	       endDate,userId,depiction,underway,
-	       case
-		     when schedule='true'  then 2
-			 when schedule='false'  and underway ='true'  then 1 else 0
-	       END  as way
+	       projectId,open,startDate,
+	       endDate,userId,description,underway
 	from project_tree 
 	where projectId=#para(projectId)
 	and userId=#para(userId)
-	#if(schedule)
-	    and schedule=#para(schedule)
-	#end
-	#if(underway)
-	    and underway=#para(underway)
-	#end
 #end
 
 /****
@@ -106,9 +96,6 @@
 	#if(projectId)
 	   and projectId=#para(projectId)
 	#end
-	#if(schedule)
-	    and schedule=#para(schedule)
-	#end
 	#if(underway)
 	    and underway=#para(underway)
 	#end	
@@ -120,8 +107,8 @@
 #sql("getProjectSchedule")
 	SELECT
 	COUNT(id) AS tasksize,
-    COUNT( CASE WHEN  underway='true' and schedule='false' THEN id END ) AS underway,
-    COUNT( CASE WHEN  schedule='true' THEN id END ) AS done 	 	
+    COUNT( CASE WHEN  underway=1 THEN id END ) AS underway,
+    COUNT( CASE WHEN  underway=2 THEN id END ) AS done 	 	
     FROM
 	    project_tree  where userId =#para(userId) AND projectId =#para(projectId)
 	     AND id not in (select distinct pId from project_tree where  userId=#para(userId) AND projectId =#para(projectId))  
