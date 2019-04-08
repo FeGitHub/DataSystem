@@ -22,42 +22,16 @@ import com.jfinal.kit.PathKit;
  */
 public class PythonByRuntime {
 	private static Logger logger = Logger.getLogger(PythonByRuntime.class);
-	//private static String exe = "python";
 	private static String PY_ROOT_PATH=PathKit.getRootClassPath()+"\\py\\";//默认的python脚本文件路径
 	private static String PY_RES_PATH=PathKit.getRootClassPath()+"\\py\\resources";//默认的python资源文件路径
 	private static String PY_MODEL_PATH=PathKit.getRootClassPath()+"\\py\\resources\\model";//默认的python资源文件路径
-	public static void main(String[] args) throws IOException,InterruptedException {				
-		//runPython3(PY_ROOT_PATH,PY_RES_PATH,"house_data5.py");
-		//runPython3("train_build_model.py");
-		runPython3("train_run_model.py","90,70,10");
-		//runPython3("grade.py");
+	public static void main(String[] args) throws IOException,InterruptedException {					
+		runPython3("custom_build_model.py","plantime,tasknum,effic,abstime");
     }
 	
-	/* 可使用，暂时弃用
-	 * public static String runPython3(String command,String num1,String num2) throws IOException, InterruptedException{
-		    String[] cmdArr = new String[] {exe, command, num1,num2};
-	        Process process = Runtime.getRuntime().exec(cmdArr);
-	        InputStream is = process.getInputStream();
-	        DataInputStream dis = new DataInputStream(is);
-	        String str = dis.readLine();
-	        process.waitFor();
-	        System.out.println(str);
-	        return str;
-	}
-	
-	public static String runPython3(String command) throws IOException, InterruptedException{
-		    String[] cmdArr = new String[] {exe, command};
-	        Process process = Runtime.getRuntime().exec(cmdArr);
-	        InputStream is = process.getInputStream();
-	        DataInputStream dis = new DataInputStream(is);
-	        String str = dis.readLine();	       
-	        process.waitFor();
-	        System.out.println(str);
-	        return str;
-}*/
 	
 	/****
-	 * 
+	 * 指定资源路径和python文件路径，运行python文件
 	 * @param PY_Path pyhton文件的所在路径 
 	 * @param PY_ResPath  python 文件资源路径
 	 * @param PY_FileName python文件名
@@ -86,7 +60,7 @@ public class PythonByRuntime {
 	
 	/***
 	 * 
-	 * @param PY_FileName
+	 * @param PY_FileName 
 	 * @param argStr python 执行的第三参数
 	 * @return
 	 */
@@ -97,7 +71,11 @@ public class PythonByRuntime {
 		return result;
     }
 	
-	
+	/****
+	 * 执行python
+	 * @param exec  python命令语句
+	 * @return  List<String> 控制台信息
+	 */
 	private static List<String> cmdRunPython(String exec){
 		List<String> result=new ArrayList<String>();
         Process proc;

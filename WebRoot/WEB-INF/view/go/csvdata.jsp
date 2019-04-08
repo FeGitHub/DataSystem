@@ -9,8 +9,9 @@
 		 
 	</head>
 	<body>
+	    <div align="center"><button id="analyseBtn">分析数据</button></div>
 		<div class="container">
-			<table class="table">
+			<table class="table" id="tableList">		
 				<!-- <thead>
 					<tr>
 						<td>姓名</td>
@@ -66,7 +67,7 @@
 							<button class="addbtn ">增加</button>
 						</td>
 					</tr>
-				</tfoot> -->
+				</tfoot> -->				
 			</table>
 			<input type="text" id="csv" style="display:none">
 			<!--增加的模态框-->

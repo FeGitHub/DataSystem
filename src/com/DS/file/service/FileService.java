@@ -24,6 +24,14 @@ public interface FileService {
     */
    public File uploadFile(File file);
    
+   /***
+    * 
+    * @param csv  读取的csv文件
+    * @param delete  读取后是否删除 
+    * @return
+    */
+   public List<Record> readCSV(File csv,boolean delete);
    
-   public List<Record> readCSV(File csv);
+   
+   public File uploadFile(File file,String newFileName);
 }

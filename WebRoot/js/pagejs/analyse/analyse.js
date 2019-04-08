@@ -15,7 +15,7 @@ $(function () {
 		
 		
 		$("#readCSVBtn").click(function(){	
-			var url="/file/readCSV";
+			var url="/file/getExternalCsv";
 		    var file=$('#csv')[0].files[0];	
 	    	if(file==null){
 					toastrError("请选择文件资源",3000);
@@ -103,7 +103,7 @@ $(function () {
 		    	   content: basepath+'/go/goCsvData',
 		    	   success:function(layero,index){
 		    		   var body=layer.getChildFrame('body',index);
-		    		   var $csv=body.find("#csv");
+		    		   var $csv=body.find("#csv");//在弹出框中定位容器
 		    		   var json = JSON.stringify(csv);
 		    		   $csv.val(json);
 		    	   }

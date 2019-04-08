@@ -68,16 +68,36 @@ public class FileServiceImpl implements FileService {
 	 * 读取csv文件信息
 	 */
 	@Override
-	public List<Record> readCSV(File csv) {
+	public List<Record> readCSV(File csv,boolean delete) {
 		List<Record> data=null;
 		try {
 			 data=CSVUtil.ReadCSV(csv);
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
-		csv.delete();//删除读取文件
+		if(delete){
+		  csv.delete();//删除读取文件
+		}		
 		return data;
 	  }
+
+	@Override
+	public File uploadFile(File file, String newFileName) {
+		  Prop p =PropKit.use("config.properties");	
+		  String filePath=p.get("uploadFile")+"/";  
+		  File copyfile = new File(filePath + newFileName+file.getName().substring(file.getName().lastIndexOf(".")));//设置本地上传文件对象（并重命名）	 
+		  try { 
+			  copyfile.createNewFile(); 
+			  fileChannelCopy(file, copyfile);			 
+			   } catch (IOException e) { 
+				   copyfile=null;
+				   e.printStackTrace(); 
+		    } finally{
+		    	  file.delete();
+		    }	 
+		  return copyfile;
+	
+	}
 	  
 	}
 

@@ -3,6 +3,8 @@ import java.io.File;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+
+import com.DS.common.model.User;
 import com.DS.file.service.FileService;
 import com.DS.file.service.impl.FileServiceImpl;
 import com.DS.web.base.BaseController;
@@ -66,14 +68,32 @@ public class FileController extends BaseController{
 	  public void readCSV(){
 		  UploadFile uploadFile = this.getFile();//获取前台上传文件对象 
 		  File file = uploadFile.getFile();//获取文件对象 
-		  List<Record> data=fileService.readCSV(file);
+		  List<Record> data=fileService.readCSV(file,true);
 		  Map<String,Object> map=new HashMap<String,Object>();
 		  map.put("csv", data);
 		  if(data!=null){
+			 // setSessionAttr();
+			  map.put("msg", "文件读取成功");
 			  renderJson(ajaxDoneSuccess(map));
 		  }else{
 			  renderJson(ajaxDoneError("文件读取失败"));
 		  }
 	  }
 	 
+	  public void getExternalCsv(){
+		  User nowUser = (User)getSession().getAttribute("user");
+		  UploadFile uploadFile = this.getFile();
+		  File file = uploadFile.getFile();//获取文件对象 
+		  String newFilename=nowUser.getId()+nowUser.getAccount();
+		  File myFile=fileService.uploadFile(file,newFilename);
+		  List<Record> data=fileService.readCSV(myFile,false);
+		  Map<String,Object> map=new HashMap<String,Object>();
+		  map.put("csv", data);
+		  if(data!=null){
+			  map.put("msg", "文件读取成功");
+			  renderJson(ajaxDoneSuccess(map));
+		  }else{
+			  renderJson(ajaxDoneError("文件读取失败"));
+		  }
+	  }
 }

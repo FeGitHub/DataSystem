@@ -124,13 +124,14 @@ $(function(){
 		 $(".table").html("<h1 align='center'>数据为空</h1>");
 		 return;
 	 }
-	 var arr=JSON.parse(csv);	 	  
+	 var arr=JSON.parse(csv);
+	 var col=Object.keys(arr[0]).length;
      var _html="";
      var rows=arr.length;
     for(var i=0;i<rows;i++){    	
     	if(i==0){
     		_html+="<thead><tr>";
-    	}else{
+    	} else{
     		_html+="<tr>";
     	}      	
       var count=Object.keys(arr[0]).length;
@@ -144,10 +145,41 @@ $(function(){
     		_html+="</tr>";
     	}
       if(i==(rows-1)){
-    	  _html+="<tfoot><tr><td colspan='"+count+"'><button class='addbtn'>增加</button></td></tr></tfoot>"
+    	  _html+="<tfoot><tr><td colspan='"+count+"'><button id='addBtn'>新增数据</button></td></tr></tfoot>"
   	 }
      		       
     }	
-    $(".table").html(_html);
-   
+    $(".table").html(_html); 
 }
+
+ $("body").on("click","#analyseBtn",function(){
+	 var $tb= $("#tableList").find("tbody");
+	 var $thead= $("#tableList").find("thead").find("tr");
+	 var ths=$thead.find("td");
+	 var thStr="";//标题
+	 for(var i=0;i<ths.length;i++){
+		 if(i==0){
+			 thStr=ths.eq(i).text();
+		 }else{
+			 thStr+=","+ths.eq(i).text();
+		 }		 
+	 }
+	 console.log(thStr)
+	 var trList = $tb.children("tr");
+	 var arg=[];
+	 for (var i=0;i<trList.length;i++) {
+	        var tdArr = trList.eq(i).find("td");
+	        var str="";
+	        var params = []; 
+	         for(var j=0;j<tdArr.length;j++){        	 
+	        	 var td=tdArr.eq(j).text();	 
+	        	 str+=" "+td;
+	        	 params.push(td);
+	         }  
+	         arg.push(params);
+	         console.log(str);
+	    }
+	   console.log(arg);
+	   var json=JSON.stringify(arg).toString();
+	   
+ });
