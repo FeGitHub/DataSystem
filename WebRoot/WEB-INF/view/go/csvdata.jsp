@@ -4,12 +4,16 @@
 	<head>
 		<meta charset="utf-8" />
 		<title></title>
-		 <script src="${BASE_PATH}/js/jquery-3.3.1.min.js"></script> 
-		 <link rel="stylesheet" type="text/css" href="${BASE_PATH}/css/pagecss/go/csvdata.css">
-		 
+		  <script src="${BASE_PATH}/js/jquery-3.3.1.min.js"></script> 
+		 <script src="${BASE_PATH}/js/toastr.min.js"></script><!--信息提示框-->
+         <link href="${BASE_PATH}/css/toastr.min.css" type="text/css" rel="stylesheet">		
+		 <link rel="stylesheet" type="text/css" href="${BASE_PATH}/css/pagecss/go/csvdata.css">		 
 	</head>
 	<body>
-	    <div align="center"><button id="analyseBtn">分析数据</button></div>
+	    <div align="center">
+	         <button id="analyseBtn">分析数据</button>
+	         <button id="customAnalyseBtn">自定义分析数据</button>
+	     </div>
 		<div class="container">
 			<table class="table" id="tableList">		
 				<!-- <thead>
@@ -153,7 +157,10 @@
 					</div>
 				</div>
 			</div>	
-		</div>			
+		</div>	
+		<script type="text/javascript">
+   		 var basepath= '${BASE_PATH}';
+       </script>		
 		 <script src="${BASE_PATH}/js/pagejs/go/csvdata.js"></script> 
 	</body>
 </html>

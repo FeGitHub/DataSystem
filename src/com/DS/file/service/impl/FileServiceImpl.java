@@ -3,14 +3,20 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
 import java.nio.channels.FileChannel;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
+import com.DS.bean.CsvInfo;
 import com.DS.file.service.FileService;
 import com.DS.utils.common.CSVUtil;
 import com.jfinal.kit.Prop;
 import com.jfinal.kit.PropKit;
 import com.jfinal.plugin.activerecord.Record;
+import com.univocity.parsers.csv.CsvParser;
+import com.univocity.parsers.csv.CsvParserSettings;
 
 public class FileServiceImpl implements FileService {
 		/****
@@ -98,6 +104,43 @@ public class FileServiceImpl implements FileService {
 		  return copyfile;
 	
 	}
+
+	@Override
+	public CsvInfo getCsvInfo(File file) throws IOException{
+		CsvInfo info=new CsvInfo();
+		List<String> heads=new ArrayList<String>();
+		List<Record> resultList=new ArrayList<Record>();
+        InputStream in = new FileInputStream(file);
+        InputStreamReader reader = new InputStreamReader(in, "UTF-8");
+        CsvParserSettings settings = new CsvParserSettings();
+        settings.getFormat().setLineSeparator("\n");
+        CsvParser parser = new CsvParser(settings);
+        //读取数据到列表
+        List<String[]> allRows = parser.parseAll(reader);
+       //处理读取到的数据
+        String[] rowdata=null;
+        for(int i=0;i<allRows.size();i++){
+        	rowdata=allRows.get(i);
+        	Record record=new Record();
+        	if(i>=30){
+        		info.setMsg("只显示部分数据");
+        		break;
+        	}
+        	for(int j=0;j<rowdata.length;j++){
+        		if(i==0){
+        			heads.add(rowdata[j]);
+        		}
+        		record.set(j+"_column", rowdata[j]);
+        	}
+        	resultList.add(record);
+       
+        }
+        info.setView(resultList);
+        info.setRows(allRows.size());
+        info.setHeads(heads);
+        info.setCols(heads.size());
+        return info;
+}
 	  
 	}
 

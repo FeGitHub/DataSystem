@@ -1,7 +1,11 @@
 package com.DS.file.service;
 import java.io.File;
+import java.io.IOException;
 import java.util.List;
 
+import org.openxmlformats.schemas.spreadsheetml.x2006.main.CTMapInfo;
+
+import com.DS.bean.CsvInfo;
 import com.jfinal.plugin.activerecord.Record;
 
 /****
@@ -34,4 +38,6 @@ public interface FileService {
    
    
    public File uploadFile(File file,String newFileName);
+   
+   public CsvInfo getCsvInfo(File file) throws IOException;
 }

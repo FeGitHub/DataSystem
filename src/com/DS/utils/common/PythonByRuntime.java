@@ -22,11 +22,12 @@ import com.jfinal.kit.PathKit;
  */
 public class PythonByRuntime {
 	private static Logger logger = Logger.getLogger(PythonByRuntime.class);
-	private static String PY_ROOT_PATH=PathKit.getRootClassPath()+"\\py\\";//默认的python脚本文件路径
-	private static String PY_RES_PATH=PathKit.getRootClassPath()+"\\py\\resources";//默认的python资源文件路径
-	private static String PY_MODEL_PATH=PathKit.getRootClassPath()+"\\py\\resources\\model";//默认的python资源文件路径
+	public static String PY_ROOT_PATH=PathKit.getRootClassPath()+"\\py\\";//默认的python脚本文件路径
+	public static String PY_RES_PATH=PathKit.getRootClassPath()+"\\py\\resources";//默认的python资源文件路径
+	public static String PY_MODEL_PATH=PathKit.getRootClassPath()+"\\py\\resources\\model";//默认的python资源文件路径
 	public static void main(String[] args) throws IOException,InterruptedException {					
-		runPython3("custom_build_model.py","plantime,tasknum,effic,abstime");
+		//runPython3("custom_build_model.py","plantime,tasknum,effic,abstime");
+		runPython3("train_build_model.py");
     }
 	
 	
@@ -76,7 +77,7 @@ public class PythonByRuntime {
 	 * @param exec  python命令语句
 	 * @return  List<String> 控制台信息
 	 */
-	private static List<String> cmdRunPython(String exec){
+	public static List<String> cmdRunPython(String exec){
 		List<String> result=new ArrayList<String>();
         Process proc;
 		 try {	        	

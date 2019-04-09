@@ -183,3 +183,18 @@ $(function(){
 	   var json=JSON.stringify(arg).toString();
 	   
  });
+ 
+ $("body").on("click","#customAnalyseBtn",function(){
+		$.ajax({
+			url:basepath+"/analyse/customAnalyse",
+			type:"post",		
+			dataType:"json",
+			success:function(data){
+				if(data.code==200){							
+					toastrSuccess(data.msg,3000);
+				}else{							
+					toastrError(data.msg,3000);
+				}							
+			}
+		});			
+ })

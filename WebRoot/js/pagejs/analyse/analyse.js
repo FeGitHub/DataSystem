@@ -33,6 +33,8 @@ $(function () {
 					if(data.code==200){
 						toastrSuccess(data.msg,3000);
 						var csv=data.csv;
+						console.log(data.heads);
+						console.log(data.rows);
 						initCSV(csv);
 						
 					} else{

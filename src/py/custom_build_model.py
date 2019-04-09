@@ -11,17 +11,29 @@ from sys import argv
 FEAT_COLS = []
 # 结果列
 RESULTCOL = []
+#资源文件
+RES_PATH = ""
+#模型文件
+MODEL_FILE = ""
 
 
 
 def build_feat_cols():
+    global RES_PATH
     #读取列信息
-    arg=argv[3]
+    global MODEL_FILE
     global FEAT_COLS
     global RESULTCOL
-    FEAT_COLS = arg.split(',')
-    RESULTCOL = FEAT_COLS[-1]
+    RES_PATH = argv[1]
+    MODEL_FILE = argv[2]
+    heads=argv[3]
+    FEAT_COLS = heads.split(',')
+    RESULTCOL = FEAT_COLS[-1] 
     del FEAT_COLS[-1]
+    print("RES_PATH:",RES_PATH)
+    print("MODEL_FILE:",MODEL_FILE)
+    print("FEAT_COLS:",FEAT_COLS)
+    print("RESULTCOL:",RESULTCOL)
 
 
 
@@ -29,12 +41,8 @@ def main():
     """
         主函数
     """
-    RES_PATH=argv[1]
-    #资源文件
-    DATA_FILE=RES_PATH+"\\custom.csv"
     #待生成的训练模型
-    MODEL_FILE=argv[2]+"\\custom_model.m"
-    grade_data = pd.read_csv(DATA_FILE, usecols=FEAT_COLS + [RESULTCOL])
+    grade_data = pd.read_csv(RES_PATH, usecols=FEAT_COLS + [RESULTCOL])
 
     X = grade_data[FEAT_COLS].values
     y = grade_data[RESULTCOL].values

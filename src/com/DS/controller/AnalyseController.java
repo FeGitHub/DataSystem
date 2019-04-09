@@ -4,7 +4,11 @@ import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.DS.analyse.service.AnalyseService;
+import com.DS.analyse.service.impl.AnalyseServiceImpl;
+import com.DS.bean.CsvInfo;
 import com.DS.bean.FinanceExcelBean;
+import com.DS.common.model.User;
 import com.DS.excel.service.ExcelService;
 import com.DS.excel.service.impl.ExcelServiceImpl;
 import com.DS.file.service.FileService;
@@ -26,6 +30,9 @@ public class AnalyseController extends BaseController {
 	
 	@Inject(ExcelServiceImpl.class)
 	private ExcelService excelService;
+	
+	@Inject(AnalyseServiceImpl.class)
+	private AnalyseService analyseService;
 	/***
 	 *  跳转到数据分析页面
 	 */
@@ -57,4 +64,26 @@ public class AnalyseController extends BaseController {
 		 List<String> result=PythonByRuntime.runPython3("house_data5.py");
 		 renderJson(result);
 	 }
+	 
+	 public void customAnalyse(){
+		 User nowUser = (User)getSession().getAttribute("user");
+		 String customfile=nowUser.getId()+nowUser.getAccount();
+		 CsvInfo csvinfo=getSessionAttr(customfile);
+		 if(csvinfo!=null){
+			 List<String> headlist=csvinfo.getHeads();
+			 String heads="";
+			 for(int i=0;i<headlist.size();i++){
+				 if(i==0){
+					 heads=headlist.get(i);
+				 }else{
+					 heads+=","+headlist.get(i);
+				 }
+			 }
+			 analyseService.customAnalyse(heads, customfile);
+			 renderJson(ajaxDoneSuccess());
+		 }else{
+			 renderJson(ajaxDoneError("数据已失效"));
+		 }
+	 }
+	 
 }
