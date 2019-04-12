@@ -38,7 +38,6 @@
     </tbody>
 </table>
 </div>
-<!--弹出框基本框架开始-->
 				<div class="modal" id="seeMethodModal">
 						<div class="modal-dialog modal-lg ptn" style="width:600px;"><!--修改这个width可以改变整个模态框的宽度-->
 						    <div class="modal-content" >
@@ -55,13 +54,11 @@
 					    </div>
 					  </div>
 				</div>
-<!--弹出框主体框架结束-->
 
-<!--弹出框内容模板-->
-<template id="remindTemp">
+<template id="template">
     <div class="panel mbn" style="height:350px;">
        <div class="panel-body" >
-       <form id="remindForm" style="margin-top:20px;">
+       <form id="projectForm" style="margin-top:20px;">
 		<table class="table table-bordered table-hover">
           <tbody>       
             <tr>
@@ -79,7 +76,7 @@
               	<td>
 	              	<div class="row">
 	                  	<div class="col-sm-12">	                                     
-                             <input  name="remindTime" id="secondId" class="form-control validate[required] form_date" placeholder="" maxlength="20" type="text" readonly>      
+                             <input  id="secondId" class="form-control validate[required] form_date" placeholder="" maxlength="20" type="text" readonly>      
 	                  	</div>	                  	
 	                 </div>	  
               	</td>              	
@@ -89,7 +86,7 @@
               	<td>
 	              	<div class="row">
 	                  	<div class="col-sm-12">	                                     
-                             <input  name="remindTime" id="thirdId" class="form-control validate[required] form_date" placeholder="" maxlength="20" type="text" readonly>      
+                             <input   id="thirdId" class="form-control validate[required] form_date" placeholder="" maxlength="20" type="text" readonly>      
 	                  	</div>	                  	
 	                 </div>	  
               	</td>              	
@@ -100,7 +97,6 @@
       </div>
     </div>
 </template>
-<!--弹出框内容模板-->
 <script src="${BASE_PATH}/js/pagejs/task/projectList.js"></script>
 <script src="${BASE_PATH}/js/validation/lang/jquery.validationEngine-zh_CN.js"></script>
 <script src="${BASE_PATH}/js/validation/jquery.validationEngine.min.js"></script>	

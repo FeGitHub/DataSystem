@@ -1,4 +1,4 @@
-var remindTable;
+var table;
 $(function(){	
 		$(".quaryTime").datetimepicker({
 	         language:"zh-CN",
@@ -9,7 +9,7 @@ $(function(){
 	         minView:2,       
 	         weekStart:1
 	     }); 		
-	     remindTable=$('#remindTable').DataTable({
+	     table=$('#remindTable').DataTable({
 			language: {
 		     "url": basepath+"/json/datatables_language.json"
 		 },
@@ -24,8 +24,8 @@ $(function(){
 		 },
 		 columns: [
 		           { data: 'projectName' },    		         
-		           { data: 'planStartDate'},
-		           { data: 'plantFinshDate'},
+		           { data: 'startDate'},
+		           { data: 'finshDate'},
 		           { data: null,//操作部分
 			         	  "render": function ( data, type, full, meta ) {            
 			           		 var str = "<span id="+full.id+">";  
@@ -42,7 +42,7 @@ $(function(){
 	   /***
 	    * function 表格绘画成功后激活弹出框
 	    */
-	    remindTable.on( 'draw', function () {	    
+	    table.on( 'draw', function () {	    
 	    	 $("[data-toggle='popover']").popover();
 		} );
 	    
@@ -52,7 +52,7 @@ $(function(){
 		$("body").on("click",".edtiBtn",function(){
 			var $operatingArea=$(this).parent();
 			var id=$(this).data("id");		
-		    var htm = $($('#remindTemp').html());
+		    var htm = $($('#template').html());
 			var _html='<div>'+htm[0].outerHTML+'</div>';			
 			$("#seeMethodModal .modal-body").html(_html);	
 			$("#remindId").val(id);
@@ -65,7 +65,7 @@ $(function(){
 	     * function 打开新增工程模态框
 	     */
 		$("body").on("click","#addBtn",function(){
-		   var htm = $($('#remindTemp').html());
+		   var htm = $($('#template').html());
 			var _html='<div>'+htm[0].outerHTML+'</div>';			
 			$("#seeMethodModal .modal-body").html(_html);	
 			activateDatetimepicker($('.form_date'));
@@ -76,7 +76,7 @@ $(function(){
 	     * function 新增工程请求
 	     */
 		$("body").on("click","#submitBtn",function(){			
-			if($("#remindForm").validationEngine('validate')){		
+			if($("#projectForm").validationEngine('validate')){		
 				var data={
 						"projectName":$("#firstId").val(),
 						"planStartDate":$("#secondId").val(),
@@ -101,9 +101,11 @@ $(function(){
 			}
 	    }); 
 			
-		
+		/***
+		 * 跳转到工程任务详情页面
+		 */
 		$("body").on("click",".detailBtn",function(){			
-			var id=$(this).data("id");
+			 var id=$(this).data("id");
 			 window.location.href=basepath+"/task/goProjectTree?projectId="+id;
 	    }); 
 		
@@ -150,7 +152,7 @@ $(function(){
 						dataType:"json",
 						success:function(data){
 							if(data.code==200){							
-								remindTable.ajax.reload(null,false);
+								table.ajax.reload(null,false);
 								toastrSuccess(data.msg,3000);
 							}else{							
 								toastrError(data.msg,3000);
@@ -177,8 +179,8 @@ function reloadTable(){
 		    	 "endDates":endDates,
 		    	 "projectName":projectName
 	    		};
-	 remindTable.settings()[0].ajax.data = param;
-	 remindTable.ajax.reload();
+	 table.settings()[0].ajax.data = param;
+	 table.ajax.reload();
 }
 
 /****

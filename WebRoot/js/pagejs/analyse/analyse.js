@@ -1,51 +1,10 @@
 
-$(function () {  
-		
+$(function () {  		
 		/****
-		 * demo:财务excel信息导入测试
+		 * csv文件读取
 		 */
-		$("#financeBtn").click(function(){	
-			var url="/excel/importFinanceToDB";
-		    var file=$('#financeId')[0].files[0];	
-		    if(!checkData($('#financeId').val())){
-		    	return;
-		    }
-			clickAction(file,url);
-		})	
-		
-		
-		$("#readCSVBtn").click(function(){	
-			var url="/file/getExternalCsv";
-		    var file=$('#csv')[0].files[0];	
-	    	if(file==null){
-					toastrError("请选择文件资源",3000);
-					return;
-			}
-	    	var formData = new FormData();
-	    	formData.append('file',file );  
-	  		$.ajax({
-				url: basepath+url,
-				type: "POST",
-				data: formData,			
-				contentType: false,			
-				processData: false,
-				success: function (data) {
-					if(data.code==200){
-						toastrSuccess(data.msg,3000);
-						var csv=data.csv;
-						console.log(data.heads);
-						console.log(data.rows);
-						initCSV(csv);
-						
-					} else{
-						toastrError(data.msg,3000);
-					}  
-				},
-				error: function () {
-					toastrError("请求失败");
-				}
-			});	
-	      
+		$("#readCSVBtn").click(function(){
+			readCSV();
 		})	
 		
     }); 
@@ -82,7 +41,7 @@ $(function () {
       }
 
         //JS校验文件格式是否为excel    
-          function checkData(fileDir){                 
+         /* function checkData(fileDir){                 
              var suffix = fileDir.substr(fileDir.lastIndexOf("."));    
              if("" == fileDir){    
                  toastrError("选择需要导入的Excel文件！");
@@ -91,12 +50,12 @@ $(function () {
              if(".xls" != suffix && ".xlsx" != suffix ){    
                  toastrError("选择Excel格式的文件导入！");         
                  return false;    
-             }    
+             }   
              return true;    
-          } 
+          }  */
            
       
-      function  initCSV(csv){
+      function  showCSV(csv){
 		    layer.open({
 		    	   type: 2,
 		    	   area: ['700px', '450px'],
@@ -160,4 +119,53 @@ $(function () {
 	   });
        
     }
+    
+    $('#i-file').change(function() {
+    	$('#location').val($('#i-file').val());
+    });
      
+    
+    function readCSV(){    	
+		var url="/file/getExternalCsv";
+	    var file=$('#i-file')[0].files[0];	
+    	if(file==null){
+				toastrError("请选择文件资源",3000);
+				return;
+		}
+    	var formData = new FormData();
+    	formData.append('file',file );  
+  		$.ajax({
+			url: basepath+url,
+			type: "POST",
+			data: formData,			
+			contentType: false,			
+			processData: false,
+			success: function (data) {
+				if(data.code==200){
+					toastrSuccess(data.msg,3000);
+					var csv=data.csv;
+					console.log(data.heads);//头部标题信息
+					console.log(data.rows);//csv数据行数
+					showCSV(csv);//展示CSV文件信息						
+				} else{
+					toastrError(data.msg,3000);
+				}  
+			},
+			error: function () {
+				toastrError("请求失败");
+			}
+		});	
+    }
+    
+    
+     $("#doc").click(function(){
+    	 layer.open({
+    		  type: 1,
+    		  shade: false,
+    		  title: false, //不显示标题
+    		  content: $('.layer_notice'), 
+    		  cancel: function(){
+    		   
+    		  }
+    		});
+     });

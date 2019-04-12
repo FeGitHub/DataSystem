@@ -2,7 +2,7 @@
 <!DOCTYPE html>
 <html>
   <head>   
-    <title>创建调度任务</title> 
+    <title>创建目标任务</title> 
     <link rel='stylesheet' href='${BASE_PATH}/plug/score/css/font-awesome-3.2.1.css'>
     <link rel="stylesheet" href="${BASE_PATH}/plug/score/css/prism.css">
     <link rel='stylesheet' href='${BASE_PATH}/plug/score/css/jQuery.score.css'>
@@ -16,7 +16,7 @@
       <div class="row">
         <div class="col-md-12">
           <div class="tile">
-            <h3 class="tile-title">工程任务</h3>
+            <h3 class="tile-title">目标任务</h3>
             <div class="tile-body">
               <form class="form-horizontal" id="taskForm">
               

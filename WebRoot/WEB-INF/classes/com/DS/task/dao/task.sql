@@ -59,7 +59,7 @@
   
   
   #sql("getTaskByProjectId")
-      select projectName as name,DATE_FORMAT(planStartDate,'%Y/%m/%d') as start,DATE_FORMAT(plantFinshDate,'%Y/%m/%d') as end,userId as id  from project where userId=#para(userId)
+      select projectName as name,DATE_FORMAT(startDate,'%Y/%m/%d') as start,DATE_FORMAT(finshDate,'%Y/%m/%d') as end,userId as id  from project where userId=#para(userId)
   #end
   
   /***
@@ -77,7 +77,13 @@
    * 得到日历表任务安排
    */
   #sql("getTaskCalendar")
-    select taskId as id,taskName as title,start,description, end from task where userId=#para(userId) and start is not null
+    select taskId as id,taskName as title,start,description, end,
+    CASE
+        WHEN  underway=0 THEN 'grey' 
+        WHEN  underway=1 THEN 'grey'
+        else  '#3a87ad'
+    END  as color
+    from task where userId=#para(userId) and start is not null
   #end
   
   

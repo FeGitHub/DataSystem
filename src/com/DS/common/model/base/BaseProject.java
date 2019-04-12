@@ -25,22 +25,6 @@ public abstract class BaseProject<M extends BaseProject<M>> extends Model<M> imp
 		return getStr("projectName");
 	}
 
-	public void setPlantFinshDate(java.util.Date plantFinshDate) {
-		set("plantFinshDate", plantFinshDate);
-	}
-	
-	public java.util.Date getPlantFinshDate() {
-		return get("plantFinshDate");
-	}
-
-	public void setPlanStartDate(java.util.Date planStartDate) {
-		set("planStartDate", planStartDate);
-	}
-	
-	public java.util.Date getPlanStartDate() {
-		return get("planStartDate");
-	}
-
 	public void setStartDate(java.util.Date startDate) {
 		set("startDate", startDate);
 	}

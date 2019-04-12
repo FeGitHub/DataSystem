@@ -107,19 +107,19 @@ public class TaskController extends BaseController{
 		 Project project=new Project();
  		 project=project.findById(projectId); 		  
          //工程总计划时间
- 		 String suminfo=TimeUtil.getDatePoor(project.getPlantFinshDate(), project.getPlanStartDate());
- 		 long projectTime=project.getPlantFinshDate().getTime()-project.getPlanStartDate().getTime();
+ 		 String suminfo=TimeUtil.getDatePoor(project.getFinshDate(), project.getStartDate());
+ 		 long projectTime=project.getFinshDate().getTime()-project.getStartDate().getTime();
  		 String remindinfo;
- 	     if(TimeUtil.underway(project.getPlantFinshDate(), project.getPlanStartDate())){//目前在工程时间内
- 	        long difftime=project.getPlantFinshDate().getTime()-new Date().getTime();
- 	        remindinfo=TimeUtil.getDatePoor(project.getPlantFinshDate(), new Date());
+ 	     if(TimeUtil.underway(project.getFinshDate(), project.getStartDate())){//目前在工程时间内
+ 	        long difftime=project.getFinshDate().getTime()-new Date().getTime();
+ 	        remindinfo=TimeUtil.getDatePoor(project.getFinshDate(), new Date());
  	    	NumberFormat numberFormat = NumberFormat.getInstance();   
  	    	numberFormat.setMaximumFractionDigits(2); 
  	    	String pct = numberFormat.format((float)difftime/(float)projectTime*100);
  	    	setAttr("remindDay","剩余"+remindinfo);
  	    	setAttr("pct",pct+"%"); 
  	    	setAttr("pnum",pct); 
- 	     }else if(new Date().getTime()>project.getPlanStartDate().getTime()){
+ 	     }else if(new Date().getTime()>project.getStartDate().getTime()){
  	    	setAttr("remindDay","已结束");
  	    	setAttr("pct","0%"); 
  	     }else{
@@ -261,7 +261,7 @@ public class TaskController extends BaseController{
      
      /***
       * 更新日历任务
-      */
+      */ 
      public void updateTaskCalendar(){
     	 Task task=getModel(Task.class,"");
     	 if(task.getTaskId()==null){

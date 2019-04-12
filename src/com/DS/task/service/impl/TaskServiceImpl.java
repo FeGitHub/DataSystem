@@ -15,7 +15,6 @@ import com.jfinal.plugin.activerecord.SqlPara;
  * 
  * @author jeff
  * 任务的服务层实现类
- *
  */
 public class TaskServiceImpl implements TaskService {
     
@@ -30,6 +29,9 @@ public class TaskServiceImpl implements TaskService {
           return map;
 	}
 	
+	/****
+	 * 获取工程数据列表
+	 */
 	public Map<String, Object> getProjectList(Map<String,Object> cond) {
 		  SqlPara sqlShow = Db.getSqlPara("projectTree.getPTaskList",cond);
 		  SqlPara sqlTotal = Db.getSqlPara("projectTree.getPTaskListSize",cond);      

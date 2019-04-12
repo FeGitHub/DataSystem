@@ -4,7 +4,7 @@
  */
 var tree="projectTree";
 $(function() {
-	initTable();
+	initTreeAndPieChart();
 	initShowProgess();
 
 });
@@ -121,7 +121,8 @@ function addNodeInfo(treeNode){
 	         pId: treeNode.id,
 	         taskName: "新任务",
 	         projectId:$("#projectId").val(),
-	         userId:$("#userId").val()
+	         userId:$("#userId").val(),
+	         underway:0
 	     };		
 	  $.ajax({
 			url:basepath+"/task/addProjectTask",
@@ -355,7 +356,7 @@ function setRemoveBtn(treeId, treeNode) {
 /****
  * 初始化数据表格
  */
-function initTable(){
+function initTreeAndPieChart(){
 	//设置	  
 	 var setting = {
 	            view: {
@@ -387,7 +388,6 @@ function initTable(){
 			data:{"projectId":$("#projectId").val()},
 			dataType:"json",
 			success:function(data){		
-				    //console.log(data);
 					 $.fn.zTree.init($("#"+tree), setting, data.projectTree);
 					 pieChart(parseInt(data.undone),parseInt(data.underway),parseInt(data.done));
 					 $(".overlay").remove();

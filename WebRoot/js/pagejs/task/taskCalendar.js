@@ -795,7 +795,8 @@ function taskItem(data){
 		$(this).data('event', {
 			title: $.trim($(this).text()), 
 			stick: true,
-			id:$(this).data("taskId")
+			id:$(this).data("taskId"),
+			color:"grey"
 		});		
 		// 使用 jQuery UI
 		$(this).draggable({

@@ -4,7 +4,6 @@ import java.io.IOException;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-
 import com.DS.bean.CsvInfo;
 import com.DS.common.model.User;
 import com.DS.file.service.FileService;
@@ -111,4 +110,17 @@ public class FileController extends BaseController{
         	  renderJson(ajaxDoneError("文件读取失败"));
          }
 	  }
+	  
+	  /*****
+	   * 逻辑回归算法模型资源文件案例下载
+	   */
+	  public void downDemoCsv() 
+	   {		
+			 File file = new File(PathKit.getRootClassPath()+"/py/resources/grade.csv"); 
+			  if (file.exists()) { //如果文件存在 
+				  renderFile(file); 
+			  } else  { 
+		  	   renderJson("文件不存在");
+		  	 } 
+	  } 
 }

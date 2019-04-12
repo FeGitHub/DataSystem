@@ -3,11 +3,13 @@
 <html>
 	<head>
 		<meta charset="utf-8" />
-		<title></title>
+		<title>数据展示</title>
 		  <script src="${BASE_PATH}/js/jquery-3.3.1.min.js"></script> 
-		 <script src="${BASE_PATH}/js/toastr.min.js"></script><!--信息提示框-->
-         <link href="${BASE_PATH}/css/toastr.min.css" type="text/css" rel="stylesheet">		
-		 <link rel="stylesheet" type="text/css" href="${BASE_PATH}/css/pagecss/go/csvdata.css">		 
+		  <script src="${BASE_PATH}/js/bootstrap.min.js"></script>
+		  <script src="${BASE_PATH}/js/toastr.min.js"></script>
+		  <link href="${BASE_PATH}/css/bootstrap.min.css" type="text/css" rel="stylesheet">		
+          <link href="${BASE_PATH}/css/toastr.min.css" type="text/css" rel="stylesheet">		
+		  <link rel="stylesheet" type="text/css" href="${BASE_PATH}/css/pagecss/go/csvdata.css">		 
 	</head>
 	<body>
 	    <div align="center">
@@ -15,66 +17,9 @@
 	         <button id="customAnalyseBtn">自定义分析数据</button>
 	     </div>
 		<div class="container">
-			<table class="table" id="tableList">		
-				<!-- <thead>
-					<tr>
-						<td>姓名</td>
-						<td>姓别</td>
-						<td>年龄</td>
-						<td>操作</td>
-					</tr>	
-				</thead>				
-				
-				<tr>
-					<td class="name">张三</td>
-					<td class="sex">男</td>
-					<td class="age">20</td>
-					<td>
-						<button class="delbtn ">删除</button>
-						<button class="movebtn ">修改</button>
-						<button class="viewbtn ">查看</button>
-					</td>
-				</tr>
-				<tr>
-					<td class="name">李四</td>
-					<td class="sex">女</td>
-					<td class="age">21</td>
-					<td>
-						<button class="delbtn ">删除</button>
-						<button class="movebtn ">修改</button>
-						<button class="viewbtn ">查看</button>
-					</td>
-				</tr>
-				<tr>
-					<td class="name">赵钱</td>
-					<td class="sex">不男</td>
-					<td class="age">22</td>
-					<td>
-						<button class="delbtn ">删除</button>
-						<button class="movebtn ">修改</button>
-						<button class="viewbtn ">查看</button>
-					</td>
-				</tr>
-				<tr>
-					<td class="name">孙李</td>
-					<td class="sex">不女</td>
-					<td class="age">23</td>
-					<td>
-						<button class="delbtn ">删除</button>
-						<button class="movebtn ">修改</button>
-						<button class="viewbtn ">查看</button>
-					</td>
-				</tr>
-				<tfoot>
-					<tr>
-						<td colspan="4">
-							<button class="addbtn ">增加</button>
-						</td>
-					</tr>
-				</tfoot> -->				
+			<table class="table" id="tableList">							
 			</table>
 			<input type="text" id="csv" style="display:none">
-			<!--增加的模态框-->
 			<div class="modal addfade" id="addmodal">
 				<div class="modal-dialog">
 					<div class="modal-content">
