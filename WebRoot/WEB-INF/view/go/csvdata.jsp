@@ -7,6 +7,7 @@
 		  <script src="${BASE_PATH}/js/jquery-3.3.1.min.js"></script> 
 		  <script src="${BASE_PATH}/js/bootstrap.min.js"></script>
 		  <script src="${BASE_PATH}/js/toastr.min.js"></script>
+		  <script type="text/javascript" src="${BASE_PATH}/plug/layer/layer.js"></script>
 		  <link href="${BASE_PATH}/css/bootstrap.min.css" type="text/css" rel="stylesheet">		
           <link href="${BASE_PATH}/css/toastr.min.css" type="text/css" rel="stylesheet">		
 		  <link rel="stylesheet" type="text/css" href="${BASE_PATH}/css/pagecss/go/csvdata.css">		 

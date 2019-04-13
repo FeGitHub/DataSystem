@@ -159,7 +159,7 @@ $(function () {
     
     
      $("#doc").click(function(){
-    	 layer.open({
+    	 layer.open({ 
     		  type: 1,
     		  shade: false,
     		  title: false, //不显示标题

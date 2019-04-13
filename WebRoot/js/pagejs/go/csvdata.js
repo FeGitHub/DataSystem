@@ -185,6 +185,11 @@ $(function(){
  });
  
  $("body").on("click","#customAnalyseBtn",function(){
+	 var load=layer.msg('数据处理中', {
+		  icon: 16
+		  ,shade: 0.01,
+		  time:false //取消自动关闭
+		});
 		$.ajax({
 			url:basepath+"/analyse/customAnalyse",
 			type:"post",		
@@ -192,6 +197,21 @@ $(function(){
 			success:function(data){
 				if(data.code==200){							
 					toastrSuccess(data.msg,3000);
+					var index = parent.layer.getFrameIndex(window.name); 
+					var rows=data.rows;
+					var _html="";
+					for(var i=0;i<rows.length;i++){
+						if(i==0){
+							_html=rows[i]+"<br>";
+						}else{
+							_html+=rows[i]+"<br>";
+						}
+					}
+					parent.$('#result').html(_html);
+					parent.$('.card').css("display","block");
+					layer.close(load);
+					parent.layer.close(index); //再执行关闭
+					
 				}else{							
 					toastrError(data.msg,3000);
 				}							

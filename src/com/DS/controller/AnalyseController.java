@@ -1,9 +1,9 @@
 package com.DS.controller;
-
 import java.io.File;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
-
+import java.util.Map;
 import com.DS.analyse.service.AnalyseService;
 import com.DS.analyse.service.impl.AnalyseServiceImpl;
 import com.DS.bean.CsvInfo;
@@ -65,6 +65,9 @@ public class AnalyseController extends BaseController {
 		 renderJson(result);
 	 }
 	 
+	 /***
+	  * 通用版逻辑回归算法模型分析请求
+	  */
 	 public void customAnalyse(){
 		 User nowUser = (User)getSession().getAttribute("user");
 		 String customfile=nowUser.getId()+nowUser.getAccount();
@@ -79,8 +82,10 @@ public class AnalyseController extends BaseController {
 					 heads+=","+headlist.get(i);
 				 }
 			 }
-			 analyseService.customAnalyse(heads, customfile);
-			 renderJson(ajaxDoneSuccess());
+			 List<String> rows=analyseService.customAnalyse(heads, customfile);
+			 Map<String,Object> result=new HashMap<String,Object>();
+			 result.put("rows", rows);
+			 renderJson(ajaxDoneSuccess(result));
 		 }else{
 			 renderJson(ajaxDoneError("数据已失效"));
 		 }

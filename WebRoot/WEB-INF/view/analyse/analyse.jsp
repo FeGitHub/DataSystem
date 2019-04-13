@@ -24,7 +24,19 @@
 	    	   <a class="btn btn-success mr-2 mb-2" href="${BASE_PATH}/file/downDemoCsv" style="margin-top:8px;margin-left:25px;"><i class="fa fa-download"></i>案例下载</a> 	
 	    	   <button class="btn btn-primary mr-2 mb-2" style="margin-top:8px;margin-left:20px;" id="doc"><i class="fa fa-file" ></i>使用说明</button>  	    
 	    </div>
-	   	  
+	   
+       
+   
+         <!--  -->
+      <div class="card mb-3 border-info" style="display:none;">
+                <div class="card-body">
+                  <blockquote class="card-blockquote">
+                    <p id="result"></p>
+                  </blockquote>
+                </div>
+              </div>
+         <!--  -->
+         
 	   <ul class="layer_notice" style="display: none;">
 		    <li><a href="https://baike.baidu.com/item/logistic%E5%9B%9E%E5%BD%92/2981575?fromtitle=%E9%80%BB%E8%BE%91%E5%9B%9E%E5%BD%92&fromid=17202449&fr=aladdin" target="_blank">1. 数据分析采用的是逻辑回归算法，详情点我</a></li>
 		    <li><a href="javascript:void(0)" target="_blank">2. 外部数据导入使用csv文件，案例即可下载</a></li>

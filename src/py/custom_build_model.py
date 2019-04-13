@@ -16,9 +16,27 @@ RES_PATH = ""
 #模型文件
 MODEL_FILE = ""
 
+"""
+----------------------------------------
+-------通用逻辑回归算法-----------------
+- 参数要求：
+-       1：参数1为待分析资源文件路径(csv文件)
+-       2：参数2为模型文件存放位置
+-       3：参数3为文件资源的头部标题
+-       4：
+----------------------------------------
+"""
+
+if __name__ == '__main__':
+     build_param()
+     main()
 
 
-def build_feat_cols():
+
+def build_param():
+    """
+    构建参数
+    """
     global RES_PATH
     #读取列信息
     global MODEL_FILE
@@ -30,11 +48,23 @@ def build_feat_cols():
     FEAT_COLS = heads.split(',')
     RESULTCOL = FEAT_COLS[-1] 
     del FEAT_COLS[-1]
-    print("RES_PATH:",RES_PATH)
-    print("MODEL_FILE:",MODEL_FILE)
-    print("FEAT_COLS:",FEAT_COLS)
-    print("RESULTCOL:",RESULTCOL)
+    #print("RES_PATH:",RES_PATH)
+    #print("MODEL_FILE:",MODEL_FILE)
+    print("特征数据列:",FEAT_COLS)
+    print("结果列:",RESULTCOL)
 
+def show_feat(csv_data):
+    """
+       特征列和结果列的关系
+    """
+    for feat in FEAT_COLS:
+        X = csv_data[feat].values.reshape(-1, 1)
+        y = csv_data[RESULTCOL].values
+        X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=1 / 3, random_state=10)
+        linear_reg_model = LinearRegression()
+        linear_reg_model.fit(X_train, y_train)
+        r2_score = linear_reg_model.score(X_test, y_test)
+        print('特征：{}，R2值：{}'.format(feat, r2_score))
 
 
 def main():
@@ -42,10 +72,10 @@ def main():
         主函数
     """
     #待生成的训练模型
-    grade_data = pd.read_csv(RES_PATH, usecols=FEAT_COLS + [RESULTCOL])
-
-    X = grade_data[FEAT_COLS].values
-    y = grade_data[RESULTCOL].values
+    csv_data = pd.read_csv(RES_PATH, usecols=FEAT_COLS + [RESULTCOL])
+    show_feat(csv_data)
+    X = csv_data[FEAT_COLS].values
+    y = csv_data[RESULTCOL].values
 
     # 分割数据集
     X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=1 / 3, random_state=10)
@@ -71,7 +101,4 @@ def main():
    
 
 
-if __name__ == '__main__':
-     build_feat_cols()
-     main()
-  
+

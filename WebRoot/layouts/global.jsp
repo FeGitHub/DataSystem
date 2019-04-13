@@ -16,10 +16,10 @@
     <header class="app-header"><a class="app-header__logo" href=""></a>
       <a class="app-sidebar__toggle" href="#" data-toggle="sidebar" aria-label="Hide Sidebar"></a>
       <ul class="app-nav">
-        <li class="app-search">
+      <!--   <li class="app-search">
           <input class="app-search__input" type="search" placeholder="搜索">
           <button class="app-search__button"><i class="fa fa-search"></i></button>
-        </li>
+        </li> -->
         <!--通知信息菜单-->
         <li class="dropdown"><a class="app-nav__item" href="#" data-toggle="dropdown" aria-label="Show notifications"><i class="fa fa-bell-o fa-lg"></i></a>
           <ul class="app-notification dropdown-menu dropdown-menu-right">
