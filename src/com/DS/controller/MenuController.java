@@ -2,6 +2,8 @@ package com.DS.controller;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+
+import com.DS.bean.MenuInfo;
 import com.DS.common.model.Menu;
 import com.DS.common.model.ProjectTree;
 import com.DS.menu.service.MenuService;
@@ -64,8 +66,9 @@ public class MenuController extends BaseController{
 	  /****
 	   * 获取菜单信息数据
 	   */
-	  public void getTreeMenu(){		   
-		     JSONArray menuJsonArray=menuService.getTreeMenu();
+	  public void getTreeMenu(){		
+		     MenuInfo menuInfo =menuService.getTreeMenu(3);
+		     JSONArray menuJsonArray=menuInfo.getTreeMenu();
 			 Map<String,Object> map=new HashMap<String,Object>();
 			 map.put("menuTree", menuJsonArray);
 			 renderJson(map);

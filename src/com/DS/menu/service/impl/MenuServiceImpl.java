@@ -1,5 +1,10 @@
 package com.DS.menu.service.impl;
+import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
+
+import com.DS.bean.MenuInfo;
 import com.DS.menu.service.MenuService;
 import com.DS.utils.common.JsonUtil;
 import com.alibaba.fastjson.JSONArray;
@@ -7,6 +12,7 @@ import com.alibaba.fastjson.JSONObject;
 import com.jfinal.json.FastJson;
 import com.jfinal.plugin.activerecord.Db;
 import com.jfinal.plugin.activerecord.Record;
+import com.jfinal.plugin.activerecord.SqlPara;
 /****
  * 
  * @author jeff
@@ -18,10 +24,18 @@ public class MenuServiceImpl implements MenuService {
 	 * 获取树形菜单数据
 	 */
 	@Override
-	public JSONArray getTreeMenu() {
+	public MenuInfo getTreeMenu(int menuLevel) {
+		MenuInfo menuInfo=new MenuInfo();
+		 Map<String,Object> cond=new HashMap<String,Object>();
+		 List<String> urls=new ArrayList<String>();
+		 cond.put("menu_level", menuLevel);
 		 JSONArray r = new JSONArray();//存放重组的的数据
-		 String sql=Db.getSql("menu.selectMenuData");
+		 SqlPara sql=Db.getSqlPara("menu.selectMenuData",cond);
 		 List<Record> ztreeList= Db.find(sql);
+		 for(Record record:ztreeList){
+			 urls.add(record.getStr("url"));
+		 }
+		 menuInfo.setUrls(urls);
 		 String json=FastJson.getJson().toJson(ztreeList);
 		 JSONArray array= JSONArray.parseArray(json);
 		 JSONArray menuJSONArray=JsonUtil.listToTree(array, "id", "pId", "subMenuList");
@@ -32,6 +46,7 @@ public class MenuServiceImpl implements MenuService {
 			 }
 			 r.add(aVal);
 		 }
-		 return r;
+		 menuInfo.setTreeMenu(r);
+		 return menuInfo;
 	}
 }

@@ -65,4 +65,12 @@ public abstract class BaseMenu<M extends BaseMenu<M>> extends Model<M> implement
 		return getStr("checked");
 	}
 
+	public void setMenuLevel(java.lang.Integer menuLevel) {
+		set("menu_level", menuLevel);
+	}
+	
+	public java.lang.Integer getMenuLevel() {
+		return getInt("menu_level");
+	}
+
 }

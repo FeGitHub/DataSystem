@@ -16035,7 +16035,14 @@ be a descendant of the grid when it is being dragged.
   content: "\e260";
 }
 
+/*修正样式*/
+
 .keepPlace{
-	margin-left:10px;
-	
+	margin-left:10px;	
+}
+
+h4 a,h4 a:hover{
+	color:black;
+	text-decoration:none;
+	 cursor:pointer;
 }

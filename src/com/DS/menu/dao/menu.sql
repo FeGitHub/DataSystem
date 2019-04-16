@@ -1,8 +1,8 @@
 /****
  * 获取用户菜单数据
- */
+ */ 
 #sql("selectMenuData")
-   select * from menu where pId!=0 order by CONVERT(id,SIGNED)
+   select * from menu where pId!=0 and menu_level<=#para(menu_level) order by CONVERT(id,SIGNED) 
 #end
 
 /***

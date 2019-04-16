@@ -1,11 +1,11 @@
 package com.DS.menu.service;
 
-import com.alibaba.fastjson.JSONArray;
+import com.DS.bean.MenuInfo;
 
 public interface MenuService {
 	/***
 	 * 获取菜单
 	 * @return
 	 */
-	JSONArray getTreeMenu();
+	MenuInfo getTreeMenu(int menuLevel);
 }

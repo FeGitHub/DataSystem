@@ -1,12 +1,15 @@
 package com.DS.interceptor;
+import java.util.ArrayList;
 import java.util.List;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+import com.DS.bean.MenuInfo;
 import com.DS.common.model.User;
 import com.DS.menu.service.MenuService;
 import com.DS.menu.service.impl.MenuServiceImpl;
 import com.DS.notification.service.NotificationService;
 import com.DS.notification.service.impl.NotificationServiceImpl;
-import com.alibaba.fastjson.JSONArray;
 import com.jfinal.aop.Inject;
 import com.jfinal.aop.Interceptor;
 import com.jfinal.aop.Invocation;
@@ -27,6 +30,9 @@ public class LoginInterceptor implements Interceptor{
 	@SuppressWarnings("unchecked")
 	@Override
 	public void intercept(Invocation inv) {
+		HttpServletRequest request = inv.getController().getRequest();
+		HttpServletResponse response = inv.getController().getResponse();
+		String url = request.getServletPath();
 		HttpSession session = inv.getController().getSession();
 		Controller controller = inv.getController();
 		if(session == null){
@@ -34,15 +40,20 @@ public class LoginInterceptor implements Interceptor{
 		}
 		else{
 			User user = (User)session.getAttribute("user");
-			if(user!= null) {
-				 JSONArray menu=null;
-				 if(session.getAttribute("menu")==null){
-					 menu=menuService.getTreeMenu(); 
-					 session.setAttribute("menu", menu);			
-				 }else{
-					 menu=(JSONArray) session.getAttribute("menu");					
+			if(user!= null) {				 		
+                 List<String> urls=new ArrayList<String>();
+                 MenuInfo menuInfo=(MenuInfo) session.getAttribute("menuInfo");
+				 if(menuInfo==null){
+					 menuInfo=menuService.getTreeMenu(user.getLeve());			
+					 session.setAttribute("menuInfo", menuInfo);	
+				 }				
+				 controller.setAttr("menuTree", menuInfo.getTreeMenu());
+				 List<String> allMenuUrl=(List<String>) session.getAttribute("allMenuUrl");
+				 urls=menuInfo.getUrls();
+				 if((allMenuUrl.contains(url))&&(!urls.contains(url))){
+					 response.setStatus(HttpServletResponse.SC_FORBIDDEN);
+ 					 return;
 				 }
-				 controller.setAttr("menuTree", menu);
 				 //处理通知信息，有新信息时才进行更新
 				 List<Record> notifications=null;
 				 Long notificationSize=null;
@@ -57,6 +68,12 @@ public class LoginInterceptor implements Interceptor{
 				 }				
 				 controller.setAttr("notificationSize", notificationSize);				
 				 controller.setAttr("notifications", notifications);
+				 controller.setAttr("user", user);
+				 if(user.getLeve()==1){
+					 controller.setAttr("role", "管理员");
+				 }else{
+					 controller.setAttr("role", "普通用户");
+				 }
 				 inv.invoke();
 			}
 			else {

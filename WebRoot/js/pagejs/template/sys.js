@@ -15,4 +15,11 @@ $("#loginOut").click(function(){
 		    var url=basepath+"/login/signOut";
 		    $(location).attr("href",url );
 		});
+		
+		/****
+		 * 查询
+		 */
+		$("#search").click(function(){
+			console.log("-------------");
+		});
 });

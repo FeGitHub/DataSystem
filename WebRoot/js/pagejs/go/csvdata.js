@@ -145,7 +145,8 @@ $(function(){
     		_html+="</tr>";
     	}
       if(i==(rows-1)){
-    	  _html+="<tfoot><tr><td colspan='"+count+"'><button id='addBtn'>新增数据</button></td></tr></tfoot>"
+    	  //_html+="<tfoot><tr><td colspan='"+count+"'><button id='addBtn'>新增数据</button></td></tr></tfoot>";
+    	  _html+="<tfoot><tr><td colspan='"+count+"'></td></tr></tfoot>"
   	 }
      		       
     }	

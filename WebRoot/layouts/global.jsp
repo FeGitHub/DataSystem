@@ -16,16 +16,16 @@
     <header class="app-header"><a class="app-header__logo" href=""></a>
       <a class="app-sidebar__toggle" href="#" data-toggle="sidebar" aria-label="Hide Sidebar"></a>
       <ul class="app-nav">
-      <!--   <li class="app-search">
-          <input class="app-search__input" type="search" placeholder="搜索">
-          <button class="app-search__button"><i class="fa fa-search"></i></button>
-        </li> -->
+       <li class="app-search">
+          <input class="app-search__input" type="search" placeholder="搜索" >
+          <button class="app-search__button" id="search"><i class="fa fa-search"></i></button>
+        </li>
         <!--通知信息菜单-->
         <li class="dropdown"><a class="app-nav__item" href="#" data-toggle="dropdown" aria-label="Show notifications"><i class="fa fa-bell-o fa-lg"></i></a>
           <ul class="app-notification dropdown-menu dropdown-menu-right">
             <li class="app-notification__title">你有${notificationSize}个新的通知</li>
             <div class="app-notification__content">	                
-                       <c:forEach items="${notifications}" var="item">                       
+                <c:forEach items="${notifications}" var="item">                       
 					<li>
 	  					 <a class="app-notification__item" href="${item.id}">
 							<span class="app-notification__icon">
@@ -81,8 +81,8 @@
     <aside class="app-sidebar">
       <div class="app-sidebar__user"><img class="app-sidebar__user-avatar" src="${BASE_PATH}/images/48.jpg" alt="User Image">
         <div>
-          <p class="app-sidebar__user-name">用户名</p>
-          <p class="app-sidebar__user-designation">描述</p>
+          <p class="app-sidebar__user-name">${user.account}</p>
+          <p class="app-sidebar__user-designation">${role}</p>
         </div>
       </div>
       <ul class="app-menu" id="menuId">
@@ -134,7 +134,7 @@
         <div class="col-md-6 col-lg-3">
           <div class="widget-small primary coloured-icon"><i class="icon fa fa-users fa-3x"></i>
             <div class="info">
-              <h4>学习</h4>
+              <h4><a href="${BASE_PATH}/user/goUserTaskCalendar">日历视图</a></h4>
               <p><b></b></p>
             </div>
           </div>
@@ -142,7 +142,7 @@
         <div class="col-md-6 col-lg-3">
           <div class="widget-small info coloured-icon"><i class="icon fa fa-thumbs-o-up fa-3x"></i>
             <div class="info">
-              <h4>工作</h4>
+              <h4><a href="${BASE_PATH}/task/goTargetList">目标任务</a></h4>
               <p><b></b></p>
             </div>
           </div>
@@ -150,7 +150,7 @@
         <div class="col-md-6 col-lg-3">
           <div class="widget-small warning coloured-icon"><i class="icon fa fa-files-o fa-3x"></i>
             <div class="info">
-              <h4>娱乐</h4>
+              <h4><a href="${BASE_PATH}/task/goProjectList">工程任务</a></h4>
               <p><b></b></p>
             </div>
           </div>
@@ -158,7 +158,7 @@
         <div class="col-md-6 col-lg-3">
           <div class="widget-small danger coloured-icon"><i class="icon fa fa-star fa-3x"></i>
             <div class="info">
-              <h4>运动</h4>
+              <h4><a href="${BASE_PATH}/analyse/goAnalyse">数据分析</a></h4>
               <p><b></b></p>
             </div>
           </div>

@@ -3,7 +3,7 @@
 <html>
 	<head>
 		<meta charset="utf-8" />
-		<title>数据展示</title>
+		  <title>数据展示</title>
 		  <script src="${BASE_PATH}/js/jquery-3.3.1.min.js"></script> 
 		  <script src="${BASE_PATH}/js/bootstrap.min.js"></script>
 		  <script src="${BASE_PATH}/js/toastr.min.js"></script>
@@ -14,14 +14,16 @@
 	</head>
 	<body>
 	    <div align="center">
-	         <button id="analyseBtn">分析数据</button>
+	       <!--   <button id="analyseBtn">分析数据</button> -->
 	         <button id="customAnalyseBtn">自定义分析数据</button>
 	     </div>
 		<div class="container">
 			<table class="table" id="tableList">							
 			</table>
 			<input type="text" id="csv" style="display:none">
-			<div class="modal addfade" id="addmodal">
+			
+			
+			<!-- <div class="modal addfade" id="addmodal">
 				<div class="modal-dialog">
 					<div class="modal-content">
 						<div class="modal-header">
@@ -46,11 +48,11 @@
 					</div>
 				</div>
 			</div>
+			 -->
 			
 			
 			
-			<!--修改的模态框-->
-			<div class="modal movefade movemodal" id="movemodal">
+			<!-- <div class="modal movefade movemodal" id="movemodal">
 				<div class="modal-dialog">
 					<div class="modal-content">
 						<div class="modal-header">
@@ -75,11 +77,11 @@
 					</div>
 				</div>
 			</div>
+			 -->
 			
 			
-			
-			<!--查看的模态框-->
-			<div class="modal viewfade" id="viewmodal">
+	
+			<!-- <div class="modal viewfade" id="viewmodal">
 				<div class="modal-dialog">
 					<div class="modal-content">
 						<div class="modal-header">
@@ -102,7 +104,7 @@
 						</div>
 					</div>
 				</div>
-			</div>	
+			</div>	 -->
 		</div>	
 		<script type="text/javascript">
    		 var basepath= '${BASE_PATH}';

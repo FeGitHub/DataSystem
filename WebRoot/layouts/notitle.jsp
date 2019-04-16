@@ -5,7 +5,7 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>
+     <title>
 			<sitemesh:title/>
     </title>      
     <link rel="stylesheet" type="text/css" href="${BASE_PATH}/plug/vali/css/main.css"><!--页面主体样式-->
@@ -16,10 +16,10 @@
     <header class="app-header"><a class="app-header__logo" href="index.html"></a>
       <a class="app-sidebar__toggle" href="#" data-toggle="sidebar" aria-label="Hide Sidebar"></a>
       <ul class="app-nav">
-        <!-- <li class="app-search">
-          <input class="app-search__input" type="search" placeholder="搜索">
-          <button class="app-search__button"><i class="fa fa-search"></i></button>
-        </li> -->
+        <li class="app-search">
+          <input class="app-search__input" type="search" placeholder="搜索" >
+          <button class="app-search__button"><i class="fa fa-search" id="search"></i></button>
+        </li> 
         <!--通知信息菜单-->
        <li class="dropdown"><a class="app-nav__item" href="#" data-toggle="dropdown" aria-label="Show notifications"><i class="fa fa-bell-o fa-lg"></i></a>
           <ul class="app-notification dropdown-menu dropdown-menu-right">
@@ -81,8 +81,8 @@
     <aside class="app-sidebar">
       <div class="app-sidebar__user"><img class="app-sidebar__user-avatar" src="${BASE_PATH}/images/48.jpg" alt="User Image">
         <div>
-          <p class="app-sidebar__user-name">用户名</p>
-          <p class="app-sidebar__user-designation">描述</p>
+          <p class="app-sidebar__user-name">${user.account}</p>
+          <p class="app-sidebar__user-designation">${role}</p>
         </div>
       </div>
       <ul class="app-menu" id="menuId">
@@ -101,8 +101,7 @@
 		                       </ul>
 						 </li>
 					</c:when>
-                    <c:otherwise>
-						<li>
+                    <c:otherwise>					
 	        			<li>
 						   <c:choose>
 						        	<c:when test="${not empty item.url}">
@@ -115,8 +114,7 @@
 	        	                           </a>
 						        	</c:otherwise>
 						    </c:choose>	        				         
-	                 </li>
-	                 </li>
+	                 </li>	            
                     </c:otherwise>
                  </c:choose>
         	</c:forEach> 
