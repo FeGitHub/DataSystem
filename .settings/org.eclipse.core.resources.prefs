@@ -6,6 +6,7 @@ encoding//WebRoot/WEB-INF/view/go/csvdata.jsp=UTF-8
 encoding//WebRoot/WEB-INF/view/qrtz/qrtzTaskList.jsp=UTF-8
 encoding//WebRoot/WEB-INF/view/remind/remindList.jsp=UTF-8
 encoding//WebRoot/css/pagecss/MyMetisMenu.css=UTF-8
+encoding//WebRoot/js/pagejs/task/projectList.js=UTF-8
 encoding//WebRoot/json/datatables_language.json=UTF-8
 encoding//src/DB.properties=UTF-8
 encoding//src/config.properties=UTF-8

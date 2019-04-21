@@ -2,10 +2,8 @@ package com.DS.controller;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-
 import com.DS.bean.MenuInfo;
 import com.DS.common.model.Menu;
-import com.DS.common.model.ProjectTree;
 import com.DS.menu.service.MenuService;
 import com.DS.menu.service.impl.MenuServiceImpl;
 import com.DS.web.base.BaseController;
@@ -84,5 +82,15 @@ public class MenuController extends BaseController{
     	 }else{
     		 renderJson(ajaxDoneError("新增失败"));
     	 }
+	 }
+	 
+	 public void goMenuUrlByName(){
+	   String keyword=getPara("keyword");
+	   Map<String,Object> cond=new HashMap<String,Object>();
+	   cond.put("name", keyword);
+	   Menu menu=new Menu();
+	   SqlPara sqlPara=menu.getSqlPara("menu.getMenuByName", cond);
+	   menu=menu.findFirst(sqlPara);
+	   renderJson(menu); 
 	 }
 }

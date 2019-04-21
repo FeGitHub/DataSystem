@@ -170,7 +170,9 @@ public class TaskController extends BaseController{
      }
      
      
-     
+     /***
+      * 跳转到工程任务列表界面
+      */
      public void goProjectList(){
       	 render("projectList.jsp");
         }
@@ -283,6 +285,10 @@ public class TaskController extends BaseController{
 
      }
      
+     
+     /****
+      * 更新任务信息
+      */
      public void updateTask(){
     	 Task task=getModel(Task.class,"");
     	 boolean result=task.update();
@@ -384,4 +390,38 @@ public class TaskController extends BaseController{
     	 renderJson(tasks);
       }
      
+     /***
+      * 获取工程信息
+      */
+     public  void getProjectInfo(){
+    	Project project=getModel(Project.class,"");
+    	if(project.getId()==null){
+    		 renderJson(ajaxDoneError("主键为空"));
+    		 return;
+    	}
+    	project=project.findById(project.getId());
+    	Map<String,Object> result=new HashMap<String,Object>();
+    	if(project!=null){
+    		 result.put("project", project);
+    		 renderJson(ajaxDoneSuccess(result));
+    	}else{
+    		 renderJson(ajaxDoneError());
+    	}
+     }
+     
+     /***
+      * 更新工程信息 
+      */
+     public void updataProject(){
+    	Project project=getModel(Project.class,"");
+     	if(project.getId()==null){
+     		 renderJson(ajaxDoneError("主键为空"));
+     		 return;
+     	}
+     	if(project.update()){
+     		 renderJson(ajaxDoneSuccess("更新成功"));
+     	}else{
+     		 renderJson(ajaxDoneError("更新失败"));
+     	}
+     }
 }

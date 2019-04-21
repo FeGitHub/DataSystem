@@ -16,10 +16,28 @@ $("#loginOut").click(function(){
 		    $(location).attr("href",url );
 		});
 		
-		/****
-		 * 查询
-		 */
-		$("#search").click(function(){
-			console.log("-------------");
-		});
+	
+});
+
+/****
+ * 查询
+ */
+$("#search").click(function(){	
+   if($("#keyword").val()==""){
+	   return;
+   }
+	$.ajax({
+		url:basepath+"/menu/goMenuUrlByName",
+		type:"post",
+		dataType:"json",
+		data:{"keyword":$("#keyword").val()},
+		success:function(data){
+			if(data!=null){
+				window.location.href=basepath+data.url;
+			}else{
+				$("#keyword").val("查无记录");
+			}
+			
+		}					
+	});
 });

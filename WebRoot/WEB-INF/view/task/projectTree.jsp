@@ -8,8 +8,9 @@
 </head>
 <body>
     <div class="tile">
-                 <button id="popBtn" onclick="showProgess(this)" type="button" class="btn btn-primary">弹出</button>&nbsp;&nbsp;    	    	
-    	    	 <button id="testBtn" type="button" class="btn btn-primary">输出树形数据</button>&nbsp;&nbsp;
+                <!--  <button id="popBtn" onclick="showProgess(this)" type="button" class="btn btn-primary">弹出</button>&nbsp;&nbsp;    	    	 -->
+    	    	 <!-- <button id="testBtn" type="button" class="btn btn-primary">输出树形数据</button>&nbsp;&nbsp; -->
+    	    	 <button id="projectInfBtn" type="button" class="btn btn-primary">修改工程信息</button>&nbsp;&nbsp;
     	    	<!--  <button id="updateBtn" type="button" class="btn btn-primary">提交工程任务</button>   -->	       	    	 
     </div>
      <div class="tile">   
@@ -48,7 +49,7 @@
 						        <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">×</span><span class="sr-only">Close</span></button>
 						        <h4 class="modal-title"></h4>
 						      </div>
-						      <div class="modal-body" style="height:400px;overflow:hidden;"><!--改变这个高度可以改变整个模态框的高度，但是内部元素可能撑破-->
+						      <div class="modal-body" ><!--改变这个高度可以改变整个模态框的高度，但是内部元素可能撑破-->
 						      </div>	
 						      <div class="modal-footer">
                 				<button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
@@ -57,10 +58,10 @@
 					    </div>
 					  </div>
 				</div>
-<template id="remindTemp">
-    <div class="panel mbn" style="height:550px;">
+<template id="taskTemplate">
+    <div class="panel mbn">
        <div class="panel-body" >
-       <form id="remindForm" style="margin-top:20px;">
+       <form id="taskForm" style="margin-top:20px;">
 		<table class="table table-bordered table-hover">
           <tbody> 
           <tr>
@@ -88,7 +89,7 @@
               	<td>
 	              	<div class="row">
 	                  	<div class="col-sm-12">	                                     
-                             <input  name="endDate" id="endDate" class="form-control validate[required] form_date" placeholder="" maxlength="20" type="text" readonly>      
+                             <input  name="endDate" id="endDate" class="form-control  form_date" placeholder="" maxlength="20" type="text" readonly>      
 	                  	</div>	                  	
 	                 </div>	  
               	</td>              	
@@ -98,7 +99,7 @@
               	<td>
 	              	<div class="row">
 		              	<div class="col-sm-12">
-		              		  <textarea class="form-control validate[required]" rows="3" name="description" id="description"></textarea>    
+		              		  <textarea class="form-control" rows="3" name="description" id="description"></textarea>    
 		              	</div>                    	
 	                 </div>	  
               	</td>              	
@@ -124,6 +125,48 @@
 	                 </div>	  
               	</td>              	
             </tr>                     		
+          </tbody>
+        </table>
+        </form>
+      </div>
+    </div>
+</template>
+<template id="projectTemplate">
+    <div class="panel mbn">
+       <div class="panel-body" >
+       <form id="projectForm" style="margin-top:20px;">
+		<table class="table table-bordered table-hover">
+          <tbody>       
+            <tr>
+				<td class="va-m" width="30%"><span>工程名称</span></td>
+              	<td>
+	              	<div class="row">
+	                  	<div class="col-sm-12">	                                     
+                             <input  id="projectName" class="form-control validate[required]" placeholder="" maxlength="20" type="text">      
+	                  	</div>	                  	
+	                 </div>	                
+              	</td>             
+            </tr>       			   
+            <tr>
+				<td class="va-m" width="30%"><span>开始时间</span></td>
+              	<td>
+	              	<div class="row">
+	                  	<div class="col-sm-12">	                                     
+                             <input  id="startDate" class="form-control validate[required] form_date" placeholder="" maxlength="20" type="text" readonly>      
+	                  	</div>	                  	
+	                 </div>	  
+              	</td>              	
+            </tr>        
+             <tr>
+				<td class="va-m" width="30%"><span>结束时间</span></td>
+              	<td>
+	              	<div class="row">
+	                  	<div class="col-sm-12">	                                     
+                             <input   id="finshDate" class="form-control validate[required] form_date" placeholder="" maxlength="20" type="text" readonly>      
+	                  	</div>	                  	
+	                 </div>	  
+              	</td>              	
+            </tr>           		
           </tbody>
         </table>
         </form>

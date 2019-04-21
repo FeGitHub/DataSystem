@@ -9,7 +9,7 @@ $(function(){
 	         minView:2,       
 	         weekStart:1
 	     }); 		
-	     table=$('#remindTable').DataTable({
+	     table=$('#projectTable').DataTable({
 			language: {
 		     "url": basepath+"/json/datatables_language.json"
 		 },
@@ -45,7 +45,7 @@ $(function(){
 	    table.on( 'draw', function () {	    
 	    	 $("[data-toggle='popover']").popover();
 		} );
-	    
+
 	    /***
 	     * function 编辑表格行数据
 	     */
@@ -55,9 +55,9 @@ $(function(){
 		    var htm = $($('#template').html());
 			var _html='<div>'+htm[0].outerHTML+'</div>';			
 			$("#seeMethodModal .modal-body").html(_html);	
-			$("#remindId").val(id);
 			showEditData($operatingArea.parent().parent());
 			activateDatetimepicker($('.form_date'));
+			$("#projectId").val(id);//模板生成后执行
 			$("#seeMethodModal").modal("show");		
 	   }); 
 	   
@@ -65,22 +65,35 @@ $(function(){
 	     * function 打开新增工程模态框
 	     */
 		$("body").on("click","#addBtn",function(){
-		   var htm = $($('#template').html());
+		    var htm = $($('#template').html());
 			var _html='<div>'+htm[0].outerHTML+'</div>';			
 			$("#seeMethodModal .modal-body").html(_html);	
 			activateDatetimepicker($('.form_date'));
+			$("#projectId").val("");
 			$("#seeMethodModal").modal("show");
 	   }); 
 		
 		/***
 	     * function 新增工程请求
 	     */
-		$("body").on("click","#submitBtn",function(){			
+		$("body").on("click","#submitBtn",function(){
+		    var id=$("#projectId").val();
+			if(id!=""){
+				updateProjectAjax(id);
+			}else{
+				createProjectAjax();
+			}			
+		}); 
+		
+		/***
+		 * 创建工程的ajax
+		 */
+		function  createProjectAjax(){			
 			if($("#projectForm").validationEngine('validate')){		
 				var data={
-						"projectName":$("#firstId").val(),
-						"planStartDate":$("#secondId").val(),
-                         "plantFinshDate":$("#thirdId").val(),
+						"projectName":$("#projectName").val(),
+						"startDate":$("#startDate").val(),
+                        "finshDate":$("#finshDate").val(),
 						};
 				$.ajax({
 					url:basepath+"/task/createProject",
@@ -94,13 +107,44 @@ $(function(){
 							toastrError(data.msg,3000);
 						}							
 					}
-				});		
-				
-				
-				
+				});					
 			}
-	    }); 
-			
+	    
+		}
+		
+		/****
+		 * 更新工程的ajax
+		 */
+		function updateProjectAjax(id){
+			if(id==null){
+				toastrError("工程主键为null",2000);
+				return;		
+			}
+			var param={
+					"projectName":$("#projectName").val(),
+					"startDate":$("#startDate").val(),
+					"finshDate":$("#finshDate").val(),
+					"id":id
+			};
+			if($("#projectForm").validationEngine('validate')){
+				$.ajax({
+					url:basepath+"/task/updataProject",
+					type:"post",
+					data:param,
+					dataType:"json",
+					success:function(data){	
+						if(data.code==200){			
+							toastrSuccess(data.msg,2000);				
+						}else{
+							toastrError(data.msg,2000);
+						}		
+					} 
+				}); 
+				reloadTable();
+				$("#seeMethodModal").modal("hide");
+		}
+	}
+		
 		/***
 		 * 跳转到工程任务详情页面
 		 */
@@ -131,9 +175,9 @@ $(function(){
 	     * function 编辑数据回显
 	     */
 	    function showEditData($object){
-	    	$("#firstId").val($object.find("td").eq(0).text());
-	    	$("#secondId").val($object.find("td").eq(1).text());
-	    	$("#thirdId").val($object.find("td").eq(2).text());	    	
+	    	$("#projectName").val($object.find("td").eq(0).text());
+	    	$("#startDate").val($object.find("td").eq(1).text());
+	    	$("#finshDate").val($object.find("td").eq(2).text());	    	
 	    }
 	    
 	    /***
@@ -173,11 +217,11 @@ $(function(){
 function reloadTable(){
 	var startDates = $("#datetimepicker1").val();
     var endDates = $("#datetimepicker2").val();
-    var projectName=$("#projectName").val();
+    var projectNameKey=$("#projectNameKey").val();
 	var param = {
 	    		 "startDates" :startDates,
 		    	 "endDates":endDates,
-		    	 "projectName":projectName
+		    	 "projectName":projectNameKey
 	    		};
 	 table.settings()[0].ajax.data = param;
 	 table.ajax.reload();
@@ -196,8 +240,8 @@ $("#querys").click(function(){
 $("#reset").click(function(){
 	$("#datetimepicker1").val("");
 	$("#datetimepicker2").val("");
-	$("#projectName").val("");
-	reloadTable();
+	$("#projectNameKey").val("");
+	reloadTable(); 
 });
 
 

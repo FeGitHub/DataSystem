@@ -19,7 +19,7 @@ function activateDatetimepicker($object){
          bootcssVer:3,
          format: 'yyyy-mm-dd hh:ii:ss', 
          autoclose:true,
-         todayHighlight: true,
+         todayHighlight: true, 
          minView:0,		     
          weekStart:1
      }); 
@@ -34,7 +34,7 @@ function activateDatetimepicker($object){
  * @param clickFlag
  */
 function onClick(event, treeId, treeNode, clickFlag) {
-    var htm = $($('#remindTemp').html());
+    var htm = $($('#taskTemplate').html());
 	var _html='<div>'+htm[0].outerHTML+'</div>';
 	$("#seeMethodModal .modal-body").html(_html);
 	$("#seeMethodModal").modal("show");		
@@ -44,43 +44,58 @@ function onClick(event, treeId, treeNode, clickFlag) {
 	
 }
 
+
 /****
  * 节点信息的详细修改
  */
 $("body").on("click","#updateBtn",function(){
 	var nodeId=$("#nodeId").val();
-	var ztree=$.fn.zTree.getZTreeObj(tree);
-	var node=ztree.getNodeByParam('id',nodeId);
-	node.startDate=$("#startDate").val();
-	node.endDate=$("#endDate").val();
-	node.name=$("#taskName").val();
-	node.description=$("#description").val();
-	node.underway=$("input[name='underway']:checked").val();
-	var data={
-			"id":node.id,
-			"startDate":node.startDate,
-			"endDate":node.endDate,
-			"taskName":node.name,
-			"description":node.description,
-			"underway":node.underway
-			};
-  	$.ajax({
-		url:basepath+"/task/updateProjectTask",
-		type:"post",
-		data:data,
-		dataType:"json",
-		success:function(data){	
-			if(data.code==200){
-				ztree.updateNode(node);
-				toastrSuccess(data.msg,2000);				
-			}else{
-				toastrError(data.msg,2000);
-			}		
-		}
-	});
-	$("#seeMethodModal").modal("hide");
+	if(nodeId!=""){//更新节点
+		updataNodeAjax();
+	}else{//更新工程
+		updateProjectAjax();
+	}
+	
 })
 
+/***
+ * 更新节点的ajax动作
+ */
+function  updataNodeAjax(){
+	if($("#taskForm").validationEngine('validate')){
+		var nodeId=$("#nodeId").val();
+		var ztree=$.fn.zTree.getZTreeObj(tree);
+		var node=ztree.getNodeByParam('id',nodeId);
+		node.startDate=$("#startDate").val();
+		node.endDate=$("#endDate").val();
+		node.name=$("#taskName").val();
+		node.description=$("#description").val();
+		node.underway=$("input[name='underway']:checked").val();
+		var data={
+				"id":node.id,
+				"startDate":node.startDate,
+				"endDate":node.endDate,
+				"taskName":node.name,
+				"description":node.description,
+				"underway":node.underway
+				};
+	  	$.ajax({
+			url:basepath+"/task/updateProjectTask",
+			type:"post",
+			data:data,
+			dataType:"json",
+			success:function(data){	
+				if(data.code==200){
+					ztree.updateNode(node);
+					toastrSuccess(data.msg,2000);				
+				}else{
+					toastrError(data.msg,2000);
+				}		
+			}
+		});
+	  	$("#seeMethodModal").modal("hide");
+	}
+}
      
 
 /***
@@ -354,7 +369,7 @@ function setRemoveBtn(treeId, treeNode) {
 
 
 /****
- * 初始化数据表格
+ * 初始化饼状图数据
  */
 function initTreeAndPieChart(){
 	//设置	  
@@ -401,10 +416,15 @@ function initTreeAndPieChart(){
  */
 function showProgess(){
 	layer.msg($("#progress").data("msg"));
-
 }
 
 
+/****
+ * 节点移除前的确认
+ * @param treeId 树的id
+ * @param treeNode 当前操作节点
+ * @returns {Boolean}  
+ */
 function beforeRemove(treeId, treeNode) {
 	var ids=getAllChildrenNodesStr(treeNode);
 	var pNode = treeNode.getParentNode();
@@ -462,7 +482,9 @@ function getAllChildrenNodesStr(treeNode){
     return str;
 }
 
-
+/***
+ * 节点信息移除
+ */
 function remove(ids,pId,treeNode){
 	var zTreeObj = $.fn.zTree.getZTreeObj(tree);
 	$.ajax({
@@ -482,8 +504,11 @@ function remove(ids,pId,treeNode){
 }
 
 /****
- * 
+ * 展示选中饼状图的对应状态节点
  * @param way
+ * 0-未开始
+ * 1-进行中
+ * 2-已结束
  */
 function showchecked(way){
 	   var zTreeObj = $.fn.zTree.getZTreeObj(tree);
@@ -496,4 +521,80 @@ function showchecked(way){
 			   zTreeObj.checkNode(act[i], false, false,false);
 		   }	  		 
 	   }
+}
+
+/****
+ * 工程信息修改模态框
+ */
+$("#projectInfBtn").click(function(){
+	    var htm = $($('#projectTemplate').html());
+		var _html='<div>'+htm[0].outerHTML+'</div>';
+		$("#seeMethodModal .modal-body").html(_html);
+		showProjectInfo();
+		$("#seeMethodModal").modal("show");				
+		activateDatetimepicker($('.form_date'));
+});
+
+
+
+/***
+ * 展示工程信息
+ */
+function showProjectInfo(){
+	var projectId=$("#projectId").val();
+	$("#nodeId").val("");//用于区别节点信息的更新
+	if(projectId==null){
+		toastrError("工程主键为null",2000);
+		return;
+	}
+	$.ajax({
+		url:basepath+"/task/getProjectInfo",
+		type:"post",
+		data:{"id":projectId},
+		dataType:"json",
+		success:function(data){	
+			if(data.code==200){
+				var project=data.project;
+				$("#projectName").val(project.projectName);
+				$("#startDate").val(project.startDate);
+				$("#finshDate").val(project.finshDate);
+			}else{
+				toastrError(data.msg,2000);
+			}		
+		} 
+	}); 
+}
+
+/***
+ *  更新工程信息
+ */
+function  updateProjectAjax(){
+	var projectId=$("#projectId").val();
+	if(projectId==null){
+		toastrError("工程主键为null",2000);
+		return;		
+	}
+	var param={
+			"projectName":$("#projectName").val(),
+			"startDate":$("#startDate").val(),
+			"finshDate":$("#finshDate").val(),
+			"id":projectId
+	};
+	if($("#projectForm").validationEngine('validate')){
+		$.ajax({
+			url:basepath+"/task/updataProject",
+			type:"post",
+			data:param,
+			dataType:"json",
+			success:function(data){	
+				if(data.code==200){			
+					toastrSuccess(data.msg,2000);				
+				}else{
+					toastrError(data.msg,2000);
+				}		
+			} 
+		}); 
+		$("#seeMethodModal").modal("hide");
+	}
+	
 }

@@ -22,3 +22,8 @@
 		(#para(x.id),#para(x.pId),#para(x.name),#para(x.url),#para(x.icon),#para(x.checked)) #(for.last ? " ": ",")
 	 #end
 #end
+
+#sql("getMenuByName")
+	select * from menu where name like concat('%', #para(name), '%') and url is not null
+#end
+

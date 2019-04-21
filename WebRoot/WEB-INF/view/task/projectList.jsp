@@ -7,10 +7,10 @@
 </head>
 <body>
 <div class="tile">
-	<form action="" class="form-inline" id="filterForm">	
+	<form  class="form-inline" id="filterForm">	
 						<div class="form-group">
-					        <label>事项简称</label>
-					        <input type="text" class="form-control keepPlace" name="projeName" id="projectName">
+					        <label>工程名称</label>
+					        <input type="text" class="form-control keepPlace" name="projeName" id="projectNameKey">
 					    </div>						    				       
 		               <div class="input-daterange input-group keepPlace">
 		               		<label>时间范围 &nbsp;&nbsp;&nbsp;</label>			                	       			                                
@@ -25,7 +25,7 @@
 	</form>	
 </div>
 <div class="tile">
-	<table id="remindTable" class="display" style="width:100%">
+	<table id="projectTable" class="display" style="width:100%">
     <thead>
         <tr>
             <th>工程任务</th>
@@ -39,13 +39,13 @@
 </table>
 </div>
 				<div class="modal" id="seeMethodModal">
-						<div class="modal-dialog modal-lg ptn" style="width:600px;"><!--修改这个width可以改变整个模态框的宽度-->
+						<div class="modal-dialog modal-lg ptn" style="width:600px;">
 						    <div class="modal-content" >
 						      <div class="modal-header">
 						        <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">×</span><span class="sr-only">Close</span></button>
 						        <h4 class="modal-title"></h4>
 						      </div>
-						      <div class="modal-body" style="height:350px;overflow:hidden;"><!--改变这个高度可以改变整个模态框的高度，但是内部元素可能撑破-->
+						      <div class="modal-body" >
 						      </div>	
 						      <div class="modal-footer">
                 				<button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
@@ -56,17 +56,17 @@
 				</div>
 
 <template id="template">
-    <div class="panel mbn" style="height:350px;">
+    <div class="panel mbn">
        <div class="panel-body" >
        <form id="projectForm" style="margin-top:20px;">
 		<table class="table table-bordered table-hover">
           <tbody>       
             <tr>
-				<td class="va-m" width="30%"><span>工程任务</span><input id="remindId" type="text" value="" style="display:none;" name="id" ></td>
+				<td class="va-m" width="30%"><span>工程任务</span><input id="projectId" type="text" value="" style="display:none;" name="id" ></td>
               	<td>
 	              	<div class="row">
 	                  	<div class="col-sm-12">	                                     
-                             <input name="subject" id="firstId" class="form-control validate[required]" placeholder="" maxlength="20" type="text">      
+                             <input name="subject" id="projectName" class="form-control validate[required]" placeholder="" maxlength="20" type="text">      
 	                  	</div>	                  	
 	                 </div>	                
               	</td>             
@@ -76,7 +76,7 @@
               	<td>
 	              	<div class="row">
 	                  	<div class="col-sm-12">	                                     
-                             <input  id="secondId" class="form-control validate[required] form_date" placeholder="" maxlength="20" type="text" readonly>      
+                             <input  id="startDate" class="form-control validate[required] form_date" placeholder="" maxlength="20" type="text" readonly>      
 	                  	</div>	                  	
 	                 </div>	  
               	</td>              	
@@ -86,7 +86,7 @@
               	<td>
 	              	<div class="row">
 	                  	<div class="col-sm-12">	                                     
-                             <input   id="thirdId" class="form-control validate[required] form_date" placeholder="" maxlength="20" type="text" readonly>      
+                             <input   id="finshDate" class="form-control validate[required] form_date" placeholder="" maxlength="20" type="text" readonly>      
 	                  	</div>	                  	
 	                 </div>	  
               	</td>              	

@@ -17,7 +17,7 @@
       <a class="app-sidebar__toggle" href="#" data-toggle="sidebar" aria-label="Hide Sidebar"></a>
       <ul class="app-nav">
        <li class="app-search">
-          <input class="app-search__input" type="search" placeholder="搜索" >
+          <input class="app-search__input" type="search" id="keyword" placeholder="快速跳转" >
           <button class="app-search__button" id="search"><i class="fa fa-search"></i></button>
         </li>
         <!--通知信息菜单-->
