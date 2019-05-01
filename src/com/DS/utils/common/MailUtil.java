@@ -15,10 +15,11 @@ import java.util.Random;
  * 发送邮件的工具类
  * 发送失败的原因很常是因为被判定成垃圾邮件(最好接收方和发送方都是同种类型的邮箱)
  * 本人用某易邮箱发某讯邮箱时常被某易拦截，发给同类型邮箱就不会 ╮(╯ ▽ ╰)╭
+ * *********************************此邮件类暂时弃用*************用NewMailUtil*************
  */
 public class MailUtil {
     public static String myEmailAccount = "*************";//发送方邮件地址
-    public static String myEmailPassword = "*************";//发送方密码
+    public static String myEmailPassword = "*************";//客户端授权码
     public static String myEmailSMTPHost = "*************";
     public static String receiveMailAccount ="************";
     
@@ -63,7 +64,7 @@ public class MailUtil {
      */ 
     public static MimeMessage createMimeMessage(Session session,MailBean mail) throws Exception {       
         MimeMessage message = new MimeMessage(session);   
-       //防止成为垃圾邮件，披上outlook的马甲 
+    
         message.addHeader("X-Mailer","Microsoft Outlook Express 6.00.2900.2869");
         message.addRecipients(MimeMessage.RecipientType.CC,  InternetAddress.parse(myEmailAccount));
         message.addRecipients(MimeMessage.RecipientType.TO,  InternetAddress.parse(receiveMailAccount));
@@ -80,10 +81,12 @@ public class MailUtil {
    	 Random random = new Random();
 	 int randomNum = random.nextInt(1000000);
      String randomCode = String.format("%06d", randomNum);
+    // MailBean mail=new MailBean("2498082473@qq.com","系统验证码");
      MailBean mail=new MailBean("2498082473@qq.com","系统验证码");
      mail.setReceiveName("用户");
      mail.setSenderName("PAMS");
      mail.setContent("<h2>"+randomCode+"</h2>");  
+     mail.setSubject("邮件主题");
     	try {
 			sendMail(mail);
 		} catch (Exception e) {		

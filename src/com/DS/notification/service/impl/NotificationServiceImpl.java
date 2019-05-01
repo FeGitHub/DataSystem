@@ -17,6 +17,7 @@ import com.DS.task.service.TaskService;
 import com.DS.task.service.impl.ProjectServiceImpl;
 import com.DS.task.service.impl.TaskServiceImpl;
 import com.DS.utils.common.MailUtil;
+import com.DS.utils.common.NewMailUtil;
 import com.DS.utils.common.ObjectUtil;
 import com.alibaba.fastjson.JSONObject;
 import com.jfinal.aop.Inject;
@@ -178,7 +179,7 @@ public class NotificationServiceImpl implements NotificationService {
 	 */
 	@Override
 	public int sendCode(String mailAdress) {
-		 Random random = new Random();
+		/* Random random = new Random();
 		 int randomNum = random.nextInt(1000000);
          String randomCode = String.format("%06d", randomNum);
          MailBean mail=new MailBean(mailAdress,"系统验证码");
@@ -188,7 +189,18 @@ public class NotificationServiceImpl implements NotificationService {
          if(sendMail(mail)>0){
         	 return randomNum;
          }
-         return 0;
+         return 0;*/
+		 Random random = new Random();
+		int randomNum = random.nextInt(1000000);
+        String randomCode = String.format("%06d", randomNum);
+		MailBean mail=new MailBean(mailAdress,randomCode);
+		try {
+			NewMailUtil.initAndSend(mail);
+		} catch (Exception e) {
+			randomNum=0;
+			e.printStackTrace();
+		}
+		 return randomNum;
 	} 
    
 	/****

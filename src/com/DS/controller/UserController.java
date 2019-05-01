@@ -15,6 +15,7 @@ import com.DS.user.service.impl.UserServiceImpl;
 import com.DS.user.vo.UserListVo;
 import com.DS.user.vo.UserVo;
 import com.DS.utils.common.ObjectUtil;
+import com.DS.utils.common.SecretUtil;
 import com.DS.web.base.BaseController;
 import com.jfinal.aop.Clear;
 import com.jfinal.aop.Inject;
@@ -141,6 +142,7 @@ public class UserController extends BaseController {
 		public void updateNotification(){
 			 String id=getPara("id");
 			 if(id==null||id==null){
+				 renderJson(ajaxDoneError("主键为空，修改失败"));
 				 return;
 			 }
 			 HttpSession session = getSession();
@@ -158,5 +160,25 @@ public class UserController extends BaseController {
 					renderJson(ajaxDoneError("修改失败"));
 			}
 		}	
-			  
+		
+		/***
+		 *  校验用户密码
+		 */
+		public void checkUser(){
+			HttpSession session =getSession();
+			 String pass=getPara("pass");
+			 if(pass==null||pass==""){
+				 renderJson(ajaxDoneError("校验失败"));
+				 return;
+			 }
+			pass= SecretUtil.getMD5(pass);
+			User user = (User)session.getAttribute("user");
+			if(user!=null&&user.getPassword().equals(pass)){
+				 session.setAttribute("pass", pass);
+				 renderJson(ajaxDoneSuccess("校验成功"));
+			}else{
+				renderJson(ajaxDoneError("校验失败"));
+			}
+		}
+		
 }

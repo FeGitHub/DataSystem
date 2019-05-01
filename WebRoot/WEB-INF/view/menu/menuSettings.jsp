@@ -22,7 +22,7 @@
     	 <input type="text" style="display:none;" id="nodeId">  
     </div> 
    <!--  -->
-   <div class="modal" id="seeMethodModal">
+         <div class="modal" id="seeMethodModal">
 						<div class="modal-dialog modal-lg ptn" style="width:600px;"><!--修改这个width可以改变整个模态框的宽度-->
 						    <div class="modal-content" >
 						      <div class="modal-header">

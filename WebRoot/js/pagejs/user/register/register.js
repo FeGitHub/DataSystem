@@ -135,9 +135,6 @@ $('.container').find('input').eq(4).change(function() {
 
 //提交前的表单的校验
 $('#submit').click(function(e) {
-	//====
-	console.log($("#register").serialize());
-	//===
     if(!check.every(function(value){
             return value == true
         })) {

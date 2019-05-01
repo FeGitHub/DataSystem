@@ -117,7 +117,7 @@
 <!--验证表单结束-->
 </div>
 <script type="text/javascript">
-   		 var basepath= '${BASE_PATH}';
+   		var basepath= '${BASE_PATH}';
 </script>
   <script src="${BASE_PATH}/js/plugjs/jquery.cookie.js"></script>
   <script src="${BASE_PATH}/js/plugjs/idcode.js"></script>

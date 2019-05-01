@@ -7,9 +7,9 @@ public class MailBean {
 	 private  String subject="";//邮件主题
 	 private  String content="";//邮件内容
 	 
-	public MailBean(String receiveMailAccount,String subject){
+	public MailBean(String receiveMailAccount,String content){
 		 this.receiveMailAccount=receiveMailAccount;
-		 this.subject=subject;
+		 this.content=content;
 	 }
 	public String getReceiveName() {
 		return receiveName;

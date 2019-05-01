@@ -15,6 +15,7 @@
             alert("secondFunc");
             return this;//返回当前方法
         }
+         
     }
     //这里确定了插件的名称
    // this.CJPlugin = _plugin_api;
