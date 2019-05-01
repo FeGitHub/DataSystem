@@ -28,13 +28,13 @@ public class SystemUtil {
 	 * 获取系统的数据库备份文件路径
 	 * @return
 	 */
-	public static String getDBPath(){
-		String DBPath=null;
+	public static String getMysqlBackupPath(){
+		String MysqlBackupPath=null;
 		if(isLinux()){
-			DBPath=PropKit.use("linux.properties").get("DBPath");
+			MysqlBackupPath=PropKit.use("linux.properties").get("MysqlBackupPath");
 		}else{
-			DBPath=PropKit.use("config.properties").get("DBPath");//数据库备份存放的位置	
+			MysqlBackupPath=PropKit.use("config.properties").get("MysqlBackupPath");//数据库备份存放的位置	
 		}
-		return DBPath;
+		return MysqlBackupPath;
 	}
 }

@@ -66,16 +66,35 @@ function initMenu(){
 
 function beforeClick(treeId, treeNode, clickFlag) {
 }
+
+/****
+ * 菜单节点点击事件
+ * @param event
+ * @param treeId
+ * @param treeNode
+ * @param clickFlag
+ */
 function onClick(event, treeId, treeNode, clickFlag) {
-	layer.prompt({title: '修改菜单链接',value:treeNode.url, formType: 3}, function(text, index){
+/*	layer.prompt({title: '修改菜单链接',value:treeNode.url, formType: 3}, function(text, index){
 		  layer.close(index);	
 		  treeNode.url=text;
 		    layer.msg('修改链接为：'+  treeNode.url);
-		});
+		});*/
+	    var htm = $($('#menuTemplate').html());
+		var _html='<div>'+htm[0].outerHTML+'</div>';
+		$("#seeMethodModal .modal-body").html(_html);
+		var nodeId=treeNode.id;
+		if(nodeId==""||nodeId==null){
+			toastrError("节点id为空");
+			return;
+		}
+		$("#nodeId").val(nodeId);
+		showData(treeNode);
+		$("#seeMethodModal").modal("show");		
 }
 
 /***
- * 修改菜单数据
+ * 修改菜单数据(更新整个树)
  */
 $("#updateMenuBtn").click(function(){
 	  var zTreeObj = $.fn.zTree.getZTreeObj("menuTree");
@@ -175,7 +194,15 @@ function getZtreeNodesInfo(zTreeObj){
 	        MyNode=zTreeObj.getSelectedNodes();	  
 	        indexNodePid=MyNode[0].pId==null?0:MyNode[0].pId;
 	        indexNodeIcon=MyNode[0].icon==null?dashboard:MyNode[0].icon;	      
-	        params.push({ "id": MyNode[0].id, "pId":indexNodePid,"name" :MyNode[0].name,"url":MyNode[0].url,"icon":indexNodeIcon,"checked":MyNode[0].checked});
+	        params.push({ 
+	        	"id": MyNode[0].id, 
+	        	"pId":indexNodePid,
+	        	"name" :MyNode[0].name,
+	        	"url":MyNode[0].url,
+	        	"icon":indexNodeIcon,
+	        	"checked":MyNode[0].checked,
+	        	"menu_level":MyNode[0].menu_level
+	        	});
 	    }
 	    var ztreeJson = JSON.stringify(params);
 	    return ztreeJson;
@@ -184,7 +211,7 @@ function getZtreeNodesInfo(zTreeObj){
 /*******
  * tree-bootstrap测试参数准备
  */
-function paramToZtreeBootstrap(){
+function paramToZtreeBootstrap(){ 
 	  var zNodes5 =[
 	                {id:1, pId:0, name:"菜单编辑",open:true,checked:false},
 	                
@@ -239,3 +266,79 @@ function zTreeOnRemove(event, treeId, treeNode) {
       console.log("=========");
 	}*/
 }      
+
+
+/***
+ * 编辑数据回显
+ * @param taskName
+ * @param startDate
+ * @param endDate
+ */
+function showData(treeNode){
+	   $("#name").val(treeNode.name);
+	   $("#url").val(treeNode.url); 
+	   var check=1;
+	   if(treeNode.menu_level!=1){
+		   check=2;
+	   }
+	   $(":radio[name='visable'][value='" +check+ "']").prop("checked", "checked");
+	}
+
+
+
+
+/***
+ * 更新节点
+ */
+function  updataNode(){
+	if($("#menuForm").validationEngine('validate')){
+		//以下为节点更新信息
+		var nodeId=$("#nodeId").val();
+		if(nodeId==""||nodeId==null){
+			toastrError("节点id为空");
+			return;
+		}
+		var name=$("#name").val();
+		var url=$("#url").val();
+		var check=$("input[name='visable']:checked").val();		
+		var ztree=$.fn.zTree.getZTreeObj(tree);		
+		var node=ztree.getNodeByParam('id',nodeId);		
+		node.name=name;
+		node.url=url;
+		node.menu_level=check;
+		var pNode = node.getParentNode();//父节点
+		//以下处理相关逻辑
+		if(check==1){
+			pNode.menu_level=1;
+		}
+		//更新操作
+		ztree.updateNode(node);	
+		if(pNode!=null){
+			ztree.updateNode(pNode);
+		}
+		//本节点是父节点
+		if(node.isParent&&check==2){//父节点不可见，其下节点必不可见
+			 var childrenNodes = node.children;
+			 if (childrenNodes){
+				 for (var i = 0; i < childrenNodes.length; i++) {
+	                 childrenNodes[i].menu_level=check;	  
+	                 ztree.updateNode(childrenNodes[i]);
+	            } 
+			 }
+			
+		}
+	  	$("#seeMethodModal").modal("hide");
+	}
+}
+
+
+/****
+ * 节点信息的详细修改
+ */
+$("body").on("click","#updateBtn",function(){
+	var nodeId=$("#nodeId").val();
+	if(nodeId!=""){//更新节点
+		updataNode();
+		//toastrSuccess("节点更新成功",3000);
+	}	
+})

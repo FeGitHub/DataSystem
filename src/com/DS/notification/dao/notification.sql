@@ -14,6 +14,7 @@
 END AS meta   
    from notification
 where userId=#para(userId)
+and readFlag!=1
 order by operatetime desc
 	#if(limitSize)
 	   limit 0,#para(limitSize)
@@ -27,7 +28,7 @@ order by operatetime desc
  * 获取用用户通知信息的条数
  */
 #sql("getNotificationSize")
-   select count(*) as size from notification where userId=#para(userId)
+   select count(*) as size from notification where userId=#para(userId) and readFlag!=1
 #end
 
 /***
@@ -55,8 +56,6 @@ order by operatetime desc
       #end
    )
 #end
-
-
 
 
 

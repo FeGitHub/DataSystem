@@ -1,4 +1,6 @@
- 
+$(function(){
+	
+  })
 
 $("#loginBtn").click(function(){
 	submitForm();

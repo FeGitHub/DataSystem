@@ -49,7 +49,7 @@
 						        <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">×</span><span class="sr-only">Close</span></button>
 						        <h4 class="modal-title"></h4>
 						      </div>
-						      <div class="modal-body" ><!--改变这个高度可以改变整个模态框的高度，但是内部元素可能撑破-->
+						      <div class="modal-body" >
 						      </div>	
 						      <div class="modal-footer">
                 				<button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
@@ -79,7 +79,7 @@
               	<td>
 	              	<div class="row">
 	                  	<div class="col-sm-12">	                                     
-                             <input  name="startDate" id="startDate" class="form-control validate[required] form_date" placeholder="" maxlength="20" type="text" readonly>      
+                             <input  name="startDate" id="startDate" class="form-control  form_date" placeholder="" maxlength="20" type="text" readonly>      
 	                  	</div>	                  	
 	                 </div>	  
               	</td>              	
@@ -174,7 +174,7 @@
     </div>
 </template>
     <script src="${BASE_PATH}/js/plugjs/echarts.js"></script>
-    <script src="${BASE_PATH}/js/pagejs/demojs/eChartsDemo/walden.js"></script> <!--图标样式-->
+    <script src="${BASE_PATH}/js/pagejs/demojs/eChartsDemo/walden.js"></script> 
     <script type="text/javascript" src="${BASE_PATH}/plug/ztree-bootstrap/js/jquery.ztree.core.js"></script>
     <script type="text/javascript" src="${BASE_PATH}/plug/ztree-bootstrap/js/jquery.ztree.excheck.js"></script>
     <script type="text/javascript" src="${BASE_PATH}/plug/ztree-bootstrap/js/jquery.ztree.exedit.js"></script>

@@ -67,6 +67,14 @@ $("#reset").click(function(){
 	reloadTable();
 });
 
+/***
+ * 
+ * @param field
+ * @param rules
+ * @param i
+ * @param options
+ * @returns {String}
+ */
 function checkMail(field, rules, i, options){
 	var re=/^([a-zA-Z]|[0-9])(\w|\-)+@[a-zA-Z0-9]+\.([a-zA-Z]{2,4})$/;
 	var mail=$("#mail").val();
@@ -94,26 +102,49 @@ function showModel(){
 }
 
 /***
- * function 发起更新动作
+ * function 用户信息操作
  */
 $("body").on("click","#submitBtn",function(){	
-	if($("#templateForm").validationEngine('validate')){
-		$.ajax({
-			url:basepath+"/task/register",
-			type:"post",
-			dataType:"json",
-			data:$("#templateForm").serialize(),
-			success:function(data){
-				$("#seeMethodModal").modal("hide");
-				if(data.code==200){
-					showTable.ajax.reload(null,false);
-					toastrSuccess(data.msg,3000);
-				}else{
-					toastrError(data.msg,3000);
-				}
-			}					
-		});
+	var recordId=$("#recordId").val();
+	if(recordId!=null&&recordId!=""){
+		if($("#templateForm").validationEngine('validate')){
+			$.ajax({
+				url:basepath+"/user/updateUser",
+				type:"post",
+				dataType:"json",
+				data:$("#templateForm").serialize(),
+				success:function(data){
+					$("#recordId").val("");
+					$("#seeMethodModal").modal("hide");
+					if(data.code==200){
+						showTable.ajax.reload(null,false);
+						toastrSuccess(data.msg,3000);
+					}else{
+						toastrError(data.msg,3000);
+					}
+				}					
+			});			
+		}		
+	}else{
+		if($("#templateForm").validationEngine('validate')){
+			$.ajax({
+				url:basepath+"/user/register",
+				type:"post",
+				dataType:"json",
+				data:$("#templateForm").serialize(),
+				success:function(data){
+					$("#seeMethodModal").modal("hide");
+					if(data.code==200){
+						showTable.ajax.reload(null,false);
+						toastrSuccess(data.msg,3000);
+					}else{
+						toastrError(data.msg,3000);
+					}
+				}					
+			});			
+		}
 	}
+	
 }); 
 	
 
@@ -167,9 +198,34 @@ $("body").on("click",".delBtn",function(){
  * function 编辑数据回显
  */
 function showEditData($object){
-	$("#subjectId").val($object.find("td").eq(0).text());
+	var recordId=$("#recordId").val();
+	/*$("#subjectId").val($object.find("td").eq(0).text());
 	$("#contentId").val($object.find("td").eq(1).text());
-	$("#mail").val($object.find("td").eq(2).text());	    	
+	$("#mail").val($object.find("td").eq(2).text());*/   
+	$.ajax({
+		url:basepath+"/user/getUser",
+		type:"post",
+		dataType:"json",
+		data:{"id":recordId},
+		success:function(data){			
+			if(data.code==200){
+				var user=data.user;
+				$("#mail").val(user.mail);					
+				$("#recordId").val(user.id);		
+				$("#accountId").val(user.account);
+				var userFlag=user.userFlag;
+				var leve=2;
+				if(user.leve==1){
+					leve=1;
+				}
+				$(":radio[name='userFlag'][value='" +userFlag+ "']").prop("checked", "checked");
+				$(":radio[name='leve'][value='" +leve+ "']").prop("checked", "checked");
+				
+			}else{
+				toastrError(data.msg,3000);
+			}
+		}					
+	});
 }
 
 

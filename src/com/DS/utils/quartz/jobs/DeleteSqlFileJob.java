@@ -26,7 +26,7 @@ public class DeleteSqlFileJob implements Job{
 		delSqlFile();
 	}
 	public static void delSqlFile(){
-		String path=SystemUtil.getDBPath();//数据库备份存放的位置		
+		String path=SystemUtil.getMysqlBackupPath();//数据库备份存放的位置		
 		ArrayList<String> pathList=FileUtil.getFilePaths(path);//备份数据库文件夹下的所有备份sql文件
 		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
 		File tempfile;//用于在遍历过程中存放文件对象

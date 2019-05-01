@@ -9,7 +9,7 @@ import com.jfinal.plugin.druid.DruidPlugin;
  * 在数据库表有任何变动时，运行一下 main 方法，极速响应变化进行代码重构
  * PS:生成的相关文件的路径请看控制台输出
  */
-public class DBModelGenerator {
+public class DSModelGenerator {
 	
 	public static DataSource getDataSource() {
 		DruidPlugin druidPlugin = DSConfig.createDruidPlugin();
@@ -34,9 +34,9 @@ public class DBModelGenerator {
 		// 设置数据库方言
 		generator.setDialect(new MysqlDialect());		
 		
-		/****
+		/*******************************************************
 		 * 注释下面这句生成全部表，否则生成指定表对应的model--jeff
-		 */
+		 *******************************************************/
 		generator.setMetaBuilder(new MyMetaBulider(getDataSource()));
 		
 		// 设置是否生成链式 setter 方法
@@ -47,7 +47,7 @@ public class DBModelGenerator {
 		generator.setGenerateDaoInModel(false);
 		// 设置是否生成字典文件
 		generator.setGenerateDataDictionary(false);
-		// 设置需要被移除的表名前缀用于生成modelName。例如表名 "osc_user"，移除前缀 "osc_"后生成的model名为 "User"而非 OscUser
+		// 设置需要被移除的表名前缀用于生成modelName，例如表名 "osc_user"，移除前缀 "osc_"后生成的model名为 "User"而非 OscUser
 		generator.setRemovedTableNamePrefixes("t_");
 		// 生成
 		generator.generate();

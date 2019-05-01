@@ -45,7 +45,7 @@
 						        <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">×</span><span class="sr-only">Close</span></button>
 						        <h4 class="modal-title"></h4>
 						      </div>
-						      <div class="modal-body" style="height:350px;overflow:hidden;"><!--改变这个高度可以改变整个模态框的高度，但是内部元素可能撑破-->
+						      <div class="modal-body">
 						      </div>	
 						      <div class="modal-footer">
                 				<button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
@@ -55,7 +55,7 @@
 					  </div>
 				</div>
 <template id="template">
-    <div class="panel mbn" style="height:550px;">
+    <div class="panel mbn">
        <div class="panel-body" >
        <form id="templateForm" style="margin-top:20px;">
 		<table class="table table-bordered table-hover">
@@ -65,21 +65,11 @@
               	<td>
 	              	<div class="row">
 	                  	<div class="col-sm-12">	                                     
-                             <input name="subject" id="subjectId" class="form-control validate[required]" placeholder="" maxlength="20" type="text">      
+                             <input name="account" id="accountId" class="form-control validate[required]" placeholder="" maxlength="20" type="text">      
 	                  	</div>	                  	
 	                 </div>	                
               	</td>             
-            </tr>       
-			 <tr>
-				<td class="va-m" width="30%"><span>用户等级</span></td>
-              	<td>
-	              	<div class="row">
-		              	<div class="col-sm-12">
-		              		  <textarea class="form-control validate[required]" rows="3" name="content" id="contentId"></textarea>    
-		              	</div>                    	
-	                 </div>	  
-              	</td>              	
-            </tr>                    
+            </tr>      
              <tr>
 				<td class="va-m" width="30%"><span>用户邮箱</span></td>
               	<td>
@@ -89,7 +79,41 @@
 	                  	</div>	                  	
 	                 </div>	  
               	</td>              	
-            </tr>	         		
+            </tr>	          
+			 <tr>
+				<td class="va-m" width="30%"><span>用户角色</span></td>
+              	<td>
+	              	<div class="row">
+				          <div class="col-sm-12">	                                     
+			                     <div class="animated-radio-button">
+						               <label>
+						                   <input type="radio" name="leve" value="1"><span class="label-text">普通用户</span>
+						               </label>
+						                <label>
+						                   <input type="radio" name="leve" value="2"><span class="label-text">管理员</span>
+						                </label>						     
+			                       </div>
+				           </div>	                  	
+	                 </div>	  
+              	</td>              	
+            </tr>       
+            <tr>
+				<td class="va-m" width="30%"><span>账号状态</span></td>
+              	<td>
+	              	<div class="row">
+				          <div class="col-sm-12">	                                     
+			                     <div class="animated-radio-button">
+						               <label>
+						                   <input type="radio" name="userFlag" value="0"><span class="label-text">停用</span>
+						               </label>
+						                <label>
+						                   <input type="radio" name="userFlag" value="1"><span class="label-text">启用</span>
+						                </label>						     
+			                       </div>
+				           </div>	                  	
+	                 </div>	  
+              	</td>              	
+            </tr>             
           </tbody>
         </table>
         </form>

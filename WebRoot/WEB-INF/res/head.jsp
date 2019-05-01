@@ -14,6 +14,7 @@
   <script src="${BASE_PATH}/js/toastr.min.js"></script><!--信息提示框-->
   <link href="${BASE_PATH}/css/toastr.min.css" type="text/css" rel="stylesheet">
   <script src="${BASE_PATH}/js/plugjs/handlebars.min-latest.js"></script> <!--语义化模板-->
+    <script src="${BASE_PATH}/js/plugjs/pams.js"></script> <!--语义化模板-->
   <script type="text/javascript">
     var basepath= '${BASE_PATH}';
   </script>

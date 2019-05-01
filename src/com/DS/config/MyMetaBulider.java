@@ -9,7 +9,7 @@ public class MyMetaBulider extends MetaBuilder{
     
     @Override
     protected boolean isSkipTable(String tableName) {
-    	//此处填入需要生成model的表
+    	//此处填入需要生成model的对应表
     	String[] tableArray = {
     			"user",
     			"menu",

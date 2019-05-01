@@ -10,7 +10,7 @@
   <body>
     <main>
       <div class="row">
-        <div class="col-md-3"><a class="mb-2 btn btn-primary btn-block" href="">邮箱信息</a>
+      <!--   <div class="col-md-3"><a class="mb-2 btn btn-primary btn-block" href="">邮箱信息</a>
           <div class="tile p-0">
             <h4 class="tile-title folder-head">文件夹</h4>
             <div class="tile-body">
@@ -23,8 +23,8 @@
               </ul>
             </div>
           </div>
-        </div>
-        <div class="col-md-9">
+        </div> -->
+        <div class="col-md-12">
           <div class="tile">
             <div class="mailbox-controls">
               <div class="animated-checkbox">
@@ -52,8 +52,8 @@
                         </label>
                       </div>
                     </td>
-                    <td><a href="#"><i class="fa fa-star-o"></i></a></td>
-                    <td><a href="read-mail.html">{{sender}}</a></td>
+                    <td><a href="javascript:void(0);" data-id="{{id}}" class="goNotification"><i class="fa fa-star-o"></i></a></td>
+                    <td><a href="javascript:void(0);" data-id="{{id}}" class="goNotification">{{sender}}</a></td>
                     <td class="mail-subject"><b>{{subject}}</b>{{content}}</td>
                     <td><i class="fa fa-paperclip"></i></td>
                     <td>{{meta}}</td>

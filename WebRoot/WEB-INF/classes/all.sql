@@ -21,12 +21,6 @@
 #end
 
 
-/****
- * ztree
- */
-#namespace("ztree")
-#include("com/DS/ztree/dao/ztree.sql")
-#end
 
 
 /****
@@ -44,12 +38,6 @@
 #end
 
 
-/****
- * demo
- */
-#namespace("demo")
-#include("com/DS/demo/dao/demo.sql")
-#end
 
 /****
  * 菜单信息的sql

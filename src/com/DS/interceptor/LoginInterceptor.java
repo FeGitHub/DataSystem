@@ -70,9 +70,9 @@ public class LoginInterceptor implements Interceptor{
 				 controller.setAttr("notifications", notifications);
 				 controller.setAttr("user", user);
 				 if(user.getLeve()==1){
-					 controller.setAttr("role", "管理员");
-				 }else{
 					 controller.setAttr("role", "普通用户");
+				 }else{
+					 controller.setAttr("role", "管理员");
 				 }
 				 inv.invoke();
 			}

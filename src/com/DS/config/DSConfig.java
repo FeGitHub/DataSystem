@@ -23,10 +23,11 @@ public class DSConfig extends JFinalConfig {
     public void configConstant(Constants me) {
        //me.setViewType(ViewType.FREE_MARKER);//启动FREE_MARKER
        me.setViewType(ViewType.JSP);
-       PropKit.use("DB.properties");
+       PropKit.use("config.properties");
 	   me.setDevMode(PropKit.getBoolean("devMode", true));
 	   me.setInjectDependency(true);//依赖注入
-	   me.setBaseUploadPath("PAMS_upload");//默认上传文件路径(项目中，第一次上传时会自动创建)
+	 //默认上传文件路径(产生于部署的项目中，第一次上传时会自动创建)
+	   me.setBaseUploadPath("PAMS_upload");
 	  // me.setBaseDownloadPath("PAMS_load");//默认下载路径    
     }
     /***
@@ -34,7 +35,7 @@ public class DSConfig extends JFinalConfig {
      * @param me
      */
     public void configRoute(Routes me) {
-        me.setBaseViewPath("/WEB-INF/view/"); //默认视图路径
+         me.setBaseViewPath("/WEB-INF/view/"); //默认视图路径
         _MappingRoute.mapping(me);//路由映射
     }
     
@@ -78,10 +79,10 @@ public class DSConfig extends JFinalConfig {
      * @return
      */
     public static DruidPlugin createDruidPlugin() {
-    	 PropKit.use("DB.properties");
+    	 PropKit.use("config.properties");
     	 String password=PropKit.get("password").trim();
     	 password=SecretUtil.decrypt(password);
-		 return new DruidPlugin(PropKit.get("jdbcUrl"), PropKit.get("user"), password);
+		 return new DruidPlugin(PropKit.get("jdbcUrl"), PropKit.get("userName"), password);
 	}
 
 }

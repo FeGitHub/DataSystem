@@ -17,9 +17,9 @@
 #end
 
 #sql("insertDataBatch")
-	insert into menu(id,pId,name,url,icon,checked) values
+	insert into menu(id,pId,name,url,icon,checked,menu_level) values
 	#for(x : cond)
-		(#para(x.id),#para(x.pId),#para(x.name),#para(x.url),#para(x.icon),#para(x.checked)) #(for.last ? " ": ",")
+		(#para(x.id),#para(x.pId),#para(x.name),#para(x.url),#para(x.icon),#para(x.checked),#para(x.menu_level)) #(for.last ? " ": ",")
 	 #end
 #end
 

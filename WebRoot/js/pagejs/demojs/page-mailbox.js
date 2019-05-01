@@ -92,8 +92,7 @@ $("#refreshBtn").click(function(){
 		      dataType:"json",
 		      data:{"pageNumber":pageNumber},
 		      success:function(data){	
-		    	  if(data.code==200){  
-		    		     //console.log(data.info);
+		    	  if(data.code==200){  	    		    
 		    		     var _html = template(data.info);	
 		    		     $("#tb").empty();
 		    			 $("#tb").html(_html);
@@ -138,6 +137,19 @@ $("#refreshBtn").click(function(){
 		if(pageNumber<=endpageNumber){
 			$("#pageNumberId").val(pageNumber);
 			loadMailBox(false);
+		}		
+	});
+	
+	
+	/****
+	 * 跳转到相关通知信息页面
+	 */
+	$("body").on("click",".goNotification",function(){
+		var id=$(this).data("id");
+		if(id==null||id==""){
+			toastrError("信息通知主键缺失",3000);
+			return;
 		}
-		
+	    var url=basepath+"/user/goNotification?id="+id;
+	    $(location).attr("href",url );
 	});

@@ -34,7 +34,7 @@
           <div class="form-group">
             <div class="utility">
               <p class="semibold-text mb-2"><a href="${BASE_PATH}/goRegister" data-toggle="flip">注册账号</a></p>
-              <p class="semibold-text mb-2"><a href="#" data-toggle="flip">忘记密码 ?</a></p>
+             <!--  <p class="semibold-text mb-2"><a href="#" data-toggle="flip">忘记密码 ?</a></p> ---暂时调整位置----->
             </div>
           </div>
           <div class="form-group btn-container">

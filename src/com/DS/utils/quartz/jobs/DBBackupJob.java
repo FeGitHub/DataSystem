@@ -12,8 +12,7 @@ import org.apache.log4j.Logger;
 import org.quartz.Job;
 import org.quartz.JobExecutionContext;
 import org.quartz.JobExecutionException;
-
-import com.DS.utils.common.SystemUtil;
+import com.DS.utils.common.SecretUtil;
 import com.jfinal.kit.Prop;
 import com.jfinal.kit.PropKit;
 /***
@@ -24,27 +23,27 @@ import com.jfinal.kit.PropKit;
 public class DBBackupJob implements Job{
 	private static Logger logger = Logger.getLogger(DBBackupJob.class);
 	//以下是数据库资源备份默认配置
-	private static String hostIP="127.0.0.1";//MySQL数据库所在服务器地址IP
-	private static String userName="root";//进入数据库所要的用户
-	private static String password="root";//进入数据库所要的密码
-	private static String savePath="C:/MysqlBackup";//数据库导出文件保存路径
+	private static String hostIP="";//MySQL数据库所在服务器地址IP
+	private static String userName="";//进入数据库所要的用户
+	private static String password="";//进入数据库所要的密码
+	private static String savePath="";//数据库导出文件保存路径
 	private static String fileName="";//数据库导出文件文件名
-	private static String databaseName="pams";//要备份的数据库名称
+	private static String databaseName="";//要备份的数据库名称
 	public void execute(JobExecutionContext arg0) throws JobExecutionException {
 			//重新加载数据库备份文件资源
 		    Prop p =PropKit.use("config.properties");
 			hostIP=p.get("hostIP");
-		    savePath=p.get("DBPath");
+		    savePath=p.get("MysqlBackupPath");
 		    userName=p.get("userName");
-		    password=p.get("password");
+		    password=SecretUtil.decrypt(p.get("password"));
 		    databaseName=p.get("databaseName");		    
 		    Date d = new Date();   
 	        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");  
 	        fileName= sdf.format(d)+".sql"; 
-	        if(SystemUtil.isLinux()){//linux下的默认路径处理
+	       /* if(SystemUtil.isLinux()){//linux下的默认路径处理
 	        	Prop linuxp =PropKit.use("linux.properties");
-	        	savePath=linuxp.get("DBPath");
-	        }
+	        	savePath=linuxp.get("MysqlBackupPath");
+	        }*/
 		try {
 			if (exportDatabaseTool()) {
 				logger.info("数据库备份成功！--备份文件地址为"+savePath);
@@ -81,8 +80,7 @@ public class DBBackupJob implements Job{
             	printWriter.println(line);
             }
             printWriter.flush();
-			if(process.waitFor() == 0){//0 表示线程正常终止
-				
+			if(process.waitFor() == 0){//0 表示线程正常终止				
 				return true;
 			}
 		}catch (IOException e) {

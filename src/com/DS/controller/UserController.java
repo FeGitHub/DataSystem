@@ -1,7 +1,15 @@
 package com.DS.controller;
+import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 import javax.servlet.http.HttpSession;
+
+import com.DS.common.model.Notification;
 import com.DS.common.model.User;
+import com.DS.notification.service.NotificationService;
+import com.DS.notification.service.impl.NotificationServiceImpl;
+import com.DS.remind.service.RemindService;
+import com.DS.remind.service.impl.RemindServiceImpl;
 import com.DS.user.service.UserService;
 import com.DS.user.service.impl.UserServiceImpl;
 import com.DS.user.vo.UserListVo;
@@ -10,6 +18,7 @@ import com.DS.utils.common.ObjectUtil;
 import com.DS.web.base.BaseController;
 import com.jfinal.aop.Clear;
 import com.jfinal.aop.Inject;
+import com.jfinal.plugin.activerecord.Record;
 /***
  * 
  * @author jeff 
@@ -20,6 +29,9 @@ public class UserController extends BaseController {
 	@Inject(UserServiceImpl.class)
 	private UserService userService;
 	
+	
+	@Inject(NotificationServiceImpl.class)
+	NotificationService notificationService;
 	
 	/*****
 	 * 用户注册
@@ -76,18 +88,75 @@ public class UserController extends BaseController {
 		}
 	}
     
+	/****
+	 * 获取用户信息
+	 */
+	public void getUser(){
+		String id=getPara("id");
+		if(id==null||id==""){
+			renderJson(ajaxDoneError());
+			return;
+		}
+		User user=new User();
+		user=user.findById(id);
+		Map<String,Object> result=new HashMap<String,Object>();
+		if(user!=null){
+			result.put("user", user);
+			result.put("msg", "修改成功");
+			renderJson(ajaxDoneSuccess(result));
+		}else{
+			renderJson(ajaxDoneError());
+		}
+	}
+	
 	
 	 public void goMenu(){					
-	 	// render("main.jsp");
 		 render("user_taskCalendar.jsp");
 	 }
 	 
-	  /***
+	       /***
 			 * 跳转到日历任务页面
 			 */
 			  public void goUserTaskCalendar(){
 		    	  render("user_taskCalendar.jsp");
 		      }
 		  
-		  
+	     /***
+		  * 跳转到信息详情
+		  */
+		public void goNotification(){
+			 String id=getPara("id");
+			 if(id==null||id==null){
+				 return;
+			 }
+			 Notification n=new Notification();
+			 n=n.findById(id);
+			 setAttr("info",n);
+			render("notification.jsp");
+		}	
+		
+		/****
+		 * 处理信息通知
+		 */
+		public void updateNotification(){
+			 String id=getPara("id");
+			 if(id==null||id==null){
+				 return;
+			 }
+			 HttpSession session = getSession();
+			 User user = (User)session.getAttribute("user");			
+			 Notification n=new Notification();
+			 n=n.findById(id);
+			 n.setReadFlag(1);//设置为已处理		
+			 if(n.update()){				
+				 List<Record> notifications=notificationService.getNotification(user.getStr("id"));
+				 Long notificationSize=notificationService.getNotificationSize(user.getStr("id"));
+				 session.setAttribute("notifications", notifications);
+				 session.setAttribute("notificationSize", notificationSize);
+				 renderJson(ajaxDoneSuccess("处理成功"));
+				}else{
+					renderJson(ajaxDoneError("修改失败"));
+			}
+		}	
+			  
 }

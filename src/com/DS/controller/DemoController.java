@@ -3,6 +3,8 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
+import javax.servlet.http.HttpSession;
+
 import com.DS.common.model.User;
 import com.DS.file.service.FileService;
 import com.DS.file.service.impl.FileServiceImpl;
@@ -100,8 +102,14 @@ public class DemoController extends BaseController {
 		  for(int i=0;i<ids.length;i++){
 			  list.add(ids[i]);
 		  }
+		  HttpSession session = getSession();
+		  User user = (User)session.getAttribute("user");	
 		  int result=notificationService.batchDel(list);
 		  if(result>0){
+			  List<Record> notifications=notificationService.getNotification(user.getStr("id"));
+			  Long notificationSize=notificationService.getNotificationSize(user.getStr("id"));
+			  session.setAttribute("notifications", notifications);
+			  session.setAttribute("notificationSize", notificationSize);
 			  renderJson(ajaxDoneSuccess("操作成功"));
 		  }else{
 			  renderJson(ajaxDoneError("操作失败"));
@@ -142,28 +150,6 @@ public class DemoController extends BaseController {
 	  }
 	  */
 	  
-	  /****
-	   * 得到EchartsData数据的测试返回
-	   */
-	  public void getEChartsData(){
-		  String sql=Db.getSql("demo.getECharts");
-		  List<Record> list=Db.find(sql);
-		  renderJson(list);
-	  }
-	  
-	  /***
-	   * 测试jfinal的事务异常处理
-	   */
-	  public void testJfinalTX(){
-		  int size=0;
-		  Db.tx(() -> {
-			  Db.update("update echarts set categories = ? where id=12", "测试成功+1");
-			  if(size==0){
-				   throw new RuntimeException();
-			   }
-			  return true;
-			});
-	  }
 	  
 	 public void goCustom(){
 		 render("form-custom.jsp");
