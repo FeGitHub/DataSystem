@@ -145,7 +145,7 @@ public class NotificationServiceImpl implements NotificationService {
 	 */
 	@Override
 	public Map<String, Object> loadNotifyList(String userId, String pageNumber) {		 
-		  List<Record> list=getNotificationList(userId,pageNumber,null);	
+		  List<Record> list=getNotificationList(userId,pageNumber,null);//null表示加载此用户的全部邮件	
 		  long size=getNotificationSize(userId,null);		  
 		  long endPageNumber=getNotificationSize(userId,null);
 		  endPageNumber=(long) Math.floor(endPageNumber/5);	
@@ -166,18 +166,21 @@ public class NotificationServiceImpl implements NotificationService {
 	
 	/****
 	 * 发送邮件
+	 * @return true--发送成功  false--发送失败
 	 */
 	@Override
-	public int sendMail(MailBean mail) {
+	public boolean sendMail(MailBean mail) {
+		boolean resultCode=true;
 		if(mail.getReceiveMailAccount()==null&&"".equals(mail.getReceiveMailAccount())){
-			return 0;
+			return false;
 		}
 		try {
-			MailUtil.sendMail(mail);
+			NewMailUtil.initAndSend(mail);
 		} catch (Exception e) {
+			resultCode=false;
 			e.printStackTrace();
 		}
-		return 1;
+		return resultCode;
 	}
    
 	/****

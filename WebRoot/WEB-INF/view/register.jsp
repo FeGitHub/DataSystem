@@ -11,6 +11,7 @@
   <script src="${BASE_PATH}/js/bootstrap.min.js"></script>
   <script src="${BASE_PATH}/js/toastr.min.js"></script><!--信息提示框-->
   <link href="${BASE_PATH}/css/toastr.min.css" type="text/css" rel="stylesheet">
+    <script type="text/javascript" src="${BASE_PATH}/plug/layer/layer.js"></script><!--弹出框-->
 </head>
 <body>
  <section class="material-half-bg">

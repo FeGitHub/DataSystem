@@ -127,9 +127,9 @@ public class DemoController extends BaseController {
 		  int code=notificationService.sendCode(mailAdress);
 			  if(code>0){				
 				  setSessionAttr(mailAdress, code+"");				  
-				  renderJson(ajaxDoneSuccess("操作成功"));
+				  renderJson(ajaxDoneSuccess("发送成功"));
 			  }else{
-				  renderJson(ajaxDoneError("操作失败"));
+				  renderJson(ajaxDoneError("发送失败"));
 			  }			
 		  }			  
 	  

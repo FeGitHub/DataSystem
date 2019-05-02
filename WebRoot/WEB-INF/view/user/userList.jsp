@@ -87,7 +87,7 @@
 				          <div class="col-sm-12">	                                     
 			                     <div class="animated-radio-button">
 						               <label>
-						                   <input type="radio" name="leve" value="1"><span class="label-text">普通用户</span>
+						                   <input type="radio" name="leve" value="1" checked><span class="label-text">普通用户</span>
 						               </label>
 						                <label>
 						                   <input type="radio" name="leve" value="2"><span class="label-text">管理员</span>
@@ -107,7 +107,7 @@
 						                   <input type="radio" name="userFlag" value="0"><span class="label-text">停用</span>
 						               </label>
 						                <label>
-						                   <input type="radio" name="userFlag" value="1"><span class="label-text">启用</span>
+						                   <input type="radio" name="userFlag" value="1" checked><span class="label-text">启用</span>
 						                </label>						     
 			                       </div>
 				           </div>	                  	

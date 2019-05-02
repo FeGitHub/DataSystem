@@ -1,4 +1,3 @@
-
 var regUsername = /^[a-zA-Z_][a-zA-Z0-9_]{4,19}$/;//用户名
 var regPasswordSpecial = /[~!@#%&=;':",./<>_\}\]\-\$\(\)\*\+\.\[\?\\\^\{\|]/;//特殊字符
 var regPasswordAlpha = /[a-zA-Z]/;//字母
@@ -13,6 +12,11 @@ $(function(){
 		countdown = $.cookie("captcha");
 		settime($("#btn"));
 	}*/
+	if(sessionStorage.getItem("countdown")!=null){
+		countdown = sessionStorage.getItem("countdown");		
+		jquerySettime($("#btn"));
+	}
+	
 	
 });
 
@@ -21,19 +25,28 @@ function settime(val) {
 	val.removeAttribute("disabled");    
 	val.value="免费获取验证码"; 
 	countdown = 60; 
-	//$.cookie("captcha", countdown, {path: '/', expires: (1/86400)*countdown});
+	 sessionStorage.removeItem("countdown");  
+	 sessionStorage.removeItem("val");    
 	} else { 
 	val.setAttribute("disabled", true); 
 	val.value="重新发送(" + countdown + ")"; 
 	countdown--; 
-	//$.cookie("captcha", countdown, {path: '/', expires: (1/86400)*countdown});
+	sessionStorage.setItem("countdown", countdown);
 	setTimeout(function() { 
 		settime(val) 
 		},1000) 
 	} 	
 }
 
+/******
+ * 发送验证码
+ */
 function sendCode(val){	
+	sessionStorage.setItem("val", val);
+	if(!checkBeforeSend()){
+		layer.alert("请先完善个人信息", {icon: 5});
+		return;
+	}	
 	$obj=$('.container').find('input').eq(4);	
 	if (checkMail.test($obj.val())) {
 		sendAction();
@@ -175,8 +188,16 @@ function back(){
 	window.location.href=basepath+"/";
 }
 
+
+/****
+ * 发送验证码
+ */
 function sendAction(){
 	var mailAdress=$("#mailAdress").val();
+	if(!checkBeforeSend()){
+		layer.alert("请先完善个人信息", {icon: 5});
+		return;
+	}
 	$.ajax({
 		url:basepath+"/demo/sendCode",
 		data:{"mailAdress":mailAdress},
@@ -184,11 +205,51 @@ function sendAction(){
 		dataType:"json",
 		success:function(data){
 			if(data.code==200){
-				
+				toastrSuccess(data.msg,3000);
 			}else{
-				
+				toastrError(data.msg,3000);
 			}
 		}
 	});
+}
+
+function checkBeforeSend(){
+	/*if($("#username").val()==""){
+		return false;
+	}
+	if($("#password").val()==""){
+		return false;
+	}
+	if($("#passwordConfirm").val()==""){
+		return false;
+	}
+	if($("#idcode-btn").val()==""){
+		return false;
+	}*/
+	return true;
+}
+
+
+
+
+function jquerySettime($val) { 
+	if (countdown == 0) { 
+	//val.removeAttribute("disabled");   
+		$val.removeAttr("disabled");
+	//val.value="免费获取验证码"; 
+		$val.attr("value","免费获取验证码");
+	 countdown = 60; 
+	 sessionStorage.removeItem("countdown");  	 
+	} else { 
+	//val.setAttribute("disabled", true); 
+	$val.attr("disabled",true);
+	//val.value="重新发送(" + countdown + ")"; 
+	$val.attr("value","重新发送(" + countdown + ")");
+	countdown--; 
+	sessionStorage.setItem("countdown", countdown);
+	setTimeout(function() { 
+		jquerySettime($val) 
+		},1000) 
+	} 	
 }
  

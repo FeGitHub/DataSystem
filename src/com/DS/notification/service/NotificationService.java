@@ -65,11 +65,11 @@ public interface NotificationService {
 	 Map<String,Object> loadNotifyList(String userId,String pageNumber);
 	 
 	 /****
-	  * 发送邮寄
+	  * 发送邮件
 	  * @param mail
-	  * @return
+	  * @return true--发送成功  false--发送失败
 	  */
-	 int sendMail(MailBean mail);
+	 boolean sendMail(MailBean mail);
 	 
 	 /****
 	  * 发送验证码
