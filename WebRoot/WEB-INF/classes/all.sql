@@ -60,3 +60,9 @@
 #namespace("excel")
 #include("com/DS/excel/dao/excel.sql")
 #end
+
+
+
+#namespace("analyse")
+#include("com/DS/analyse/dao/analyse.sql")
+#end

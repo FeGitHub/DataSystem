@@ -46,8 +46,8 @@ def build_param():
     del FEAT_COLS[-1]
     #print("RES_PATH:",RES_PATH)
     #print("MODEL_FILE:",MODEL_FILE)
-    print("特征数据列:",FEAT_COLS)
-    print("结果列:",RESULTCOL)
+    #print("特征数据列:",FEAT_COLS)
+    #print("结果列:",RESULTCOL)
 
 def show_feat(csv_data):
     """
@@ -69,7 +69,7 @@ def main():
     """
     #待生成的训练模型
     csv_data = pd.read_csv(RES_PATH, usecols=FEAT_COLS + [RESULTCOL])
-    show_feat(csv_data)
+    #show_feat(csv_data)
     X = csv_data[FEAT_COLS].values
     y = csv_data[RESULTCOL].values
 
@@ -81,19 +81,19 @@ def main():
     
     # 模型训练
     linear_reg_model.fit(X_train, y_train) 
-    joblib.dump(linear_reg_model, MODEL_FILE)
+    #joblib.dump(linear_reg_model, MODEL_FILE)
      
-    score = linear_reg_model.score(X_test, y_test)
-    print('模型的R2值', score)
+    #score = linear_reg_model.score(X_test, y_test)
+    #print('模型的R2值', score)
     
-    i = 0
+    #i = 0
     # 第i行所有列（即一条数据的特征数据）
-    single_test_feat = X_test[i, :]
-    y_true = y_test[i]
-    y_pred = linear_reg_model.predict([single_test_feat])
-    print('样本特征:', single_test_feat)
-    print('真实结果数据：{}，预测结果数据：{}'.format(y_true, y_pred))
-    print("*************模型训练结束*********************")
+    #single_test_feat = X_test[i, :]
+    #y_true = y_test[i]
+    #y_pred = linear_reg_model.predict([single_test_feat])
+    #print('样本特征:', single_test_feat)
+    #print('真实结果数据：{}，预测结果数据：{}'.format(y_true, y_pred))
+    #print("*************模型训练结束*********************")
     print(linear_reg_model.coef_)  
     print(linear_reg_model.intercept_)
 
