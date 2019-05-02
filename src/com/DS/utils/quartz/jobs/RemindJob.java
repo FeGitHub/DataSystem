@@ -1,11 +1,9 @@
 package com.DS.utils.quartz.jobs;
-import java.util.List;
 import org.apache.log4j.Logger;
 import org.quartz.Job;
 import org.quartz.JobExecutionContext;
 import org.quartz.JobExecutionException;
-import com.jfinal.plugin.activerecord.Db;
-import com.jfinal.plugin.activerecord.Record;
+
 /****
  * 
  * @author jeff

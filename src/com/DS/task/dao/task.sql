@@ -75,7 +75,11 @@
   #sql("getTodayTask")
      select * from task where 1=1
       and to_days(now())>=to_days(start) 
-      and to_days(now())<=to_days(end)       
+      and to_days(now())<=
+      CASE 
+         WHEN  end is null THEN to_days(start) 
+         ELSE  to_days(end) 
+	  END 
       and userId=#para(userId)
   #end
   

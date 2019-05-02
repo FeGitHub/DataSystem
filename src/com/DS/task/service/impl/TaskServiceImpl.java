@@ -83,10 +83,7 @@ public class TaskServiceImpl implements TaskService {
         	 r.add(obj);
         }
 		return r;
-	}
-
-
-   
+	}  
 	
 	/*****
 	 * 删除整个工程

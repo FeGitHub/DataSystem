@@ -116,6 +116,10 @@ $("#reset").click(function(){
 	reloadTable();	
 });
 
+
+/****
+ * 跳转到新增任务页面
+ */
 $("#createTask-btn").click(function(){
 	  window.location.href=basepath+"/task/goCreateTarget";
 });

@@ -87,7 +87,8 @@ $("#delBtn").click(function(){
  */
 $("#refreshBtn").click(function(){
 	loadMailBox(true);
-});
+	refresh();
+}); 
 
 	
 	/***
@@ -162,3 +163,17 @@ $("#refreshBtn").click(function(){
 	    var url=basepath+"/user/goNotification?id="+id;
 	    $(location).attr("href",url );
 	});
+	
+	
+	/***
+	 * 刷新用户通知信息缓存
+	 */
+	function refresh(){
+		 $.ajax({
+				url:basepath+"/user/refresh",
+				type:"post",		
+				dataType: "json",
+				success:function(data){				
+				}
+			});
+	}

@@ -96,32 +96,32 @@ $("#submitBtn").click(function(){
 
 function  showText(classInfo){
 	var text="";
-	var pageName="com.DS.utils.quartz.jobs.";
+	var pageName="com.DS.utils.quartz.jobs.";//调度任务都放于此包，便与反射扫描
 	switch(classInfo)
 	{
-	case pageName+"DBBackupJob":
-		text="备份数据库";
+	case pageName+"DBBackupJob"://定时备份系统的数据库资源
+		text="备份数据库(系统级)";
 	  break;
-	case pageName+"DeleteSqlFileJob":
-		text="删除冗余数据备份";
+	case pageName+"DeleteSqlFileJob"://按照一定规则去删除冗余数据库资源
+		text="删除冗余数据备份(系统级)";
 	  break;
-	case pageName+"GetTodayNotify":
-		text="统计今日任务";
+	case pageName+"GetTodayNotify"://给予用户每日的任务统计
+		text="统计每日用户通知(系统级)";
 	  break;
 	case pageName+"HelloJob":
-		text="测试hello";
+		text="测试hello(测试级)";
 	  break;
 	case pageName+"RemindJob":
-		text="今日任务提醒";
+		text="今日任务提醒(测试级)";
 	  break;
 	case pageName+"SayHelloToEveryone":
-		text="测试群发用户信息";
+		text="测试群发用户信息(测试级)";
 	  break;
 	case pageName+"TestPython":
-		text="测试python";
+		text="测试python(测试级)";
 	  break;
 	case pageName+"PYML":
-		text="算法模型训练测试";
+		text="算法模型训练测试(测试级)";
 	  break;
 	default:
 		text=classInfo;

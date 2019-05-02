@@ -1,19 +1,22 @@
 package com.DS.notification.service.impl;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Random;
+import javax.servlet.http.HttpSession;
 import com.DS.bean.MailBean;
 import com.DS.common.model.Notification;
 import com.DS.common.model.Remind;
+import com.DS.common.model.Task;
+import com.DS.common.model.User;
 import com.DS.notification.service.NotificationService;
 import com.DS.remind.service.RemindService;
 import com.DS.remind.service.impl.RemindServiceImpl;
 import com.DS.task.service.ProjectService;
 import com.DS.task.service.TaskService;
 import com.DS.task.service.impl.ProjectServiceImpl;
-import com.DS.task.service.impl.TaskServiceImpl;
-import com.DS.utils.common.MailUtil;
+import com.DS.task.service.impl.TaskServiceImpl; 
 import com.DS.utils.common.NewMailUtil;
 import com.DS.utils.common.ObjectUtil;
 import com.alibaba.fastjson.JSONObject;
@@ -36,6 +39,7 @@ public class NotificationServiceImpl implements NotificationService {
     @Inject(ProjectServiceImpl.class)
     ProjectService projectTreeService;
     
+        
 	/****
 	 * 用户通知信息栏的信息
 	 */
@@ -213,16 +217,66 @@ public class NotificationServiceImpl implements NotificationService {
 	} 
    
 	/****
-	 * 得到今天应进行的任务
+	 * 得到用户今日的信息通知
 	 */
 	@Override
-	public void getAllTaskToday(String userId) {
-		List<Remind> remindList=remindService.getTodayRemind(userId);
-
-		//List<Task> taskList=taskService.getTodayTarget(userId);
-		//List<ProjectTree> projectTreeList=projectTreeService.getTodayTreeTask(userId);
+	public void getTodayNotification(User user) {
+		String userId=user.getId()+"";
+		//为了让quartz调用，不使用注入
+		 TaskService pamsTaskService=new  TaskServiceImpl();		
+		 RemindService   pamsRemindService=new RemindServiceImpl();
+		 List<Task> tasks= pamsTaskService.getTodayTarget(userId);
+		 List<Remind> reminds= pamsRemindService.getTodayRemind(userId);
+		 StringBuilder info=new StringBuilder();
+		 info.append("今日任务数为:").append(tasks.size()).append("  ");
+		 for(int i=0;i<tasks.size();i++){
+			 if(i==0){
+				 info.append("分别为：");
+			 }
+			 info.append(tasks.get(i).getTaskName()).append(",");
+			 if(i>=40){
+				 info.append("......");
+				 break;
+			 }
+		 }
+		 info.append("今日备忘事务数为:").append(reminds.size()).append("  ");
+		 for(int j=0;j<reminds.size();j++){
+			 if(j==0){
+				 info.append("分别为：");
+			 }
+			 info.append(reminds.get(j).getSubject()).append(",");
+			 if(j>=40){
+				 info.append("......");
+				 break;
+			 }
+		 }
+		 Notification n=new Notification();
+		 n.setUserId(userId);
+		 n.setSubject("信息通知");
+		 n.setContent(info+"");
+		 n.setSender("PAMS系统");
+		 n.setOperatetime(new Date());
+		 n.save();//系统信息更新
+		 MailBean mail=new MailBean(user.getMail(),info+"");
+		 try {
+			NewMailUtil.initAndSend(mail);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
 	}
     
 	
 	
+	/***
+	 * 刷新用户通知信息缓存
+	 */
+	@Override
+	public void refresh(HttpSession session, User user) {
+		 List<Record> notifications=getNotification(user.getStr("id"),"limit");
+		 Long notificationSize=getNotificationSize(user.getStr("id"),"limit");
+		 session.setAttribute("notifications", notifications);
+		 session.setAttribute("notificationSize", notificationSize);
+		
+	}
+    	
 }

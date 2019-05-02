@@ -1,8 +1,12 @@
 package com.DS.notification.service;
 import java.util.List;
 import java.util.Map;
+
+import javax.servlet.http.HttpSession;
+
 import com.DS.bean.MailBean;
 import com.DS.common.model.Notification;
+import com.DS.common.model.User;
 import com.jfinal.plugin.activerecord.Record;
 /****
  * 
@@ -78,7 +82,15 @@ public interface NotificationService {
 	  */
 	 int sendCode(String mailAdress);
 	 
-	 void getAllTaskToday(String userId);
+	 /*****
+	  * 处理用户今日的信息通知
+	  * @param user
+	  */
+	 void getTodayNotification(User user);
+	 
+	 
+	 void refresh( HttpSession session, User user);
+	 
 	 
 	 
 }

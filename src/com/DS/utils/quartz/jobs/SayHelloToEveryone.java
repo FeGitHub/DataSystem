@@ -20,7 +20,6 @@ public class SayHelloToEveryone implements Job{
 		UserService userService=new UserServiceImpl();
 		NotificationService notificationService=new NotificationServiceImpl();
 		List<User> users=userService.getAllUser();
-		String tempUserId;
 		String tempMail;
 		for(User user:users){
 			tempMail=user.getMail();		

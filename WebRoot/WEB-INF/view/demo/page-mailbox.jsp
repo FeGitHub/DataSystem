@@ -10,20 +10,6 @@
   <body>
     <main>
       <div class="row">
-      <!--   <div class="col-md-3"><a class="mb-2 btn btn-primary btn-block" href="">邮箱信息</a>
-          <div class="tile p-0">
-            <h4 class="tile-title folder-head">文件夹</h4>
-            <div class="tile-body">
-              <ul class="nav nav-pills flex-column mail-nav">
-                <li class="nav-item active"><a class="nav-link" href="#"><i class="fa fa-inbox fa-fw"></i>信箱<span class="badge badge-pill badge-primary float-right">12</span></a></li>
-                <li class="nav-item"><a class="nav-link" href="#"><i class="fa fa-envelope-o fa-fw"></i>发送</a></li>
-                <li class="nav-item"><a class="nav-link" href="#"><i class="fa fa-file-text-o fa-fw"></i>草稿</a></li>
-                <li class="nav-item"><a class="nav-link" href="#"><i class="fa fa-filter fa-fw"></i>拦截<span class="badge badge-pill badge-primary float-right">8</span></a></li>
-                <li class="nav-item"><a class="nav-link" href="#"><i class="fa fa-trash-o fa-fw"></i>垃圾</a></li>
-              </ul>
-            </div>
-          </div>
-        </div> -->
         <div class="col-md-12">
           <div class="tile">
             <div class="mailbox-controls">
@@ -34,8 +20,8 @@
               </div>
               <div class="btn-group">
                 <button class="btn btn-primary btn-sm" type="button" id="delBtn"><i class="fa fa-trash-o"></i></button>
-                <button class="btn btn-primary btn-sm" type="button"><i class="fa fa-reply"></i></button>
-                <button class="btn btn-primary btn-sm" type="button"><i class="fa fa-share"></i></button>
+              <!--   <button class="btn btn-primary btn-sm" type="button"><i class="fa fa-reply"></i></button>
+                <button class="btn btn-primary btn-sm" type="button"><i class="fa fa-share"></i></button> -->
                 <button class="btn btn-primary btn-sm" type="button" id="refreshBtn"><i class="fa fa-refresh"></i></button>
               </div>
             </div>

@@ -35,6 +35,8 @@
         #end      
 	#end
 	
+	
+	
 	#sql("delById")
 		delete from remind where id=#para(id)
 	#end
@@ -43,6 +45,7 @@
 		insert  into remind (subject,content,remindTime,mail,addTime,userId,userName) values (#para(subject),#para(content),#para(remindTime),#para(mail),#para(addTime),#para(userId),#para(userName))
 	#end
 	
+	
 	#sql("updateData")
 		update   remind  set subject=#para(subject),content =#para(content),remindTime =#para(remindTime),mail =#para(mail)  where id=#para(id)
 	#end
@@ -50,8 +53,14 @@
 	/***
 	 * 得到用户当日应被提醒的事务
 	 */
-	#sql("getTodayRemind")
+	#sql("getTodayRemind") 
 		select * from remind where to_days(remindTime)=to_days(NOW())
 		and userId=#para(userId)
-	#end()
+	#end 
+	
+	
+	/**select * from remind where remindTime>=DATE_SUB(NOW(),INTERVAL 3 DAY) and userId=2**/
+	
+	
+	
 	

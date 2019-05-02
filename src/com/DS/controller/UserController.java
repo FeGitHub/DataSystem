@@ -198,4 +198,13 @@ public class UserController extends BaseController {
 			}
 		}
 		
+	/***
+	 * 刷新用户通知信息
+	 */
+     public void refresh(){
+    	 HttpSession session = getSession();
+		 User user = (User)session.getAttribute("user");	
+		 notificationService.refresh(session, user);
+		 renderJson(ajaxDoneSuccess());
+     }
 }
