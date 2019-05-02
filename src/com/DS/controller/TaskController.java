@@ -64,7 +64,7 @@ public class TaskController extends BaseController{
         */
        public void getTargetList(){	
     	TaskListVo vo=getBean(TaskListVo.class,"");
-    	vo.setTaskType("1");//普通任务列表
+    	vo.setTaskType("1");//目标任务列表
    		Map<String,Object> limit=ObjectUtil.convertBeanToMap(vo);
    		limit=getDivPageParam(limit);		
         renderJson(taskService.getTargetTaskList(limit));

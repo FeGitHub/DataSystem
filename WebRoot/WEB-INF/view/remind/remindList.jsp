@@ -30,7 +30,7 @@
         <tr>
             <th>事项简称</th>
             <th>具体事项</th>
-            <th>截止时间</th>
+            <th>提醒时间</th>
             <th>提醒邮箱</th>
             <th>操作</th>            
         </tr>
@@ -47,7 +47,7 @@
 						        <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">×</span><span class="sr-only">Close</span></button>
 						        <h4 class="modal-title"></h4>
 						      </div>
-						      <div class="modal-body" style="height:350px;overflow:hidden;"><!--改变这个高度可以改变整个模态框的高度，但是内部元素可能撑破-->
+						      <div class="modal-body"><!--改变这个高度可以改变整个模态框的高度，但是内部元素可能撑破-->
 						      </div>	
 						      <div class="modal-footer">
                 				<button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
@@ -60,7 +60,7 @@
 
 <!--弹出框内容模板-->
 <template id="remindTemp">
-    <div class="panel mbn" style="height:550px;">
+    <div class="panel mbn" >
        <div class="panel-body" >
        <form id="remindForm" style="margin-top:20px;">
 		<table class="table table-bordered table-hover">
@@ -95,16 +95,7 @@
 	                 </div>	  
               	</td>              	
             </tr>        
-             <tr>
-				<td class="va-m" width="30%"><span>提醒邮箱</span></td>
-              	<td>
-	              	<div class="row">
-	                  	<div class="col-sm-12">	                                     
-                             <input  name="mail" id="mail" class="form-control validate[funcCall[checkMail]]" placeholder="" maxlength="20" type="text">      
-	                  	</div>	                  	
-	                 </div>	  
-              	</td>              	
-            </tr>	         		
+          	
           </tbody>
         </table>
         </form>

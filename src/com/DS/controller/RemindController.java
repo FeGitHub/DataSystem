@@ -41,12 +41,13 @@ public class RemindController extends BaseController {
 	}
 	
 	/****
-	 * 添加备忘事项
+	 * 添加或更新备忘事项
 	 */
 	public void updateRemindDetail(){	
 		int result;
 		Remind  record = getModel(Remind.class,"");	
 		User user = (User)getSession().getAttribute("user");
+		record.setMail(user.getMail());
 		record.setUserId(user.getId());
 		record.setUserName(user.getAccount());
 		if(record.getStr("id")!=""&&record.getStr("id")!=null){

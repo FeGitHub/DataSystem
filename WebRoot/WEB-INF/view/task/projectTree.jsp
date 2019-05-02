@@ -11,7 +11,8 @@
                 <!--  <button id="popBtn" onclick="showProgess(this)" type="button" class="btn btn-primary">弹出</button>&nbsp;&nbsp;    	    	 -->
     	    	 <!-- <button id="testBtn" type="button" class="btn btn-primary">输出树形数据</button>&nbsp;&nbsp; -->
     	    	 <button id="projectInfBtn" type="button" class="btn btn-primary">修改工程信息</button>&nbsp;&nbsp;
-    	    	<!--  <button id="updateBtn" type="button" class="btn btn-primary">提交工程任务</button>   -->	       	    	 
+    	    	<!--  <button id="updateBtn" type="button" class="btn btn-primary">提交工程任务</button>   -->	
+    	    	<a class="btn btn-secondary" href="${BASE_PATH}/task/goProjectList">返回工程列表</a>                       	    	 
     </div>
      <div class="tile">   
          	   <div class="bs-component">

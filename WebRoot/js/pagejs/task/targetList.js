@@ -28,7 +28,7 @@ $(function(){
 		 columns: [
 		           { data: 'taskName' },	     		         
 		           { data: 'addTime'},
-		           { data: 'goal'},
+		           { data: 'score'},
 		           { data: 'start'},
 		           { data: 'end'},
 		           { data: null,//操作部分

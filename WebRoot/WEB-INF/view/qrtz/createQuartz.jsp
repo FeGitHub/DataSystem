@@ -24,7 +24,7 @@
                   </div>
                 </div> -->
                   <div class="form-group row">
-                    <label for="jobClass" class="control-label col-md-3">类名</label>
+                    <label for="jobClass" class="control-label col-md-3">具体任务</label>
                     <div class="col-md-8">
                     	 <select name="jobClassStr" class="form-control" id="jobClass">                                        
                     </select>

@@ -19,14 +19,14 @@ public class RemindJob implements Job{
 	@Override
 	public void execute(JobExecutionContext arg0) throws JobExecutionException {				
 		//以今天为标准，后三天内的数据
-		String sql="select * from ds_remind where remindTime>=DATE_SUB(NOW(),INTERVAL 3 DAY)";
-		List<Record> remindList=Db.find(sql);
-		String text="";//邮件内容
-		String mail="";//邮件地址	
+		//String sql="select * from ds_remind where remindTime>=DATE_SUB(NOW(),INTERVAL 3 DAY)";
+		//List<Record> remindList=Db.find(sql);
+		//String text="";//邮件内容
+		//String mail="";//邮件地址	
 	
 		//======
-		logger.info("暂时没有要提醒的事项");
-		return;
+		//logger.info("暂时没有要提醒的事项");
+		//return;
 		//=========
 		/*if(remindList.size()==0){
 			logger.info("暂时没有要提醒的事项");

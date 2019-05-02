@@ -16,7 +16,8 @@
          #if(taskType)
             and taskType =#para(taskType)
         #end 
-        order by addTime desc
+        order by score desc,
+        addTime desc
         #if(start)
         	  limit #para(start),#para(length)
 	     #end 
@@ -41,9 +42,15 @@
         #end 
 	#end
 	
+	
+	/****
+	 * 新增数据（其实可以直接用DB或model直接处理）
+	 */
     #sql("insertData")
 		insert into task (taskName,addTime,goal,description,userId) values (#para(taskName),#para(addTime),#para(goal),#para(description),#para(userId))
 	#end	
+	
+	
 	
 	#sql("delById")
 		delete from task where taskId=#para(taskId)
