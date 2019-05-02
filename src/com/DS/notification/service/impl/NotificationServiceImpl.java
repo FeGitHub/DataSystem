@@ -1,14 +1,11 @@
 package com.DS.notification.service.impl;
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Random;
 import com.DS.bean.MailBean;
 import com.DS.common.model.Notification;
-import com.DS.common.model.ProjectTree;
 import com.DS.common.model.Remind;
-import com.DS.common.model.Task;
 import com.DS.notification.service.NotificationService;
 import com.DS.remind.service.RemindService;
 import com.DS.remind.service.impl.RemindServiceImpl;
@@ -43,8 +40,11 @@ public class NotificationServiceImpl implements NotificationService {
 	 * 用户通知信息栏的信息
 	 */
 	@Override
-	public  List<Record> getNotification(String userId) {
+	public  List<Record> getNotification(String userId,String limitFlag) {
 		 Map<String,Object> cond=new HashMap<String,Object>();
+		 if(limitFlag!=""&&limitFlag!=null){
+			 cond.put("limitFlag", limitFlag);
+		 }
 		 cond.put("userId", userId);
 		 //cond.put("limitSize", 5);
 		 SqlPara sql = Db.getSqlPara("notification.selectNotifications",cond);		
@@ -53,13 +53,16 @@ public class NotificationServiceImpl implements NotificationService {
 	}
     
 	/****
-	 * 获取用户的信息列表
+	 * 获取用户邮箱的信息列表
 	 */
 	@Override
-	public List<Record> getNotificationList(String userId,String pageNumber) {
+	public List<Record> getNotificationList(String userId,String pageNumber,String limitFlag) {
 		 int pageSize=5;
 		 int start=(Integer.parseInt(pageNumber)-1)*pageSize;
 		 Map<String,Object> cond=new HashMap<String,Object>();
+		 if(limitFlag!=""&&limitFlag!=null){
+			 cond.put("limitFlag", limitFlag);
+		 }
 		 cond.put("start", start);
 		 cond.put("pageSize", pageSize);
 		 cond.put("userId", userId);
@@ -72,8 +75,11 @@ public class NotificationServiceImpl implements NotificationService {
 	 * 得到用户的通知信息的总条数
 	 */
 	@Override
-	public long getNotificationSize(String userId) {
+	public long getNotificationSize(String userId,String limitFlag) {
 		 Map<String,String> cond=new HashMap<String,String>();
+		 if(limitFlag!=""&&limitFlag!=null){
+			 cond.put("limitFlag", limitFlag);
+		 }
 		 cond.put("userId", userId);
 		 SqlPara sql = Db.getSqlPara("notification.getNotificationSize",cond);		
 		 Record record=Db.findFirst(sql);
@@ -135,13 +141,13 @@ public class NotificationServiceImpl implements NotificationService {
 	}
     
 	/****
-	 * 加载通知信息列表
+	 * 加载邮箱的通知信息列表
 	 */
 	@Override
 	public Map<String, Object> loadNotifyList(String userId, String pageNumber) {		 
-		  List<Record> list=getNotificationList(userId,pageNumber);	
-		  long size=getNotificationSize(userId);		  
-		  long endPageNumber=getNotificationSize(userId);
+		  List<Record> list=getNotificationList(userId,pageNumber,null);	
+		  long size=getNotificationSize(userId,null);		  
+		  long endPageNumber=getNotificationSize(userId,null);
 		  endPageNumber=(long) Math.floor(endPageNumber/5);	
 		  if(endPageNumber==0){
 			  endPageNumber=endPageNumber+1;

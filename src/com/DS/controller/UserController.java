@@ -82,10 +82,23 @@ public class UserController extends BaseController {
 	 */
 	public void updateUser(){
 		User user=getModel(User.class,"");
+		if(user.getId()==null){
+			 User nowUser = (User)getSession().getAttribute("user");
+			 user.setId(nowUser.getId());
+			 Object obj=getSession().getAttribute("pass");
+			  if(obj==null){
+				  renderJson(ajaxDoneError("非法修改"));
+				  return;
+			  }
+		}
+		if(user.getPassword()!=null){
+			String password=SecretUtil.getMD5(user.getPassword());
+			user.setPassword(password);;
+		}			
 		if(user.update()){
 			renderJson(ajaxDoneSuccess("修改成功"));
 		}else{
-			renderJson(ajaxDoneError("修改成功"));
+			renderJson(ajaxDoneError("修改失败"));
 		}
 	}
     
@@ -150,9 +163,10 @@ public class UserController extends BaseController {
 			 Notification n=new Notification();
 			 n=n.findById(id);
 			 n.setReadFlag(1);//设置为已处理		
-			 if(n.update()){				
-				 List<Record> notifications=notificationService.getNotification(user.getStr("id"));
-				 Long notificationSize=notificationService.getNotificationSize(user.getStr("id"));
+			 if(n.update()){
+				 //更新用户通知信息栏--只加载未处理数据
+				 List<Record> notifications=notificationService.getNotification(user.getStr("id"),"limit");
+				 Long notificationSize=notificationService.getNotificationSize(user.getStr("id"),"limit");
 				 session.setAttribute("notifications", notifications);
 				 session.setAttribute("notificationSize", notificationSize);
 				 renderJson(ajaxDoneSuccess("处理成功"));
@@ -175,7 +189,10 @@ public class UserController extends BaseController {
 			User user = (User)session.getAttribute("user");
 			if(user!=null&&user.getPassword().equals(pass)){
 				 session.setAttribute("pass", pass);
-				 renderJson(ajaxDoneSuccess("校验成功"));
+				 Map<String,Object> result=new HashMap<String,Object>();
+				 result.put("mail", user.getMail());
+				 result.put("msg", "校验成功");
+				 renderJson(ajaxDoneSuccess(result));
 			}else{
 				renderJson(ajaxDoneError("校验失败"));
 			}

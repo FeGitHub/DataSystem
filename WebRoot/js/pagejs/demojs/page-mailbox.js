@@ -2,6 +2,15 @@ var source ;
 var template;
 $(function () {
 	source = $("#appNotification").html();
+	Handlebars.registerHelper("equal",function(v1,v2,options){
+		   if(v1 == v2){
+		     //满足添加继续执行
+		     return options.fn(this);
+		   }else{
+		     //不满足条件执行{{else}}部分
+		     return options.inverse(this);
+		  }
+		});
 	template = Handlebars.compile(source);
 	loadMailBox(false);
     
@@ -60,7 +69,7 @@ $("#delBtn").click(function(){
 		      dataType:"json",
 		      success:function(data){	    	  
 		    	  if(data.code==200){
-		    		  loadMailBox(false);	
+		    		    loadMailBox(false);	
 		    			toastrSuccess(data.msg,3000);
 		    	  }else{
 		    			toastrError(data.msg,3000);

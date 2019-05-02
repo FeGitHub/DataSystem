@@ -72,9 +72,13 @@ public class DemoController extends BaseController {
     	  render("fullcalendar.jsp");
       }
 	  
+	  /****
+	   * 进入用户邮箱
+	   */
 	  public void goMailBox(){
 		  User user=(User)getSession().getAttribute("user");
-		  long endPageNumber=notificationService.getNotificationSize(user.getId()+"");
+		  //加载本用户全部通知条数
+		  long endPageNumber=notificationService.getNotificationSize(user.getId()+"",null);
 		  endPageNumber=(long) Math.floor(endPageNumber/5);
 		  if(endPageNumber==0){
 			  endPageNumber=endPageNumber+1;
@@ -106,8 +110,9 @@ public class DemoController extends BaseController {
 		  User user = (User)session.getAttribute("user");	
 		  int result=notificationService.batchDel(list);
 		  if(result>0){
-			  List<Record> notifications=notificationService.getNotification(user.getStr("id"));
-			  Long notificationSize=notificationService.getNotificationSize(user.getStr("id"));
+			  //加载用户全部通知
+			  List<Record> notifications=notificationService.getNotification(user.getStr("id"),null);
+			  Long notificationSize=notificationService.getNotificationSize(user.getStr("id"),null);
 			  session.setAttribute("notifications", notifications);
 			  session.setAttribute("notificationSize", notificationSize);
 			  renderJson(ajaxDoneSuccess("操作成功"));

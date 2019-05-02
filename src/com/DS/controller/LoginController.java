@@ -26,15 +26,15 @@ public class LoginController extends BaseController{
 	@Clear
    public void index(){
 	   User user=getModel(User.class,"");
-	   String password = SecretUtil.getMD5(user.getPassword());
-       Map<String,Object> paramMap=ObjectUtil.convertBeanToMap(user);
-       SqlPara sql=Db.getSqlPara("user.getUserInfoByAccount", paramMap);
-       user= user.findFirst(sql);     
-       if(user==null){
+	   if(user==null||user.getAccount()==null||user.getPassword()==null){
     	   renderJson(ajaxDoneError("账号或密码出错"));
     	   return;
        } 	
-       if(user!=null&&user.getPassword().equals(password)){
+	   String password = SecretUtil.getMD5(user.getPassword());
+       Map<String,Object> paramMap=ObjectUtil.convertBeanToMap(user);
+       SqlPara sql=Db.getSqlPara("user.getUserInfoByAccount", paramMap);
+       user= user.findFirst(sql);         
+       if(user.getPassword().equals(password)){
     	     //用户信息
     	     setSessionAttr("user", user);      	   			
     	     Map<String,Object> map=new HashMap<String,Object>();

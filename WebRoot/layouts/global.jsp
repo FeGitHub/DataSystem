@@ -166,7 +166,6 @@
       </div>
       <sitemesh:body/>       
     </main>   
-
 	<%@ include file="/WEB-INF/res/footer.jsp" %>        
   </body>
 </html>

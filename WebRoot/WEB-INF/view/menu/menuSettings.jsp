@@ -18,7 +18,7 @@
             </div>    
     	 <ul id="menuTree" class="ztree"></ul>
     	 <button id="updateMenuBtn" type="button" class="btn btn-primary">保存</button>
-    	 <button id="testMenuBtn" type="button" class="btn btn-primary">测试</button>
+<!--     	 <button id="testMenuBtn" type="button" class="btn btn-primary">测试</button> -->
     	 <input type="text" style="display:none;" id="nodeId">  
     </div> 
    <!--  -->

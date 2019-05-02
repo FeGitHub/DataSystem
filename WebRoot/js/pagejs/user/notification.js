@@ -9,7 +9,8 @@ $("body").on("click","#nidBtn",function(){
 		dataType:"json",
 		data:{"id":nid},
 		success:function(data){		
-			if(data.code==200){			
+			if(data.code==200){	
+				$("#nidBtn").hide();
 				toastrSuccess(data.msg,3000);
 			}else{
 				toastrError(data.msg,3000);

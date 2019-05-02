@@ -52,7 +52,14 @@
                         </label>
                       </div>
                     </td>
-                    <td><a href="javascript:void(0);" data-id="{{id}}" class="goNotification"><i class="fa fa-star-o"></i></a></td>
+                    <td><a href="javascript:void(0);" data-id="{{id}}" class="goNotification">                        
+                        {{#equal readFlag 0}}
+                             <i class="fa fa-star"></i>
+                        {{else}}
+                             <i class="fa fa-star-o"></i>
+                         {{/equal}}
+                        </a>
+                   </td>
                     <td><a href="javascript:void(0);" data-id="{{id}}" class="goNotification">{{sender}}</a></td>
                     <td class="mail-subject"><b>{{subject}}</b>{{content}}</td>
                     <td><i class="fa fa-paperclip"></i></td>

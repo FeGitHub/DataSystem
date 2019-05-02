@@ -23,7 +23,7 @@ function submitForm(){
 			if(result.code==200){
 				window.location.href=basepath+result.url;
 			}else{
-				layer.alert(result.msg, {icon: 6});
+				layer.alert(result.msg, {icon: 5});
 			}
 		}
 	});

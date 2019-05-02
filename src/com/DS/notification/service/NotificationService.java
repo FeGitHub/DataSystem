@@ -10,22 +10,28 @@ import com.jfinal.plugin.activerecord.Record;
  * 信息通知服务层接口
  *
  */
-public interface NotificationService {     
-	 List<Record> getNotification(String userId);
+public interface NotificationService {   
+	/****
+	 * 加载用户信息通知栏
+	 * @param userId
+	 * @param limitFlag
+	 * @return
+	 */
+	 List<Record> getNotification(String userId,String limitFlag);
 	 
 	 /****
-	  * 
+	  * 获取用户邮箱的分页展示消息
 	  * @param userId  用户id
 	  * @return
 	  */
-	 List<Record> getNotificationList(String userId,String pageNumber);
+	 List<Record> getNotificationList(String userId,String pageNumber,String limitFlag);
 	 
 	 /****
 	  * 获取用户的通知信息条数
 	  * @param userId
 	  * @return
 	  */
-	 long getNotificationSize(String userId);
+	 long getNotificationSize(String userId,String limitFlag);
 	 
 	 /****
 	  * 新增通知信息

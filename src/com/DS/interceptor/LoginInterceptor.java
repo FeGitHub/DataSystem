@@ -58,8 +58,9 @@ public class LoginInterceptor implements Interceptor{
 				 List<Record> notifications=null;
 				 Long notificationSize=null;
 				 if(session.getAttribute("notifications")==null){
-					 notifications=notificationService.getNotification(user.getStr("id"));
-					 notificationSize=notificationService.getNotificationSize(user.getStr("id"));
+					 //更新用户信息通知信息栏
+					 notifications=notificationService.getNotification(user.getStr("id"),"limit");
+					 notificationSize=notificationService.getNotificationSize(user.getStr("id"),"limit");
 					 session.setAttribute("notifications", notifications);
 					 session.setAttribute("notificationSize", notificationSize);
 				 }else{
