@@ -57,20 +57,4 @@ public abstract class BaseUser<M extends BaseUser<M>> extends Model<M> implement
 		return getInt("leve");
 	}
 
-	public void setTaskAnalyse(java.lang.String taskAnalyse) {
-		set("taskAnalyse", taskAnalyse);
-	}
-	
-	public java.lang.String getTaskAnalyse() {
-		return getStr("taskAnalyse");
-	}
-
-	public void setCustomizeAnalyse(java.lang.String customizeAnalyse) {
-		set("customizeAnalyse", customizeAnalyse);
-	}
-	
-	public java.lang.String getCustomizeAnalyse() {
-		return getStr("customizeAnalyse");
-	}
-
 }

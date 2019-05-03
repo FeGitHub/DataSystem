@@ -1,2 +1,3 @@
 # -*- coding: utf-8 -*-
-print("hello");
+print("[3 4 5]");
+print("6");

@@ -135,11 +135,12 @@ public class TaskController extends BaseController{
 	 *  跳转到目标任务详情页面
 	 */
 	public void goTargetDetail(){
-		 Task task=new Task();
-		 if(getPara("taskId")==null||"".equals(getPara("taskId"))){
+		 String taskId=getPara("taskId");
+		 if(taskId==null||"".equals(taskId)){
 			 return;
 		 }
-		 task=task.findById(getPara("taskId"));		
+		 Task task=new Task();
+		 task=task.findById(taskId);		
 		 setAttr("vo",task);
 		 render("targetDetail.jsp");
 	}	

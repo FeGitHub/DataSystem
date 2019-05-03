@@ -3,7 +3,9 @@ import java.util.List;
 import java.util.Map;
 import com.DS.common.model.Project;
 import com.DS.common.model.Task;
+import com.DS.common.model.User;
 import com.alibaba.fastjson.JSONArray;
+import com.jfinal.plugin.activerecord.Record;
 
 /****
  * 
@@ -32,5 +34,11 @@ public interface TaskService {
      * @return
      */
     List<Task> getTodayTarget(String userId);
+    
+    /****
+     * 获取用户的任务分析数据
+     * @param user
+     */
+    List<Record> getAnalyseDataByUser(User user);
    
 }

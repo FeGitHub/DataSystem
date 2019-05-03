@@ -8,5 +8,7 @@ public interface AnalyseService {
     List<String>  customAnalyse(String heads,String customfile);	
     
     
-    void  updateTaskAnalyse(User user);
+    boolean  updateTaskAnalyse(User user);
+    
+    String getAnalyseResult(String functionArgs,List<String> param);
 }

@@ -8,7 +8,7 @@ $(function(){
         bootcssVer:3,
         format: 'yyyy-mm-dd', 
         autoclose:true,
-        todayHighlight: true,
+        todayHighlight: true, 
         minView:2,       
         weekStart:1
     }); 	

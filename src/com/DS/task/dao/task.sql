@@ -130,3 +130,26 @@
 #end
 
 
+
+/*****
+ * 获取用户的分析数据
+ */
+#sql("getAnalyseDataByUser")
+    SELECT
+       case 
+	        when x.end is null
+		    then 24
+		    else HOUR( TIMEDIFF( x.START,x.END ) ) 
+	   end plantime,
+	x.score AS level,
+	(select count(1) from task as y where (y.start>=x.start and x.end<=y.start) or (y.end>=x.start and x.end<=y.end) or(y.start<=x.start and y.end>=x.end)) as tasknum,
+	(select count(1) from task as y where y.end>=DATE_SUB(x.end,INTERVAL 7 DAY) and y.end<=x.end) as taskNumInWeek
+	FROM
+		task AS x
+	WHERE
+	start IS NOT NULL
+	and taskType!=2
+	and userId=#para(userId)
+#end
+
+

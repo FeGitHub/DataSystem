@@ -3,6 +3,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import com.DS.common.model.Task;
+import com.DS.common.model.User;
 import com.DS.task.service.TaskService;
 import com.DS.utils.common.DataTablesUtil;
 import com.alibaba.fastjson.JSONArray;
@@ -121,6 +122,18 @@ public class TaskServiceImpl implements TaskService {
 		List<Task> taskList=dao.find(sql);
 		return taskList;		
 	}
-
+  
+	
+	/*****
+	 * 获取用户的任务分析数据
+	 */
+	@Override
+	public List<Record> getAnalyseDataByUser(User user) {
+		Map<String,Object> paramMap=new HashMap<String,Object>();
+		paramMap.put("userId", user.getId());
+		SqlPara sql=Db.getSqlPara("task.getAnalyseDataByUser", paramMap);
+		List<Record> records=Db.find(sql);
+		return records;		
+	}
 		
 }

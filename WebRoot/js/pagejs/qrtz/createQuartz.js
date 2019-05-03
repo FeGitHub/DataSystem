@@ -93,7 +93,11 @@ $("#submitBtn").click(function(){
 	 }
 });
 
-
+/****
+ * 将调度任务类名转换成对应中文
+ * @param classInfo
+ * @returns {String}
+ */
 function  showText(classInfo){
 	var text="";
 	var pageName="com.DS.utils.quartz.jobs.";//调度任务都放于此包，便与反射扫描
@@ -106,22 +110,22 @@ function  showText(classInfo){
 		text="删除冗余数据备份(系统级)";
 	  break;
 	case pageName+"GetTodayNotify"://给予用户每日的任务统计
-		text="统计每日用户通知(系统级)";
+		text="更新用户的每日通知(系统级)";
+	  break;
+	case pageName+"UpdateUserCSV"://更新csv文件
+		text="更新用户的任务分析资源(系统级)";
+	  break;
+	case pageName+"UpdateUserAnalyse"://更新用户的任务分析参数
+		text="更新用户的任务分析参数(系统级)";
 	  break;
 	case pageName+"HelloJob":
 		text="测试hello(测试级)";
 	  break;
-	case pageName+"RemindJob":
-		text="今日任务提醒(测试级)";
-	  break;
-	case pageName+"SayHelloToEveryone":
-		text="测试群发用户信息(测试级)";
+	case pageName+"DoSomethingToEveryone":
+		text="测试遍历用户操作(测试级)";
 	  break;
 	case pageName+"TestPython":
-		text="测试python(测试级)";
-	  break;
-	case pageName+"PYML":
-		text="算法模型训练测试(测试级)";
+		text="测试python是否调用正常(测试级)";
 	  break;
 	default:
 		text=classInfo;

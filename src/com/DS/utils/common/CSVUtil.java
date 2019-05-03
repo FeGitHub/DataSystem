@@ -9,6 +9,9 @@ import java.io.Writer;
 import java.util.ArrayList;
 import java.util.List;
 import org.junit.Test;
+
+import com.DS.common.model.User;
+import com.DS.task.service.impl.TaskServiceImpl;
 import com.jfinal.plugin.activerecord.Record;
 import com.univocity.parsers.csv.CsvFormat;
 import com.univocity.parsers.csv.CsvParser;
@@ -30,8 +33,10 @@ public class CSVUtil {
 	 * @param outPutPath
 	 * @param filename
 	 */
-	public static void createCSVFile(String[] heads, List<Object[]> rows, String outPutPath, String filename)
-    {
+	public static boolean createCSVFile(String[] heads, List<Object[]> rows, String outPutPath, String filename)
+    { 
+		
+		boolean result=true;
         File csvFile = new File(outPutPath + filename + ".csv");
         File parent = csvFile.getParentFile();
         if (parent != null && !parent.exists())
@@ -50,8 +55,10 @@ public class CSVUtil {
             writer.writeRowsAndClose(rows);
         } catch (Exception e)
         {
-            e.printStackTrace();          
+            e.printStackTrace(); 
+            result=false;
         }
+        return result;
     }
 	
 	/****
@@ -123,14 +130,37 @@ public class CSVUtil {
 	
 	
 	
-	//@Test
-	public void testCreateCSVFile(){
-		String[] heads={"name","age","like"};
+	
+	public static void testCreateCSVFile(){
+	/*	String[] heads={"name","age","like"};
 		List<Object[]> rows=new ArrayList<Object[]>();
 		String[] object={"sun","18","eat"};		
 		rows.add(object);
 		String outPutPath="C://";
 		String filename="testCSV";
-		createCSVFile(heads,rows,outPutPath,filename);
+		createCSVFile(heads,rows,outPutPath,filename);*/
+		String[] heads={"plantime","leve","tasknum","taskNumInWeek"};
+		TaskServiceImpl taskServiceImpl=new TaskServiceImpl();
+		User user=new User();
+		user.setId(2);
+		List<Record> list=taskServiceImpl.getAnalyseDataByUser(user);
+		String outPutPath="E://";
+		String filename="ToBeCSV";
+		//转换
+		List<Object[]> rows=new ArrayList<Object[]>();
+		for(int i=0;i<list.size();i++){
+			String str[] = new String[4]; 
+			Record record=list.get(i);
+			str[0]=record.getStr("plantime");
+			str[1]=record.getStr("leve");
+			str[2]=record.getStr("tasknum");
+			str[3]=record.getStr("taskNumInWeek");
+			rows.add(str);
+		}
+		createCSVFile(heads,rows,outPutPath,filename);		
+	}
+	
+	public static void main(String[] args) {
+		testCreateCSVFile();
 	}
 }
