@@ -4,6 +4,7 @@ import java.util.Map;
 import com.DS.bean.TaskSchedule;
 import com.DS.common.model.Project;
 import com.DS.common.model.ProjectTree;
+import com.jfinal.plugin.activerecord.Record;
 
 /****
  * 
@@ -52,4 +53,10 @@ public interface ProjectService {
     ProjectTree updateProjectTask(ProjectTree projectTree,int taskId);
     
     boolean delProjectTasks(List<String> ids,int pId);
+    
+    /****
+     * 得到工程分析数据
+     * @return
+     */
+    List<Record>  getProjectAnalyse(String userId,String projectId,String actuallyFinshDate);
 }

@@ -93,7 +93,7 @@ def main():
     y_pred = linear_reg_model.predict([single_test_feat])
     print('样本特征:', single_test_feat)
     print('真实结果数据：{}，预测结果数据：{}'.format(y_true, y_pred))
-    print("*************模型训练结束*********************")
+    print(FEAT_COLS,"拟合函数对应权重如下依次对应，截距为最后一行参数:")
     print(linear_reg_model.coef_)  
     print(linear_reg_model.intercept_)
 

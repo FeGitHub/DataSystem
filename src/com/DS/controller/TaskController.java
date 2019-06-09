@@ -6,6 +6,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import com.DS.bean.TaskCalendarBean;
+import com.DS.common.model.Analyse;
 import com.DS.common.model.Project;
 import com.DS.common.model.ProjectTree;
 import com.DS.common.model.Task;
@@ -424,5 +425,39 @@ public class TaskController extends BaseController{
      	}else{
      		 renderJson(ajaxDoneError("更新失败"));
      	}
+     }
+     
+     
+     public  void getProjectAnalyse(){
+    	 User user = (User)getSession().getAttribute("user");
+    	 String projectId=getPara("projectId");
+    	 if(projectId==""||projectId==null){
+    		 renderJson(ajaxDoneError("操作失败"));
+    		 return;
+    	 }
+    	 List<Record> list=projectService.getProjectAnalyse(user.getId()+"", projectId,null);
+    	 Map<String,Object> param=new HashMap<String,Object>();
+ 		param.put("analyseType", "projectAnalyse");
+ 		param.put("userId", user.getId());
+ 		SqlPara getsql=Db.getSqlPara("analyse.getAnalyseByType", param);
+ 		Analyse analyse=new Analyse();
+		analyse=analyse.findFirst(getsql);
+		Project project=new Project();
+		project=project.findById(projectId);
+		 Map<String,Object> result=new HashMap<String,Object>();		
+		if(project!=null){
+			 result.put("project", project);   
+		}	
+    	 if(list!=null&&list.size()!=0){ 		   		
+    		 result.put("info",  list.get(0));   
+    		 if(analyse!=null){
+    			 result.put("args",  analyse.getFunction());
+    		}
+    		 renderJson(ajaxDoneSuccess(result));
+    	 }else{
+    		 renderJson(ajaxDoneError("获取失败"));
+    	 }
+    	
+    	 
      }
 }

@@ -145,3 +145,25 @@ delete  from project_tree where id in(
       #end
    )
 #end
+
+
+/***
+ * 得到工程信息的分析数据
+ */
+#sql("getProjectAnalyse")
+   select 
+      datediff( p.finshDate, p.startDate ) AS planTime,
+    ( SELECT count( 1 ) FROM  task AS t  WHERE( t.START >= p.startDate AND t.START <= p.finshDate ) ) AS taskInProject,
+	( SELECT count( 1 ) FROM project_tree AS tree WHERE tree.projectId = p.id ) AS projectTaskNum,
+      datediff(p.finshDate,p.actuallyFinshDate) as  actualyTime
+from project as p
+where  userId=#para(userId)
+    #if(projectId)
+           and id = #para(projectId)
+     #end    
+     #if(actuallyFinshDate)
+            p.actuallyFinshDate is not null
+     #end   
+#end
+
+

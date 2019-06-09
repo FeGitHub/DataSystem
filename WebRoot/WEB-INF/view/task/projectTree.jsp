@@ -12,8 +12,19 @@
     	    	 <!-- <button id="testBtn" type="button" class="btn btn-primary">输出树形数据</button>&nbsp;&nbsp; -->
     	    	 <button id="projectInfBtn" type="button" class="btn btn-primary">修改工程信息</button>&nbsp;&nbsp;
     	    	<!--  <button id="updateBtn" type="button" class="btn btn-primary">提交工程任务</button>   -->	
-    	    	<a class="btn btn-secondary" href="${BASE_PATH}/task/goProjectList">返回工程列表</a>                       	    	 
+    	    	<a class="btn btn-secondary" href="${BASE_PATH}/task/goProjectList">返回工程列表</a>&nbsp;&nbsp;    
+    	    	<button id="analyseProjectInfBtn" type="button" class="btn btn-primary">分析工程信息</button>                   	    	 
     </div>
+    
+       <div class="card mb-3 border-info" style="display:none;">
+                <div class="card-body">
+                  <blockquote class="card-blockquote">
+                    <p id="result"></p>
+                  </blockquote>
+                </div>
+              </div>
+    
+    
      <div class="tile">   
          	   <div class="bs-component">
               <div class="progress mb-2" onclick="showProgess(this)">
@@ -167,7 +178,17 @@
 	                  	</div>	                  	
 	                 </div>	  
               	</td>              	
-            </tr>           		
+            </tr>   
+             <tr>
+				<td class="va-m" width="30%"><span>完成时间</span></td>
+              	<td>
+	              	<div class="row">
+	                  	<div class="col-sm-12">	                                     
+                             <input  id="actuallyFinshDate" class="form-control  form_date" placeholder="" maxlength="20" type="text" readonly>      
+	                  	</div>	                  	
+	                 </div>	  
+              	</td>              	
+            </tr>                 		
           </tbody>
         </table>
         </form>

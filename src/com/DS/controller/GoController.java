@@ -17,5 +17,10 @@ public class GoController extends BaseController{
 		render("demo.jsp");
 	}	      
 	    
+	
+	public void goShow(){	
+		render("showAnalyse.jsp");
+	}
+	
 }
 

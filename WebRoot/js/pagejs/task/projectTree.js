@@ -558,6 +558,7 @@ function showProjectInfo(){
 				$("#projectName").val(project.projectName);
 				$("#startDate").val(project.startDate);
 				$("#finshDate").val(project.finshDate);
+				$("#actuallyFinshDate").val(project.actuallyFinshDate);
 			}else{
 				toastrError(data.msg,2000);
 			}		
@@ -580,6 +581,10 @@ function  updateProjectAjax(){
 			"finshDate":$("#finshDate").val(),
 			"id":projectId
 	};
+	var actuallyFinshDate=$("#actuallyFinshDate").val();
+	if(actuallyFinshDate!=null&&actuallyFinshDate!=""){
+		param["actuallyFinshDate"]=actuallyFinshDate;
+	}
 	if($("#projectForm").validationEngine('validate')){
 		$.ajax({
 			url:basepath+"/task/updataProject",
@@ -597,4 +602,37 @@ function  updateProjectAjax(){
 		$("#seeMethodModal").modal("hide");
 	}
 	
+}
+
+
+
+
+
+$("#analyseProjectInfBtn").click(function(){
+	    var projectId=$("#projectId").val();
+		$.ajax({
+			url:basepath+"/task/getProjectAnalyse",
+			type:"post",
+			data:{"projectId":projectId},
+			dataType:"json",
+			success:function(data){							
+				if(data.code==200){				
+					showResult(data);
+					toastrSuccess(data.msg,2000);				
+				}else{
+					toastrError(data.msg,2000);
+				}		
+			} 
+		}); 	 
+});
+
+
+function showResult(data){
+	var info=data.info;
+	 var _html="工程权重参数有"+data.args+"<br>";
+	_html+="计划完成时间："+info.planTime+"<br>";
+	_html+="工程任务数："+info.projectTaskNum+"<br>";
+	$('#result').html(_html);
+	$('.card').css("display","block");
+
 }

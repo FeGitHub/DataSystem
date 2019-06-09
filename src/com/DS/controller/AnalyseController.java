@@ -82,7 +82,7 @@ public class AnalyseController extends BaseController {
 					 heads+=","+headlist.get(i);
 				 }
 			 }
-			 List<String> rows=analyseService.customAnalyse(heads, customfile);
+			 List<String> rows=analyseService.customAnalyse(heads, customfile,nowUser);
 			 Map<String,Object> result=new HashMap<String,Object>();
 			 result.put("rows", rows);
 			 renderJson(ajaxDoneSuccess(result));

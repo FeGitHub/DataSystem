@@ -116,7 +116,7 @@ public class FileController extends BaseController{
 	   */
 	  public void downDemoCsv() 
 	   {		
-			 File file = new File(PathKit.getRootClassPath()+"/py/resources/grade.csv"); 
+			 File file = new File(PathKit.getRootClassPath()+"/py/resources/project.csv"); 
 			  if (file.exists()) { //如果文件存在 
 				  renderFile(file); 
 			  } else  { 

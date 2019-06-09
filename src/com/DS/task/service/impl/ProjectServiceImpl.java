@@ -205,5 +205,22 @@ public boolean delProjectTasks(List<String> ids,int pId) {
 		});
 	 return  success;
  }
+
+
+
+@Override
+public List<Record> getProjectAnalyse(String userId, String projectId,String actuallyFinshDate) {
+	 Map<String,Object> paramMap=new HashMap<String,Object>();
+	 paramMap.put("userId", userId);
+	 if(projectId!=null){
+		 paramMap.put("projectId", projectId);
+	 }
+	 if(actuallyFinshDate!=null){
+		 paramMap.put("actuallyFinshDate", actuallyFinshDate);
+	 }
+	 SqlPara getSql=Db.getSqlPara("projectTree.getProjectAnalyse",paramMap);
+	 List<Record> list= Db.find(getSql);
+	return list;
+}
   
 }

@@ -1,10 +1,8 @@
 package com.DS.utils.quartz.jobs;
 import java.util.List;
-
 import org.quartz.Job;
 import org.quartz.JobExecutionContext;
 import org.quartz.JobExecutionException;
-
 import com.DS.bean.MailBean;
 import com.DS.common.model.User;
 import com.DS.notification.service.impl.NotificationServiceImpl;

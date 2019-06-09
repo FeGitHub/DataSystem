@@ -5,9 +5,7 @@ import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-
 import org.apache.log4j.Logger;
-
 import com.DS.analyse.service.AnalyseService;
 import com.DS.common.model.Analyse;
 import com.DS.common.model.User;
@@ -30,7 +28,7 @@ public class AnalyseServiceImpl implements AnalyseService {
 	 * 获取用户自定义分析函数参数
 	 */
 	@Override
-	public List<String> customAnalyse(String heads,String customfile) {
+	public List<String> customAnalyse(String heads,String customfile,User user) {
 	    String filepath=PythonByRuntime.PY_ROOT_PATH+"custom_build_model.py";//python文件
 	    String modlepath=PythonByRuntime.PY_MODEL_PATH+"\\"+customfile+".m";//训练模型
 	    Prop p =PropKit.use("config.properties");	 
@@ -38,6 +36,27 @@ public class AnalyseServiceImpl implements AnalyseService {
 		//python--->avg[1]=读取的资源文件  avg[2]-->训练模型  avg[3]-->资源文件标题
 	    String exec="python "+filepath+" "+uploadfile+" "+modlepath+" "+heads;
 	    List<String> result=PythonByRuntime.cmdRunPython(exec);
+	    if(result!=null&&result.size()!=0){
+	    	String coef=result.get(result.size()-2);//参数权重
+			String intercept=result.get(result.size()-1);//截距
+			 Map<String,Object> param=new HashMap<String,Object>();
+				param.put("analyseType", "customAnalyse");
+				param.put("userId", user.getId());
+				SqlPara getsql=Db.getSqlPara("analyse.getAnalyseByType", param);	
+				Analyse analyse=new Analyse();
+				analyse=analyse.findFirst(getsql);
+				if(analyse!=null){//更新 
+					analyse.setFunction(getAnalyseArgs(coef,intercept));
+					analyse.update();
+				}else{//新增
+					analyse=new Analyse();
+					analyse.setFunction(getAnalyseArgs(coef,intercept));
+					analyse.setAnalyseType("customAnalyse");
+					analyse.setUserId(user.getId());
+					analyse.save();
+				}
+	    }
+	    
 		return result;
 	}
   
@@ -142,6 +161,9 @@ public class AnalyseServiceImpl implements AnalyseService {
 	}
 	 
 	
+	
+	
+	
 	/****
 	 * 产生用户的任务分析数据对应的csv文件
 	 * @return
@@ -173,5 +195,52 @@ public class AnalyseServiceImpl implements AnalyseService {
 		}
 		boolean result=CSVUtil.createCSVFile(heads,rows,outPutPath,filename);		
 		return result;
+	}
+	
+	//===============
+	public List<String> getProjectAnalyseArgsformPy(User user){
+		Prop p =PropKit.use("config.properties");
+		String heads="planTime,projectTaskNum,taskInProject,actualyTime";//可随算法策略调整
+		String py =PythonByRuntime.PY_ROOT_PATH+"taskAnalyse.py";//python文件
+		String filename=user.getId()+user.getAccount()+"Project";//生成的资源文件名称
+		String res=p.get("pams")+"\\"+filename+".csv";
+		File file=new File(res);
+		if(!file.exists()){
+			logger.error(res+"文件资源不存在");
+			return null;
+		}
+		String exec="python "+py+" "+heads+" "+res;
+		List<String> result=PythonByRuntime.cmdRunPython(exec);	
+		return result;
+	}
+
+
+
+	@Override
+	public boolean updateProjectAnalyse(User user) {
+		List<String> result=getProjectAnalyseArgsformPy(user);		
+		if(result==null||result.size()!=2){
+			return false;
+		}
+		String coef=result.get(0);//参数权重
+		String intercept=result.get(1);//截距
+		//数据更新
+		 Map<String,Object> param=new HashMap<String,Object>();
+		param.put("analyseType", "projectAnalyse");
+		param.put("userId", user.getId());
+		SqlPara getsql=Db.getSqlPara("analyse.getAnalyseByType", param);	
+		Analyse analyse=new Analyse();
+		analyse=analyse.findFirst(getsql);
+		if(analyse!=null){//更新 
+			analyse.setFunction(getAnalyseArgs(coef,intercept));
+			analyse.update();
+		}else{//新增
+			analyse=new Analyse();
+			analyse.setFunction(getAnalyseArgs(coef,intercept));
+			analyse.setAnalyseType("projectAnalyse");
+			analyse.setUserId(user.getId());
+			analyse.save();
+		}
+		return true;
 	}
 }

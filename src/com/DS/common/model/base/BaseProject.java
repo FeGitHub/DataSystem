@@ -65,4 +65,20 @@ public abstract class BaseProject<M extends BaseProject<M>> extends Model<M> imp
 		return get("addTime");
 	}
 
+	public void setActuallyFinshDate(java.util.Date actuallyFinshDate) {
+		set("actuallyFinshDate", actuallyFinshDate);
+	}
+	
+	public java.util.Date getActuallyFinshDate() {
+		return get("actuallyFinshDate");
+	}
+
+	public void setDelflag(java.lang.Integer delflag) {
+		set("delflag", delflag);
+	}
+	
+	public java.lang.Integer getDelflag() {
+		return getInt("delflag");
+	}
+
 }

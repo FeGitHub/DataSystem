@@ -127,6 +127,9 @@ function  showText(classInfo){
 	case pageName+"TestPython":
 		text="测试python是否调用正常(测试级)";
 	  break;
+	case pageName+"UpdateProjectAnalyse":
+		text="更新工程参数(系统级)";
+	  break;
 	default:
 		text=classInfo;
 	}

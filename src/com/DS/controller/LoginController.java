@@ -33,17 +33,18 @@ public class LoginController extends BaseController{
 	   String password = SecretUtil.getMD5(user.getPassword());
        Map<String,Object> paramMap=ObjectUtil.convertBeanToMap(user);
        SqlPara sql=Db.getSqlPara("user.getUserInfoByAccount", paramMap);
-       user= user.findFirst(sql);         
-       if(user.getPassword().equals(password)){
+       user= user.findFirst(sql); 
+       if(user!=null&&user.getPassword().equals(password)){
     	     //用户信息
     	     setSessionAttr("user", user);      	   			
     	     Map<String,Object> map=new HashMap<String,Object>();
     	     map.put("url", "/user/goMenu");
-    	     renderJson(ajaxDoneSuccess(map));
+    	     renderJson(ajaxDoneSuccess(map)); 
        }else{
     	     renderJson(ajaxDoneError("账号或密码出错"));
        } 
    }
+	
    /***
     * 登出处理
     */

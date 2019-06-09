@@ -13,17 +13,23 @@ import com.DS.user.service.impl.UserServiceImpl;
  * @author jeff
  * 用于测试的基本job类
  */
-public class UpdateUserCSV implements Job{
-	private static Logger logger = Logger.getLogger(UpdateUserCSV.class);
+public class UpdateProjectAnalyse implements Job{
+	private static Logger logger = Logger.getLogger(UpdateProjectAnalyse.class);
 	@Override
 	public void execute(JobExecutionContext arg0) throws JobExecutionException {
-		logger.info("***************更新用户任务信息资源*************************");	
+		logger.info("***************更新用户工程任务分析参数*******************");	
 		UserService userService=new UserServiceImpl();
 		List<User> users=userService.getAllUser();
 		AnalyseServiceImpl analyse=new AnalyseServiceImpl();
 		for(User user:users){
-			analyse.createAnalyseCSV(user);
-			logger.info("**********"+user.getAccount()+"任务信息资源更新完成***");
+			boolean result=analyse.updateProjectAnalyse(user);
+			if(result){
+				logger.info(user.getAccount()+"工程任务分析参数更新完成");
+			}else{
+				logger.error(user.getAccount()+"工程任务分析参数更新失败");
+			}			
 		}
-	}	
+	}
+	
+	
 }
