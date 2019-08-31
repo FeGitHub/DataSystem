@@ -1,4 +1,5 @@
 package com.DS.notification.service.impl;
+import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
@@ -224,32 +225,37 @@ public class NotificationServiceImpl implements NotificationService {
 		String userId=user.getId()+"";
 		//为了让quartz调用，不使用注入
 		 TaskService pamsTaskService=new  TaskServiceImpl();		
-		 RemindService   pamsRemindService=new RemindServiceImpl();
+		// RemindService   pamsRemindService=new RemindServiceImpl();
 		 List<Task> tasks= pamsTaskService.getTodayTarget(userId);
-		 List<Remind> reminds= pamsRemindService.getTodayRemind(userId);
+		// List<Remind> reminds= pamsRemindService.getTodayRemind(userId);
 		 StringBuilder info=new StringBuilder();
-		 info.append("今日任务数为:").append(tasks.size()).append("  ");
-		 for(int i=0;i<tasks.size();i++){
-			 if(i==0){
-				 info.append("分别为：");
+		  Date d = new Date();   
+	      SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");  
+		 info.append(sdf.format(d)+"信息通知：").append("<br/>");
+		 if(tasks.size()!=0){
+			// info.append("今日任务数为:").append(tasks.size()).append("  ");
+			 for(int i=0;i<tasks.size();i++){
+				 info.append((i+1)+".");
+	             info.append(tasks.get(i).getTaskName()).append("<br/>");
+				 if(i>=40){
+					 info.append("......");
+					 break;
+				 }
+			 } 
+		 }		
+		/* if(reminds.size()!=0){
+			 info.append("今日备忘事务数为:").append(reminds.size()).append("  ");
+			 for(int j=0;j<reminds.size();j++){
+				 if(j==0){
+					 info.append("分别为：");
+				 }
+				 info.append(reminds.get(j).getSubject()).append(",");
+				 if(j>=40){
+					 info.append("......");
+					 break;
+				 }
 			 }
-			 info.append(tasks.get(i).getTaskName()).append(",");
-			 if(i>=40){
-				 info.append("......");
-				 break;
-			 }
-		 }
-		 info.append("今日备忘事务数为:").append(reminds.size()).append("  ");
-		 for(int j=0;j<reminds.size();j++){
-			 if(j==0){
-				 info.append("分别为：");
-			 }
-			 info.append(reminds.get(j).getSubject()).append(",");
-			 if(j>=40){
-				 info.append("......");
-				 break;
-			 }
-		 }
+		 }		*/
 		 Notification n=new Notification();
 		 n.setUserId(userId);
 		 n.setSubject("信息通知");

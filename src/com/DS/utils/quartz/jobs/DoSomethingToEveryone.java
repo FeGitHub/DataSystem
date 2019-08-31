@@ -1,6 +1,5 @@
 package com.DS.utils.quartz.jobs;
 import java.util.List;
-
 import org.apache.log4j.Logger;
 import org.quartz.Job;
 import org.quartz.JobExecutionContext;
@@ -30,8 +29,7 @@ public class DoSomethingToEveryone implements Job{
 		for(User user:users){
 			mailAdress=user.getMail();
 			if(RegularUtil.isNameAdressFormat(mailAdress)){
-				MailBean mail=new MailBean(mailAdress,"信息通知");
-				mailDoServer.sendMail(mail);
+				mailDoServer.getTodayNotification(user);
 			}else{
 				logger.info("用户："+user.getAccount()+",邮件地址无效："+mailAdress);
 			}

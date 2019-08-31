@@ -3,13 +3,10 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import javax.servlet.http.HttpSession;
-
 import com.DS.common.model.Notification;
 import com.DS.common.model.User;
 import com.DS.notification.service.NotificationService;
 import com.DS.notification.service.impl.NotificationServiceImpl;
-import com.DS.remind.service.RemindService;
-import com.DS.remind.service.impl.RemindServiceImpl;
 import com.DS.user.service.UserService;
 import com.DS.user.service.impl.UserServiceImpl;
 import com.DS.user.vo.UserListVo;
