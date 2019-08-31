@@ -100,34 +100,34 @@ $("#submitBtn").click(function(){
  */
 function  showText(classInfo){
 	var text="";
-	var pageName="com.DS.utils.quartz.jobs.";//调度任务都放于此包，便与反射扫描
+	var packageName="com.DS.utils.quartz.jobs.";//调度任务都放于此包，便与反射扫描
 	switch(classInfo)
 	{
-	case pageName+"DBBackupJob"://定时备份系统的数据库资源
+	case packageName+"DBBackupJob"://定时备份系统的数据库资源
 		text="备份数据库(系统级)";
 	  break;
-	case pageName+"DeleteSqlFileJob"://按照一定规则去删除冗余数据库资源
+	case packageName+"DeleteSqlFileJob"://按照一定规则去删除冗余数据库资源
 		text="删除冗余数据备份(系统级)";
 	  break;
-	case pageName+"GetTodayNotify"://给予用户每日的任务统计
+	case packageName+"DoSomethingToEveryone":
+		text="用户通知(系统级)";
+	  break;  
+	case packageName+"GetTodayNotify"://给予用户每日的任务统计
 		text="更新用户的每日通知(系统级)";
 	  break;
-	case pageName+"UpdateUserCSV"://更新csv文件
+	case packageName+"UpdateUserCSV"://更新csv文件
 		text="更新用户的任务分析资源(系统级)";
 	  break;
-	case pageName+"UpdateUserAnalyse"://更新用户的任务分析参数
+	case packageName+"UpdateUserAnalyse"://更新用户的任务分析参数
 		text="更新用户的任务分析参数(系统级)";
 	  break;
-	case pageName+"HelloJob":
+	case packageName+"HelloJob":
 		text="测试hello(测试级)";
 	  break;
-	case pageName+"DoSomethingToEveryone":
-		text="测试遍历用户操作(测试级)";
-	  break;
-	case pageName+"TestPython":
+	case packageName+"TestPython":
 		text="测试python是否调用正常(测试级)";
 	  break;
-	case pageName+"UpdateProjectAnalyse":
+	case packageName+"UpdateProjectAnalyse":
 		text="更新工程参数(系统级)";
 	  break;
 	default:
