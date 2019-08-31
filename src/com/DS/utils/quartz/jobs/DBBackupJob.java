@@ -18,7 +18,7 @@ import com.jfinal.kit.PropKit;
 /***
  * 备份数据库的任务类
  * @author jeff 
- *
+ * 要配置mysqldump的环境变量，配置成功后最好退出Eclipse
  */
 public class DBBackupJob implements Job{
 	private static Logger logger = Logger.getLogger(DBBackupJob.class);
@@ -31,12 +31,6 @@ public class DBBackupJob implements Job{
 	private static String databaseName="";//要备份的数据库名称
 	public void execute(JobExecutionContext arg0) throws JobExecutionException {
 			//重新加载数据库备份文件资源
-		    Prop p =PropKit.use("config.properties");
-			hostIP=p.get("hostIP");
-		    savePath=p.get("MysqlBackupPath");
-		    userName=p.get("userName");
-		    password=SecretUtil.decrypt(p.get("password"));
-		    databaseName=p.get("databaseName");		    
 		    Date d = new Date();   
 	        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");  
 	        fileName= sdf.format(d)+".sql"; 
@@ -54,12 +48,28 @@ public class DBBackupJob implements Job{
 			e.printStackTrace();
 		}
 	}
+	
+	/***
+	 * 初始化配置
+	 */
+	public static void initConfig(){
+		    Prop p =PropKit.use("config.properties");
+			hostIP=p.get("hostIP");
+		    savePath=p.get("MysqlBackupPath");
+		    userName=p.get("userName");
+		    password=SecretUtil.decrypt(p.get("password"));
+		    databaseName=p.get("databaseName");	
+	}
+	
+	
+	
 	/***
 	 * 备份数据库
 	 * @return
 	 * @throws InterruptedException
 	 */
 	public static boolean exportDatabaseTool() throws InterruptedException {
+	    initConfig();   
 		File saveFile = new File(savePath);
 		if (!saveFile.exists()) {// 如果目录不存在
 			saveFile.mkdirs();// 创建文件
@@ -72,6 +82,7 @@ public class DBBackupJob implements Job{
 		try {
 			printWriter = new PrintWriter(new OutputStreamWriter(new FileOutputStream(savePath + fileName), "utf8"));
 			String str="mysqldump -h "+hostIP+" -u"+userName+" -p"+password+" "+databaseName;
+			//logger.info(str);
 			Process process = Runtime.getRuntime().exec(str);
 			InputStreamReader inputStreamReader = new InputStreamReader(process.getInputStream(), "utf8");
 			bufferedReader = new BufferedReader(inputStreamReader);

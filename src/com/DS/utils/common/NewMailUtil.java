@@ -40,15 +40,8 @@ public class NewMailUtil {
     
        
  
-    public static void main(String[] args) throws Exception{
-    	/*Prop p =PropKit.use("config.properties");  	    	
-    	myEmailAccount=p.get("myEmailAccount");
-    	myEmailPassword=p.get("myEmailPassword");
-    	myEmailPassword=SecretUtil.decrypt(myEmailPassword);
-    	myEmailSMTPHost = "smtp.163.com";
-    	receiveMailAccount = "2498082473@qq.com";
-    	send();*/
-    	MailBean mail=new MailBean("2498*****2473@qq.com","343543");
+    public static void main(String[] args) throws Exception{ 	    	  
+    	MailBean mail=new MailBean("XXXXXXXXX@qq.com","343543");
     	initAndSend(mail);
     }
     

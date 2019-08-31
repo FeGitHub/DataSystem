@@ -81,8 +81,7 @@ public class MailUtil {
    	 Random random = new Random();
 	 int randomNum = random.nextInt(1000000);
      String randomCode = String.format("%06d", randomNum);
-    // MailBean mail=new MailBean("2498082473@qq.com","系统验证码");
-     MailBean mail=new MailBean("2498082473@qq.com","系统验证码");
+     MailBean mail=new MailBean("XXXXXXXXX@qq.com","系统验证码");
      mail.setReceiveName("用户");
      mail.setSenderName("PAMS");
      mail.setContent("<h2>"+randomCode+"</h2>");  
