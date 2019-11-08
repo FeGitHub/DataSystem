@@ -9,7 +9,7 @@ import com.alibaba.druid.filter.config.ConfigTools;
 public class SecretUtil {
 	private static ConfigTools configTools=new ConfigTools();	
 	public static void main(String[] args) {
-	   String rawData="123456gf123";
+	   String rawData="jeffqiu";
 	   String d=DSEncrypt(rawData);
 	   System.out.println(d);
 	   String test=DSDecrypt(d);

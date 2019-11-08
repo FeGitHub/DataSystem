@@ -31,7 +31,6 @@
 	<classpathentry kind="lib" path="WebRoot/WEB-INF/lib/logback-classic-1.2.3.jar"/>
 	<classpathentry kind="lib" path="WebRoot/WEB-INF/lib/logback-core-1.2.3.jar"/>
 	<classpathentry kind="lib" path="WebRoot/WEB-INF/lib/mail.jar"/>
-	<classpathentry kind="lib" path="WebRoot/WEB-INF/lib/mysql-connector-java-5.1.44-bin.jar"/>
 	<classpathentry kind="lib" path="WebRoot/WEB-INF/lib/okhttp-3.2.0.jar"/>
 	<classpathentry kind="lib" path="WebRoot/WEB-INF/lib/poi-3.17.jar"/>
 	<classpathentry kind="lib" path="WebRoot/WEB-INF/lib/poi-ooxml-3.17.jar"/>
@@ -44,6 +43,7 @@
 	<classpathentry kind="lib" path="WebRoot/WEB-INF/lib/stax-api-1.0.1.jar"/>
 	<classpathentry kind="lib" path="WebRoot/WEB-INF/lib/univocity-parsers-2.6.1.jar"/>
 	<classpathentry kind="lib" path="WebRoot/WEB-INF/lib/xmlbeans-2.6.0.jar"/>
-	<classpathentry kind="lib" path="F:/jeff/server/apache-tomcat-7.0.78/lib/servlet-api.jar"/>
+	<classpathentry kind="lib" path="E:/server/apache-tomcat-7.0.78/lib/servlet-api.jar"/>
+	<classpathentry kind="lib" path="WebRoot/WEB-INF/lib/mysql-connector-java-8.0.16.jar"/>
 	<classpathentry kind="output" path="WebRoot/WEB-INF/classes"/>
 </classpath>

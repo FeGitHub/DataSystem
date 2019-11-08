@@ -179,4 +179,9 @@ public class QuartzManager {
     	 Scheduler scheduler = schedulerFactory.getScheduler(); 
         return scheduler.rescheduleJob(triggerkey, trigger);  
     }  
+    
+    
+    public static void main(String[] args){
+    	startJobs();
+    }
 }  

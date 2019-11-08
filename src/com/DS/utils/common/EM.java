@@ -2,7 +2,9 @@ package com.DS.utils.common;
 
 import com.jfinal.kit.Prop;
 import com.jfinal.kit.PropKit;
-
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.SQLException;
 /****
  * 
  * @author jeff
@@ -11,6 +13,27 @@ import com.jfinal.kit.PropKit;
  */
 public class EM {
 	 public static void main(String[] args) {
+		 testDb();		 
+	   }   
+	 
+	 
+	 public static void testDb(){
+		 try {
+	           // Class.forName("com.mysql.jdbc.Driver");  
+			    Class.forName("com.mysql.cj.jdbc.Driver");  		  
+	            Connection conn=DriverManager.getConnection("jdbc:mysql://127.0.0.1:3306/pams?serverTimezone=UTC&useSSL=false","root","jeffqiu"); 
+	            System.out.println(conn);
+		 } catch (ClassNotFoundException e) {
+	            // TODO Auto-generated catch block
+	            e.printStackTrace();
+	        } catch (SQLException e) {
+	            // TODO Auto-generated catch block
+	            e.printStackTrace();
+	        }
+	 }
+	 
+	 
+	 public static void testEm(){
 		 //需要检测的配置属性
 		 Prop p =PropKit.use("config.properties");
 		 String MysqlBackupPath=p.get("MysqlBackupPath");//数据库备份路径
@@ -22,6 +45,5 @@ public class EM {
 		 FileUtil.checkedPath(uploadFile);
 		 FileUtil.checkedPath(log4j);
 		 FileUtil.checkedPath(pams);
-		 
-	   }   
+	 }
 }
