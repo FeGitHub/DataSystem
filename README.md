@@ -5,7 +5,7 @@
 1.jfinal 3.5  
 2.jdK1.8(jfinal 3.5的要求)  
 3.Eclipse mars  
-4.数据库 mysql   
+4.数据库 mysql (升级mysql为5.8,以支持json数据的存储)   
 5.配置python的开发环境（不影响主功能）
 
 # 配置
