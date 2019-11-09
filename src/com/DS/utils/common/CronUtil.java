@@ -4,7 +4,8 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 
 import com.DS.bean.DateBean;
-import com.DS.quartz.vo.QuartzTransferVo;
+import com.DS.pams.vo.QuartzTransferVo;
+
 /***
  * 普通日期转Cron表达式
  */

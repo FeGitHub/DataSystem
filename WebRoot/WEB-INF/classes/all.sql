@@ -1,15 +1,10 @@
-/***
- * 备忘提醒功能的sql
- */
-#namespace("remind")
-#include("com/DS/remind/dao/remind.sql")
-#end
+
 
 /****
  * 调度器的sql
  */
 #namespace("qrtz")
-#include("com/DS/quartz/dao/qrtz.sql")
+#include("com/DS/pams/dao/qrtz.sql")
 #end
 
 
@@ -17,58 +12,79 @@
  * 用户信息的sql
  */
 #namespace("user")
-#include("com/DS/user/dao/user.sql")
+#include("com/DS/pams/dao/user.sql")
 #end
-
-
 
 
 /****
  * task
  */
 #namespace("task")
-#include("com/DS/task/dao/task.sql")
+#include("com/DS/pams/dao/task.sql")
 #end
 
 /****
  * projectTree
  */
 #namespace("projectTree")
-#include("com/DS/task/dao/projectTree.sql")
+#include("com/DS/pams/dao/projectTree.sql")
 #end
 
 
 
-/****
- * 菜单信息的sql
+
+
+/***
+ * 备忘提醒功能的sql
  */
-#namespace("menu")
-#include("com/DS/menu/dao/menu.sql")
+#namespace("remind")
+#include("com/DS/pams/dao/remind.sql")
 #end
 
 /****
  *
  */
 #namespace("notification")
-#include("com/DS/notification/dao/notification.sql")
+#include("com/DS/pams/dao/notification.sql")
 #end
+
+
+
+
+
+/***
+ * 接口模块
+ */
+#namespace("interfaceservice")
+#include("com/DS/pams/dao/interfaceservice.sql")
+#end
+
+
+/****
+ * 菜单信息的sql
+ */
+#namespace("menu")
+#include("com/DS/pams/dao/menu.sql")
+#end
+
+
+
+#namespace("analyse")
+#include("com/DS/pams/dao/analyse.sql")
+#end
+
+
 
 
 /****
  * excel
  */
 #namespace("excel")
-#include("com/DS/excel/dao/excel.sql")
+#include("com/DS/pams/dao/excel.sql")
 #end
 
 
 
-#namespace("analyse")
-#include("com/DS/analyse/dao/analyse.sql")
-#end
 
 
 
-#namespace("interfaceservice")
-#include("com/DS/comm/interfaceservice/dao/interfaceservice.sql")
-#end

@@ -1,18 +1,19 @@
 package com.DS.config;
-import com.DS.controller.AnalyseController;
-import com.DS.controller.DemoController;
-import com.DS.controller.ExcelController;
-import com.DS.controller.FileController;
-import com.DS.controller.GoController;
-import com.DS.controller.LoginController;
-import com.DS.controller.MenuController;
-import com.DS.controller.QrtzController;
-import com.DS.controller.RemindController;
-import com.DS.controller.RemoteHTTPAction;
-import com.DS.controller.TaskController;
-import com.DS.controller.UserController;
-import com.DS.controller.indexController;
-import com.DS.controller.comm.InterfaceController;
+
+import com.DS.pams.web.controller.AnalyseController;
+import com.DS.pams.web.controller.DemoController;
+import com.DS.pams.web.controller.ExcelController;
+import com.DS.pams.web.controller.FileController;
+import com.DS.pams.web.controller.GoController;
+import com.DS.pams.web.controller.LoginController;
+import com.DS.pams.web.controller.MenuController;
+import com.DS.pams.web.controller.QrtzController;
+import com.DS.pams.web.controller.RemindController;
+import com.DS.pams.web.controller.RemoteHTTPAction;
+import com.DS.pams.web.controller.TaskController;
+import com.DS.pams.web.controller.UserController;
+import com.DS.pams.web.controller.indexController;
+import com.DS.pams.web.controller.comm.InterfaceController;
 import com.jfinal.config.Routes;
 /******
  *  @author jeff

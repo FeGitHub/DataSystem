@@ -4,10 +4,11 @@ import org.apache.log4j.Logger;
 import org.quartz.Job;
 import org.quartz.JobExecutionContext;
 import org.quartz.JobExecutionException;
-import com.DS.analyse.service.impl.AnalyseServiceImpl;
 import com.DS.common.model.User;
-import com.DS.user.service.UserService;
-import com.DS.user.service.impl.UserServiceImpl;
+import com.DS.pams.service.UserService;
+import com.DS.pams.service.impl.AnalyseServiceImpl;
+import com.DS.pams.service.impl.UserServiceImpl;
+
 /***
  * 
  * @author jeff

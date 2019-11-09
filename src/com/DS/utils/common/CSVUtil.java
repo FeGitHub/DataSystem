@@ -9,9 +9,8 @@ import java.io.Writer;
 import java.util.ArrayList;
 import java.util.List;
 import org.junit.Test;
-
 import com.DS.common.model.User;
-import com.DS.task.service.impl.TaskServiceImpl;
+import com.DS.pams.service.impl.TaskServiceImpl;
 import com.jfinal.plugin.activerecord.Record;
 import com.univocity.parsers.csv.CsvFormat;
 import com.univocity.parsers.csv.CsvParser;
@@ -132,13 +131,6 @@ public class CSVUtil {
 	
 	
 	public static void testCreateCSVFile(){
-	/*	String[] heads={"name","age","like"};
-		List<Object[]> rows=new ArrayList<Object[]>();
-		String[] object={"sun","18","eat"};		
-		rows.add(object);
-		String outPutPath="C://";
-		String filename="testCSV";
-		createCSVFile(heads,rows,outPutPath,filename);*/
 		String[] heads={"plantime","leve","tasknum","taskNumInWeek"};
 		TaskServiceImpl taskServiceImpl=new TaskServiceImpl();
 		User user=new User();

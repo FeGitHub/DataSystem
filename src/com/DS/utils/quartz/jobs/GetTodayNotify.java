@@ -5,9 +5,10 @@ import org.quartz.JobExecutionContext;
 import org.quartz.JobExecutionException;
 import com.DS.bean.MailBean;
 import com.DS.common.model.User;
-import com.DS.notification.service.impl.NotificationServiceImpl;
-import com.DS.user.service.UserService;
-import com.DS.user.service.impl.UserServiceImpl;
+import com.DS.pams.service.UserService;
+import com.DS.pams.service.impl.NotificationServiceImpl;
+import com.DS.pams.service.impl.UserServiceImpl;
+
 
 /****
  * 

@@ -1,7 +1,10 @@
 package com.DS.config;
 import com.jfinal.plugin.activerecord.generator.MetaBuilder;
 import javax.sql.DataSource;
-
+/****
+ *  用于配置要生成的表的model
+ *
+ */
 public class MyMetaBulider extends MetaBuilder{
 	public MyMetaBulider(DataSource dataSource) {
         super(dataSource);
