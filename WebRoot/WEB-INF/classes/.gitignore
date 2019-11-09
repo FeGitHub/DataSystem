@@ -1,8 +1,4 @@
-/all.sql
 /com/
-/config.properties
-/linux.properties
-/log4j.properties
 /py/
 /quartz.properties
 /resources/

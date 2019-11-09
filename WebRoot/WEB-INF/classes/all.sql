@@ -66,3 +66,9 @@
 #namespace("analyse")
 #include("com/DS/analyse/dao/analyse.sql")
 #end
+
+
+
+#namespace("interfaceservice")
+#include("com/DS/comm/interfaceservice/dao/interfaceservice.sql")
+#end

@@ -12,6 +12,7 @@ import com.DS.controller.RemoteHTTPAction;
 import com.DS.controller.TaskController;
 import com.DS.controller.UserController;
 import com.DS.controller.indexController;
+import com.DS.controller.comm.InterfaceController;
 import com.jfinal.config.Routes;
 /******
  *  @author jeff
@@ -32,5 +33,6 @@ public class _MappingRoute {
 	        me.add("/file",FileController.class);
 	        me.add("/excel",ExcelController.class);
 	        me.add("/analyse",AnalyseController.class);
+	        me.add("/interface",InterfaceController.class);//接口，提供json数据
 	}
 }

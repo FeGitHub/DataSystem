@@ -19,7 +19,8 @@
        <pattern>/demo/*</pattern>  
        <pattern>/task/*</pattern>   
        <pattern>/menu/*</pattern>
-       <pattern>/analyse/*</pattern>             
+       <pattern>/analyse/*</pattern> 
+       <pattern>/interface/*</pattern>            
  </decorator>     
  
  <decorator name="notitle" page="notitle.jsp">    
