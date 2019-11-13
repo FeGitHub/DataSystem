@@ -50,6 +50,7 @@ public class LoginInterceptor implements Interceptor{
 				 controller.setAttr("menuTree", menuInfo.getTreeMenu());
 				 List<String> allMenuUrl=(List<String>) session.getAttribute("allMenuUrl");
 				 urls=menuInfo.getUrls();
+				 //请求的是菜单资源并且不是该用户权限内的资源，则不允许访问
 				 if((allMenuUrl.contains(url))&&(!urls.contains(url))){
 					 response.setStatus(HttpServletResponse.SC_FORBIDDEN);
  					 return;
