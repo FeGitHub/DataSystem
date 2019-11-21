@@ -2,19 +2,14 @@
 (function(){
     //定义一些默认参数
     var _options={
-        default_word:"default hello"                
+        default_word:"PAMS"                
     }
 
     //定义一些api
     var _plugin_api = {
-        firstFunc:function(_options){
-        	  alert(_options.default_word);
-             // return this;//返回当前方法
-        },
-        secondFunc:function(){
-            alert("secondFunc");
-           // return this;//返回当前方法
-        },
+    		
+    		
+    	//************身份证获取出生日期	
         getBirthday:function(){
         	  if(!sSfzh||sSfzh.length==0)return '';
               if(sSfzh.length==18){
@@ -25,8 +20,10 @@
               } else{
             	  return '';
               }     
-           // return this;
         },
+        
+        
+       //***************身份证获取性别 
         getSex:function(){
         	switch(parseInt(sSfzh.substring(16,17))){
 	    	case 1:return "1";
@@ -36,20 +33,98 @@
 	    	case 9:return "1";
 	    	default:return "2";
 		    }
-        //  return this;
       },
-      isNull:function(){
+      
+      
+      
+      //**************判空处理
+      isNull:function(data){
     	var result = false;
   		if(!data || data.length == 0){
   			result = true;
   		}
   		return result;
-       // return this;
     },
-         
-    }
+   
+    
+    //************进一步封装Ajax
+    AjaxDone:function(param){
+   	 //检验基本参数是否完整
+   	 var url=param.url;
+   	 if(PAMS.isNull(url)){
+   		 alert("请求资源地址不能为空！");
+   		 return;
+   	 }
+   	 var postData=param.data==null?{}:param.data;//请求数据
+   	 var successFn=param.successFn==null?function(data){}:param.successFn;//请求成功方法
+   	 $.ajax({
+   			url:url,
+   			type:"post",
+   			data:postData,
+   			dataType:"json",
+   			error: function (data,type, err) {
+   				layer.alert(err, {
+   					icon: 5,
+   					title: "请求失败"
+   					});
+   	            
+   	        },
+   			success:function(data){
+   				if(data.code!=400){
+   					successFn(data);
+   					return;
+   				}
+   				var  msg=PAMS.getNewline(data.msg);  				
+   				layer.alert(msg, {
+   					icon: 5,
+   					title: "提示"
+   					});
+   			}
+   		});	 
+    }, 
+      
+    //****************字符换行
+     getNewline:function (val) {  
+	    var str = new String(val);  
+	    var bytesCount = 0;  
+	    var s="";
+	    for (var i = 0 ,n = str.length; i < n; i++) {  
+	        var c = str.charCodeAt(i);  
+	        //统计字符串的字符长度
+	        if ((c >= 0x0001 && c <= 0x007e) || (0xff60<=c && c<=0xff9f)) {  
+	            bytesCount += 1;  
+	        } else {  
+	            bytesCount += 2;  
+	        }
+	        //换行
+	        s += str.charAt(i);
+	        if(bytesCount>=20){  
+	         s = s + '<br>';
+	         //重置
+	         bytesCount=0;
+	        } 
+	    }  
+	    return s;  
+	}, 	  
+   //打开模态框
+    showModel:function (_html) {      	 		
+    		$("#pamsModal .modal-body").html(_html);	
+    		$("#pamsModal").modal("show");
+	},
+	/****
+	 * 模态框操作
+	 * @param doMethod
+	 */
+	  doShowModel:function (doMethod) {      	 		
+		  doMethod();
+		  $("#pamsModal").modal("hide");
+	}
+	
+        
+  }
     //这里确定了插件的名称
-   // this.CJPlugin = _plugin_api;
     this.PAMS = _plugin_api;
 })();
+
+
 

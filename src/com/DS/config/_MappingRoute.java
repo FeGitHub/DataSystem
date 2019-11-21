@@ -2,6 +2,7 @@ package com.DS.config;
 
 import com.DS.pams.web.controller.AnalyseController;
 import com.DS.pams.web.controller.DemoController;
+import com.DS.pams.web.controller.ExamController;
 import com.DS.pams.web.controller.ExcelController;
 import com.DS.pams.web.controller.FileController;
 import com.DS.pams.web.controller.GoController;
@@ -35,5 +36,6 @@ public class _MappingRoute {
 	        me.add("/excel",ExcelController.class);
 	        me.add("/analyse",AnalyseController.class);
 	        me.add("/interface",InterfaceController.class);//接口，提供json数据
+	        me.add("/exam",ExamController.class);//试题控制器
 	}
 }

@@ -9,7 +9,7 @@
 						      <div class="modal-body" >
 						      </div>	
 						      <div class="modal-footer">
-                				<button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+                				 <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
                					 <button type="button" class="btn btn-primary" id="pamsUpdateBtn">保存</button>
             				</div>     
 					    </div>

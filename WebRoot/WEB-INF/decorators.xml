@@ -20,7 +20,8 @@
        <pattern>/task/*</pattern>   
        <pattern>/menu/*</pattern>
        <pattern>/analyse/*</pattern> 
-       <pattern>/interface/*</pattern>            
+       <pattern>/interface/*</pattern> 
+       <pattern>/exam/*</pattern>                
  </decorator>     
  
  <decorator name="notitle" page="notitle.jsp">    

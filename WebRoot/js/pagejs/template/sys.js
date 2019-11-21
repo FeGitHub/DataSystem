@@ -129,6 +129,21 @@ function pamsCheckPwd(field, rules, i, options){
  *  更新用户信息
  */
 $("body").on("click","#pamsUpdateBtn",function(){
+	//常规模态框操作
+	if(PAMS.isNull($("#pamsPwdcheck").val())){
+		$("#pamsModal").modal("hide");		
+		var examData=$("#examData").val();
+		//简化请求
+		var successFn=function(data){
+			alert(JSON.stringify(data));		
+		}
+		PAMS.AjaxDone({url:basepath+"/exam/addData",successFn:successFn,data:{"examData":examData}});
+		
+		return;
+	}
+	
+	
+	//密码更换
 	if($("#pamsUserForm").validationEngine('validate')){
 	    var pamsPwdcheck=$("#pamsPwdcheck").val();
 	    var pamsMail=$("#pamsMail").val();

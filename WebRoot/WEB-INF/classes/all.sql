@@ -42,7 +42,7 @@
 #end
 
 /****
- *
+ * 信息
  */
 #namespace("notification")
 #include("com/DS/pams/dao/notification.sql")
@@ -83,7 +83,12 @@
 #include("com/DS/pams/dao/excel.sql")
 #end
 
-
+/****
+ * 试题
+ */
+#namespace("exam")
+#include("com/DS/pams/dao/exam.sql")
+#end
 
 
 

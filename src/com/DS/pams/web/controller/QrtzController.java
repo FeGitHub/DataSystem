@@ -92,7 +92,7 @@ public class QrtzController extends BaseController{
 		   if(quartzService.removeJob(vo)){
 			   renderJson(ajaxDoneSuccess("成功删除调度器任务!"));		
 		   }else{
-			   renderJson(ajaxDoneSuccess("操作失败"));	
+			   renderJson(ajaxDoneError("操作失败"));	
 		   }		
 	  }
 }

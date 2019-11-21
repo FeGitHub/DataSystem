@@ -14,17 +14,24 @@ import com.jfinal.plugin.activerecord.SqlPara;
 public class InterfaceController extends BaseController {
 	
 	@Clear
-	public void getJson(){
+	public void getJson(){		
    		String serviceid=getPara("serviceid");
-   	    Map<String, Object> map=new HashMap<String, Object>();
-	    map.put("serviceid", serviceid);
-   		SqlPara getJson=Db.getSqlPara("interfaceservice.getJson", map);
-   		Record record=Db.findFirst(getJson);
-   		String json="{\"info\":\"无对应的接口数据\"}";
-   		if(record!=null){
-   			 json=record.getStr("jsonstr");
-   		}   		
-   		renderJson(json);   		
+   		//String json="{\"info\":\"无对应的接口数据\"}";
+   		String json="";
+   		try {
+   		    Map<String, Object> map=new HashMap<String, Object>();
+   	        map.put("serviceid", serviceid);
+      		SqlPara getJson=Db.getSqlPara("interfaceservice.getJson", map);
+      		Record record=Db.findFirst(getJson);
+      		if(record==null){
+      			throw new Exception("无对应的接口数据");
+      		} 
+      		 json=record.getStr("jsonstr");
+      		renderJson(json); 
+   		  }catch(Exception e) {
+   			e.printStackTrace();
+   			renderJson(ajaxDoneError(e.getMessage()));
+   		}  		   		  		  		   				  		
    	}
 	
 	
