@@ -87,7 +87,7 @@
 
 
 /****
- * 试题模块
+ * 试题
  */
 #namespace("exam")
 #include("com/DS/pams/dao/exam.sql")
