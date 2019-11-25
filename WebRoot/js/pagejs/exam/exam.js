@@ -1,10 +1,15 @@
 
-
-$("#test").click(function(){	
+/***
+ * 随机抽题
+ */
+$("#exam").click(function(){	
 	//简化请求
 	var successFn=function(data){
 		//alert(JSON.stringify(data));
-		alert(data.msg);		
+		alert(data.question);	
+		if(!PAMS.isNull(data.answer)){
+			alert(data.answer);		
+		}		
 	}
 	PAMS.ajaxDone({url:"/exam/getExam",successFn:successFn});
 });
@@ -26,7 +31,12 @@ $("#newQuestion").click(function(){
  */
 PAMS.doShowModel(function(){
 	var question=$("#qusetion").val();
-	var data={"question":question};
+	if(PAMS.isNull(question)){
+		PAMS.alert("试题不允许为空！");
+		return;
+	}
+	var answer=$("#answer").val();
+	var data={"question":question,"answer":answer};
 	PAMS.ajaxDone({"data":data,"url":"/exam/addQuestion"});
 });
 

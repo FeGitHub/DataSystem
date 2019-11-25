@@ -1,4 +1,9 @@
 //https://www.cnblogs.com/cboyce/p/6029782.html
+
+
+/****
+ * PAMS 系统API
+ */
 (function(){
     //定义一些默认参数
     var _options={
@@ -8,8 +13,9 @@
     //定义一些api
     var _plugin_api = {
     		
-    		
-    	//************身份证获取出生日期	
+    	/***
+    	 *  身份证获取出生日期	
+    	 */
         getBirthday:function(){
         	  if(!sSfzh||sSfzh.length==0)return '';
               if(sSfzh.length==18){
@@ -22,8 +28,9 @@
               }     
         },
         
-        
-       //***************身份证获取性别 
+        /***
+         * 身份证获取性别 
+         */
         getSex:function(){
         	switch(parseInt(sSfzh.substring(16,17))){
 	    	case 1:return "1";
@@ -35,9 +42,11 @@
 		    }
       },
       
-      
-      
-      //**************判空处理
+      /***
+       * 判空处理
+       * @param data
+       * @returns {Boolean}
+       */    
       isNull:function(data){
     	var result = false;
   		if(!data || data.length == 0){
@@ -47,7 +56,9 @@
     },
    
     
-    //************进一步封装Ajax
+    /***
+     *  进一步封装ajax
+     */
     ajaxDone:function(param){
    	 //检验基本参数是否完整
    	 var url=param.url;
@@ -70,8 +81,7 @@
    				layer.alert(err, {
    					icon: 5,
    					title: "请求失败"
-   					});
-   	            
+   					});            
    	        },
    			success:function(data){
    				if(data.code!=400){
@@ -85,9 +95,12 @@
    					});
    			}
    		});	 
-    }, 
-      
-    //****************字符换行
+    },     
+   /****
+    * 字符换行
+    * @param val
+    * @returns {String}
+    */
      getNewline:function (val) {  
 	    var str = new String(val);  
 	    var bytesCount = 0;  
@@ -125,8 +138,35 @@
 			  doMethod();
 			  $("#pamsModal").modal("hide");
 			})	
-	 }	        
+	 },
+	 /***
+	  * 封装警告框
+	  * @param err
+	  */
+	 alert:function (err) {    		  
+		 layer.alert(err, {
+				icon: 5,
+				title: "请求失败"
+				});                
+	 },
+	 /***
+	  * 封装确认框
+	  * @param err
+	  */
+		 confirm:function (msg,doMethod) {    		  
+			 layer.confirm(msg, {			
+				    btn: ['确定', '取消'], //按钮
+				    skin: 'btnClass',
+				    icon: 2,
+				    title: "提示",
+		}, function () {
+		    layer.closeAll('dialog');       
+		    doMethod();
+		});	          
+	 }	  
   }
+  
+ 
     //这里确定了插件的名称
     this.PAMS = _plugin_api;
 })();

@@ -1,5 +1,4 @@
 package com.DS.utils.common;
-
 import com.jfinal.kit.Prop;
 import com.jfinal.kit.PropKit;
 import java.sql.Connection;
@@ -17,22 +16,27 @@ public class EM {
 	   }   
 	 
 	 
+	 /***
+	  * 测试数据库连接状况
+	  */
 	 public static void testDb(){
 		 try {
 	           // Class.forName("com.mysql.jdbc.Driver");  
 			    Class.forName("com.mysql.cj.jdbc.Driver");  		  
 	            Connection conn=DriverManager.getConnection("jdbc:mysql://127.0.0.1:3306/pams?serverTimezone=UTC&useSSL=false","root","jeffqiu"); 
 	            System.out.println(conn);
-		 } catch (ClassNotFoundException e) {
-	            // TODO Auto-generated catch block
+		 } catch (ClassNotFoundException e) {	         
 	            e.printStackTrace();
 	        } catch (SQLException e) {
-	            // TODO Auto-generated catch block
 	            e.printStackTrace();
 	        }
 	 }
 	 
 	 
+	 
+	 /****
+	  * 测试文件配置路径
+	  */
 	 public static void testEm(){
 		 //需要检测的配置属性
 		 Prop p =PropKit.use("config.properties");

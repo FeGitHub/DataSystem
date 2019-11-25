@@ -1,14 +1,22 @@
 /***
- * 随机抽题
+ * 随机抽题(被抽中的数据10分钟后才会参与抽签)
  */
 #sql("getExam")
-	   SELECT * FROM exam ORDER BY RAND() LIMIT 1
+SELECT
+	* 
+FROM
+	exam 
+WHERE
+	opertime < date_sub( now( ), INTERVAL 10 MINUTE ) 
+ORDER BY
+	RAND( ) 
+	LIMIT 1
 #end
 
 
 /***
- * 添加新的试题
+ * 添加新的试题(操作时间减少10分钟用于立即查询)
  */
 #sql("addQuestion")
-	 insert into exam (question,opertime) values (#para(question),now())
+	 insert into exam (question,opertime,answer) values (#para(question),date_sub(now( ), INTERVAL 10 MINUTE ),#para(answer))
 #end

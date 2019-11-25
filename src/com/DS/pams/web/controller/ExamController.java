@@ -1,5 +1,6 @@
 package com.DS.pams.web.controller;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -33,10 +34,15 @@ public class ExamController extends BaseController {
       		SqlPara getJson=Db.getSqlPara("exam.getExam");
       		Record record=Db.findFirst(getJson);
       		if(record==null){
-      			throw new Exception("无数据");
-      		} 
-      		String question=record.getStr("question");
-      		renderJson(ajaxDoneSuccess(question)); 
+      			throw new Exception("暂无符合条件的数据");
+      		}     		
+      		//更新操作时间
+      		record.set("opertime", new Date());
+      		Db.update("exam", record);
+      		Map<String,Object> resultMap=new HashMap<String,Object>();
+      		resultMap.put("question", record.get("question"));
+      		resultMap.put("answer", record.get("answer"));
+      		renderJson(ajaxDoneSuccess(resultMap)); 
    		  }catch(Exception e) {
    			e.printStackTrace();
    			renderJson(ajaxDoneError(e.getMessage()));
@@ -48,8 +54,10 @@ public class ExamController extends BaseController {
 	 */
 	public void addQuestion(){
 		String question=getPara("question");
+		String answer=getPara("answer");
 	    Map<String,Object>  param=new HashMap<String,Object>();
 	    param.put("question", question);
+	    param.put("answer", answer);
 	    SqlPara sql=Db.getSqlPara("exam.addQuestion", param);
 		try {
 		  Db.update(sql);

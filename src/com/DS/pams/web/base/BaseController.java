@@ -2,7 +2,9 @@ package com.DS.pams.web.base;
 import java.util.HashMap;
 import java.util.Map;
 import com.DS.common.model.User;
+import com.DS.utils.common.ObjectUtil;
 import com.jfinal.core.Controller;
+import com.jfinal.plugin.activerecord.Record;
 /****
  * 
  * @author jeff
@@ -22,6 +24,10 @@ public abstract class BaseController extends Controller{
 		resultMap.put("msg",message);
 		return resultMap;
 	}
+	
+	
+	
+	
 	protected Map<String,Object> ajaxDoneSuccess(){
 		resultMap.put("code", "200");
 		resultMap.put("msg","操作成功");

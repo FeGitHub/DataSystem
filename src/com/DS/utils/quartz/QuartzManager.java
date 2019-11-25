@@ -4,6 +4,10 @@ import java.util.HashMap;
 import java.util.Map;
 import org.quartz.*;
 import org.quartz.impl.StdSchedulerFactory;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
+import com.DS.exception.BaseException;
 /***
  * @author jeff
  * quartz调度器的主要部分
@@ -11,6 +15,8 @@ import org.quartz.impl.StdSchedulerFactory;
  */
 public class QuartzManager {      
     private static SchedulerFactory schedulerFactory = new StdSchedulerFactory();  
+    
+    final static Logger logger = LoggerFactory.getLogger(QuartzManager.class);
     /***
      * 新增调度器任务
      * @param jobName 任务名
@@ -36,9 +42,8 @@ public class QuartzManager {
             sched.scheduleJob(jobDetail, trigger);        
             if (!sched.isShutdown()) {    
                 sched.start();    
-            }   
-            System.out.println("QuartzManager add task success");
-       
+            }  
+            logger.info("定时任务添加成功");           
         return resultMap;
     }    
   
@@ -70,7 +75,7 @@ public class QuartzManager {
     		            if (!sched.isShutdown()) {    
     		                sched.start();    
     		            }    
-    		            System.out.println("QuartzManager add task success");
+    		            logger.info("定时任务添加成功");       
     		        } catch (Exception e) {    
     		            throw new RuntimeException(e);    
     		        }    
@@ -124,7 +129,7 @@ public class QuartzManager {
             sched.pauseTrigger(triggerKey);
             sched.unscheduleJob(triggerKey);   
             sched.deleteJob(JobKey.jobKey(jobName, jobGroupName));
-            System.out.println("QuartzManager removeJob success");
+            logger.info("定时任务成功删除");       
     }    
   
   
@@ -135,8 +140,9 @@ public class QuartzManager {
         try {    
             Scheduler sched = schedulerFactory.getScheduler();    
             sched.start();    
-            System.out.println("QuartzManager startJobs success");
-        } catch (Exception e) {    
+            logger.info("定时任务成功启动"); 
+        } catch (Exception e) {  
+        	 logger.error("定时任务启动失败..."); 
             throw new RuntimeException(e);    
         }    
     }    
