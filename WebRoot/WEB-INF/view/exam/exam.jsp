@@ -23,7 +23,7 @@
               	<td>
 	              	<div class="row">
 	                  	<div class="col-sm-12">	                                     
-                           <textarea rows="5" cols="60" id="examData"></textarea>
+                           <textarea rows="5" cols="60" id="qusetion"></textarea>
 	                  	</div>	                  	
 	                 </div>	                
               	</td>             

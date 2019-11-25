@@ -83,8 +83,11 @@
 #include("com/DS/pams/dao/excel.sql")
 #end
 
+
+
+
 /****
- * 试题
+ * 试题模块
  */
 #namespace("exam")
 #include("com/DS/pams/dao/exam.sql")

@@ -9,7 +9,7 @@ $("#test").click(function(){
 	var successFn=function(data){
 		alert(JSON.stringify(data));		
 	}
-	PAMS.AjaxDone({url:basepath+"/interface/getJson",successFn:successFn,data:{"serviceid":serviceid}});
+	PAMS.ajaxDone({url:"/interface/getJson",successFn:successFn,data:{"serviceid":serviceid}});
 });
 
 

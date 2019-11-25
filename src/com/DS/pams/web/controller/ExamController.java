@@ -43,16 +43,17 @@ public class ExamController extends BaseController {
    		}  		   		  		  		   				  		
    	}
 	
-	public void addData(){
-		String examData=getPara("examData");
-		Record record=new Record();
-		record.set("question", examData);			
+	/***
+	 * 添加新的试题
+	 */
+	public void addQuestion(){
+		String question=getPara("question");
+	    Map<String,Object>  param=new HashMap<String,Object>();
+	    param.put("question", question);
+	    SqlPara sql=Db.getSqlPara("exam.addQuestion", param);
 		try {
-			if(Db.update("exam", record)){
-				renderJson(ajaxDoneSuccess());
-			}else{
-				renderJson(ajaxDoneError());
-			}
+		  Db.update(sql);
+		  renderJson(ajaxDoneSuccess("添加成功！")); 
 		}catch(Exception e) {
    			e.printStackTrace();
    			renderJson(ajaxDoneError(e.getMessage()));

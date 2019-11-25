@@ -48,15 +48,19 @@
    
     
     //************进一步封装Ajax
-    AjaxDone:function(param){
+    ajaxDone:function(param){
    	 //检验基本参数是否完整
    	 var url=param.url;
    	 if(PAMS.isNull(url)){
    		 alert("请求资源地址不能为空！");
    		 return;
    	 }
+   	 url=basepath+url;
    	 var postData=param.data==null?{}:param.data;//请求数据
-   	 var successFn=param.successFn==null?function(data){}:param.successFn;//请求成功方法
+   	 var defaultSuccessFn=function(data){
+   		 alert(data.msg);
+   	 }
+   	 var successFn=param.successFn==null?defaultSuccessFn:param.successFn;//请求成功方法
    	 $.ajax({
    			url:url,
    			type:"post",
@@ -110,17 +114,18 @@
     showModel:function (_html) {      	 		
     		$("#pamsModal .modal-body").html(_html);	
     		$("#pamsModal").modal("show");
+    		$("#pamsUpdateBtn").hide();	
 	},
 	/****
 	 * 模态框操作
 	 * @param doMethod
 	 */
-	  doShowModel:function (doMethod) {      	 		
-		  doMethod();
-		  $("#pamsModal").modal("hide");
-	}
-	
-        
+	  doShowModel:function (doMethod) {    		  
+		  $("body").on("click","#userUpdateBtn",function(){
+			  doMethod();
+			  $("#pamsModal").modal("hide");
+			})	
+	 }	        
   }
     //这里确定了插件的名称
     this.PAMS = _plugin_api;
