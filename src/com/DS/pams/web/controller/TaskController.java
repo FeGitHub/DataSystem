@@ -20,7 +20,7 @@ import com.DS.pams.service.impl.TaskServiceImpl;
 import com.DS.pams.vo.ProjectListVo;
 import com.DS.pams.vo.TaskListVo;
 import com.DS.pams.web.base.BaseController;
-import com.DS.utils.common.ObjectUtil;
+import com.DS.utils.common.Util;
 import com.DS.utils.common.TimeUtil;
 import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONArray;
@@ -66,7 +66,7 @@ public class TaskController extends BaseController{
        public void getTargetList(){	
     	TaskListVo vo=getBean(TaskListVo.class,"");
     	vo.setTaskType("1");//目标任务列表
-   		Map<String,Object> limit=ObjectUtil.convertBeanToMap(vo);
+   		Map<String,Object> limit=Util.convertBeanToMap(vo);
    		limit=getDivPageParam(limit);		
         renderJson(taskService.getTargetTaskList(limit));
    		
@@ -223,7 +223,7 @@ public class TaskController extends BaseController{
       */
      public void getProjectList(){
     	 ProjectListVo vo=getBean(ProjectListVo.class,"");
- 		 Map<String,Object> limit=ObjectUtil.convertBeanToMap(vo);
+ 		 Map<String,Object> limit=Util.convertBeanToMap(vo);
  		 limit=getDivPageParam(limit);   	
 		 renderJson(taskService.getProjectList(limit));
      }
@@ -272,7 +272,7 @@ public class TaskController extends BaseController{
     		 renderJson(ajaxDoneError("更新主键为null"));
     		 return;   		 
     	 }
-    	 Map<String,Object> paramMap=ObjectUtil.convertBeanToMap(task);	
+    	 Map<String,Object> paramMap=Util.convertBeanToMap(task);	
     	 SqlPara sql=Db.getSqlPara("task.updateTaskCalendar",paramMap);
     	 int result=Db.update(sql);
     	 if(result>0){

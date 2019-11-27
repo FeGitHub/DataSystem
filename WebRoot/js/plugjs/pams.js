@@ -116,7 +116,7 @@
 	        }
 	        //换行
 	        s += str.charAt(i);
-	        if(bytesCount>=20){  
+	        if(bytesCount>=30){  
 	         s = s + '<br>';
 	         //重置
 	         bytesCount=0;

@@ -16,7 +16,7 @@ import com.DS.pams.service.ProjectService;
 import com.DS.pams.service.RemindService;
 import com.DS.pams.service.TaskService;
 import com.DS.utils.common.NewMailUtil;
-import com.DS.utils.common.ObjectUtil;
+import com.DS.utils.common.Util;
 import com.alibaba.fastjson.JSONObject;
 import com.jfinal.aop.Inject;
 import com.jfinal.plugin.activerecord.Db;
@@ -97,7 +97,7 @@ public class NotificationServiceImpl implements NotificationService {
 	 */
 	@Override
 	public int addNotification(Notification n) {
-		  Map<String,Object> paramMap=ObjectUtil.convertBeanToMap(n);
+		  Map<String,Object> paramMap=Util.convertBeanToMap(n);
 		  SqlPara sql = Db.getSqlPara("notification.addNotification",paramMap);
 		  return Db.update(sql);
 	}
@@ -126,7 +126,7 @@ public class NotificationServiceImpl implements NotificationService {
 		if(n.getId()==null ||n.getUserId()==null){
 			  return 0;
 		}
-		Map<String,Object> paramMap=ObjectUtil.convertBeanToMap(n);
+		Map<String,Object> paramMap=Util.convertBeanToMap(n);
 		SqlPara sql = Db.getSqlPara("notification.updateNotification",paramMap);
 		return Db.update(sql);
 	}

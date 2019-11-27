@@ -5,7 +5,7 @@ import com.DS.common.model.User;
 import com.DS.pams.service.UserService;
 import com.DS.pams.vo.UserVo;
 import com.DS.utils.common.DataTablesUtil;
-import com.DS.utils.common.ObjectUtil;
+import com.DS.utils.common.Util;
 import com.DS.utils.common.SecretUtil;
 import com.jfinal.plugin.activerecord.Db;
 import com.jfinal.plugin.activerecord.SqlPara;
@@ -20,7 +20,7 @@ public class UserServiceImpl implements UserService {
 	public int register(UserVo user) {
 		String password=SecretUtil.getMD5(user.getPassword());
 		user.setPassword(password);
-		Map<String,Object> paramMap=ObjectUtil.convertBeanToMap(user);
+		Map<String,Object> paramMap=Util.convertBeanToMap(user);
 		SqlPara sql = Db.getSqlPara("user.addData",paramMap);
 		return Db.update(sql);
 	}

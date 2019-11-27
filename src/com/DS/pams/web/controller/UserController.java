@@ -12,7 +12,7 @@ import com.DS.pams.service.impl.UserServiceImpl;
 import com.DS.pams.vo.UserListVo;
 import com.DS.pams.vo.UserVo;
 import com.DS.pams.web.base.BaseController;
-import com.DS.utils.common.ObjectUtil;
+import com.DS.utils.common.Util;
 import com.DS.utils.common.SecretUtil;
 import com.jfinal.aop.Clear;
 import com.jfinal.aop.Inject;
@@ -68,7 +68,7 @@ public class UserController extends BaseController {
 	 */
 	public void getUserList(){	
 		UserListVo vo=getBean(UserListVo.class,"");
-		Map<String,Object> limit=ObjectUtil.convertBeanToMap(vo);
+		Map<String,Object> limit=Util.convertBeanToMap(vo);
 		limit=getDivPageParam(limit);
         renderJson(userService.getUserList(limit));		
 	}

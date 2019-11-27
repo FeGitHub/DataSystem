@@ -5,7 +5,7 @@ import com.DS.common.model.User;
 import com.DS.pams.service.MenuService;
 import com.DS.pams.service.impl.MenuServiceImpl;
 import com.DS.pams.web.base.BaseController;
-import com.DS.utils.common.ObjectUtil;
+import com.DS.utils.common.Util;
 import com.DS.utils.common.SecretUtil;
 import com.jfinal.aop.Clear;
 import com.jfinal.aop.Inject;
@@ -31,7 +31,7 @@ public class LoginController extends BaseController{
     	   return;
        } 	
 	   String password = SecretUtil.getMD5(user.getPassword());
-       Map<String,Object> paramMap=ObjectUtil.convertBeanToMap(user);
+       Map<String,Object> paramMap=Util.convertBeanToMap(user);
        SqlPara sql=Db.getSqlPara("user.getUserInfoByAccount", paramMap);
        user= user.findFirst(sql); 
        if(user!=null&&user.getPassword().equals(password)){

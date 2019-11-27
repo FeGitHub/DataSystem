@@ -38,11 +38,11 @@
 		<table class="table table-bordered table-hover">
           <tbody>       
             <tr>
-				<td class="va-m" width="30%"><span>试题</span></td>
+				<td class="va-m" width="30%"><span>试题</span><input value="" id="key" name="key" style="display:none;"></td>
               	<td>
 	              	<div class="row">
 	                  	<div class="col-sm-12">	                                     
-                           <textarea rows="5" cols="60" id="qusetion"></textarea>
+                           <textarea rows="5" cols="60" id="question" name="question"></textarea>
 	                  	</div>	                  	
 	                 </div>	                
               	</td>             
@@ -52,7 +52,7 @@
               	<td>
 	              	<div class="row">
 	                  	<div class="col-sm-12">	                                     
-                           <textarea rows="5" cols="60" id="answer"></textarea>
+                           <textarea rows="5" cols="60" id="answer" name="answer"></textarea>
 	                  	</div>	                  	
 	                 </div>	                
               	</td>             

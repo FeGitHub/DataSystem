@@ -13,7 +13,7 @@ import java.util.Map;
  * @author jeff
  *  对象工具
  */
-public class ObjectUtil {    
+public class Util {    
     /** 
      * 将一个 JavaBean 对象转化为一个  Map 
      * @param bean 要转化的JavaBean 对象 
@@ -53,4 +53,13 @@ public class ObjectUtil {
         return returnMap; 
     }      
     
+    /***
+     * 判断字符串是否为空
+     * @param str
+     * @return
+     */
+     public static boolean isEmpty(String str)
+   	 {
+   		 return ((str == null) || ("".equals(str.trim())));
+   		 }
 }

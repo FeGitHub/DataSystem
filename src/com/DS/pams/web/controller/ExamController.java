@@ -2,19 +2,9 @@ package com.DS.pams.web.controller;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
-import javax.servlet.http.HttpSession;
-import com.DS.common.model.User;
-import com.DS.pams.service.FileService;
-import com.DS.pams.service.NotificationService;
-import com.DS.pams.service.TaskService;
-import com.DS.pams.service.impl.FileServiceImpl;
-import com.DS.pams.service.impl.NotificationServiceImpl;
-import com.DS.pams.service.impl.TaskServiceImpl;
 import com.DS.pams.web.base.BaseController;
-import com.jfinal.aop.Clear;
-import com.jfinal.aop.Inject;
+import com.DS.utils.common.Util;
 import com.jfinal.plugin.activerecord.Db;
 import com.jfinal.plugin.activerecord.Record;
 import com.jfinal.plugin.activerecord.SqlPara;
@@ -35,9 +25,7 @@ public class ExamController extends BaseController {
    		    Map<String,Object>  param=new HashMap<String,Object>();
  	        param.put("filter", filter);
       		SqlPara getExam=Db.getSqlPara("exam.getExam",param);
-      		SqlPara getExamSize=Db.getSqlPara("exam.getExamSize",param);
       		Record record=Db.findFirst(getExam);
-      		Record recordSize=Db.findFirst(getExamSize);
       		if(record==null){
       			throw new Exception("暂无符合条件的数据");
       		}     		
@@ -47,7 +35,7 @@ public class ExamController extends BaseController {
       		Map<String,Object> resultMap=new HashMap<String,Object>();
       		resultMap.put("question", record.get("question"));
       		resultMap.put("answer", record.get("answer"));
-      		resultMap.put("size", recordSize.get("size"));
+      		resultMap.put("id", record.get("id"));
       		renderJson(ajaxDoneSuccess(resultMap)); 
    		  }catch(Exception e) {
    			e.printStackTrace();
@@ -61,13 +49,25 @@ public class ExamController extends BaseController {
 	public void addQuestion(){
 		String question=getPara("question");
 		String answer=getPara("answer");
+		String id=getPara("key");
 	    Map<String,Object>  param=new HashMap<String,Object>();
 	    param.put("question", question);
 	    param.put("answer", answer);
+	    param.put("id", id);
+	    Record record=new Record();
+	    record.set("question", question);
+	    record.set("answer", answer);
+	    record.set("id", id);
 	    SqlPara sql=Db.getSqlPara("exam.addQuestion", param);
 		try {
-		  Db.update(sql);
-		  renderJson(ajaxDoneSuccess("添加成功！")); 
+		  if(Util.isEmpty(id)){
+			  Db.update(sql);
+			  renderJson(ajaxDoneSuccess("添加成功！")); 
+		  }else{
+			  Db.update("exam", record);
+			  renderJson(ajaxDoneSuccess("保存成功！")); 
+		  }
+		 
 		}catch(Exception e) {
    			e.printStackTrace();
    			renderJson(ajaxDoneError(e.getMessage()));

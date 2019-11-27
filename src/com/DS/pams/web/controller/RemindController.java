@@ -8,7 +8,7 @@ import com.DS.pams.service.RemindService;
 import com.DS.pams.service.impl.RemindServiceImpl;
 import com.DS.pams.vo.RemindVo;
 import com.DS.pams.web.base.BaseController;
-import com.DS.utils.common.ObjectUtil;
+import com.DS.utils.common.Util;
 import com.jfinal.aop.Inject;
 import com.jfinal.plugin.activerecord.Db;
 import com.jfinal.plugin.activerecord.SqlPara;
@@ -33,7 +33,7 @@ public class RemindController extends BaseController {
 	 */
 	public void getRemindDetails(){	
 		RemindVo vo=getBean(RemindVo.class,"");
-		Map<String,Object> limit=ObjectUtil.convertBeanToMap(vo);
+		Map<String,Object> limit=Util.convertBeanToMap(vo);
 		limit=getDivPageParam(limit);
         renderJson(remindService.getRemindDetails(limit));
 		
@@ -50,11 +50,11 @@ public class RemindController extends BaseController {
 		record.setUserId(user.getId());
 		record.setUserName(user.getAccount());
 		if(record.getStr("id")!=""&&record.getStr("id")!=null){
-			Map<String,Object> paramMap=ObjectUtil.convertBeanToMap(record);
+			Map<String,Object> paramMap=Util.convertBeanToMap(record);
 		    SqlPara updateSql=Db.getSqlPara("remind.updateData", paramMap);
 		    result=Db.update(updateSql);
 		}else{
-			Map<String,Object> paramMap=ObjectUtil.convertBeanToMap(record);
+			Map<String,Object> paramMap=Util.convertBeanToMap(record);
 			paramMap.put("addTime", new Date());
 		    SqlPara insertSql=Db.getSqlPara("remind.insertData", paramMap);
 		    result=Db.update(insertSql);
