@@ -87,10 +87,10 @@
 				          <div class="col-sm-12">	                                     
 			                     <div class="animated-radio-button">
 						               <label>
-						                   <input type="radio" name="leve" value="1" checked><span class="label-text">普通用户</span>
+						                   <input type="radio" name="filter" value="filter10" checked><span class="label-text">免重复抽中</span>
 						               </label>
 						                <label>
-						                   <input type="radio" name="leve" value="2"><span class="label-text">管理员</span>
+						                   <input type="radio" name="filter" value=""><span class="label-text">不做限制</span>
 						                </label>						     
 			                       </div>
 				           </div>	                  	

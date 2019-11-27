@@ -173,21 +173,7 @@ $("body").on("click",".delBtn",function(){
 	var info={"id":id}
 	layer.confirm('确定删除？', {
 		  btn: ['确定','取消'] //按钮
-		}, function(){
-			/*$.ajax({
-				url:basepath+"/remind/delRemindDetail",
-				type:"post",
-				data:info,
-				dataType:"json",
-				success:function(data){
-					if(data.code==200){							
-						showTable.ajax.reload(null,false);
-						toastrSuccess(data.msg,3000);
-					}else{							
-						toastrError(data.msg,3000);
-					}							
-				}
-			});		*/			 
+		}, function(){				 
 			layer.closeAll();
 		});
 }); 	 	    

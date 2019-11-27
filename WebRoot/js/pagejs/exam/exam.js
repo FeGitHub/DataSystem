@@ -4,14 +4,18 @@
  */
 $("#exam").click(function(){	
 	//简化请求
+	var filter=$('input:radio:checked').val();
 	var successFn=function(data){
 		//alert(JSON.stringify(data));
+		$("#size").html(data.size);
 		alert(data.question);	
 		if(!PAMS.isNull(data.answer)){
 			alert(data.answer);		
-		}		
+		}
+		
 	}
-	PAMS.ajaxDone({url:"/exam/getExam",successFn:successFn});
+	//var data={"filter":filter};
+	PAMS.ajaxDone({url:"/exam/getExam",successFn:successFn,form:"filterForm"});
 });
 
 

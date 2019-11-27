@@ -8,8 +8,27 @@
 <body>
 <div class="tile">												    				       	                			                                                      		
  <button type="button" id="exam" class="btn btn-info mt5 mr3 keepPlace" data-step="3" >随机试题</button>		
- <button type="button" id="newQuestion" class="btn btn-info mt5 mr3 keepPlace" data-step="3" >新建试题</button>				    	    								  	
+ <button type="button" id="newQuestion" class="btn btn-info mt5 mr3 keepPlace" data-step="3" >新建试题</button>	
+ 		    	    								  	
 </div>
+<div class="tile">	
+         <form  id="filterForm">	
+                        <div class="animated-radio-button">
+						               <label>
+						                   <input type="radio" name="filter" value="1" checked><span class="label-text">抽中10分钟过滤</span>
+						               </label>
+						                <label>
+						                   <input type="radio" name="filter" value=""><span class="label-text">不做过滤限制</span>
+						                </label>						     
+			             </div>	
+			             
+		</form>
+</div>
+
+<div class="tile">	
+   <span id="size"></span>
+</div>
+
 
 
 <template id="template">

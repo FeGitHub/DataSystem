@@ -31,8 +31,13 @@ public class ExamController extends BaseController {
 	 */
 	public void getExam(){		
    		try {
-      		SqlPara getJson=Db.getSqlPara("exam.getExam");
-      		Record record=Db.findFirst(getJson);
+   			String filter=getPara("filter");
+   		    Map<String,Object>  param=new HashMap<String,Object>();
+ 	        param.put("filter", filter);
+      		SqlPara getExam=Db.getSqlPara("exam.getExam",param);
+      		SqlPara getExamSize=Db.getSqlPara("exam.getExamSize",param);
+      		Record record=Db.findFirst(getExam);
+      		Record recordSize=Db.findFirst(getExamSize);
       		if(record==null){
       			throw new Exception("暂无符合条件的数据");
       		}     		
@@ -42,6 +47,7 @@ public class ExamController extends BaseController {
       		Map<String,Object> resultMap=new HashMap<String,Object>();
       		resultMap.put("question", record.get("question"));
       		resultMap.put("answer", record.get("answer"));
+      		resultMap.put("size", recordSize.get("size"));
       		renderJson(ajaxDoneSuccess(resultMap)); 
    		  }catch(Exception e) {
    			e.printStackTrace();

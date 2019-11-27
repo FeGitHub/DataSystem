@@ -5,13 +5,28 @@
 SELECT
 	* 
 FROM
-	exam 
-WHERE
-	opertime < date_sub( now( ), INTERVAL 10 MINUTE ) 
-ORDER BY
-	RAND( ) 
-	LIMIT 1
+	exam 	
+    #if(filter)
+      WHERE
+        opertime < date_sub( now( ), INTERVAL 10 MINUTE ) 
+     #end  
+  ORDER BY  RAND() LIMIT 1
 #end
+
+
+
+
+#sql("getExamSize")
+SELECT
+	count(1)  as size
+FROM
+	exam 	
+    #if(filter)
+      WHERE
+        opertime < date_sub( now( ), INTERVAL 10 MINUTE ) 
+     #end  
+#end
+
 
 
 /***

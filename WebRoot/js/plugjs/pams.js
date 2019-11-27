@@ -71,6 +71,7 @@
    	 var defaultSuccessFn=function(data){
    		 alert(data.msg);
    	 }
+   	 postData=param.form==null?postData:$("#"+param.form).serialize();
    	 var successFn=param.successFn==null?defaultSuccessFn:param.successFn;//请求成功方法
    	 $.ajax({
    			url:url,
@@ -163,7 +164,7 @@
 		    layer.closeAll('dialog');       
 		    doMethod();
 		});	          
-	 }	  
+	 },	 
   }
   
  
