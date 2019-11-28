@@ -38,7 +38,7 @@
 		<table class="table table-bordered table-hover">
           <tbody>       
             <tr>
-				<td class="va-m" width="30%"><span>试题</span><input value="" id="key" name="key" style="display:none;"></td>
+				<td class="va-m" width="30%"><span>试题</span><input value="" id="key" name="id" style="display:none;"></td>
               	<td>
 	              	<div class="row">
 	                  	<div class="col-sm-12">	                                     
@@ -47,7 +47,7 @@
 	                 </div>	                
               	</td>             
             </tr>     
-             <tr>
+             <tr id="showAnswer">
 				<td class="va-m" width="30%"><span>答案</span></td>
               	<td>
 	              	<div class="row">
@@ -56,7 +56,24 @@
 	                  	</div>	                  	
 	                 </div>	                
               	</td>             
-            </tr>                     
+            </tr>        
+             <tr id="operator">
+				<td class="va-m" width="30%"><span>显示答案</span></td>
+              	<td>
+	              	<div class="row">
+				          <div class="col-sm-12">	                                     
+			                     <div class="animated-radio-button">
+						               <label>
+						                   <input type="radio" name="show" value="0" checked><span class="label-text">隐藏</span>
+						               </label>
+						                <label>
+						                   <input type="radio" name="show" value="1"><span class="label-text">展示</span>
+						                </label>						     
+			                       </div>
+				           </div>	                  	
+	                 </div>	  
+              	</td>              	
+            </tr>          
           </tbody>
         </table>
         </form>

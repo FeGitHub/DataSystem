@@ -164,10 +164,68 @@
 		    layer.closeAll('dialog');       
 		    doMethod();
 		});	          
-	 },	 
-  }
-  
- 
+	    },	
+	    
+	    /***
+	     * 自动填充表单数据
+	     */
+	    fillForm:function (obj) {    		  
+	    	 if($.type(obj)!="object"){
+	    		        alert("页面初始化错误！");
+	    		        return false;
+	    		      }
+	    		      var key,value,tagName,type,arr;
+	    		      for(x in obj){
+	    		        key = x;
+	    		        value = obj[x];
+	    		        $("[name='"+key+"'],[name='"+key+"[]']").each(function(index){
+	    		          tagName = $(this)[0].tagName;
+	    		          type = $(this).attr('type');
+	    		          if(tagName=='INPUT'){
+	    		            if(type=='radio'){                      //处理radio
+	    		              $(this).attr('checked',$(this).val()==value);
+	    		            }else if(type=='checkbox'){             //处理checkbox
+	    		              for(var i =0;i<value.length;i++){
+	    		                if($(this).val()==value[i]){
+	    		                  $(this).attr('checked',true);
+	    		                  break;
+	    		                }
+	    		              }
+	    		            }else if(type=='date'){                  //处理日期型表单
+	    		              if(parseInt(value)>1000000000000)      //毫秒时间戳
+	    		                $(this)[0].valueAsNumber=parseInt(value);
+	    		              else if(parseInt(value)>1000000000)    //秒时间戳
+	    		                $(this)[0].valueAsNumber=parseInt(value)*1000;
+	    		              else                                   //字符串时间
+	    		                $(this)[0].valueAsDate=new Date(value);
+	    		            }else{
+	    		              if($.isArray(value))                    //表单组情形(多个同名表单)
+	    		                $(this).val(value[index]);
+	    		              else
+	    		                $(this).val(value);
+	    		            }
+	    		          }else if(tagName=='SELECT' || tagName=='TEXTAREA'){    //处理select和textarea
+	    		            if($.isArray(value))
+	    		              $(this).val(value[index]);
+	    		            else
+	    		              $(this).val(value);
+	    		          }    
+	    		        }); 
+	    		      }
+	    },
+	    /***
+	     * 清空表单内容
+	     * @param form
+	     */
+	    clear:function (form) {    		  
+	    	 $(":input","#"+form)
+	    	  .not(":button",":reset",":hidden",":submit")
+	    	  .val("")
+	    	  .removeAttr("checked")
+	    	  .removeAttr("selected");
+	    },	
+	    	        	    
+     }    
     //这里确定了插件的名称
     this.PAMS = _plugin_api;
 })();

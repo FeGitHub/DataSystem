@@ -69,7 +69,7 @@
 	                  	</div>	                  	
 	                 </div>	                
               	</td>             
-            </tr>      
+            </tr>                
              <tr>
 				<td class="va-m" width="30%"><span>用户邮箱</span></td>
               	<td>

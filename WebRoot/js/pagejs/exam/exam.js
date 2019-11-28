@@ -5,20 +5,10 @@
 $("#exam").click(function(){	
 	var filter=$('input:radio:checked').val();
 	var successFn=function(data){
-		//处理基本参数
-		$("#size").html(data.size);		
-		showModel();
-		$("#key").val(data.id);
-		$("#question").val(data.question);
-		$("#answer").val(data.answer);
-		//处理试题内容
-		//alert(data.question);	
-		//if(!PAMS.isNull(data.answer)){
-		//	alert(data.answer);		
-		//}
-		
+		showModel();	
+		PAMS.fillForm(data);	
+		showModelData("update");
 	}
-	//var data={"filter":filter};
 	PAMS.ajaxDone({url:"/exam/getExam",successFn:successFn,form:"filterForm"});
 });
 
@@ -29,6 +19,7 @@ $("#exam").click(function(){
  */
 $("#newQuestion").click(function(){	
 	showModel();
+	showModelData("add");
 });
 
 
@@ -47,17 +38,6 @@ PAMS.doShowModel(function(){
 	PAMS.ajaxDone({"url":"/exam/addQuestion",form:"templateForm"});
 });
 
-
-/***
- * 清空弹出框的表单的内容
- */
- function clearModel(){
-	 $("#question").val("");
-	 $("#answer").val("");
-	 $("#key").val("");
- }
- 
-
  
  
  /***
@@ -67,7 +47,40 @@ PAMS.doShowModel(function(){
 	   var htm = $($('#template').html());
 	   var _html='<div>'+htm[0].outerHTML+'</div>';	
 	   PAMS.showModel(_html);
-	   clearModel();
  }
+ 
+ 
+ /***
+  * 处理弹出框的数据展示问题
+  */
+ function showModelData(type){
+	 //新增：隐藏按钮框
+	 if(type=="add"){
+		 $("#operator").css("display","none");	
+		 $("#showAnswer").css("display","");
+	 }else{
+		 //修改与展示，隐藏答案框
+		 $("#operator").css("display","");
+		 $("#showAnswer").css("display","none"); 
+	 }
+}
+ 
+
+ /***
+  * 添加答案显示控制开关改变事件（动态添加的html,增加方法要用on）
+  */
+ $("body").on("change","input[type=radio][name=show]",function(){
+	  var show = $(this).val();
+	     if(show=='1'){//展示答案
+			 $("#showAnswer").css("display","");	 
+		}else{//隐藏
+			 $("#showAnswer").css("display","none");	 
+		}
+	})	
+ 
+ 
+ 
+ 
+ 
  
  
