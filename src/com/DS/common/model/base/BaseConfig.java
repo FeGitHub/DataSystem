@@ -41,4 +41,12 @@ public abstract class BaseConfig<M extends BaseConfig<M>> extends Model<M> imple
 		return getStr("parameter2");
 	}
 
+	public void setRemark(java.lang.String remark) {
+		set("remark", remark);
+	}
+	
+	public java.lang.String getRemark() {
+		return getStr("remark");
+	}
+
 }

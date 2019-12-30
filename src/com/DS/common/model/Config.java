@@ -7,5 +7,5 @@ import com.DS.common.model.base.BaseConfig;
  */
 @SuppressWarnings("serial")
 public class Config extends BaseConfig<Config> {
-	public static final Config dao = new Config();
+	
 }

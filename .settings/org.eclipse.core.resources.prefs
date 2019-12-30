@@ -1,5 +1,6 @@
 eclipse.preferences.version=1
 encoding//WebRoot/WEB-INF/res/footer.jsp=UTF-8
+encoding//WebRoot/WEB-INF/res/head.jsp=UTF-8
 encoding//WebRoot/WEB-INF/view/demo/eChartsDemo.jsp=UTF-8
 encoding//WebRoot/WEB-INF/view/demo/ganttView.jsp=UTF-8
 encoding//WebRoot/WEB-INF/view/demo/progressBar.jsp=UTF-8
