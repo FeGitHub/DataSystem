@@ -58,13 +58,18 @@
     
     /***
      *  进一步封装ajax
+     *  param={url:"",data:"",successFn:"",type:"post"}
      */
     ajaxDone:function(param){
    	 //检验基本参数是否完整
    	 var url=param.url;
+   	 var type=param.type;
    	 if(PAMS.isNull(url)){
    		 alert("请求资源地址不能为空！");
    		 return;
+   	 }
+   	 if(PAMS.isNull(type)){
+   		type="post";
    	 }
    	 url=basepath+url;
    	 var postData=param.data==null?{}:param.data;//请求数据
@@ -75,7 +80,7 @@
    	 var successFn=param.successFn==null?defaultSuccessFn:param.successFn;//请求成功方法
    	 $.ajax({
    			url:url,
-   			type:"post",
+   			type:type,
    			data:postData,
    			dataType:"json",
    			error: function (data,type, err) {
@@ -89,12 +94,16 @@
    					successFn(data);
    					return;
    				}
-   				var  msg=PAMS.getNewline(data.msg);  				
+   				var  msg=PAMS.getNewline(data.msg); 
+   				if(PAMS.isNull(msg)){
+   					msg="操作失败";
+   				}
    				layer.alert(msg, {
    					icon: 5,
    					title: "提示"
    					});
    			}
+   	        
    		});	 
     },     
    /****

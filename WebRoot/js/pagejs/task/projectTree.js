@@ -71,6 +71,7 @@ function  updataNodeAjax(){
 		node.name=$("#taskName").val();
 		node.description=$("#description").val();
 		node.underway=$("input[name='underway']:checked").val();
+		
 		var data={
 				"id":node.id,
 				"startDate":node.startDate,
@@ -79,20 +80,15 @@ function  updataNodeAjax(){
 				"description":node.description,
 				"underway":node.underway
 				};
-	  	$.ajax({
-			url:basepath+"/task/updateProjectTask",
-			type:"post",
-			data:data,
-			dataType:"json",
-			success:function(data){	
-				if(data.code==200){
-					ztree.updateNode(node);
-					toastrSuccess(data.msg,2000);				
-				}else{
-					toastrError(data.msg,2000);
-				}		
-			}
-		});
+		var successFn=function(){
+			if(data.code==200){
+				ztree.updateNode(node);
+				toastrSuccess(data.msg,2000);				
+			}else{
+				toastrError(data.msg,2000);
+			}		
+		}
+		PAMS.ajaxDone({data:data,url:"/task/updateProjectTask",successFn:successFn}); 
 	  	$("#seeMethodModal").modal("hide");
 	}
 }

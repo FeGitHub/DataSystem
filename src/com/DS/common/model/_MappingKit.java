@@ -24,7 +24,7 @@ public class _MappingKit {
 		arp.addMapping("project_tree", "id", ProjectTree.class);
 		arp.addMapping("remind", "id", Remind.class);
 		// Composite Primary Key order: taskId,allDay
-		arp.addMapping("task", "taskId,allDay", Task.class);
+		arp.addMapping("task", "taskId", Task.class);
 		arp.addMapping("user", "id", User.class);
 	}
 }

@@ -23,6 +23,7 @@ import com.jfinal.kit.PropKit;
  * 备份数据库的任务类
  * 
  * @author jeff 要配置mysqldump的环境变量，配置成功后最好退出Eclipse
+ * https://www.csdn.net/gather_27/MtTaMgwsNDg2Ny1ibG9n.html
  */
 public class DBBackupJob implements Job {
 	private static Logger logger = Logger.getLogger(DBBackupJob.class);
@@ -43,7 +44,7 @@ public class DBBackupJob implements Job {
 			if (exportDatabaseTool()) {
 				logger.info("数据库备份成功！--备份文件地址为" + savePath);
 			} else {
-				logger.info("数据库备份失败！--备份文件地址为" + savePath);
+				logger.info("数据库备份失败！--备份文件地址为" + savePath+",请检查是否配置了mysqldump的环境变量");
 			}
 		} catch (InterruptedException e) {
 			e.printStackTrace();
