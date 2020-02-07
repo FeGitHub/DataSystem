@@ -1,0 +1,1 @@
+source mysql/data/add_interface.sql;
