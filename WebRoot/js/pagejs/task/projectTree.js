@@ -80,12 +80,12 @@ function  updataNodeAjax(){
 				"description":node.description,
 				"underway":node.underway
 				};
-		var successFn=function(){
-			if(data.code==200){
+		var successFn=function(result){
+			if(result.code==200){
 				ztree.updateNode(node);
-				toastrSuccess(data.msg,2000);				
+				toastrSuccess(result.msg,2000);				
 			}else{
-				toastrError(data.msg,2000);
+				toastrError(result.msg,2000);
 			}		
 		}
 		PAMS.ajaxDone({data:data,url:"/task/updateProjectTask",successFn:successFn}); 
